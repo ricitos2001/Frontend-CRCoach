@@ -24,7 +24,7 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copiamos los archivos compilados desde el builder
 # Angular genera los ficheros estáticos en dist/<projectName>/browser; copiamos su contenido al root de nginx
-COPY --from=builder /app/dist/MemoWorks/browser/ /usr/share/nginx/html/
+COPY --from=builder /app/dist/Frontend-CRCoach/browser/ /usr/share/nginx/html/
 
 # Copiamos la configuración de nginx para fallback en SPA
 COPY nginx.conf /etc/nginx/conf.d/default.conf
