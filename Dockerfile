@@ -13,8 +13,8 @@ RUN npm ci --legacy-peer-deps --silent
 COPY . .
 
 # Construimos la aplicación usando el script build:prod (ejecuta inyección de preloads)
-RUN npm run build:prod -- --configuration production
-
+# RUN npm run build:prod -- --configuration production
+RUN npm run build
 
 # Etapa de producción - nginx
 FROM nginx:stable-alpine
