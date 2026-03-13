@@ -1,0 +1,5 @@
+site_name: CRCoach Documentation
+site_description: Documentation for MemoWorks, the ultimate note-taking app.
+
+theme:
+    name: material
