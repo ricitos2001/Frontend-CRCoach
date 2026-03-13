@@ -23,7 +23,7 @@ services:
       - crcoach_net
 
   dev:
-    image: node:20-alpine
+    image: node:24-alpine
     profiles: ["dev"]
     working_dir: /app
     command: sh -c "npm ci && npm run start -- --host 0.0.0.0"
@@ -38,9 +38,9 @@ services:
       - crcoach_net
 
 volumes:
-  memoworks_node_modules:
+  crcoach_node_modules:
     driver: local
 
 networks:
-  memoworks_net:
+  crcoach_net:
     driver: bridge
