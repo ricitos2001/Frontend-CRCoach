@@ -1,0 +1,29 @@
+// 1. UserSettingsComponent (tokens)
+@use '00-settings/variables' as *;
+@use '00-settings/css-variables' as *;
+
+// 2. Tools (mixins / functions)
+@use '00-settings/fonts' as *;
+@use '01-tools/mixins' as *;
+
+// 3. Generic (reset, normalize)
+@use '02-generic/reset' as *;
+
+// 4. Base (element styles)
+@use '03-elements/base' as *;
+
+// 5. Layout (grid, containers)
+@use '04-layout/grid' as *;
+@use '04-layout/header' as *;
+@use '04-layout/main' as *;
+@use '04-layout/footer' as *;
+@use '04-layout/sidebar' as *;
+
+// 6. Components (BEM components)
+
+
+// 7. Utilities
+
+
+// 8. Pages
+
