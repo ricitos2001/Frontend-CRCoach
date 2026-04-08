@@ -1,0 +1,9 @@
+<label [for]="name">{{ label || placeholder }}</label>
+
+@if (type !== 'textarea') {
+  <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()"/>
+} @else {
+  <textarea [id]="name" [placeholder]="placeholder" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()">{{ value }}</textarea>
+}
+
+
