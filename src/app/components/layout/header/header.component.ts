@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { LanguageSelectorComponent } from '../../shared/language-selector/language-selector.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { CommonButtonComponent } from '../../shared/common-button/common-button.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [LanguageSelectorComponent, CommonButtonComponent, TranslatePipe],
+  imports: [LanguageSelectorComponent, CommonButtonComponent, TranslatePipe, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: '../../../../styles/styles.css',
 })
