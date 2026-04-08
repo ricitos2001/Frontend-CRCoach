@@ -1,0 +1,12 @@
+{
+  "COMPONENTS": {
+    "SHARED": {
+      "LANGUAGE": "Idioma"
+    }
+  },
+  "PAGES": {
+    "LANDING": {
+      "HELLO_WORLD": "¡Hola Mundo!"
+    }
+  }
+}
