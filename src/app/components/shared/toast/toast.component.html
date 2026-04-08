@@ -1,0 +1,8 @@
+<section class="toast-container" aria-live="polite">
+  <section class="toast" *ngFor="let t of toasts()" [attr.data-type]="t.type">
+    <section class="toast-body">
+      <article class="toast-message">{{ t.message }}</article>
+      <button class="toast-close" (click)="dismiss(t.id)" aria-label="Cerrar">×</button>
+    </section>
+  </section>
+</section>
