@@ -8,6 +8,53 @@
   "PAGES": {
     "LANDING": {
       "HELLO_WORLD": "Hello World!"
+    },
+    "AUTH": {
+      "LOGIN": {
+        "LEGEND": "Sign in",
+        "EMAIL_LABEL": "Email",
+        "EMAIL_PLACEHOLDER": "Email",
+        "PASSWORD_LABEL": "Password",
+        "PASSWORD_PLACEHOLDER": "Password",
+        "SUBMIT": "Sign in",
+        "NO_ACCOUNT": "Don’t have an account? Sign up",
+        "FORGOT_PASSWORD": "Forgot your password? Recover it"
+      },
+      "REGISTER": {
+        "LEGEND": "Sign up",
+        "EMAIL_LABEL": "Email",
+        "EMAIL_PLACEHOLDER": "Email",
+        "NAME_LABEL": "First name",
+        "NAME_PLACEHOLDER": "First name",
+        "USERNAME_LABEL": "Username",
+        "USERNAME_PLACEHOLDER": "Username",
+        "SURNAMES_LABEL": "Last name",
+        "SURNAMES_PLACEHOLDER": "Last name",
+        "PHONE_LABEL": "Phone",
+        "PHONE_PLACEHOLDER": "Phone",
+        "PASSWORD_LABEL": "Password",
+        "PASSWORD_PLACEHOLDER": "Password",
+        "REPEAT_PASSWORD_LABEL": "Repeat password",
+        "REPEAT_PASSWORD_PLACEHOLDER": "Repeat password",
+        "SUBMIT": "Sign up",
+        "SUBMITTING": "Registering...",
+        "HAVE_ACCOUNT": "Already have an account? Sign in"
+      },
+      "RECOVER": {
+        "LEGEND": "Recover password",
+        "EMAIL_PLACEHOLDER": "Email",
+        "NEW_PASSWORD_LABEL": "New password",
+        "NEW_PASSWORD_PLACEHOLDER": "New password",
+        "CONFIRM_PASSWORD_LABEL": "Confirm password",
+        "CONFIRM_PASSWORD_PLACEHOLDER": "Confirm password",
+        "SEND_EMAIL": "Send email",
+        "CHANGE_PASSWORD": "Change password",
+        "BACK_TO_LOGIN": "Back to sign in",
+        "SUCCESS_EMAIL_SENT": "An email with instructions has been sent.",
+        "ERROR_PROCESSING_REQUEST": "Could not process the request.",
+        "SUCCESS_PASSWORD_CHANGED": "Password successfully updated.",
+        "ERROR_UPDATING_PASSWORD": "Could not update the password."
+      }
     }
   }
 }

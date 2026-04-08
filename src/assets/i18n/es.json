@@ -8,6 +8,53 @@
   "PAGES": {
     "LANDING": {
       "HELLO_WORLD": "¡Hola Mundo!"
+    },
+    "AUTH": {
+      "LOGIN": {
+        "LEGEND": "Iniciar sesión",
+        "EMAIL_LABEL": "Correo electrónico",
+        "EMAIL_PLACEHOLDER": "Correo electrónico",
+        "PASSWORD_LABEL": "Contraseña",
+        "PASSWORD_PLACEHOLDER": "Contraseña",
+        "SUBMIT": "Iniciar sesión",
+        "NO_ACCOUNT": "¿No tienes cuenta? Regístrate",
+        "FORGOT_PASSWORD": "¿Has olvidado tu contraseña? Recupérala"
+      },
+      "REGISTER": {
+        "LEGEND": "Regístrate",
+        "EMAIL_LABEL": "Correo electrónico",
+        "EMAIL_PLACEHOLDER": "Correo electrónico",
+        "NAME_LABEL": "Nombre",
+        "NAME_PLACEHOLDER": "Nombre",
+        "USERNAME_LABEL": "Nombre de usuario",
+        "USERNAME_PLACEHOLDER": "Nombre de usuario",
+        "SURNAMES_LABEL": "Apellidos",
+        "SURNAMES_PLACEHOLDER": "Apellidos",
+        "PHONE_LABEL": "Teléfono",
+        "PHONE_PLACEHOLDER": "Teléfono",
+        "PASSWORD_LABEL": "Contraseña",
+        "PASSWORD_PLACEHOLDER": "Contraseña",
+        "REPEAT_PASSWORD_LABEL": "Repetir contraseña",
+        "REPEAT_PASSWORD_PLACEHOLDER": "Repetir contraseña",
+        "SUBMIT": "Regístrate",
+        "SUBMITTING": "Registrando...",
+        "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión"
+      },
+      "RECOVER": {
+        "LEGEND": "Recuperar contraseña",
+        "EMAIL_PLACEHOLDER": "Correo electrónico",
+        "NEW_PASSWORD_LABEL": "Nueva contraseña",
+        "NEW_PASSWORD_PLACEHOLDER": "Nueva contraseña",
+        "CONFIRM_PASSWORD_LABEL": "Confirmar contraseña",
+        "CONFIRM_PASSWORD_PLACEHOLDER": "Confirmar contraseña",
+        "SEND_EMAIL": "Enviar correo",
+        "CHANGE_PASSWORD": "Cambiar contraseña",
+        "BACK_TO_LOGIN": "Volver a iniciar sesión",
+        "SUCCESS_EMAIL_SENT": "Se ha enviado un correo con instrucciones.",
+        "ERROR_PROCESSING_REQUEST": "No se pudo procesar la solicitud.",
+        "SUCCESS_PASSWORD_CHANGED": "Contraseña actualizada correctamente.",
+        "ERROR_UPDATING_PASSWORD": "No se pudo actualizar la contraseña."
+      }
     }
   }
 }
