@@ -56,5 +56,40 @@
         "ERROR_UPDATING_PASSWORD": "No se pudo actualizar la contraseña."
       }
     }
+  },
+  "NOTIFICATIONS": {
+    "AUTH": {
+      "LOGIN": {
+        "TITLE": "Inicio de sesión",
+        "MESSAGE": "El usuario {{email}} ha iniciado sesión.",
+        "ERROR": "Error al iniciar sesión"
+      },
+      "REGISTER": {
+        "TITLE": "Registro de usuario",
+        "MESSAGE": "El nuevo usuario {{email}} se ha registrado correctamente.",
+        "ERROR": "Error al registrar el usuario"
+      }
+    },
+    "TASK": {
+      "CREATED": "Tarea creada correctamente",
+      "UPDATED": "Tarea actualizada correctamente",
+      "TITLE": "Tarea creada",
+      "MESSAGE": "La tarea \"{{title}}\" se ha creado correctamente.",
+      "UPDATED_TITLE": "Tarea actualizada",
+      "UPDATED_MESSAGE": "La tarea \"{{title}}\" se ha actualizado correctamente.",
+      "CREATE_ERROR": "Error al crear la tarea",
+      "CANCELLED": "Operación cancelada"
+    },
+    "GROUP": {
+      "CREATED": "Grupo creado correctamente",
+      "TITLE": "Grupo creado",
+      "MESSAGE": "El grupo \"{{name}}\" se ha creado correctamente.",
+      "CREATE_ERROR": "Error al crear el grupo"
+    },
+    "USER": {
+      "UPDATED": "Usuario actualizado correctamente",
+      "UPDATE_ERROR": "Error al editar el usuario",
+      "CANCELLED": "Operación cancelada"
+    }
   }
 }

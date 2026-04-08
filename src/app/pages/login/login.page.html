@@ -1,1 +1,24 @@
-<p>login.page works!</p>
+<form class="add-task-form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" novalidate>
+  <fieldset class="grid-center">
+    <legend class="form__legend">{{ 'PAGES.AUTH.LOGIN.LEGEND' | translate }}</legend>
+    <app-common-button class="form-close" aria-label="Cerrar" (click)="close($event)">✕</app-common-button>
+    <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.LOGIN.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.EMAIL_PLACEHOLDER' | translate" [required]="true" class="grid"></app-form-input>
+    @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+      @if (loginForm.get('email')?.errors?.['required']) {
+        <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+      }
+      @if (loginForm.get('email')?.errors?.['email']) {
+        <p class="error">{{ 'VALIDATION.EMAIL_INVALID' | translate }}</p>
+      }
+    }
+
+    <app-form-input formControlName="password" type="password" name="password" [label]="'PAGES.AUTH.LOGIN.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.PASSWORD_PLACEHOLDER' | translate" [required]="true" class="grid"></app-form-input>
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+      <p class="error">{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}</p>
+    }
+
+    <app-common-button type="submit" class="grid" [disabled]="loginForm.invalid || loginForm.pending">{{ 'PAGES.AUTH.LOGIN.SUBMIT' | translate }}</app-common-button>
+    <a (click)="openRegister($event)">{{ 'PAGES.AUTH.LOGIN.NO_ACCOUNT' | translate }}</a>
+    <a [routerLink]="['/recoverPassword']">{{ 'PAGES.AUTH.LOGIN.FORGOT_PASSWORD' | translate }}</a>
+  </fieldset>
+</form>

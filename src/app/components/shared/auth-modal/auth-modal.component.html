@@ -1,0 +1,10 @@
+<app-modal [isOpen]="isOpen" [showHeader]="false" size="medium" (close)="close()">
+  <article class="auth-body" style="margin-top:12px;">
+    @if (activeTab === 'login') {
+      <app-login (authSuccess)="onChildAuthSuccess()"></app-login>
+    }
+    @if (activeTab === 'register') {
+      <app-register (authSuccess)="onChildAuthSuccess()"></app-register>
+    }
+  </article>
+</app-modal>

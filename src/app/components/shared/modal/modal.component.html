@@ -1,0 +1,16 @@
+@if (isOpen) {
+  <section class="modal">
+    <article (click)="onOverlayClick()" class="modal__overlay" role="presentation" tabindex="-1"></article>
+    <section #container [attr.aria-labelledby]="title ? 'modal-title' : null" [ngClass]="'modal--' + size" aria-modal="true" class="modal__container" role="dialog">
+      @if (showHeader) {
+        <article class="modal__header">
+          <h3 class="modal__title" id="modal-title">{{ title }}</h3>
+          <button (click)="onCloseClick()" aria-label="Cerrar" class="modal__close">✕</button>
+        </article>
+      }
+      <article class="modal__body">
+        <ng-content></ng-content>
+      </article>
+    </section>
+  </section>
+}

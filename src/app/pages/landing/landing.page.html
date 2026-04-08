@@ -1,4 +1,5 @@
 <main class="main">
   <h1>{{ helloWorld | translate }}</h1>
-  <app-common-button>{{ getStarted | translate }}</app-common-button>
+  <app-common-button (click)="openAuthModal('register')">{{ getStarted | translate }}</app-common-button>
 </main>
+<app-auth-modal #authModal (authSuccess)="onAuthSuccess()"></app-auth-modal>

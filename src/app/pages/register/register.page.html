@@ -1,1 +1,90 @@
-<p>register.page works!</p>
+<form class="add-task-form" [formGroup]="registerForm" (ngSubmit)="onSubmit($event)" novalidate>
+  <fieldset class="fieldset">
+    <legend class="form__legend">{{ 'PAGES.AUTH.REGISTER.LEGEND' | translate }}</legend>
+    <app-common-button class="form-close" aria-label="Cerrar" (click)="close($event)">✕</app-common-button>
+    <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.REGISTER.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.EMAIL_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+
+    @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+      @if (registerForm.get('email')?.errors?.['required']) {
+        <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+      }
+      @if (registerForm.get('email')?.errors?.['email']) {
+        <p class="error">{{ 'VALIDATION.EMAIL_INVALID' | translate }}</p>
+      }
+      @if (registerForm.get('email')?.errors?.['emailTaken']) {
+        <p class="error">{{ 'VALIDATION.EMAIL_TAKEN' | translate }}</p>
+      }
+      <p class="error"></p>
+
+    }
+    <section class="flex">
+      <section>
+        <app-form-input formControlName="name" name="name" [label]="'PAGES.AUTH.REGISTER.NAME_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.NAME_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+
+        @if (registerForm.get('name')?.touched && registerForm.get('name')?.invalid) {
+          <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+        }
+        <app-form-input formControlName="username" name="username" [label]="'PAGES.AUTH.REGISTER.USERNAME_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.USERNAME_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+        @if (registerForm.get('username')?.touched && registerForm.get('username')?.invalid) {
+          @if (registerForm.get('username')?.errors?.['required']) {
+            <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+          }
+          @if (registerForm.get('username')?.errors?.['usernameTaken']) {
+            <p class="error">{{ 'VALIDATION.USERNAME_TAKEN' | translate }}</p>
+
+          }
+        }
+      </section>
+      <section>
+        <app-form-input formControlName="surnames" name="surnames" [label]="'PAGES.AUTH.REGISTER.SURNAMES_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.SURNAMES_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+        @if (registerForm.get('surnames')?.touched && registerForm.get('surnames')?.invalid) {
+          <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+        }
+        <app-form-input formControlName="phoneNumber" type="tel" name="phoneNumber" [label]="'PAGES.AUTH.REGISTER.PHONE_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PHONE_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+        @if (registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid) {
+          @if (registerForm.get('phoneNumber')?.errors?.['required']) {
+            <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
+          }
+          @if (registerForm.get('phoneNumber')?.errors?.['invalidPhoneNumber']) {
+            <p class="error">{{ 'VALIDATION.PHONE_INVALID' | translate }}</p>
+          }
+        }
+      </section>
+    </section>
+    <app-form-input formControlName="password" type="password" name="password" [label]="'PAGES.AUTH.REGISTER.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PASSWORD_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+    @if (registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
+      @if (registerForm.get('password')?.errors?.['required']) {
+        <p class="error">{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}</p>
+      }
+      @if (registerForm.get('password')?.errors?.['minLength']) {
+        <p class="error">{{ 'VALIDATION.MIN_LENGTH' | translate }}</p>
+      }
+      @if (registerForm.get('password')?.errors?.['noUppercase']) {
+        <p class="error">{{ 'VALIDATION.PASSWORD_NO_UPPER' | translate }}</p>
+      }
+      @if (registerForm.get('password')?.errors?.['noLowercase']) {
+        <p class="error">{{ 'VALIDATION.PASSWORD_NO_LOWER' | translate }}</p>
+      }
+      @if (registerForm.get('password')?.errors?.['noNumber']) {
+        <p class="error">{{ 'VALIDATION.PASSWORD_NO_NUMBER' | translate }}</p>
+      }
+      @if (registerForm.get('password')?.errors?.['noSpecial']) {
+        <p class="error">{{ 'VALIDATION.PASSWORD_NO_SPECIAL' | translate }}</p>
+      }
+    }
+    <app-form-input formControlName="repeatPassword" type="password" name="repeatPassword" [label]="'PAGES.AUTH.REGISTER.REPEAT_PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.REPEAT_PASSWORD_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+    @if (registerForm.errors?.['mismatch'] && registerForm.get('repeatPassword')?.touched) {
+      <p class="error">{{ 'VALIDATION.PASSWORDS_MISMATCH' | translate }}</p>
+    }
+    <article class="grid-center">
+      <app-common-button type="submit" class="grid" [disabled]="registerForm.invalid || registerForm.pending || loading">
+        @if (!loading) {
+          <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMIT' | translate }}</ng-container>
+        } @else {
+          <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMITTING' | translate }}</ng-container>
+        }
+      </app-common-button>
+      <a (click)="openLogin($event)">{{ 'PAGES.AUTH.REGISTER.HAVE_ACCOUNT' | translate }}</a>
+    </article>
+  </fieldset>
+</form>

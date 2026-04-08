@@ -1,6 +1,6 @@
 {
   "COMPONENTS": {
-    "SHARED":{
+    "SHARED": {
       "LANGUAGE": "Language",
       "GET_STARTED": "Get Started"
     }
@@ -55,6 +55,41 @@
         "SUCCESS_PASSWORD_CHANGED": "Password successfully updated.",
         "ERROR_UPDATING_PASSWORD": "Could not update the password."
       }
+    }
+  },
+  "NOTIFICATIONS": {
+    "AUTH": {
+      "LOGIN": {
+        "TITLE": "Login",
+        "MESSAGE": "User {{email}} has signed in.",
+        "ERROR": "Error logging in"
+      },
+      "REGISTER": {
+        "TITLE": "Register",
+        "MESSAGE": "The new user {{email}} has registered.",
+        "ERROR": "Error registering user"
+      }
+    },
+    "TASK": {
+      "CREATED": "Task created successfully",
+      "UPDATED": "Task updated successfully",
+      "TITLE": "Task created",
+      "MESSAGE": "The task \"{{title}}\" has been created successfully.",
+      "UPDATED_TITLE": "Task updated",
+      "UPDATED_MESSAGE": "The task \"{{title}}\" has been updated successfully.",
+      "CREATE_ERROR": "Error creating task",
+      "CANCELLED": "Operation cancelled"
+    },
+    "GROUP": {
+      "CREATED": "Group created successfully",
+      "TITLE": "Group created",
+      "MESSAGE": "The group \"{{name}}\" has been created successfully.",
+      "CREATE_ERROR": "Error creating group"
+    },
+    "USER": {
+      "UPDATED": "User updated successfully",
+      "UPDATE_ERROR": "Error updating user",
+      "CANCELLED": "Operation cancelled"
     }
   }
 }
