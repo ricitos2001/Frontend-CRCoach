@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -10,11 +10,16 @@ import { phoneNumberValidation } from '../../validators/phone-number.validator';
 import { AsyncValidatorsService } from '../../services/async-validators/async-validators.service';
 import { Notification, NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { AuthModalService } from '../../services/auth-modal/auth-modal.service';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonButtonComponent, FormInputComponent, ReactiveFormsModule, TranslatePipe],
+  imports: [
+    CommonButtonComponent,
+    FormInputComponent,
+    ReactiveFormsModule,
+    TranslatePipe,
+    RouterLink,
+  ],
   templateUrl: './register.page.html',
   styleUrl: '../../../styles/styles.css',
 })
@@ -31,7 +36,6 @@ export class RegisterPage {
     private asyncValidators: AsyncValidatorsService,
     private notifications: NotificationsService,
     private translate: TranslateService,
-    private authModalService: AuthModalService,
   ) {
     this.registerForm = this.fb.group(
       {
@@ -98,23 +102,5 @@ export class RegisterPage {
         this.loading = false;
       },
     });
-  }
-
-  openLogin(event: Event) {
-    event.preventDefault();
-    if (this.authModalService) {
-      this.authModalService.open('login');
-    } else {
-      this.router.navigate(['/login']).then((r) => console.log(r));
-    }
-  }
-
-  close(event: Event) {
-    event.preventDefault();
-    if (this.authModalService) {
-      this.authModalService.close();
-    } else {
-      this.router.navigate(['/']).then((r) => console.log(r));
-    }
   }
 }

@@ -1,7 +1,6 @@
 <form class="add-task-form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" novalidate>
   <fieldset class="grid-center">
     <legend class="form__legend">{{ 'PAGES.AUTH.LOGIN.LEGEND' | translate }}</legend>
-    <app-common-button class="form-close" aria-label="Cerrar" (click)="close($event)">✕</app-common-button>
     <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.LOGIN.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.EMAIL_PLACEHOLDER' | translate" [required]="true" class="grid"></app-form-input>
     @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
       @if (loginForm.get('email')?.errors?.['required']) {
@@ -18,7 +17,7 @@
     }
 
     <app-common-button type="submit" class="grid" [disabled]="loginForm.invalid || loginForm.pending">{{ 'PAGES.AUTH.LOGIN.SUBMIT' | translate }}</app-common-button>
-    <a (click)="openRegister($event)">{{ 'PAGES.AUTH.LOGIN.NO_ACCOUNT' | translate }}</a>
-    <a [routerLink]="['/recoverPassword']">{{ 'PAGES.AUTH.LOGIN.FORGOT_PASSWORD' | translate }}</a>
+    <a [routerLink]="['/register']">{{ 'PAGES.AUTH.LOGIN.NO_ACCOUNT' | translate }}</a>
+    <a [routerLink]="['/recover-password']">{{ 'PAGES.AUTH.LOGIN.FORGOT_PASSWORD' | translate }}</a>
   </fieldset>
 </form>

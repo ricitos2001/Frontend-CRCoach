@@ -2,7 +2,6 @@
   @if (router.url === '/landing' || router.url === '/login' || router.url === '/register' || router.url === '/recover-password') {
     <section>
       <app-language-selector></app-language-selector>
-      <app-common-button (click)="openAuthModal('register')">{{ getStarted | translate }}</app-common-button>
     </section>
   } @else {
     @if (router.url === '/dashboard') {

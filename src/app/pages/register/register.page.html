@@ -1,7 +1,6 @@
 <form class="add-task-form" [formGroup]="registerForm" (ngSubmit)="onSubmit($event)" novalidate>
   <fieldset class="fieldset">
     <legend class="form__legend">{{ 'PAGES.AUTH.REGISTER.LEGEND' | translate }}</legend>
-    <app-common-button class="form-close" aria-label="Cerrar" (click)="close($event)">✕</app-common-button>
     <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.REGISTER.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.EMAIL_PLACEHOLDER' | translate" [required]="true"></app-form-input>
 
     @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
@@ -84,7 +83,7 @@
           <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMITTING' | translate }}</ng-container>
         }
       </app-common-button>
-      <a (click)="openLogin($event)">{{ 'PAGES.AUTH.REGISTER.HAVE_ACCOUNT' | translate }}</a>
+      <a [routerLink]="['/login']">{{ 'PAGES.AUTH.REGISTER.HAVE_ACCOUNT' | translate }}</a>
     </article>
   </fieldset>
 </form>

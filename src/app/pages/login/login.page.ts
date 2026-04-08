@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { passwordStrength } from '../../validators/password-strength.validator';
 import { NotificationsService, Notification } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { AuthModalService } from '../../services/auth-modal/auth-modal.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +32,6 @@ export class LoginPage {
     private fb: FormBuilder,
     private notifications: NotificationsService,
     private translate: TranslateService,
-    private authModalService: AuthModalService,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -74,23 +72,5 @@ export class LoginPage {
         this.translate.instant('NOTIFICATIONS.AUTH.LOGIN.ERROR');
       },
     });
-  }
-
-  openRegister(event: Event) {
-    event.preventDefault();
-    if (this.authModalService) {
-      this.authModalService.open('register');
-    } else {
-      this.router.navigate(['/register']).then(r => console.log(r));
-    }
-  }
-
-  close(event: Event) {
-    event.preventDefault();
-    if (this.authModalService) {
-      this.authModalService.close();
-    } else {
-      this.router.navigate(['/']).then(r => console.log(r));
-    }
   }
 }

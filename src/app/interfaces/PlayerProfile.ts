@@ -1,0 +1,48 @@
+import { Clan } from './Clan';
+import { Arena } from './Arena';
+import { LeagueStadistics } from './LeagueStadistics';
+import { PlayerCard } from './PlayerCard';
+import { SupportCard } from './SupportCard';
+import { Deck } from './Deck';
+import { SupportDeck } from './SupportDeck';
+
+export interface PlayerProfile {
+  id: number;
+  tag: string;
+  name: string;
+  expLevel: number;
+  trophies: number;
+  bestTrophies: number;
+  wins: number;
+  loses: number;
+  battleCount: number;
+  threeCrownWins: number;
+  challengeCardsWon: number;
+  challengeMaxWins: number;
+  tournamentCardsWon: number;
+  tournametBattleCount: number;
+  role: string;
+  donations: number;
+  donationsReceived: number;
+  totalDonations: number;
+  warDayWins: number;
+  clanCardsCollected: number;
+  starPoints: number;
+  expPoints: number;
+  legacyTrophyRoadHighScore: number;
+  totalExpPoints: number;
+  clan: Clan;
+  arena: Arena;
+  leagueStadistics: LeagueStadistics;
+  badges: string[];
+  achievements: string[];
+  playerCrads: PlayerCard[];
+  supportCards: SupportCard[];
+  currentDeck: Deck;
+  currentDecSupportCarda: SupportDeck;
+  currentFavouriteCard: PlayerCard;
+  currentPathOfLegendSeasonResult: string;
+  lastPathOfLegendSeasonResult: string;
+  bestPathOfLegendSeasonResult: string;
+  progress: string;
+}
