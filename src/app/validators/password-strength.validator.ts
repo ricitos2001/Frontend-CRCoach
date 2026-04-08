@@ -7,7 +7,7 @@ export function passwordStrength(): ValidatorFn {
     const hasUpper = /[A-Z]/.test(value);
     const hasLower = /[a-z]/.test(value);
     const hasNumber = /\d/.test(value);
-    const hasSpecial = /[@$!%*?&]/.test(value);
+    const hasSpecial = /[^A-Za-z0-9]/.test(value);
     const minLength = value.length >= 8;
 
     const errors: ValidationErrors = {};

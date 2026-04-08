@@ -2,7 +2,8 @@
   "COMPONENTS": {
     "SHARED": {
       "LANGUAGE": "Language",
-      "GET_STARTED": "Get Started"
+      "GET_STARTED": "Get Started",
+      "LOGOUT": "Log out"
     }
   },
   "PAGES": {

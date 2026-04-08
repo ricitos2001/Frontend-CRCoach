@@ -1,19 +1,21 @@
 <header>
-  @if (router.url === '/landing' || '/login' || '/register' || '/recover-password') {
+  @if (router.url === '/landing' || router.url === '/login' || router.url === '/register' || router.url === '/recover-password') {
     <section>
       <app-language-selector></app-language-selector>
-      <!--esto debe ir dentro del menu hamburguesa-->
-      <app-common-button>{{ getStarted | translate }}</app-common-button>
+      <app-common-button (click)="openAuthModal('register')">{{ getStarted | translate }}</app-common-button>
     </section>
-  }
-  @if (router.url === '/dashboard') {
-    <section>
-
-    </section>
-  }
-  @if (router.url === '/profile') {
-    <section>
-
-    </section>
+  } @else {
+    @if (router.url === '/dashboard') {
+      <section>
+        <app-language-selector></app-language-selector>
+        <app-common-button (click)="logout()">{{ logoutText | translate }}</app-common-button>
+      </section>
+    }
+    @if (router.url === '/profile') {
+      <section>
+        <app-language-selector></app-language-selector>
+        <app-common-button (click)="logout()">{{ logoutText | translate }}</app-common-button>
+      </section>
+    }
   }
 </header>
