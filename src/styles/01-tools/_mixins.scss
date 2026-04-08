@@ -1,0 +1,57 @@
+
+
+@use "../00-settings/css-variables" as *;
+@use "sass:map";
+
+$breakpoints: (
+  'sm': var(--break-sm),
+  'md': var(--break-md),
+  'lg': var(--break-lg),
+  'xl': var(--break-xl),
+);
+
+@mixin respond($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex($direction: row, $gap: var(--spacing-4), $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+@mixin text-style($size: var(--font-size-base), $weight: var(--font-weight-regular), $lh: var(--line-height-normal)) {
+  font-family: var(--font-primary), sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lh;
+}
+
+@mixin button-base(
+  $padding: var(--spacing-3) var(--spacing-5),
+  $radius: var(--radius-md),
+  $shadow: var(--shadow-sm),
+) {
+  @include text-style(var(--font-size-sm), var(--font-weight-semibold));
+  cursor: pointer;
+  border: none;
+  border-radius: $radius;
+  transition: var(--transition-base);
+  padding: $padding;
+  box-shadow: $shadow;
+}

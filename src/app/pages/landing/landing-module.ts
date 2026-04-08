@@ -7,9 +7,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {
-        path: '', loadComponent: () => import('./landing.page').then((m) => m.LandingPage), data: { title: 'Landing', breadcrumb: 'Landing' },
-      },
+      { path: '', loadComponent: () => import('./landing.page').then((m) => m.LandingPage), data: { title: 'Landing', breadcrumb: 'Landing' }, },
     ]),
   ],
 })

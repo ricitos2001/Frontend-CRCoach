@@ -1,7 +1,8 @@
 {
   "COMPONENTS": {
     "SHARED": {
-      "LANGUAGE": "Idioma"
+      "LANGUAGE": "Idioma",
+      "GET_STARTED": "Empecemos"
     }
   },
   "PAGES": {

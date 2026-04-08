@@ -1,3 +1,19 @@
 <header>
-  <app-language-selector></app-language-selector>
+  @if (router.url === '/landing') {
+    <section>
+      <app-language-selector></app-language-selector>
+      <!--esto debe ir dentro del menu hamburguesa-->
+      <app-common-button>{{ getStarted | translate }}</app-common-button>
+    </section>
+  }
+  @if (router.url === '/dashboard') {
+    <section>
+
+    </section>
+  }
+  @if (router.url === '/profile') {
+    <section>
+
+    </section>
+  }
 </header>

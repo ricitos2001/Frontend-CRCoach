@@ -1,0 +1,39 @@
+@use '../00-settings/css-variables' as *;
+@use '../01-tools/mixins' as *;
+
+/* ============================================================
+   Página de error 404 / Not Found
+   ============================================================ */
+.notFound {
+  align-items: center;
+  color: var(--color-error-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.notFound__number {
+  color: var(--color-error-1);
+  font-size: 12rem;
+  font-weight: bold;
+}
+
+.notFound__text {
+  color: var(--color-error-1);
+  font-size: 3rem;
+  font-weight: normal;
+}
+
+.notFound__link {
+  color: var(--color-error-1);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 300ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: var(--color-primary-1);
+  }
+}

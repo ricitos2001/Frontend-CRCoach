@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --color-primary-1: #184262;
   --color-primary-2: #1D4D72;
@@ -41,6 +42,10 @@
   --dark-color-5: #3D3D3D;
   --font-primary: ClashRoyaleRegularFont;
   --font-secondary: ClashRoyaleBoldFont;
+  --break-sm: 40rem;
+  --break-md: 48rem;
+  --break-lg: 64rem;
+  --break-xl: 80rem;
 }
 
 @font-face {
@@ -72,6 +77,36 @@ body {
   background-size: 50px 50px;
 }
 
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 .main {
   text-align: center;
 }
@@ -91,6 +126,41 @@ option, select {
   font-family: var(--font-primary), sans-serif;
   padding: 0.75rem 1.5rem;
   margin: 0.5rem;
+}
+
+/* ============================================================
+   Página de error 404 / Not Found
+   ============================================================ */
+.notFound {
+  align-items: center;
+  color: var(--color-error-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.notFound__number {
+  color: var(--color-error-1);
+  font-size: 12rem;
+  font-weight: bold;
+}
+
+.notFound__text {
+  color: var(--color-error-1);
+  font-size: 3rem;
+  font-weight: normal;
+}
+
+.notFound__link {
+  color: var(--color-error-1);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 300ms ease-in-out;
+}
+.notFound__link:hover, .notFound__link:focus {
+  color: var(--color-primary-1);
 }
 
 /*# sourceMappingURL=styles.css.map */
