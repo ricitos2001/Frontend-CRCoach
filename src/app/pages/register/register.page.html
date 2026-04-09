@@ -39,15 +39,6 @@
         @if (registerForm.get('surnames')?.touched && registerForm.get('surnames')?.invalid) {
           <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
         }
-        <app-form-input formControlName="phoneNumber" type="tel" name="phoneNumber" [label]="'PAGES.AUTH.REGISTER.PHONE_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PHONE_PLACEHOLDER' | translate" [required]="true"></app-form-input>
-        @if (registerForm.get('phoneNumber')?.touched && registerForm.get('phoneNumber')?.invalid) {
-          @if (registerForm.get('phoneNumber')?.errors?.['required']) {
-            <p class="error">{{ 'VALIDATION.REQUIRED' | translate }}</p>
-          }
-          @if (registerForm.get('phoneNumber')?.errors?.['invalidPhoneNumber']) {
-            <p class="error">{{ 'VALIDATION.PHONE_INVALID' | translate }}</p>
-          }
-        }
       </section>
     </section>
     <app-form-input formControlName="passwordHash" type="password" name="password" [label]="'PAGES.AUTH.REGISTER.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PASSWORD_PLACEHOLDER' | translate" [required]="true"></app-form-input>

@@ -6,7 +6,6 @@ import { FormInputComponent } from '../../components/shared/form-input/form-inpu
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordMatch } from '../../validators/password-match.validator';
 import { passwordStrength } from '../../validators/password-strength.validator';
-import { phoneNumberValidation } from '../../validators/phone-number.validator';
 import { AsyncValidatorsService } from '../../services/async-validators/async-validators.service';
 import { Notification, NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -57,7 +56,6 @@ export class RegisterPage {
             updateOn: 'blur',
           },
         ],
-        phoneNumber: ['', [Validators.required, phoneNumberValidation()]],
         passwordHash: ['', [Validators.required, passwordStrength()]],
         repeatPassword: ['', Validators.required],
         role: 'USER',
