@@ -92,7 +92,7 @@ export class RegisterPage {
             console.warn('Error enviando notificación al API:', err);
           },
         });
-        this.router.navigate(['dashboard']).then((r) => console.log(r));
+        this.router.navigate(['link-player-profile']).then((r) => console.log(r));
       },
       error: (err) => {
         console.error('Error en registro', err);

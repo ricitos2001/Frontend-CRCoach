@@ -60,6 +60,22 @@
         "ERROR_UPDATING_PASSWORD": "Could not update the password."
       }
     }
+    ,
+    "LINK_PLAYER_PROFILE": {
+      "LEGEND": "Enter player tag",
+      "TAG_LABEL": "Player tag",
+      "TAG_PLACEHOLDER": "Enter tag",
+      "REQUIRED_ERROR": "The tag is required",
+      "TAG_NOT_FOUND": "Tag not found",
+      "SUBMIT": "Link",
+      "ALREADY_LINKED_TOAST": "Your account already has a linked tag. Redirecting...",
+      "LINK_SUCCESS_TOAST": "Tag {{tag}} linked successfully",
+      "LINK_ERROR_TOAST": "Error linking tag {{tag}}",
+      "NOTIFICATION_LINKED_TITLE": "Profile linked",
+      "NOTIFICATION_LINKED_MESSAGE": "The tag {{tag}} has been linked successfully.",
+      "NOTIFICATION_ERROR_TITLE": "Error linking profile",
+      "NOTIFICATION_ERROR_MESSAGE": "Could not link the tag {{tag}}."
+    }
   },
   "NOTIFICATIONS": {
     "AUTH": {

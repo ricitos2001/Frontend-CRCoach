@@ -105,7 +105,7 @@ export class RecoverPasswordPage implements OnInit {
     this.passwordResetService.verifyToken(token).subscribe({
       next: (res) => {
         if (!res.valid) {
-          this.router.navigate(['/invalid-token']);
+          this.router.navigate(['/invalid-token']).then(r => console.log(r));
           return;
         }
         this.tokenValid = true;

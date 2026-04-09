@@ -60,6 +60,22 @@
         "ERROR_UPDATING_PASSWORD": "No se pudo actualizar la contraseña."
       }
     }
+    ,
+    "LINK_PLAYER_PROFILE": {
+      "LEGEND": "Introduce el tag del jugador",
+      "TAG_LABEL": "tag del jugador",
+      "TAG_PLACEHOLDER": "Introduce el tag",
+      "REQUIRED_ERROR": "El tag es obligatorio",
+      "TAG_NOT_FOUND": "Tag no encontrado",
+      "SUBMIT": "Vincular",
+      "ALREADY_LINKED_TOAST": "Tu cuenta ya tiene un tag vinculado. Redirigiendo...",
+      "LINK_SUCCESS_TOAST": "Tag {{tag}} vinculado correctamente",
+      "LINK_ERROR_TOAST": "Error vinculando tag {{tag}}",
+      "NOTIFICATION_LINKED_TITLE": "Perfil vinculado",
+      "NOTIFICATION_LINKED_MESSAGE": "El tag {{tag}} se ha vinculado correctamente.",
+      "NOTIFICATION_ERROR_TITLE": "Error vinculando perfil",
+      "NOTIFICATION_ERROR_MESSAGE": "No se pudo vincular el tag {{tag}}."
+    }
   },
   "NOTIFICATIONS": {
     "AUTH": {
