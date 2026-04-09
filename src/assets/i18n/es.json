@@ -59,8 +59,7 @@
         "SUCCESS_PASSWORD_CHANGED": "Contraseña actualizada correctamente.",
         "ERROR_UPDATING_PASSWORD": "No se pudo actualizar la contraseña."
       }
-    }
-    ,
+    },
     "LINK_PLAYER_PROFILE": {
       "LEGEND": "Introduce el tag del jugador",
       "TAG_LABEL": "tag del jugador",
@@ -76,6 +75,20 @@
       "NOTIFICATION_ERROR_TITLE": "Error vinculando perfil",
       "NOTIFICATION_ERROR_MESSAGE": "No se pudo vincular el tag {{tag}}."
     }
+  },
+  "VALIDATION": {
+    "REQUIRED": "Este campo es obligatorio.",
+    "EMAIL_INVALID": "Correo no válido.",
+    "PASSWORD_REQUIRED": "Contraseña obligatoria.",
+    "EMAIL_TAKEN": "Correo ya registrado.",
+    "USERNAME_TAKEN": "El nombre de usuario ya existe.",
+    "PHONE_INVALID": "Teléfono no válido.",
+    "PASSWORD_NO_UPPER": "Debe incluir una mayúscula.",
+    "PASSWORD_NO_LOWER": "Debe incluir una minúscula.",
+    "PASSWORD_NO_NUMBER": "Debe incluir un número.",
+    "PASSWORD_NO_SPECIAL": "Debe incluir un carácter especial.",
+    "PASSWORDS_MISMATCH": "Las contraseñas no coinciden.",
+    "MIN_LENGTH": "Longitud mínima no cumplida."
   },
   "NOTIFICATIONS": {
     "AUTH": {

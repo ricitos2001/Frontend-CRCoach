@@ -59,8 +59,7 @@
         "SUCCESS_PASSWORD_CHANGED": "Password successfully updated.",
         "ERROR_UPDATING_PASSWORD": "Could not update the password."
       }
-    }
-    ,
+    },
     "LINK_PLAYER_PROFILE": {
       "LEGEND": "Enter player tag",
       "TAG_LABEL": "Player tag",
@@ -76,6 +75,20 @@
       "NOTIFICATION_ERROR_TITLE": "Error linking profile",
       "NOTIFICATION_ERROR_MESSAGE": "Could not link the tag {{tag}}."
     }
+  },
+  "VALIDATION": {
+    "REQUIRED": "This field is required.",
+    "EMAIL_INVALID": "Invalid email.",
+    "PASSWORD_REQUIRED": "Password required.",
+    "EMAIL_TAKEN": "Email already registered.",
+    "USERNAME_TAKEN": "Username already exists.",
+    "PHONE_INVALID": "Invalid phone number.",
+    "PASSWORD_NO_UPPER": "Must include an uppercase letter.",
+    "PASSWORD_NO_LOWER": "Must include a lowercase letter.",
+    "PASSWORD_NO_NUMBER": "Must include a number.",
+    "PASSWORD_NO_SPECIAL": "Must include a special character.",
+    "PASSWORDS_MISMATCH": "Passwords do not match.",
+    "MIN_LENGTH": "Minimum length not met."
   },
   "NOTIFICATIONS": {
     "AUTH": {
