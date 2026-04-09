@@ -37,6 +37,9 @@
         "PASSWORD_PLACEHOLDER": "Contraseña",
         "REPEAT_PASSWORD_LABEL": "Repetir contraseña",
         "REPEAT_PASSWORD_PLACEHOLDER": "Repetir contraseña",
+        "PLAYERTAG_LABEL": "tag del jugador",
+        "PLAYERTAG_PLACEHOLDER": "tag del jugador",
+        "PLAYERTAG_INVALID": "el tag del jugador no existe",
         "SUBMIT": "Regístrate",
         "SUBMITTING": "Registrando...",
         "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión"

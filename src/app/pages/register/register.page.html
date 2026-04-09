@@ -50,7 +50,7 @@
         }
       </section>
     </section>
-    <app-form-input formControlName="password" type="password" name="password" [label]="'PAGES.AUTH.REGISTER.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PASSWORD_PLACEHOLDER' | translate" [required]="true"></app-form-input>
+    <app-form-input formControlName="passwordHash" type="password" name="password" [label]="'PAGES.AUTH.REGISTER.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PASSWORD_PLACEHOLDER' | translate" [required]="true"></app-form-input>
     @if (registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
       @if (registerForm.get('password')?.errors?.['required']) {
         <p class="error">{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}</p>

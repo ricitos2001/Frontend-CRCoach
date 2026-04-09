@@ -39,14 +39,6 @@ export class RegisterPage {
   ) {
     this.registerForm = this.fb.group(
       {
-        email: [
-          '',
-          {
-            validators: [Validators.required, Validators.email, Validators.maxLength(50)],
-            asyncValidators: [this.asyncValidators.emailUnique()],
-            updateOn: 'blur',
-          },
-        ],
         name: ['', [Validators.required, Validators.maxLength(50)]],
         surnames: ['', [Validators.required, Validators.maxLength(100)]],
         username: [
@@ -57,10 +49,20 @@ export class RegisterPage {
             updateOn: 'blur',
           },
         ],
+        email: [
+          '',
+          {
+            validators: [Validators.required, Validators.email, Validators.maxLength(50)],
+            asyncValidators: [this.asyncValidators.emailUnique()],
+            updateOn: 'blur',
+          },
+        ],
         phoneNumber: ['', [Validators.required, phoneNumberValidation()]],
-        password: ['', [Validators.required, passwordStrength()]],
+        passwordHash: ['', [Validators.required, passwordStrength()]],
         repeatPassword: ['', Validators.required],
-        rol: 'USUARIO',
+        role: 'USER',
+        createdAt: new Date(),
+        enabled: true
       },
       { validators: passwordMatch('password', 'repeatPassword') },
     );

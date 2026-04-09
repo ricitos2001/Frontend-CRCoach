@@ -39,7 +39,10 @@
         "REPEAT_PASSWORD_PLACEHOLDER": "Repeat password",
         "SUBMIT": "Sign up",
         "SUBMITTING": "Registering...",
-        "HAVE_ACCOUNT": "Already have an account? Sign in"
+        "HAVE_ACCOUNT": "Already have an account? Sign in",
+        "PLAYERTAG_LABEL": "Player tag",
+        "PLAYERTAG_PLACEHOLDER": "Player tag",
+        "PLAYERTAG_INVALID": "the player tag does not exist"
       },
       "RECOVER": {
         "LEGEND": "Recover password",
