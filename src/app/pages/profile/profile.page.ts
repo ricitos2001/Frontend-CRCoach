@@ -1,9 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
+import { UsersSignalStore } from '../../signal_stores/users.signal.store';
+import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
   templateUrl: './profile.page.html',
-  styleUrl: '../../../styles/styles.css',
+  styleUrls: ['../../../styles/styles.css'],
+  imports: []
 })
-export class ProfilePage {}
+export class ProfilePage implements OnInit {
+  constructor(public usersStore: UsersSignalStore, public profileStore: PlayerProfileSignalStore) {
+    effect(() => {
+      const user = this.usersStore.user();
+      if (user && user.playerTag && user.playerTag.trim() !== '') {
+        this.profileStore.loadByTag(user.playerTag);
+      }
+      this.profileStore.profile();
+    });
+  }
+
+  ngOnInit(): void {
+    const email = localStorage.getItem('email');
+    if (!email) return;
+    this.usersStore.loadByEmail(email);
+  }
+}

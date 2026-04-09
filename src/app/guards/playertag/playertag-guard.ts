@@ -46,7 +46,7 @@ export class PlayerTagGuard implements CanActivate {
           }
           this.toast.show({
             type: 'info',
-            message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.ALREADY_LINKED_TOAST'),
+            message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.REQUIRED_ERROR'),
             duration: 3000,
           });
           this.router.navigate(['/link-player-profile']).then((r) => console.log(r));
@@ -67,16 +67,7 @@ export class PlayerTagGuard implements CanActivate {
           return false;
         }
 
-        // Comportamiento por defecto (compatibilidad): impedir entrar si tiene tag (como antes)
-        if (hasTag) {
-          this.toast.show({
-            type: 'info',
-            message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.ALREADY_LINKED_TOAST'),
-            duration: 3000,
-          });
-          this.router.navigate(['/dashboard']).then(r => console.log(r));
-          return false;
-        }
+        // Comportamiento por defecto: permitir (si la ruta no declara flags, no interferimos)
         return true;
       }),
       catchError((err) => {

@@ -77,7 +77,12 @@ export class LinkPlayerProfilePage implements OnInit {
         this.submitted = false;
       },
       error: (err) => {
-        console.error('Error vinculando perfil:', err);
+        // Mostrar error detallado en consola
+        try {
+          console.error('Error vinculando perfil:', JSON.stringify(err, null, 2));
+        } catch (e) {
+          console.error('Error vinculando perfil:', err);
+        }
         // Notificación persistente de error
         const apiNotification: Notification = {
           title: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.NOTIFICATION_ERROR_TITLE'),
@@ -89,10 +94,15 @@ export class LinkPlayerProfilePage implements OnInit {
           error: (e) => console.warn('Error enviando notificación de error al API:', e),
         });
 
+        // Mostrar mensaje de error legible al usuario (intentar extraer mensaje del body)
+        const serverMessage = err && err.error && err.error.message ? err.error.message : null;
+        const fallback = typeof err === 'string' ? err : JSON.stringify(err?.error ?? err ?? '');
+        const userMessage = serverMessage ?? fallback ?? this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_ERROR_TOAST', { tag });
+
         this.toastService.show({
           type: 'error',
-          message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_ERROR_TOAST', { tag }),
-          duration: 5000,
+          message: userMessage,
+          duration: 7000,
         });
 
         this.submitted = false;
