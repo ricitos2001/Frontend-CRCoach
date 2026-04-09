@@ -6,7 +6,7 @@ import { FormInputComponent } from '../../components/shared/form-input/form-inpu
 import { AsyncValidatorsService } from '../../services/async-validators/async-validators.service';
 import { UsersService } from '../../services/users/users.service';
 import { NotificationsService, Notification } from '../../services/notifications/notifications.service';
-import { Router } from '@angular/router';
+// Router removed: routing/redirect handled by guard
 import { ToastService } from '../../services/toast/toast.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
@@ -26,7 +26,6 @@ export class LinkPlayerProfilePage implements OnInit {
     private usersService: UsersService,
     private notifications: NotificationsService,
     private toastService: ToastService,
-    private router: Router,
     private translate: TranslateService,
   ) {
     this.tagForm = this.fb.group({
@@ -39,28 +38,6 @@ export class LinkPlayerProfilePage implements OnInit {
   }
 
   ngOnInit(): void {
-    const email = localStorage.getItem('email');
-    if (!email) {
-      return;
-    }
-
-    this.usersService.getUser(email).subscribe({
-      next: (user) => {
-        if (user && user.playerTag && user.playerTag.trim() !== '') {
-          // Si ya tiene tag vinculado, redirigir y mostrar toast
-          this.toastService.show({
-            type: 'info',
-            message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.ALREADY_LINKED_TOAST'),
-            duration: 3000,
-          });
-          this.router.navigate(['/dashboard']).then((r) => console.log(r));
-        }
-      },
-      error: (err) => {
-        console.warn('No se pudo comprobar playerTag del usuario:', err);
-      },
-    });
-
     this.setTranslations();
     this.translate.onLangChange.subscribe(() => this.setTranslations());
   }
