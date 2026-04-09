@@ -5,7 +5,7 @@
       <app-common-button routerLink="/register">{{ getStarted | translate }}</app-common-button>
     </section>
   } @else {
-    @if (router.url === '/login' || router.url === '/register' || router.url === '/recover-password' || router.url === '/link-player-profile') {
+    @if (router.url === '/login' || router.url === '/register' || router.url === '/recover-password') {
       <app-language-selector></app-language-selector>
     }
     @if (router.url === '/dashboard') {
