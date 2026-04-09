@@ -73,11 +73,11 @@ export class RegisterPage {
         ],
         role: 'USER',
         createdAt: new Date(),
-        enabled: true
+        enabled: true,
+        acceptTerms: [false, Validators.requiredTrue],
       },
-      { validators: passwordMatch('password', 'repeatPassword') },
+      { validators: passwordMatch('passwordHash', 'repeatPassword') },
     );
-
   }
 
   onSubmit(event: Event) {
@@ -106,15 +106,18 @@ export class RegisterPage {
             console.warn('Error enviando notificación al API:', err);
           },
         });
-        // Si el usuario indicó un tag en el formulario, intentar vincularlo aquí mismo
         const tag = this.registerForm.value.tag;
         if (tag) {
           this.usersService.linkPlayerTag(tag).subscribe({
-            next: (res) => {
-              // Notificación persistente en backend
+            next: () => {
               const apiNotification: Notification = {
-                title: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.NOTIFICATION_LINKED_TITLE'),
-                message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.NOTIFICATION_LINKED_MESSAGE', { tag }),
+                title: this.translate.instant(
+                  'PAGES.LINK_PLAYER_PROFILE.NOTIFICATION_LINKED_TITLE',
+                ),
+                message: this.translate.instant(
+                  'PAGES.LINK_PLAYER_PROFILE.NOTIFICATION_LINKED_MESSAGE',
+                  { tag },
+                ),
                 createdAt: new Date(),
                 userEmail: localStorage.getItem('email') ?? '',
               };
@@ -124,20 +127,26 @@ export class RegisterPage {
 
               this.toastService.show({
                 type: 'success',
-                message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_SUCCESS_TOAST', { tag }),
+                message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_SUCCESS_TOAST', {
+                  tag,
+                }),
                 duration: 5000,
               });
             },
             error: (err) => {
               console.warn('Error vinculando perfil tras registro:', err);
-              const serverMessage = err && err.error && err.error.message ? err.error.message : null;
-              const fallback = typeof err === 'string' ? err : JSON.stringify(err?.error ?? err ?? '');
-              const userMessage = serverMessage ?? fallback ?? this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_ERROR_TOAST', { tag });
+              const serverMessage =
+                err && err.error && err.error.message ? err.error.message : null;
+              const fallback =
+                typeof err === 'string' ? err : JSON.stringify(err?.error ?? err ?? '');
+              const userMessage =
+                serverMessage ??
+                fallback ??
+                this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_ERROR_TOAST', { tag });
               this.toastService.show({ type: 'error', message: userMessage, duration: 7000 });
             },
           });
         }
-        // Finalmente navegar al dashboard
         this.router.navigate(['dashboard']).then(() => {});
       },
       error: (err) => {
@@ -149,6 +158,4 @@ export class RegisterPage {
       },
     });
   }
-
-  // Tag linking handled during registration submit when tag is provided
 }

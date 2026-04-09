@@ -1,9 +1,11 @@
 <label [for]="name">{{ label || placeholder }}</label>
 
-@if (type !== 'textarea') {
-  <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()"/>
-} @else {
+@if (type === 'textarea') {
   <textarea [id]="name" [placeholder]="placeholder" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()">{{ value }}</textarea>
+} @if (type === 'checkbox') {
+  <input [id]="name" type="checkbox" [checked]="value" [disabled]="disabled" (change)="onCheckboxChange($event)" (blur)="onBlur()" />
+} @else {
+  <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()"/>
 }
 
 

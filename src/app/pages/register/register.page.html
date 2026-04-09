@@ -77,6 +77,7 @@
         }
       </article>
     </section>
+    <app-form-input formControlName="acceptTerms" type="checkbox" name="acceptTerms" [label]="'PAGES.AUTH.REGISTER.ACCEPT_TERMS_LABEL' | translate" [required]="true"></app-form-input>
     <article class="grid-center">
       <app-common-button type="submit" class="grid" [disabled]="registerForm.invalid || registerForm.pending || loading">
         @if (!loading) {

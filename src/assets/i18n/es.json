@@ -42,7 +42,8 @@
         "PLAYERTAG_INVALID": "el tag del jugador no existe",
         "SUBMIT": "Regístrate",
         "SUBMITTING": "Registrando...",
-        "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión"
+        "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión",
+        "ACCEPT_TERMS_LABEL": "Acepto los términos de privacidad y condiciones de servicio"
       },
       "RECOVER": {
         "LEGEND": "Recuperar contraseña",

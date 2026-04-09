@@ -42,7 +42,8 @@
         "HAVE_ACCOUNT": "Already have an account? Sign in",
         "PLAYERTAG_LABEL": "Player tag",
         "PLAYERTAG_PLACEHOLDER": "Player tag",
-        "PLAYERTAG_INVALID": "the player tag does not exist"
+        "PLAYERTAG_INVALID": "the player tag does not exist",
+        "ACCEPT_TERMS_LABEL": "I accept the privacy policy and terms of service"
       },
       "RECOVER": {
         "LEGEND": "Recover password",

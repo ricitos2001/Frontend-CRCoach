@@ -20,7 +20,7 @@ export class FormInputComponent implements ControlValueAccessor {
   @Input() placeholder: string = '';
   @Input() label?: string;
   @Input() required: boolean = false;
-  @Input() value: string = '';
+  @Input() value: any = '';
 
   disabled = false;
   touched = false;
@@ -29,7 +29,11 @@ export class FormInputComponent implements ControlValueAccessor {
   private onTouched = () => {};
 
   writeValue(value: any): void {
-    this.value = value ?? '';
+    if (this.type === 'checkbox') {
+      this.value = !!value;
+    } else {
+      this.value = value ?? '';
+    }
   }
 
   registerOnChange(fn: any): void {
@@ -48,6 +52,12 @@ export class FormInputComponent implements ControlValueAccessor {
     const value = (event.target as HTMLInputElement).value;
     this.value = value;
     this.onChange(value);
+  }
+
+  onCheckboxChange(event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.value = checked;
+    this.onChange(checked);
   }
 
   onBlur(): void {

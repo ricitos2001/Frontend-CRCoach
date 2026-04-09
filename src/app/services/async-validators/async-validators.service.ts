@@ -52,20 +52,42 @@ export class AsyncValidatorsService {
       const val = control.value;
       if (!val) return of(null);
       if (excludeValue && val === excludeValue) return of(null);
+      const normalizedTag = val.startsWith('#') ? val : `#${val}`;
+      const encodedTag = encodeURIComponent(normalizedTag);
+      // Leer token al momento de la petición (evita token stale)
+      const token = localStorage.getItem('token');
+      // Debug logs para inspeccionar la petición y la respuesta
+      // (se puede eliminar en producción)
+      // eslint-disable-next-line no-console
+      console.debug('[AsyncValidators] playerTagExists: checking tag', normalizedTag, 'encoded:', encodedTag);
       return timer(500).pipe(
         switchMap(() =>
-          this.http.get<{ exists: boolean }>(
-            `${environment.apiUrl}/api/v1/player_profiles/exists/${val}`,
+          this.http.get<any>(
+            `${environment.apiUrl}/api/v1/player_profiles/exists/${encodedTag}`,
             {
-              headers: {
-                Authorization: `Bearer ${this.token}`,
-              },
+              headers: token
+                ? {
+                    Authorization: `Bearer ${token}`,
+                  }
+                : {},
             },
           ),
         ),
-        // Si existe -> válido (null). Si no existe -> error { tagNotFound: true }
-        map((res) => (res.exists ? null : { tagNotFound: true })),
-        catchError(() => of(null)),
+        map((res) => {
+          console.debug('[AsyncValidators] playerTagExists: response', res);
+          let exists = false;
+          if (res === true || res === 'true' || res === 1 || res === '1') {
+            exists = true;
+          } else if (res && typeof res === 'object' && typeof (res as any).exists !== 'undefined') {
+            const v = (res as any).exists;
+            exists = typeof v === 'boolean' ? v : v === 'true' || v === '1';
+          }
+          return exists ? null : { tagNotFound: true };
+        }),
+        catchError((err) => {
+          console.warn('[AsyncValidators] playerTagExists: request error', err);
+          return of(null);
+        }),
         take(1),
       );
     };
