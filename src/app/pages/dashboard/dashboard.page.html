@@ -1,2 +1,22 @@
-<p>dashboard.page works!</p>
+<section class="profile-page">
+  @if (usersStore.loading()) {
+    <p>Cargando usuario...</p>
+  }
+  @if (usersStore.error(); as uErr) {
+    <p class="error">Error usuario: {{uErr}}</p>
+  }
+  @if (usersStore.user(); as user) {
+    <p>{{user.name}} {{user.surnames}}</p>
+    <p>{{user.username}}</p>
+  }
+  @if (profileStore.loading() && !profileStore.profile()) {
+    <p>Cargando perfil de jugador...</p>
+  }
+  @if (profileStore.error(); as pErr) {
+    <p class="error">Error perfil: {{pErr}}</p>
+  }
+  @if (profileStore.profile(); as profile) {
+    <p>{{profile.name}}</p>
+  }
+</section>
 <app-sidebar></app-sidebar>

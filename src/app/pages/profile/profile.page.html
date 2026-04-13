@@ -11,7 +11,7 @@
     <p>{{user.username}}</p>
     <p>{{user.email}}</p>
   }
-  @if (profileStore.loading()) {
+  @if (profileStore.loading() && !profileStore.profile()) {
     <p>Cargando perfil de jugador...</p>
   }
   @if (profileStore.error(); as pErr) {
