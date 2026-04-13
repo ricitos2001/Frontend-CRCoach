@@ -1,5 +1,16 @@
 {
   "COMPONENTS": {
+    "LAYOUT": {
+      "SIDEBAR": {
+        "DASHBOARD": "Panel de control",
+        "BATTLES": "Registro de batallas",
+        "WEAKNESSES": "Diagnóstico de debilidades",
+        "GOALS": "Lista de objetivos",
+        "SESSIONS": "Diario de sesiones",
+        "PROGRESS": "Progreso del jugador",
+        "PROFILE": "Perfil de usuario"
+      }
+    },
     "SHARED": {
       "LANGUAGE": "Idioma",
       "GET_STARTED": "Empecemos",

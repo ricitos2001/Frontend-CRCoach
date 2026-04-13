@@ -1,5 +1,16 @@
 {
   "COMPONENTS": {
+    "LAYOUT": {
+      "SIDEBAR": {
+        "DASHBOARD": "Dashboard",
+        "BATTLES": "Battle log",
+        "WEAKNESSES": "Weaknesses diagnostic",
+        "GOALS": "Goal list",
+        "SESSIONS": "Session journal",
+        "PROGRESS": "Player progress",
+        "PROFILE": "User profile"
+      }
+    },
     "SHARED": {
       "LANGUAGE": "Language",
       "GET_STARTED": "Get Started",

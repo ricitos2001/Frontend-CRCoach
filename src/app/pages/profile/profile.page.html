@@ -1,24 +1,25 @@
 <section class="profile-page">
   @if (usersStore.loading()) {
-    <article>Cargando usuario...</article>
+    <p>Cargando usuario...</p>
   }
   @if (usersStore.error(); as uErr) {
-    <article class="error">Error usuario: {{uErr}}</article>
+    <p class="error">Error usuario: {{uErr}}</p>
   }
   @if (usersStore.user(); as user) {
-    <article>{{user.name}}</article>
-    <article>{{user.surnames}}</article>
-    <article>{{user.username}}</article>
-    <article>{{user.email}}</article>
+    <p>{{user.name}}</p>
+    <p>{{user.surnames}}</p>
+    <p>{{user.username}}</p>
+    <p>{{user.email}}</p>
   }
   @if (profileStore.loading()) {
-    <article>Cargando perfil de jugador...</article>
+    <p>Cargando perfil de jugador...</p>
   }
   @if (profileStore.error(); as pErr) {
-    <article class="error">Error perfil: {{pErr}}</article>
+    <p class="error">Error perfil: {{pErr}}</p>
   }
   @if (profileStore.profile(); as profile) {
-    <article>{{profile.name}}</article>
-    <article>{{profile.tag}}</article>
+    <p>{{profile.name}}</p>
+    <p>{{profile.tag}}</p>
   }
 </section>
+<app-sidebar></app-sidebar>

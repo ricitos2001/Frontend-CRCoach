@@ -1,24 +1,27 @@
-<header>
-  @if (router.url === '/landing') {
-    <section>
-      <app-language-selector></app-language-selector>
-      <app-common-button routerLink="/register">{{ getStarted | translate }}</app-common-button>
-    </section>
-  } @else {
-    @if (router.url === '/login' || router.url === '/register' || router.url === '/recover-password') {
-      <app-language-selector></app-language-selector>
-    }
-    @if (router.url === '/dashboard') {
-      <section>
+@if (router.url === '/landing' || router.url === '/login' || router.url === '/register' || router.url === '/recover-password' || router.url === '/dashboard' || router.url === '/profile') {
+  <header>
+    @switch (router.url) {
+      @case ('/landing') {
+        <section>
+          <app-language-selector></app-language-selector>
+          <app-common-button routerLink="/register">{{ getStarted | translate }}</app-common-button>
+        </section>
+      }
+      @case ('/login') {
         <app-language-selector></app-language-selector>
-        <app-common-button (click)="logout()">{{ logoutText | translate }}</app-common-button>
-      </section>
-    }
-    @if (router.url === '/profile') {
-      <section>
+      }
+      @case ('/register') {
         <app-language-selector></app-language-selector>
-        <app-common-button (click)="logout()">{{ logoutText | translate }}</app-common-button>
-      </section>
+      }
+      @case ('/recover-password') {
+        <app-language-selector></app-language-selector>
+      }
+      @case ('/dashboard') {
+        <section></section>
+      }
+      @case ('/profile') {
+        <section></section>
+      }
     }
-  }
-</header>
+  </header>
+}

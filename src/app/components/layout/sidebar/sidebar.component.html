@@ -1,13 +1,16 @@
-<aside>
-  <ul>
-    <li routerLink="dashboard">Dashboard</li>
-    <li routerLink="battles">Registro de batallas</li>
-    <li routerLink="weaknesses">Diagnostico de debilidades</li>
-    <li routerLink="goals">Lista de objetivos</li>
-    <li routerLink="sessions">Diario de sesiones</li>
-    <li routerLink="progess">Progreso del jugador</li>
-    <li routerLink="profile">Perfil de usuarió</li>
-    <li><app-common-button>cerrar sesión</app-common-button></li>
-    <li><app-language-selector></app-language-selector></li>
-  </ul>
-</aside>
+@if (isOpened) {
+  <aside>
+    <ul>
+      <li routerLink="/dashboard">{{ dashboard | translate }}</li>
+      <li routerLink="/battles">{{ battles | translate}}</li>
+      <li routerLink="/weaknesses">{{ weaknesses | translate }}</li>
+      <li routerLink="/goals">{{ goals | translate }}</li>
+      <li routerLink="/sessions">{{ sessions | translate }}</li>
+      <li routerLink="/progress">{{ progress | translate }}</li>
+      <li routerLink="/profile">{{ profile | translate }}</li>
+      <li><app-common-button (click)="logout()">{{ logoutText | translate }}</app-common-button></li>
+      <li><app-language-selector></app-language-selector></li>
+    </ul>
+  </aside>
+}
+<button (click)="openOrCloseSidebar()">sidebar</button>

@@ -23,16 +23,10 @@ export class HeaderComponent {
   ngOnInit() {
     this.setTranslations();
     this.translate.onLangChange.subscribe(() => this.setTranslations());
-    console.log(this.router.url);
   }
 
   private setTranslations() {
     this.getStarted = this.translate.instant('COMPONENTS.SHARED.GET_STARTED');
     this.logoutText = this.translate.instant('COMPONENTS.SHARED.LOGOUT');
-  }
-
-  protected logout() {
-    this.authService.logout();
-    this.router.navigate(['/landing']).then((r) => console.log(r));
   }
 }
