@@ -1,7 +1,6 @@
 import { Component, OnInit, effect } from '@angular/core';
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',

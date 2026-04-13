@@ -23,7 +23,7 @@ export class UsersService {
           Authorization: `Bearer ${this.token}`,
         },
       })
-      .pipe(finalize(() => this.loadingService.hide()));;
+      .pipe(finalize(() => this.loadingService.hide()));
   }
 
   getUserById(id: string | null): Observable<User> {

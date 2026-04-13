@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CommonButtonComponent } from '../../shared/common-button/common-button.component';
 import { LanguageSelectorComponent } from '../../shared/language-selector/language-selector.component';
 
