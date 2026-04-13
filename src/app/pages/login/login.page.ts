@@ -16,6 +16,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
     ReactiveFormsModule,
     FormInputComponent,
     RouterLink,
+
   ],
   templateUrl: './login.page.html',
   styleUrl: '../../../styles/styles.css',
