@@ -1,27 +1,32 @@
-@if (router.url === '/landing' || router.url === '/login' || router.url === '/register' || router.url === '/recover-password' || router.url === '/dashboard' || router.url === '/profile') {
-  <header>
-    @switch (router.url) {
-      @case ('/landing') {
-        <section>
-          <app-language-selector></app-language-selector>
-          <app-common-button routerLink="/register">{{ getStarted | translate }}</app-common-button>
-        </section>
-      }
-      @case ('/login') {
+@switch (router.url) {
+  @case ('/landing') {
+    <header>
+      <section>
         <app-language-selector></app-language-selector>
-      }
-      @case ('/register') {
-        <app-language-selector></app-language-selector>
-      }
-      @case ('/recover-password') {
-        <app-language-selector></app-language-selector>
-      }
-      @case ('/dashboard') {
-        <section></section>
-      }
-      @case ('/profile') {
-        <section></section>
-      }
-    }
-  </header>
+        <app-common-button routerLink="/register">{{ getStarted | translate }}</app-common-button>
+      </section>
+    </header>
+  }
+  @case ('/dashboard') {
+    <header>
+      <section>
+        @if(content$ | async; as content) {
+          <ng-container>
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+          </ng-container>
+        }
+      </section>
+    </header>
+  }
+  @case ('/profile') {
+    <header>
+      <section>
+        @if(content$ | async; as content) {
+          <ng-container>
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+          </ng-container>
+        }
+      </section>
+    </header>
+  }
 }

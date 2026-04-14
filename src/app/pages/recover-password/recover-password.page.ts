@@ -30,8 +30,10 @@ export class RecoverPasswordPage implements OnInit {
   token?: string;
   message?: string;
   error?: string;
-
   recoverPasswordForm!: FormGroup;
+  title = '';
+  subtitle = '';
+  text = '';
 
   constructor(
     private fb: FormBuilder,
@@ -42,21 +44,16 @@ export class RecoverPasswordPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Inicializamos un FormGroup vacío temprano para evitar errores si el template
-    // renderiza antes de que initEmailForm/initResetForm cree los controles.
     this.recoverPasswordForm = this.fb.group({});
     this.token = this.route.snapshot.queryParamMap.get('token') ?? undefined;
-
+    this.setTranslations();
+    this.translate.onLangChange.subscribe(() => this.setTranslations());
     if (this.token) {
       this.verifyToken(this.token);
     } else {
       this.initEmailForm();
     }
   }
-
-  /* =========================
-     FORMULARIOS
-     ========================= */
 
   onSubmit(event: Event): void {
     event.preventDefault();
@@ -83,10 +80,6 @@ export class RecoverPasswordPage implements OnInit {
     });
   }
 
-  /* =========================
-     TOKEN
-     ========================= */
-
   private initResetForm(): void {
     this.recoverPasswordForm = this.fb.group(
       {
@@ -97,15 +90,11 @@ export class RecoverPasswordPage implements OnInit {
     );
   }
 
-  /* =========================
-     SUBMIT
-     ========================= */
-
   private verifyToken(token: string): void {
     this.passwordResetService.verifyToken(token).subscribe({
       next: (res) => {
         if (!res.valid) {
-          this.router.navigate(['/invalid-token']).then(r => console.log(r));
+          this.router.navigate(['/invalid-token']).then((r) => console.log(r));
           return;
         }
         this.tokenValid = true;
@@ -132,7 +121,6 @@ export class RecoverPasswordPage implements OnInit {
 
   private resetPassword(): void {
     const { newPassword } = this.recoverPasswordForm.value;
-
     this.passwordResetService.resetPassword({ token: this.token!, newPassword }).subscribe({
       next: (res) => {
         this.message =
@@ -144,5 +132,11 @@ export class RecoverPasswordPage implements OnInit {
         this.submitted = false;
       },
     });
+  }
+
+  private setTranslations() {
+    this.title = this.translate.instant('PAGES.AUTH.GLOBAL.TITLE');
+    this.subtitle = this.translate.instant('PAGES.AUTH.GLOBAL.SUBTITLE');
+    this.text = this.translate.instant('PAGES.AUTH.GLOBAL.TEXT');
   }
 }

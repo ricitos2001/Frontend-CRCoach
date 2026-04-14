@@ -1,4 +1,9 @@
-<form class="add-task-form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" novalidate>
+<form class="login-and-register" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" novalidate>
+  <article class="image-box">
+    <h1>{{title | translate}}</h1>
+    <h2>{{subtitle | translate}}</h2>
+    <p>{{text | translate}}</p>
+  </article>
   <fieldset class="grid-center">
     <legend class="form__legend">{{ 'PAGES.AUTH.LOGIN.LEGEND' | translate }}</legend>
     <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.LOGIN.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.EMAIL_PLACEHOLDER' | translate" [required]="true" class="grid"></app-form-input>

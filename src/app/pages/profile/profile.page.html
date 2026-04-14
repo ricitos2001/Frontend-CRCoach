@@ -1,16 +1,17 @@
-<section class="profile-page">
-  @if (usersStore.loading()) {
+<ng-template #headerContent>
+  @if (usersStore.loading() && !usersStore.user()) {
     <p>Cargando usuario...</p>
   }
   @if (usersStore.error(); as uErr) {
     <p class="error">Error usuario: {{uErr}}</p>
   }
   @if (usersStore.user(); as user) {
-    <p>{{user.name}}</p>
-    <p>{{user.surnames}}</p>
+    <p>{{user.name}} {{user.surnames}}</p>
     <p>{{user.username}}</p>
     <p>{{user.email}}</p>
   }
+</ng-template>
+<section class="player-profile">
   @if (profileStore.loading() && !profileStore.profile()) {
     <p>Cargando perfil de jugador...</p>
   }
@@ -18,8 +19,10 @@
     <p class="error">Error perfil: {{pErr}}</p>
   }
   @if (profileStore.profile(); as profile) {
-    <p>{{profile.name}}</p>
-    <p>{{profile.tag}}</p>
+    <p>{{profile.trophies}}</p>
+    <p>{{profile.bestTrophies}}</p>
+    <p>{{profile.totalDonations}}</p>
+    <p>{{profile.leagueStadistics.currentSeason}}</p>
   }
 </section>
 <app-sidebar></app-sidebar>

@@ -1,0 +1,36 @@
+.login-and-register {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.image-box {
+  width: 50%;
+  position: relative;
+  background: url('/assets/img/wallpaper.jpg') no-repeat center/cover;
+  text-align: center;
+  align-content: center;
+  color: var(--light-color-1)
+}
+
+.image-box::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: rgba(20, 20, 20, 0.5);
+}
+
+.image-box h1, .image-box h2, .image-box p {
+  opacity: 0.9;
+  padding: 1rem;
+}
+
+.image-box h1 {
+  font-size: 3rem;
+}
+
+.image-box h2 {
+  font-size: 2rem;
+}

@@ -35,7 +35,7 @@ export class UsersSignalStore {
 	  .subscribe({
 		next: (u) => this._user.set(u),
 		error: (err) => {
-		  this._error.set(this.translate.instant('NOTIFICATIONS.USER.UPDATE_ERROR') || 'Error cargando usuario');
+		  this._error.set(this.translate.instant('NOTIFICATIONS.USER.GET_ERROR'));
 		  console.warn('UsersSignalStore.loadByEmail error', err);
 		},
 	  });

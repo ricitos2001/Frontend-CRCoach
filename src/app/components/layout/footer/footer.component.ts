@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './footer.component.html',
   styleUrl: '../../../../styles/styles.css',
 })
-export class FooterComponent {}
+export class FooterComponent {
+  constructor(protected router: Router) {}
+}

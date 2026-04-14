@@ -22,6 +22,11 @@
       "HELLO_WORLD": "¡Hola Mundo!"
     },
     "AUTH": {
+      "GLOBAL": {
+        "TITLE": "CRCOACH",
+        "SUBTITLE": "Reclama tu trono",
+        "TEXT": "Domina el campo de batalla con analíticas de nivel soberano. La evolución de tu estrategia comienza en la Ciudadela Etherea"
+      },
       "LOGIN": {
         "LEGEND": "Iniciar sesión",
         "EMAIL_LABEL": "Correo electrónico",
@@ -134,7 +139,8 @@
     "USER": {
       "UPDATED": "Usuario actualizado correctamente",
       "UPDATE_ERROR": "Error al editar el usuario",
-      "CANCELLED": "Operación cancelada"
+      "CANCELLED": "Operación cancelada",
+      "GET_ERROR": "Error al obtener los datos del usuario"
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
@@ -24,12 +24,14 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
   templateUrl: './register.page.html',
   styleUrl: '../../../styles/styles.css',
 })
-export class RegisterPage {
+export class RegisterPage implements OnInit {
   @Output() authSuccess = new EventEmitter<void>();
   submitted = false;
   registerForm: FormGroup;
   loading = false;
-  // Campo tag integrado en el formulario de registro
+  title = '';
+  subtitle = '';
+  text = '';
 
   constructor(
     private authService: AuthService,
@@ -78,6 +80,11 @@ export class RegisterPage {
       },
       { validators: passwordMatch('passwordHash', 'repeatPassword') },
     );
+  }
+
+  ngOnInit() {
+    this.setTranslations();
+    this.translate.onLangChange.subscribe(() => this.setTranslations());
   }
 
   onSubmit(event: Event) {
@@ -157,5 +164,11 @@ export class RegisterPage {
         this.loading = false;
       },
     });
+  }
+
+  private setTranslations() {
+    this.title = this.translate.instant('PAGES.AUTH.GLOBAL.TITLE');
+    this.subtitle = this.translate.instant('PAGES.AUTH.GLOBAL.SUBTITLE');
+    this.text = this.translate.instant('PAGES.AUTH.GLOBAL.TEXT');
   }
 }

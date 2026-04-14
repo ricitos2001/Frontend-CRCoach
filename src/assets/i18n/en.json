@@ -22,6 +22,11 @@
       "HELLO_WORLD": "Hello World!"
     },
     "AUTH": {
+      "GLOBAL": {
+        "TITLE": "CRCOACH",
+        "SUBTITLE": "Claim your throne",
+        "TEXT": "Domain the battlefield with sovereign-level analytics. The evolution of your strategy begins at the Etherea Citadel"
+      },
       "LOGIN": {
         "LEGEND": "Sign in",
         "EMAIL_LABEL": "Email",
@@ -134,7 +139,8 @@
     "USER": {
       "UPDATED": "User updated successfully",
       "UPDATE_ERROR": "Error updating user",
-      "CANCELLED": "Operation cancelled"
+      "CANCELLED": "Operation cancelled",
+      "GET_ERROR": "Error fetching user data"
     }
   }
 }
