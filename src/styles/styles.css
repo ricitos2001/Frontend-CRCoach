@@ -266,8 +266,6 @@ app-form-input.grid label {
   margin-bottom: 0.5rem;
 }
 
-/* When the field is a native checkbox keep the checkbox and its label inline
-   (override the general label display:block rule above). */
 app-form-input.glass-input input[type=checkbox],
 app-form-input.grid input[type=checkbox] {
   display: inline-block;
@@ -276,18 +274,16 @@ app-form-input.grid input[type=checkbox] {
   vertical-align: middle;
 }
 
-/* target the label that follows a native checkbox so text sits next to it */
 app-form-input.glass-input input[type=checkbox] + label,
 app-form-input.grid input[type=checkbox] + label {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0; /* remove extra bottom margin used for stacked labels */
+  margin-bottom: 0;
   color: rgba(255, 255, 255, 0.95);
   font-size: 0.95rem;
 }
 
-/* Do not style native checkboxes — exclude input[type="checkbox"] */
 app-form-input.glass-input input:not([type=checkbox]),
 app-form-input.grid input:not([type=checkbox]),
 app-form-input.glass-input textarea {
@@ -319,7 +315,6 @@ app-form-input.glass-input textarea:focus {
   flex: 1 1 50%;
 }
 
-/* primary action button appearance on auth forms */
 .fieldset app-common-button button {
   width: 100%;
   background: var(--light-color-1);
@@ -331,14 +326,12 @@ app-form-input.glass-input textarea:focus {
   box-shadow: none;
 }
 
-/* small links */
 .fieldset a {
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
   margin: 0;
 }
 
-/* responsive: stack on small screens */
 @media (max-width: 48rem) {
   .login-and-register {
     flex-direction: column;
