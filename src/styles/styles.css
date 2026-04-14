@@ -191,14 +191,25 @@ footer {
   position: relative;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 }
 
+.checkbox {
+  display: flex;
+  flex-direction: row;
+}
+
+/* left: image */
 .image-box {
   width: 50%;
   position: relative;
   background: url("/assets/img/wallpaper.jpg") no-repeat center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  align-content: center;
+  padding: 2.5rem;
   color: var(--light-color-1);
 }
 
@@ -206,20 +217,157 @@ footer {
   position: absolute;
   content: "";
   inset: 0;
-  background: rgba(20, 20, 20, 0.5);
+  background: rgba(20, 20, 20, 0.45);
 }
 
-.image-box h1, .image-box h2, .image-box p {
-  opacity: 0.9;
-  padding: 1rem;
+.image-box > * {
+  position: relative; /* keep above overlay */
+  z-index: 1;
+}
+
+.image-box h1,
+.image-box h2,
+.image-box p {
+  opacity: 0.95;
+  padding: 0.25rem 1rem;
 }
 
 .image-box h1 {
   font-size: 3rem;
+  font-family: var(--font-secondary), sans-serif;
+  letter-spacing: 0.02em;
 }
 
 .image-box h2 {
-  font-size: 2rem;
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+fieldset {
+  width: 50%;
+  min-height: 100vh;
+  padding: 3rem 3.5rem;
+  margin: 0;
+  border: none;
+  color: var(--light-color-1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  overflow-y: auto;
+}
+
+.form__legend {
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 3rem;
+  color: var(--light-color-1);
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+
+app-form-input.glass-input,
+app-form-input.grid {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+app-form-input.glass-input label,
+app-form-input.grid label {
+  display: block;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+/* When the field is a native checkbox keep the checkbox and its label inline
+   (override the general label display:block rule above). */
+app-form-input.glass-input input[type=checkbox],
+app-form-input.grid input[type=checkbox] {
+  display: inline-block;
+  width: auto;
+  margin: 0 0.6rem 0 0;
+  vertical-align: middle;
+}
+
+/* target the label that follows a native checkbox so text sits next to it */
+app-form-input.glass-input input[type=checkbox] + label,
+app-form-input.grid input[type=checkbox] + label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0; /* remove extra bottom margin used for stacked labels */
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+}
+
+/* Do not style native checkboxes — exclude input[type="checkbox"] */
+app-form-input.glass-input input:not([type=checkbox]),
+app-form-input.grid input:not([type=checkbox]),
+app-form-input.glass-input textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.6rem;
+  padding: 0.85rem 1rem;
+  color: var(--light-color-1);
+  box-shadow: inset 0 6px 18px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(255, 255, 255, 0.02) inset;
+  outline: none;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+app-form-input.glass-input input:not([type=checkbox]):focus,
+app-form-input.grid input:not([type=checkbox]):focus,
+app-form-input.glass-input textarea:focus {
+  box-shadow: inset 0 8px 24px rgba(0, 0, 0, 0.55), 0 6px 18px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.login-and-register section.flex {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.login-and-register section.flex > article {
+  flex: 1 1 50%;
+}
+
+/* primary action button appearance on auth forms */
+fieldset app-common-button button,
+.fieldset app-common-button button {
+  width: 100%;
+  background: var(--light-color-1);
+  color: var(--color-primary-5);
+  font-family: var(--font-secondary), sans-serif;
+  font-size: 1.15rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+/* small links */
+fieldset a,
+.fieldset a {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+}
+
+/* responsive: stack on small screens */
+@media (max-width: 48rem) {
+  .login-and-register {
+    flex-direction: column;
+    height: auto;
+  }
+  .image-box,
+  fieldset,
+  .fieldset {
+    width: 100%;
+    min-height: auto;
+    padding: 2rem;
+  }
+  .form__legend {
+    font-size: 2rem;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
