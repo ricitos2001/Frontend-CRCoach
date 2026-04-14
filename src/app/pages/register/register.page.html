@@ -5,8 +5,8 @@
     <p>{{text | translate}}</p>
   </article>
   <fieldset class="fieldset">
-    <legend class="form__legend">{{ 'PAGES.AUTH.REGISTER.LEGEND' | translate }}</legend>
-    <section>
+    <h1 class="form__legend">{{ 'PAGES.AUTH.REGISTER.LEGEND' | translate }}</h1>
+    <section class="flex">
       <article>
         <app-form-input formControlName="name" name="name" [label]="'PAGES.AUTH.REGISTER.NAME_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.NAME_PLACEHOLDER' | translate" [required]="true" class="glass-input"></app-form-input>
         @if (registerForm.get('name')?.touched && registerForm.get('name')?.invalid) {
@@ -83,15 +83,13 @@
       </article>
     </section>
     <app-form-input formControlName="acceptTerms" type="checkbox" name="acceptTerms" [label]="'PAGES.AUTH.REGISTER.ACCEPT_TERMS_LABEL' | translate" [required]="true" class="glass-input"></app-form-input>
-    <article>
-      <app-common-button type="submit" [disabled]="registerForm.invalid || registerForm.pending || loading">
-        @if (!loading) {
-          <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMIT' | translate }}</ng-container>
-        } @else {
-          <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMITTING' | translate }}</ng-container>
-        }
-      </app-common-button>
-      <a [routerLink]="['/login']">{{ 'PAGES.AUTH.REGISTER.HAVE_ACCOUNT' | translate }}</a>
-    </article>
+    <app-common-button type="submit" [disabled]="registerForm.invalid || registerForm.pending || loading">
+      @if (!loading) {
+        <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMIT' | translate }}</ng-container>
+      } @else {
+        <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMITTING' | translate }}</ng-container>
+      }
+    </app-common-button>
+    <a [routerLink]="['/login']">{{ 'PAGES.AUTH.REGISTER.HAVE_ACCOUNT' | translate }}</a>
   </fieldset>
 </form>

@@ -194,12 +194,6 @@ footer {
   overflow: hidden;
 }
 
-.checkbox {
-  display: flex;
-  flex-direction: row;
-}
-
-/* left: image */
 .image-box {
   width: 50%;
   position: relative;
@@ -220,16 +214,11 @@ footer {
   background: rgba(20, 20, 20, 0.45);
 }
 
-.image-box > * {
-  position: relative; /* keep above overlay */
-  z-index: 1;
-}
-
 .image-box h1,
 .image-box h2,
 .image-box p {
-  opacity: 0.95;
   padding: 0.25rem 1rem;
+  z-index: 1;
 }
 
 .image-box h1 {
@@ -261,8 +250,6 @@ fieldset {
   font-family: var(--font-secondary), sans-serif;
   font-size: 3rem;
   color: var(--light-color-1);
-  margin-bottom: 1rem;
-  letter-spacing: 0.01em;
 }
 
 app-form-input.glass-input,
@@ -333,7 +320,6 @@ app-form-input.glass-input textarea:focus {
 }
 
 /* primary action button appearance on auth forms */
-fieldset app-common-button button,
 .fieldset app-common-button button {
   width: 100%;
   background: var(--light-color-1);
@@ -346,10 +332,10 @@ fieldset app-common-button button,
 }
 
 /* small links */
-fieldset a,
 .fieldset a {
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
+  margin: 0;
 }
 
 /* responsive: stack on small screens */
@@ -367,6 +353,7 @@ fieldset a,
   }
   .form__legend {
     font-size: 2rem;
+    margin-top: 1rem;
   }
 }
 
