@@ -19,7 +19,7 @@
     <p>{{profile.trophies}}</p>
     <p>{{profile.bestTrophies}}</p>
     <p>{{profile.totalDonations}}</p>
-    <p>{{profile.leagueStadistics.currentSeason}}</p>
+    <p>{{JSON.parse(profile.currentPathOfLegendSeasonResult).leagueNumber}}</p>
   }
 </ng-template>
 <app-sidebar></app-sidebar>

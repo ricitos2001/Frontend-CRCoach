@@ -29,4 +29,16 @@ export class PlayerProfilesService {
       })
       .pipe(finalize(() => this.loadingService.hide()));
   }
+
+  importProfile(tag: string): Observable<PlayerProfile> {
+    const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
+    const encodedTag = encodeURIComponent(normalizedTag);
+    return this.http
+      .get<PlayerProfile>(`${environment.apiUrl}/api/v1/player_profiles/player/${encodedTag}`, {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      })
+      .pipe(finalize(() => this.loadingService.hide()));
+  }
 }

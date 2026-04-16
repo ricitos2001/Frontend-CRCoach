@@ -10,6 +10,7 @@ import { AuthService } from '../../../services/auth/auth.service';
   imports: [RouterLink, CommonButtonComponent, LanguageSelectorComponent, TranslatePipe],
   templateUrl: './sidebar.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class SidebarComponent {
   constructor(
@@ -44,7 +45,7 @@ export class SidebarComponent {
   private setTranslations() {
     this.dashboard = this.translate.instant('COMPONENTS.LAYOUT.SIDEBAR.DASHBOARD');
     this.battles = this.translate.instant('COMPONENTS.LAYOUT.SIDEBAR.BATTLES');
-    this.weaknesses = this.translate.instant('COMPONENTS.LAYOUT.SIDEBAR.WEAKNESSES')
+    this.weaknesses = this.translate.instant('COMPONENTS.LAYOUT.SIDEBAR.WEAKNESSES');
     this.goals = this.translate.instant('COMPONENTS.LAYOUT.SIDEBAR.GOALS');
     this.sessions = this.translate.instant('COMPONENTS.LAYOUT.SIDEBAR.SESSIONS');
     this.progress = this.translate.instant('COMPONENTS.LAYOUT.SIDEBAR.PROGRESS');

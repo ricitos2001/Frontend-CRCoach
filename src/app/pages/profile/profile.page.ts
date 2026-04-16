@@ -9,6 +9,7 @@ import { HeaderContentService } from '../../services/header-content/header-conte
   templateUrl: './profile.page.html',
   styleUrls: ['../../../styles/styles.css'],
   imports: [SidebarComponent],
+  standalone: true,
 })
 export class ProfilePage implements OnInit {
   constructor(

@@ -98,14 +98,4 @@ export class UsersService {
       })
       .pipe(finalize(() => this.loadingService.hide()));
   }
-
-  linkPlayerTag(tag: string): Observable<any> {
-    return this.http
-      .post(`${environment.apiUrl}/api/v1/users/me/player-profile/link/${tag}`, null, {
-        headers: {
-          Authorization: `Bearer ${this.token}`,
-        },
-      })
-      .pipe(finalize(() => this.loadingService.hide()));
-  }
 }

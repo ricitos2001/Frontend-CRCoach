@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
+import { throwError } from 'rxjs';
 import { PlayerProfile } from '../interfaces/PlayerProfile';
 import { PlayerProfilesService } from '../services/player-profiles/player-profiles.service';
-import { take, finalize } from 'rxjs/operators';
+import { take, finalize, catchError } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
@@ -24,19 +25,34 @@ export class PlayerProfileSignalStore {
     this.playerProfilesService
       .getProfileByTag(tag)
       .pipe(
+        catchError((profileByTagError) =>
+          this.playerProfilesService.importProfile(tag).pipe(
+            catchError((importProfileError) => {
+              console.error('PlayerProfileSignalStore.loadByTag: no se pudo obtener el perfil del jugador', {
+                tag,
+                profileByTagError,
+                importProfileError,
+              });
+              return throwError(() => importProfileError);
+            }),
+          ),
+        ),
         take(1),
         finalize(() => this._loading.set(false)),
       )
       .subscribe({
         next: (p) => {
+          if (!p) {
+            this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
+            this._profile.set(null);
+            return;
+          }
+
           this._profile.set(p);
         },
         error: (err) => {
           this._error.set(
-            this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND') ||
-              'Profile not found',
-          );
-          console.warn('PlayerProfileSignalStore.loadByTag error', err);
+            this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
         },
       });
   }
@@ -46,4 +62,3 @@ export class PlayerProfileSignalStore {
     this._error.set(null);
   }
 }
-

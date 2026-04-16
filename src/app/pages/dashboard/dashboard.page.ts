@@ -3,18 +3,21 @@ import { SidebarComponent } from '../../components/layout/sidebar/sidebar.compon
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 import { HeaderContentService } from '../../services/header-content/header-content.service';
+import { JsonPipe } from '@angular/common';
+import { parseJson } from '@angular/cli/src/utilities/json-file';
 
 @Component({
   selector: 'app-dashboard',
   imports: [SidebarComponent],
   templateUrl: './dashboard.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
 export class DashboardPage implements OnInit {
   constructor(
     public usersStore: UsersSignalStore,
     public profileStore: PlayerProfileSignalStore,
-    public headerContentService: HeaderContentService
+    public headerContentService: HeaderContentService,
   ) {
     effect(() => {
       const user = this.usersStore.user();
@@ -32,4 +35,7 @@ export class DashboardPage implements OnInit {
     this.usersStore.loadByEmail(email);
     this.headerContentService.setContent(this.headerContent);
   }
+
+  protected readonly parseJson = parseJson;
+  protected readonly JSON = JSON;
 }

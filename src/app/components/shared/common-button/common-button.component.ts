@@ -5,6 +5,7 @@ import { Component, Input } from '@angular/core';
   imports: [],
   templateUrl: './common-button.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class CommonButtonComponent {
   @Input() disabled: boolean = false;

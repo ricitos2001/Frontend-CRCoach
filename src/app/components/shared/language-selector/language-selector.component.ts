@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   imports: [TranslateModule],
   templateUrl: './language-selector.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class LanguageSelectorComponent implements OnInit {
   constructor(

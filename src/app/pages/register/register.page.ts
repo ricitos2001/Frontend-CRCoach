@@ -8,8 +8,6 @@ import { passwordMatch } from '../../validators/password-match.validator';
 import { passwordStrength } from '../../validators/password-strength.validator';
 import { AsyncValidatorsService } from '../../services/async-validators/async-validators.service';
 import { Notification, NotificationsService } from '../../services/notifications/notifications.service';
-import { UsersService } from '../../services/users/users.service';
-import { ToastService } from '../../services/toast/toast.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -39,8 +37,6 @@ export class RegisterPage implements OnInit {
     private fb: FormBuilder,
     private asyncValidators: AsyncValidatorsService,
     private notifications: NotificationsService,
-    private usersService: UsersService,
-    private toastService: ToastService,
     private translate: TranslateService,
   ) {
     this.registerForm = this.fb.group(
@@ -65,7 +61,7 @@ export class RegisterPage implements OnInit {
         ],
         passwordHash: ['', [Validators.required, passwordStrength()]],
         repeatPassword: ['', Validators.required],
-        tag: [
+        playerTag: [
           '',
           {
             validators: [],
@@ -94,8 +90,7 @@ export class RegisterPage implements OnInit {
       return;
     }
     this.submitted = true;
-
-    this.authService.register(this.registerForm.value).subscribe({
+    this.authService.register(this.registerForm).subscribe({
       next: (res) => {
         this.authService.saveToken(res.token);
         this.authService.getUserIdFromToken();
@@ -113,47 +108,6 @@ export class RegisterPage implements OnInit {
             console.warn('Error enviando notificación al API:', err);
           },
         });
-        const tag = this.registerForm.value.tag;
-        if (tag) {
-          this.usersService.linkPlayerTag(tag).subscribe({
-            next: () => {
-              const apiNotification: Notification = {
-                title: this.translate.instant(
-                  'PAGES.LINK_PLAYER_PROFILE.NOTIFICATION_LINKED_TITLE',
-                ),
-                message: this.translate.instant(
-                  'PAGES.LINK_PLAYER_PROFILE.NOTIFICATION_LINKED_MESSAGE',
-                  { tag },
-                ),
-                createdAt: new Date(),
-                userEmail: localStorage.getItem('email') ?? '',
-              };
-              this.notifications.pushNotifications(apiNotification).subscribe({
-                error: (err) => console.warn('Error enviando notificación al API:', err),
-              });
-
-              this.toastService.show({
-                type: 'success',
-                message: this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_SUCCESS_TOAST', {
-                  tag,
-                }),
-                duration: 5000,
-              });
-            },
-            error: (err) => {
-              console.warn('Error vinculando perfil tras registro:', err);
-              const serverMessage =
-                err && err.error && err.error.message ? err.error.message : null;
-              const fallback =
-                typeof err === 'string' ? err : JSON.stringify(err?.error ?? err ?? '');
-              const userMessage =
-                serverMessage ??
-                fallback ??
-                this.translate.instant('PAGES.LINK_PLAYER_PROFILE.LINK_ERROR_TOAST', { tag });
-              this.toastService.show({ type: 'error', message: userMessage, duration: 7000 });
-            },
-          });
-        }
         this.router.navigate(['dashboard']).then(() => {});
       },
       error: (err) => {

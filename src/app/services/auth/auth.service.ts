@@ -27,14 +27,11 @@ export class AuthService {
 
   register(data: FormGroup | any) {
     const body = this.extractValue(data);
+    console.log(body);
     return this.http.post<any>(`${environment.apiUrl}/api/v1/auth/register`, body);
   }
 
   logout() {
-    return this.http.post(`${environment.apiUrl}/api/v1/auth/logout`, {});
-  }
-
-  removeAccount() {
     return this.http.post(`${environment.apiUrl}/api/v1/auth/logout`, {});
   }
 
