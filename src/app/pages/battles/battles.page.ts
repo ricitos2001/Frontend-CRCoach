@@ -3,39 +3,29 @@ import { SidebarComponent } from '../../components/layout/sidebar/sidebar.compon
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 import { HeaderContentService } from '../../services/header-content/header-content.service';
+import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-battles',
   imports: [SidebarComponent],
   templateUrl: './battles.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
 export class BattlesPage implements OnInit {
   tag = localStorage.getItem('tag');
-  constructor(
-    public battlesStore: Battles,
-  ) {
+  constructor(public battlesStore: BattlesSignalStore) {
     effect(() => {
       if (this.tag != null) {
-        this.analyticsStore.loadSummary(this.tag);
-        this.analyticsStore.summary();
-      }
-      if (this.tag != null) {
-        this.analyticsStore.loadWeaknesses(this.tag);
-        this.analyticsStore.weaknesses();
-      }
-      if (this.tag != null) {
-        this.analyticsStore.loadProblematicCards(this.tag);
-        this.analyticsStore.problematicCards();
+        this.battlesStore.loadByTag(this.tag);
+        this.battlesStore.battles();
       }
     });
   }
 
   ngOnInit(): void {
-    const tag = localStorage.getItem('tag');
-    if (!tag) return;
-    this.analyticsStore.loadSummary(tag);
-    this.analyticsStore.loadWeaknesses(tag);
-    this.analyticsStore.loadProblematicCards(tag);
+    if (!this.tag) return;
+    this.battlesStore.loadByTag(this.tag);
   }
 }

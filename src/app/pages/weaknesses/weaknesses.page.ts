@@ -10,13 +10,11 @@ import { AnalyticsSignalStore } from '../../signal_stores/analytics.signal.store
   imports: [SidebarComponent],
   templateUrl: './weaknesses.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
 export class WeaknessesPage implements OnInit {
   tag = localStorage.getItem('tag');
-  constructor(
-    public usersStore: UsersSignalStore,
-    public analyticsStore: AnalyticsSignalStore,
-  ) {
+  constructor(public analyticsStore: AnalyticsSignalStore) {
     effect(() => {
       if (this.tag != null) {
         this.analyticsStore.loadSummary(this.tag);

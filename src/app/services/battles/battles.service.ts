@@ -36,7 +36,7 @@ export class BattlesService {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
     return this.http
-      .get<Battle>(`${environment.apiUrl}/api/v1/battles/import/${encodedTag}`, {
+      .post<Battle>(`${environment.apiUrl}/api/v1/battles/import/${encodedTag}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },

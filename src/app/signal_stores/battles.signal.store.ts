@@ -48,8 +48,9 @@ export class BattlesSignalStore {
             this._battles.set(null);
             return;
           }
-          if ((res as PaginatedResponse<Battle>).content) {
-            this._battles.set(res as PaginatedResponse<Battle>);
+          const maybePag = res as any;
+          if (maybePag && maybePag.content) {
+            this._battles.set(maybePag as PaginatedResponse<Battle>);
             return;
           }
           const b = res as Battle;
@@ -71,6 +72,52 @@ export class BattlesSignalStore {
         },
       });
   }
+
+      importBattles(tag: string) {
+        if (!tag) return;
+        this._loading.set(true);
+        this._error.set(null);
+        this.battlesService
+          .importBattles(tag)
+          .pipe(
+            take(1),
+            catchError((importError) => {
+              console.error('BattlesSignalStore.importBattles: no se pudo importar las batallas', { tag, importError });
+              return throwError(() => importError);
+            }),
+            finalize(() => this._loading.set(false)),
+          )
+          .subscribe({
+            next: (res) => {
+              if (!res) {
+                this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
+                this._battles.set(null);
+                return;
+              }
+              const maybePag = res as any;
+              if (maybePag && maybePag.content) {
+                this._battles.set(maybePag as PaginatedResponse<Battle>);
+                return;
+              }
+              const b = res as Battle;
+              const pag: PaginatedResponse<Battle> = {
+                content: [b],
+                pageable: null,
+                totalPages: 1,
+                totalElements: 1,
+                last: true,
+                first: true,
+                number: 0,
+                size: 1,
+                numberOfElements: 1,
+              };
+              this._battles.set(pag);
+            },
+            error: (err) => {
+              this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
+            },
+          });
+      }
 
 
   clear() {

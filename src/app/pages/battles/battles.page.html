@@ -1,2 +1,14 @@
-<p>battles.page works!</p>
+<section>
+  @if (battlesStore.loading() && !battlesStore.battles()) {
+    <p>Cargando batallas...</p>
+  }
+  @if (battlesStore.error(); as bErr) {
+    <p class="error">Error cargando batallas: {{bErr}}</p>
+  }
+  @if (battlesStore.battles(); as battles) {
+    @for (battle of battles.content; track battle.id) {
+      <p>{{battle.arena}}</p>
+    }
+  }
+</section>
 <app-sidebar></app-sidebar>

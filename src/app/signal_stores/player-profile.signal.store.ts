@@ -57,6 +57,39 @@ export class PlayerProfileSignalStore {
       });
   }
 
+  importProfile(tag: string) {
+    if (!tag) return;
+    this._loading.set(true);
+    this._error.set(null);
+    this.playerProfilesService
+      .importProfile(tag)
+      .pipe(
+        take(1),
+        catchError((importProfileError) => {
+          console.error('PlayerProfileSignalStore.importProfile: no se pudo importar el perfil del jugador', {
+            tag,
+            importProfileError,
+          });
+          return throwError(() => importProfileError);
+        }),
+        finalize(() => this._loading.set(false)),
+      )
+      .subscribe({
+        next: (p) => {
+          if (!p) {
+            this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
+            this._profile.set(null);
+            return;
+          }
+
+          this._profile.set(p);
+        },
+        error: (_err) => {
+          this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
+        },
+      });
+  }
+
   clear() {
     this._profile.set(null);
     this._error.set(null);
