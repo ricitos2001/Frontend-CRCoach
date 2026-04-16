@@ -22,6 +22,7 @@ export class DashboardPage implements OnInit {
     effect(() => {
       const user = this.usersStore.user();
       if (user && user.playerTag && user.playerTag.trim() !== '') {
+        localStorage.setItem('tag', user.playerTag);
         this.profileStore.loadByTag(user.playerTag);
       }
       this.profileStore.profile();
@@ -31,11 +32,11 @@ export class DashboardPage implements OnInit {
 
   ngOnInit(): void {
     const email = localStorage.getItem('email');
+    const tag  = localStorage.getItem('tag');
     if (!email) return;
     this.usersStore.loadByEmail(email);
+    if (!tag) return;
+    this.profileStore.loadByTag(tag)
     this.headerContentService.setContent(this.headerContent);
   }
-
-  protected readonly parseJson = parseJson;
-  protected readonly JSON = JSON;
 }

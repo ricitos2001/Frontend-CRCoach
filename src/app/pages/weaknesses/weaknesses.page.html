@@ -1,2 +1,40 @@
-<p>weaknesses.page works!</p>
+<section>
+  @if (analyticsStore.loading() && !analyticsStore.summary()) {
+    <p>Cargando resumen de estadísticas...</p>
+  }
+  @if (analyticsStore.error(); as pErr) {
+    <p class="error">Error cargando debilidades: {{pErr}}</p>
+  }
+  @if (analyticsStore.summary(); as summaryReport) {
+    <p>{{summaryReport.totalBattles}}</p>
+    <p>{{summaryReport.avgElisxirLastDeck}}</p>
+    <p>{{summaryReport.weakestArchetype}}</p>
+    <p>{{summaryReport.strongestArchetype}}</p>
+    <p>{{summaryReport.winRateLast25}}</p>
+    <p>{{summaryReport.winRateLast7d}}</p>
+  }
+</section>
+<section>
+  @if (analyticsStore.loading() && !analyticsStore.weaknesses()) {
+    <p>Cargando debilidades...</p>
+  }
+  @if (analyticsStore.error(); as pErr) {
+    <p class="error">Error cargando debilidades: {{pErr}}</p>
+  }
+  @if (analyticsStore.weaknesses(); as weaknessReport) {
+    <p></p>
+  }
+</section>
+<section>
+  @if (analyticsStore.loading() && !analyticsStore.problematicCards()) {
+    <p>Cargando cartas problematicas...</p>
+  }
+  @if (analyticsStore.error(); as pErr) {
+    <p class="error">Error cargando debilidades: {{pErr}}</p>
+  }
+  @if (analyticsStore.weaknesses(); as weaknessReport) {
+    <p></p>
+  }
+</section>
+
 <app-sidebar></app-sidebar>

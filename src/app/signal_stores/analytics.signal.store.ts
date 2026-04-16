@@ -21,7 +21,10 @@ export class AnalyticsSignalStore {
   readonly loading = this._loading.asReadonly();
   readonly error = this._error.asReadonly();
 
-  constructor(private analyticsService: AnalyticsService, private translate: TranslateService) {}
+  constructor(
+    private analyticsService: AnalyticsService,
+    private translate: TranslateService,
+  ) {}
 
   loadSummary(tag: string) {
     if (!tag) return;
@@ -29,7 +32,10 @@ export class AnalyticsSignalStore {
     this._error.set(null);
     this.analyticsService
       .getSummary(tag)
-      .pipe(take(1), finalize(() => this._loading.set(false)))
+      .pipe(
+        take(1),
+        finalize(() => this._loading.set(false)),
+      )
       .subscribe({
         next: (s) => this._summary.set(s),
         error: (err) => {
@@ -45,7 +51,10 @@ export class AnalyticsSignalStore {
     this._error.set(null);
     this.analyticsService
       .getWeaknesses(tag)
-      .pipe(take(1), finalize(() => this._loading.set(false)))
+      .pipe(
+        take(1),
+        finalize(() => this._loading.set(false)),
+      )
       .subscribe({
         next: (w) => this._weaknesses.set(w),
         error: (err) => {
@@ -61,7 +70,10 @@ export class AnalyticsSignalStore {
     this._error.set(null);
     this.analyticsService
       .getProblematicCards(tag)
-      .pipe(take(1), finalize(() => this._loading.set(false)))
+      .pipe(
+        take(1),
+        finalize(() => this._loading.set(false)),
+      )
       .subscribe({
         next: (p) => this._problematicCards.set(p),
         error: (err) => {
