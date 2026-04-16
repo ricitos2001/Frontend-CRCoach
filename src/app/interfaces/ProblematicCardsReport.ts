@@ -1,6 +1,6 @@
 import { problematicCard } from './ProblematicCard';
 
-export interface problematicCardsReport {
+export interface ProblematicCardsReport {
   id: number;
   playerTag: string;
   totalLosses: number;

@@ -3,26 +3,8 @@ import { Observable, shareReplay, timer } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../enviroments/enviroment';
-
-export interface PaginatedResponse<T> {
-  content: T[];
-  pageable: any;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  first: boolean;
-  number: number;
-  size: number;
-  numberOfElements: number;
-}
-
-export interface Notification {
-  id?: string;
-  title: string;
-  message: string;
-  createdAt: Date;
-  userEmail: string;
-}
+import { PaginatedResponse } from '../../interfaces/PaginatedResponse';
+import { Notification } from '../../interfaces/Notification';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationsService {

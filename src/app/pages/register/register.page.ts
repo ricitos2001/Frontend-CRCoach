@@ -7,8 +7,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { passwordMatch } from '../../validators/password-match.validator';
 import { passwordStrength } from '../../validators/password-strength.validator';
 import { AsyncValidatorsService } from '../../services/async-validators/async-validators.service';
-import { Notification, NotificationsService } from '../../services/notifications/notifications.service';
+import { NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { Notification } from '../../interfaces/Notification';
 
 @Component({
   selector: 'app-register',
