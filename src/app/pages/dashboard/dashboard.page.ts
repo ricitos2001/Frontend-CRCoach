@@ -39,4 +39,6 @@ export class DashboardPage implements OnInit {
     this.profileStore.loadByTag(tag)
     this.headerContentService.setContent(this.headerContent);
   }
+
+  protected readonly JSON = JSON;
 }
