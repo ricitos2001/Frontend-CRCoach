@@ -5,8 +5,9 @@ import { CommonButtonComponent } from '../../components/shared/common-button/com
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordStrength } from '../../validators/password-strength.validator';
-import { NotificationsService, Notification } from '../../services/notifications/notifications.service';
+import { NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { Notification } from '../../interfaces/Notification';
 
 @Component({
   selector: 'app-login',
