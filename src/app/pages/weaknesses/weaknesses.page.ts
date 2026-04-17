@@ -1,9 +1,7 @@
-import { Component, effect, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, effect, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
-import { UsersSignalStore } from '../../signal_stores/users.signal.store';
-import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
-import { HeaderContentService } from '../../services/header-content/header-content.service';
 import { AnalyticsSignalStore } from '../../signal_stores/analytics.signal.store';
+import { Chart, registerables, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-weaknesses',
@@ -18,17 +16,87 @@ export class WeaknessesPage implements OnInit {
     effect(() => {
       if (this.tag != null) {
         this.analyticsStore.loadSummary(this.tag);
-        this.analyticsStore.summary();
       }
       if (this.tag != null) {
         this.analyticsStore.loadWeaknesses(this.tag);
-        this.analyticsStore.weaknesses();
+        this.createOrUpdateChart();
       }
       if (this.tag != null) {
         this.analyticsStore.loadProblematicCards(this.tag);
-        this.analyticsStore.problematicCards();
       }
     });
+  }
+
+  @ViewChild('weaknessesChart', { static: true }) private chartRef?: ElementRef<HTMLCanvasElement>;
+  private chart?: Chart;
+
+  public get barChartOptions(): ChartOptions {
+    return {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { title: { display: true, text: 'Arquetipo' } },
+        y: { title: { display: true, text: 'Batallas' }, beginAtZero: true },
+      },
+    } as ChartOptions;
+  }
+
+  private createOrUpdateChart() {
+    const wr = this.analyticsStore.weaknesses();
+    if (!wr || !this.chartRef?.nativeElement) return;
+    let byArchetype: any[] = [];
+    if (Array.isArray((wr as any).byArchetype)) {
+      byArchetype = (wr as any).byArchetype;
+    } else if (typeof (wr as any).byArchetypeJson === 'string') {
+      try {
+        byArchetype = JSON.parse((wr as any).byArchetypeJson);
+      } catch (e) {
+        console.warn('WeaknessesPage: error parsing byArchetypeJson', e);
+        return;
+      }
+    } else {
+      return;
+    }
+
+    const labels = byArchetype.map((a: any) => a.archetype);
+    const data = byArchetype.map((a: any) => a.battles);
+    const bgColors = byArchetype.map((a: any) => {
+      if (a.label && a.label.toLowerCase().includes('fort')) return 'rgba(46, 204, 113, 0.9)';
+      if (a.label && a.label.toLowerCase().includes('debil')) return 'rgba(231, 76, 60, 0.9)';
+      return 'rgba(149, 165, 166, 0.9)';
+    });
+
+    const config = {
+      type: 'bar' as const,
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Batallas',
+            data,
+            backgroundColor: bgColors,
+            borderColor: bgColors,
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: this.barChartOptions,
+    };
+
+    Chart.register(...registerables);
+
+    if (this.chart) {
+      this.chart.data.labels = config.data.labels as any;
+      this.chart.data.datasets = config.data.datasets as any;
+      this.chart.options = config.options as any;
+      this.chart.update();
+    } else {
+      const ctx = this.chartRef.nativeElement.getContext('2d');
+      if (!ctx) return;
+      this.chart = new Chart(ctx, config as any);
+    }
   }
 
   ngOnInit(): void {
@@ -36,5 +104,6 @@ export class WeaknessesPage implements OnInit {
     this.analyticsStore.loadSummary(this.tag);
     this.analyticsStore.loadWeaknesses(this.tag);
     this.analyticsStore.loadProblematicCards(this.tag);
+    this.createOrUpdateChart();
   }
 }

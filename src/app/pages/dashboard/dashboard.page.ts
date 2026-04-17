@@ -3,8 +3,6 @@ import { SidebarComponent } from '../../components/layout/sidebar/sidebar.compon
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 import { HeaderContentService } from '../../services/header-content/header-content.service';
-import { JsonPipe } from '@angular/common';
-import { parseJson } from '@angular/cli/src/utilities/json-file';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +23,6 @@ export class DashboardPage implements OnInit {
         localStorage.setItem('tag', user.playerTag);
         this.profileStore.loadByTag(user.playerTag);
       }
-      this.profileStore.profile();
     });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
@@ -39,6 +36,5 @@ export class DashboardPage implements OnInit {
     this.profileStore.loadByTag(tag)
     this.headerContentService.setContent(this.headerContent);
   }
-
   protected readonly JSON = JSON;
 }

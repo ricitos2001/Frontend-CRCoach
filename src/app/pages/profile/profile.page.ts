@@ -22,7 +22,6 @@ export class ProfilePage implements OnInit {
       if (user && user.playerTag && user.playerTag.trim() !== '') {
         this.profileStore.loadByTag(user.playerTag);
       }
-      this.profileStore.profile();
     });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;

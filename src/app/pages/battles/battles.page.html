@@ -1,4 +1,7 @@
 <section>
+  <article>
+    <app-refresh-button (click)="refreshBattles()"></app-refresh-button>
+  </article>
   @if (battlesStore.loading() && !battlesStore.battles()) {
     <p>Cargando batallas...</p>
   }
@@ -6,8 +9,35 @@
     <p class="error">Error cargando batallas: {{bErr}}</p>
   }
   @if (battlesStore.battles(); as battles) {
-    @for (battle of battles.content; track battle.id) {
-      <p>{{battle.arena}}</p>
+    @for (battle of battles; track battle.id) {
+      <section>
+        <p>{{battle.team.name}}</p>
+        @if (battle.team.clan === null) {
+          <p>Sin clan</p>
+        } @else {
+          <p>{{battle.team.clan.name}}</p>
+        }
+        <p>{{battle.team.trophyChange}}</p>
+        <p>{{battle.team.crowns}}</p>
+        <p>{{battle.team.playerDeck.archetype}}</p>
+        @for (card of battle.team.playerDeck.playerCards; track card.id) {
+          <img [src]="card.iconUrl.medium" alt="{{card.name}}" />
+        }
+      </section>
+      <section>
+        <p>{{battle.opponent.name}}</p>
+        @if (battle.opponent.clan === null) {
+          <p>Sin clan</p>
+        } @else {
+          <p>{{battle.opponent.clan.name}}</p>
+        }
+        <p>{{battle.opponent.trophyChange}}</p>
+        <p>{{battle.opponent.crowns}}</p>
+        <p>{{battle.opponent.playerDeck.archetype}}</p>
+        @for (card of battle.opponent.playerDeck.playerCards; track card.id) {
+          <img [src]="card.iconUrl.medium" alt="{{card.name}}" />
+        }
+      </section>
     }
   }
 </section>

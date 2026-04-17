@@ -17,11 +17,11 @@ export class BattlesService {
     private loadingService: LoadingService,
   ) {}
 
-  getBattlesByTag(tag: string): Observable<PaginatedResponse<Battle>> {
+  getBattlesByTag(tag: string): Observable<Battle[]> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
     return this.http
-      .get<PaginatedResponse<Battle>>(
+      .get<Battle[]>(
         `${environment.apiUrl}/api/v1/battles/myBattles/${encodedTag}`,
         {
           headers: {
@@ -32,11 +32,11 @@ export class BattlesService {
       .pipe(finalize(() => this.loadingService.hide()));
   }
 
-  importBattles(tag: string): Observable<Battle> {
+  importBattles(tag: string): Observable<Battle[]> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
     return this.http
-      .post<Battle>(`${environment.apiUrl}/api/v1/battles/import/${encodedTag}`, {
+      .get<Battle[]>(`${environment.apiUrl}/api/v1/battles/import/${encodedTag}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },

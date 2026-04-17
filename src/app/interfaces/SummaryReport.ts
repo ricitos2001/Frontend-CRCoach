@@ -8,6 +8,6 @@ export interface SummaryReport {
   totalBattles: number;
   weakestArchetype: string;
   strongestArchetype: string;
-  avgElisxirLastDeck: number;
+  avgElixirLastDeck: number;
   createdAt: Date;
 }

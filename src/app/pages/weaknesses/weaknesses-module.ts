@@ -7,7 +7,11 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', loadComponent: () => import('./weaknesses.page').then((m) => m.WeaknessesPage), data: { title: 'Weaknesses diagnostic', breadcrumb: 'Weaknesses diagnostic' }, },
+      {
+        path: '',
+        loadComponent: () => import('./weaknesses.page').then((m) => m.WeaknessesPage),
+        data: { title: 'Weaknesses diagnostic', breadcrumb: 'Weaknesses diagnostic' },
+      },
     ]),
   ],
 })
