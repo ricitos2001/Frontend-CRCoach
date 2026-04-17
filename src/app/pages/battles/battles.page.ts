@@ -10,7 +10,7 @@ import { RefreshButtonComponent } from '../../components/shared/refresh-button/r
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class BattlesPage implements OnInit {
+export class BattlesPage {
   tag = localStorage.getItem('tag');
   constructor(public battlesStore: BattlesSignalStore, public cd: ChangeDetectorRef) {
     effect(() => {
@@ -18,11 +18,6 @@ export class BattlesPage implements OnInit {
         this.battlesStore.loadByTag(this.tag);
       }
     });
-  }
-
-  ngOnInit(): void {
-    if (!this.tag) return;
-    this.battlesStore.loadByTag(this.tag);
   }
 
   refreshBattles() {

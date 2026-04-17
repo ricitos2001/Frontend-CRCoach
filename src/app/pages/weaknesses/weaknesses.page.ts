@@ -1,6 +1,8 @@
-import { Component, effect, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, effect, OnInit, ViewChild, ElementRef, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { AnalyticsSignalStore } from '../../signal_stores/analytics.signal.store';
+// (JsonPipe removed because not used)
+// ng2-charts / chart.js
 import { Chart, registerables, ChartOptions } from 'chart.js';
 
 @Component({
@@ -12,22 +14,35 @@ import { Chart, registerables, ChartOptions } from 'chart.js';
 })
 export class WeaknessesPage implements OnInit {
   tag = localStorage.getItem('tag');
-  constructor(public analyticsStore: AnalyticsSignalStore) {
+  constructor(public analyticsStore: AnalyticsSignalStore, private destroyRef: DestroyRef) {
     effect(() => {
       if (this.tag != null) {
         this.analyticsStore.loadSummary(this.tag);
-      }
-      if (this.tag != null) {
         this.analyticsStore.loadWeaknesses(this.tag);
-        this.createOrUpdateChart();
-      }
-      if (this.tag != null) {
         this.analyticsStore.loadProblematicCards(this.tag);
+      }
+    });
+
+    // Efecto 2: escuchar cambios en el signal `weaknesses` y actualizar el
+    // gráfico. IMPORTANTE: no hacer llamadas de carga desde este efecto.
+    effect(() => {
+      const wr = this.analyticsStore.weaknesses();
+      if (wr) {
+        const tryCreate = (attempt = 0) => {
+          if (this.chartRef?.nativeElement) {
+            this.createOrUpdateChart();
+            return;
+          }
+          if (attempt < 10) {
+            setTimeout(() => tryCreate(attempt + 1), 100);
+          }
+        };
+        tryCreate();
       }
     });
   }
 
-  @ViewChild('weaknessesChart', { static: true }) private chartRef?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('weaknessesChart', { static: false }) private chartRef?: ElementRef<HTMLCanvasElement>;
   private chart?: Chart;
 
   public get barChartOptions(): ChartOptions {
@@ -57,6 +72,7 @@ export class WeaknessesPage implements OnInit {
         return;
       }
     } else {
+      // No tenemos datos en el formato esperado
       return;
     }
 
@@ -84,7 +100,6 @@ export class WeaknessesPage implements OnInit {
       },
       options: this.barChartOptions,
     };
-
     Chart.register(...registerables);
 
     if (this.chart) {
@@ -100,10 +115,16 @@ export class WeaknessesPage implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.tag) return;
-    this.analyticsStore.loadSummary(this.tag);
-    this.analyticsStore.loadWeaknesses(this.tag);
-    this.analyticsStore.loadProblematicCards(this.tag);
-    this.createOrUpdateChart();
+    if (this.chartRef?.nativeElement) {
+      this.createOrUpdateChart();
+    }
+
+    // Registrar la limpieza del chart cuando el componente sea destruido.
+    this.destroyRef.onDestroy(() => {
+      if (this.chart) {
+        this.chart.destroy();
+        this.chart = undefined;
+      }
+    });
   }
 }

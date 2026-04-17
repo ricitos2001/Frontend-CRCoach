@@ -27,9 +27,6 @@ export class ProfilePage implements OnInit {
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 
   ngOnInit(): void {
-    const email = localStorage.getItem('email');
-    if (!email) return;
-    this.usersStore.loadByEmail(email);
     this.headerContentService.setContent(this.headerContent);
   }
 }
