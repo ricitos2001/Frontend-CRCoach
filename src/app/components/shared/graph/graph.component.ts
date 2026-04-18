@@ -3,7 +3,7 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  AfterViewInit,
+  OnInit,
   OnChanges,
   SimpleChanges,
   DestroyRef,
@@ -18,7 +18,7 @@ import { Chart, registerables, ChartDataset, ChartOptions } from 'chart.js';
   templateUrl: './graph.component.html',
   styleUrl: '../../../../styles/styles.css',
 })
-export class GraphComponent implements AfterViewInit, OnChanges {
+export class GraphComponent implements OnInit, OnChanges {
   @Input() type: 'line' | 'bar' | 'doughnut' | 'pie' = 'line';
   @Input() labels: string[] = [];
   @Input() datasets: ChartDataset[] = [];
@@ -35,8 +35,11 @@ export class GraphComponent implements AfterViewInit, OnChanges {
 
   constructor(private destroyRef: DestroyRef) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
+    // Crear/actualizar chart en ngOnInit. Usamos ViewChild con { static: true }
+    // para que el canvas esté disponible en este hook.
     this.createOrUpdateChart();
+    // Registrar la destrucción del chart cuando el componente sea destruido.
     this.destroyRef.onDestroy(() => {
       if (this.chart) {
         this.chart.destroy();
