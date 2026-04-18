@@ -3,10 +3,10 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  OnInit,
+  AfterViewInit,
   OnChanges,
   SimpleChanges,
-  DestroyRef,
+  OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables, ChartDataset, ChartOptions } from 'chart.js';
@@ -18,7 +18,7 @@ import { Chart, registerables, ChartDataset, ChartOptions } from 'chart.js';
   templateUrl: './graph.component.html',
   styleUrl: '../../../../styles/styles.css',
 })
-export class GraphComponent implements OnInit, OnChanges {
+export class GraphComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() type: 'line' | 'bar' | 'doughnut' | 'pie' = 'line';
   @Input() labels: string[] = [];
   @Input() datasets: ChartDataset[] = [];
@@ -30,22 +30,14 @@ export class GraphComponent implements OnInit, OnChanges {
   @Input() height = 200;
   @Input() noDataMessage = 'No data';
 
-  @ViewChild('canvas', { static: true }) private canvasRef?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('canvas', { static: false }) private canvasRef?: ElementRef<HTMLCanvasElement>;
   private chart?: Chart;
 
-  constructor(private destroyRef: DestroyRef) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    // Crear/actualizar chart en ngOnInit. Usamos ViewChild con { static: true }
-    // para que el canvas esté disponible en este hook.
+  ngAfterViewInit(): void {
+    // Crear/actualizar chart después de que la vista esté inicializada
     this.createOrUpdateChart();
-    // Registrar la destrucción del chart cuando el componente sea destruido.
-    this.destroyRef.onDestroy(() => {
-      if (this.chart) {
-        this.chart.destroy();
-        this.chart = undefined;
-      }
-    });
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
@@ -56,6 +48,13 @@ export class GraphComponent implements OnInit, OnChanges {
       this.chart.data.datasets = chartDatasets as any;
       if (this.options) this.chart.options = this.options as any;
       this.chart.update();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = undefined;
     }
   }
 

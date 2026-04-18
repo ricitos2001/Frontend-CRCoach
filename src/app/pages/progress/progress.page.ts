@@ -1,6 +1,6 @@
 import { Component, effect, OnInit, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
-import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store';
+// snapshots were previously used for trophies, now trophies come from MetricsSignalStore
 import { MetricsSignalStore } from '../../signal_stores/metrics.signal.store';
 import { ChartOptions } from 'chart.js';
 // Replaced old specific graph components with unified GraphComponent
@@ -16,14 +16,18 @@ import { GraphComponent } from '../../components/shared/graph/graph.component';
 })
 export class ProgressPage implements OnInit {
   constructor(
-    public snapshotsStore: SnapshotsSignalStore,
     public metricsStore: MetricsSignalStore,
     public destroyRef: DestroyRef,
     public translate: TranslateService,
   ) {
+    // Ahora la gráfica de trofeos se alimenta desde MetricsSignalStore
     effect(() => {
-      const snaps = this.snapshotsStore.snapshots();
-      if (snaps && snaps.length > 0) this.updateTrophies(snaps);
+      const metric = this.metricsStore.metric();
+      if (metric) this.updateTrophies(metric);
+      else {
+        this.trophiesLabels = [];
+        this.trophiesDatasets = [];
+      }
     });
 
     effect(() => {
@@ -84,17 +88,55 @@ export class ProgressPage implements OnInit {
     return n;
   }
 
-  private updateTrophies(snaps: any[]) {
-    const sorted =
-      snaps && snaps.length > 0
-        ? [...snaps].sort(
-            (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
-          )
-        : [];
-    const labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
-    const data = sorted.map((s) => s.trophies);
-    const hasUsefulData =
-      data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
+  private updateTrophies(metricOrArray: any) {
+    // Soportar varios formatos por compatibilidad: array de snapshots, objeto metric, o metric con history
+    if (!metricOrArray) {
+      this.trophiesLabels = [];
+      this.trophiesDatasets = [];
+      return;
+    }
+
+    let labels: string[] = [];
+    let data: number[] = [];
+
+    // Caso: arreglo (compatibilidad con snapshots)
+    if (Array.isArray(metricOrArray) && metricOrArray.length > 0) {
+      const sorted = [...metricOrArray].sort(
+        (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
+      );
+      labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
+      data = sorted.map((s) => s.trophies);
+    } else if (Array.isArray(metricOrArray)) {
+      // arreglo vacío
+      labels = [];
+      data = [];
+    } else if (metricOrArray.history && Array.isArray(metricOrArray.history)) {
+      // Caso: metric.history: [{ generatedAt, trophies }, ...]
+      const sorted = [...metricOrArray.history].sort(
+        (a, b) => new Date(a.generatedAt).getTime() - new Date(b.generatedAt).getTime(),
+      );
+      labels = sorted.map((s) => new Date(s.generatedAt).toLocaleDateString());
+      data = sorted.map((s) => s.trophies);
+    } else {
+      // Caso: único metric -> intentar construir un pequeño historial si disponemos de changeTrophiesIn24h
+      const metric = metricOrArray;
+      if (metric.trophies === undefined || metric.trophies === null) {
+        labels = [];
+        data = [];
+      } else if (metric.changeTrophiesIn24h !== undefined && metric.changeTrophiesIn24h !== null) {
+        const currentDate = new Date(metric.generatedAt ?? new Date());
+        const prevDate = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000);
+        const prev = (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
+        labels = [prevDate.toLocaleDateString(), currentDate.toLocaleDateString()];
+        data = [prev, this.asNumber(metric.trophies) ?? 0];
+      } else {
+        // Solo un punto: no mostrar (seguimos la lógica previa que requiere >=2 puntos)
+        labels = [];
+        data = [];
+      }
+    }
+
+    const hasUsefulData = data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
 
     this.trophiesLabels = hasUsefulData ? labels : [];
     this.trophiesDatasets = hasUsefulData
@@ -119,46 +161,6 @@ export class ProgressPage implements OnInit {
     } as ChartOptions;
 
     this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
-
-    // Preparar datos para comparación de batallas: total batalla por snapshot y batallas en últimas 24h
-    const battleTotals = sorted.map((s) => s.battleCount ?? 0);
-    const battles24h: number[] = [];
-    for (let i = 0; i < sorted.length; i++) {
-      const current = sorted[i];
-      const tCurrent = new Date(current.capturedAt).getTime();
-      let delta = 0;
-      for (let j = i - 1; j >= 0; j--) {
-        const tPrev = new Date(sorted[j].capturedAt).getTime();
-        if (tCurrent - tPrev <= 24 * 60 * 60 * 1000) {
-          delta = current.battleCount - sorted[j].battleCount;
-          break;
-        }
-        if (tCurrent - tPrev > 24 * 60 * 60 * 1000) break;
-      }
-      battles24h.push(delta);
-    }
-
-    this.battlesCompLabels = labels;
-    this.battlesCompDatasets = [
-      {
-        label: this.translate.instant('PAGES.PROGRESS.BATTLES_TOTAL_LABEL'),
-        data: battleTotals,
-        borderColor: 'rgba(52,152,219,0.9)',
-        backgroundColor: 'rgba(52,152,219,0.2)',
-        tension: 0.3,
-      },
-      {
-        label: this.translate.instant('PAGES.PROGRESS.BATTLES_LAST24_LABEL'),
-        data: battles24h,
-        borderColor: 'rgba(241,196,15,0.9)',
-        backgroundColor: 'rgba(241,196,15,0.2)',
-        tension: 0.3,
-      },
-    ];
-    this.battlesCompOptions = {
-      responsive: true,
-      plugins: { legend: { position: 'bottom' } },
-    } as ChartOptions;
   }
 
   private updateWinrate(metric: any) {

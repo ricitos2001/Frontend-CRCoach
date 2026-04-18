@@ -53,11 +53,13 @@ export class DashboardPage implements OnInit {
         this.snapshotsStore.loadSnapshots(user.playerTag);
       }
     });
-
+    // Ahora la gráfica de trofeos se alimenta desde MetricsSignalStore
     effect(() => {
-      const snaps = this.snapshotsStore.snapshots();
-      if (snaps && snaps.length > 0) {
-        this.createOrUpdateTrophiesChart();
+      const metric = this.metricsStore.metric();
+      if (metric) this.createOrUpdateTrophiesChart(metric);
+      else {
+        this.trophiesLabels = [];
+        this.trophiesDatasets = [];
       }
     });
 
@@ -105,7 +107,8 @@ export class DashboardPage implements OnInit {
 
     // Intentar crear/actualizar los charts al inicializar la vista (siempre que las referencias existan).
     // Los efectos en el constructor seguirán actualizando los charts cuando lleguen datos.
-    this.createOrUpdateTrophiesChart();
+    const metric = this.metricsStore.metric();
+    this.createOrUpdateTrophiesChart(metric);
     this.createOrUpdateWinrateChart();
   }
 
@@ -173,21 +176,51 @@ export class DashboardPage implements OnInit {
     return { responsive: true, plugins: { legend: { position: 'right' } } } as ChartOptions;
   }
 
-  private createOrUpdateTrophiesChart() {
-    const snaps = this.snapshotsStore.snapshots();
-    // Ordenar por fecha asc (si hay snapshots)
-    const sorted =
-      snaps && snaps.length > 0
-        ? [...snaps].sort(
-            (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
-          )
-        : [];
-    const labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
-    const data = sorted.map((s) => s.trophies);
+  private createOrUpdateTrophiesChart(metricOrArray?: any) {
+    if (!metricOrArray) {
+      this.trophiesLabels = [];
+      this.trophiesDatasets = [];
+      this.trophiesOptions = this.lineChartOptions;
+      this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
+      return;
+    }
 
-    // Determinar si hay datos útiles: necesitamos al menos 2 puntos y que haya algún cambio en trofeos.
-    const hasUsefulData =
-      data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
+    let labels: string[] = [];
+    let data: number[] = [];
+
+    // Si viene un array (compatibilidad con snapshots)
+    if (Array.isArray(metricOrArray) && metricOrArray.length > 0) {
+      const sorted = [...metricOrArray].sort(
+        (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
+      );
+      labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
+      data = sorted.map((s) => s.trophies);
+    } else if (metricOrArray && Array.isArray(metricOrArray.history)) {
+      // Si metric trae historia
+      const sorted = [...metricOrArray.history].sort(
+        (a, b) => new Date(a.generatedAt).getTime() - new Date(b.generatedAt).getTime(),
+      );
+      labels = sorted.map((s) => new Date(s.generatedAt).toLocaleDateString());
+      data = sorted.map((s) => s.trophies);
+    } else {
+      // Caso: único metric -> intentar construir un pequeño historial si disponemos de changeTrophiesIn24h
+      const metric = metricOrArray;
+      if (metric.trophies === undefined || metric.trophies === null) {
+        labels = [];
+        data = [];
+      } else if (metric.changeTrophiesIn24h !== undefined && metric.changeTrophiesIn24h !== null) {
+        const currentDate = new Date(metric.generatedAt ?? new Date());
+        const prevDate = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000);
+        const prev = (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
+        labels = [prevDate.toLocaleDateString(), currentDate.toLocaleDateString()];
+        data = [prev, this.asNumber(metric.trophies) ?? 0];
+      } else {
+        labels = [];
+        data = [];
+      }
+    }
+
+    const hasUsefulData = data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
 
     this.trophiesLabels = hasUsefulData ? labels : [];
     this.trophiesDatasets = hasUsefulData

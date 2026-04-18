@@ -1,12 +1,13 @@
-import { Component, effect, OnInit, ViewChild, ElementRef, DestroyRef } from '@angular/core';
+import { Component, effect, OnInit, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { AnalyticsSignalStore } from '../../signal_stores/analytics.signal.store';
-import { Chart, registerables, ChartOptions } from 'chart.js';
+import { ChartOptions, ChartDataset } from 'chart.js';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { GraphComponent } from '../../components/shared/graph/graph.component';
 
 @Component({
   selector: 'app-weaknesses',
-  imports: [SidebarComponent, TranslatePipe],
+  imports: [SidebarComponent, TranslatePipe, GraphComponent],
   templateUrl: './weaknesses.page.html',
   styleUrl: '../../../styles/styles.css',
   standalone: true,
@@ -29,22 +30,17 @@ export class WeaknessesPage implements OnInit {
     effect(() => {
       const wr = this.analyticsStore.weaknesses();
       if (wr) {
-        const tryCreate = (attempt = 0) => {
-          if (this.chartRef?.nativeElement) {
-            this.createOrUpdateChart();
-            return;
-          }
-          if (attempt < 10) {
-            setTimeout(() => tryCreate(attempt + 1), 100);
-          }
-        };
-        tryCreate();
+        this.createOrUpdateChart();
+      } else {
+        this.weaknessesLabels = [];
+        this.weaknessesDatasets = [];
       }
     });
   }
 
-  @ViewChild('weaknessesChart', { static: false }) private chartRef?: ElementRef<HTMLCanvasElement>;
-  private chart?: Chart;
+  // Datos para el componente reutilizable `app-graph`
+  public weaknessesLabels: string[] = [];
+  public weaknessesDatasets: ChartDataset[] = [];
 
   public get barChartOptions(): ChartOptions {
     return {
@@ -64,7 +60,7 @@ export class WeaknessesPage implements OnInit {
 
   private createOrUpdateChart() {
     const wr = this.analyticsStore.weaknesses();
-    if (!wr || !this.chartRef?.nativeElement) return;
+    if (!wr) return;
     let byArchetype: any[] = [];
     if (Array.isArray((wr as any).byArchetype)) {
       byArchetype = (wr as any).byArchetype;
@@ -88,47 +84,24 @@ export class WeaknessesPage implements OnInit {
       return 'rgba(149, 165, 166, 0.9)';
     });
 
-    const config = {
-      type: 'bar' as const,
-      data: {
-        labels,
-        datasets: [
-          {
-            label: this.translate.instant('PAGES.WEAKNESSES.BATTLES_LABEL'),
-            data,
-            backgroundColor: bgColors,
-            borderColor: bgColors,
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: this.barChartOptions,
-    };
-    Chart.register(...registerables);
-
-    if (this.chart) {
-      this.chart.data.labels = config.data.labels as any;
-      this.chart.data.datasets = config.data.datasets as any;
-      this.chart.options = config.options as any;
-      this.chart.update();
-    } else {
-      const ctx = this.chartRef.nativeElement.getContext('2d');
-      if (!ctx) return;
-      this.chart = new Chart(ctx, config as any);
-    }
+    // Asignar a propiedades usadas por <app-graph>
+    this.weaknessesLabels = labels;
+    this.weaknessesDatasets = [
+      {
+        label: this.translate.instant('PAGES.WEAKNESSES.BATTLES_LABEL'),
+        data,
+        backgroundColor: bgColors,
+        borderColor: bgColors,
+        borderWidth: 1,
+      } as any,
+    ];
   }
 
   ngOnInit(): void {
-    if (this.chartRef?.nativeElement) {
-      this.createOrUpdateChart();
-    }
+    // Intentar crear/actualizar al inicializar (si ya hay datos)
+    this.createOrUpdateChart();
 
-    // Registrar la limpieza del chart cuando el componente sea destruido.
-    this.destroyRef.onDestroy(() => {
-      if (this.chart) {
-        this.chart.destroy();
-        this.chart = undefined;
-      }
-    });
+    // No hay chart DOM directo aquí: el componente `app-graph` se encarga de su limpieza.
+    this.destroyRef.onDestroy(() => {});
   }
 }
