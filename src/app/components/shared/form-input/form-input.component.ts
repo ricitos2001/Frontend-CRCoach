@@ -13,6 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       multi: true,
     },
   ],
+  standalone: true,
 })
 export class FormInputComponent implements ControlValueAccessor {
   @Input() type: string = 'text';

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
@@ -20,14 +20,12 @@ import { Notification } from '../../interfaces/Notification';
   ],
   templateUrl: './login.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   @Output() authSuccess = new EventEmitter<void>();
   submitted = false;
   loginForm: FormGroup;
-  title = '';
-  subtitle = '';
-  text = '';
 
   constructor(
     private authService: AuthService,
@@ -40,11 +38,6 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, passwordStrength()]],
     });
-  }
-
-  ngOnInit() {
-    this.setTranslations();
-    this.translate.onLangChange.subscribe(() => this.setTranslations());
   }
 
   onSubmit(event: Event) {
@@ -80,11 +73,5 @@ export class LoginPage implements OnInit {
         this.translate.instant('NOTIFICATIONS.AUTH.LOGIN.ERROR');
       },
     });
-  }
-
-  private setTranslations() {
-    this.title = this.translate.instant('PAGES.AUTH.GLOBAL.TITLE');
-    this.subtitle = this.translate.instant('PAGES.AUTH.GLOBAL.SUBTITLE');
-    this.text = this.translate.instant('PAGES.AUTH.GLOBAL.TEXT');
   }
 }

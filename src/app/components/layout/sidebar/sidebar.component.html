@@ -1,14 +1,14 @@
 @if (isOpened) {
   <aside>
     <ul>
-      <li routerLink="/dashboard">{{ dashboard | translate }}</li>
-      <li routerLink="/battles">{{ battles | translate}}</li>
-      <li routerLink="/weaknesses">{{ weaknesses | translate }}</li>
-      <li routerLink="/goals">{{ goals | translate }}</li>
-      <li routerLink="/sessions">{{ sessions | translate }}</li>
-      <li routerLink="/progress">{{ progress | translate }}</li>
-      <li routerLink="/profile">{{ profile | translate }}</li>
-      <li><app-common-button (click)="logout()">{{ logoutText | translate }}</app-common-button></li>
+      <li routerLink="/dashboard">{{ 'COMPONENTS.LAYOUT.SIDEBAR.DASHBOARD' | translate }}</li>
+      <li routerLink="/battles">{{ 'COMPONENTS.LAYOUT.SIDEBAR.BATTLES' | translate}}</li>
+      <li routerLink="/weaknesses">{{ 'COMPONENTS.LAYOUT.SIDEBAR.WEAKNESSES' | translate }}</li>
+      <li routerLink="/goals">{{ 'COMPONENTS.LAYOUT.SIDEBAR.GOALS' | translate }}</li>
+      <li routerLink="/sessions">{{ 'COMPONENTS.LAYOUT.SIDEBAR.SESSIONS' | translate }}</li>
+      <li routerLink="/progress">{{ 'COMPONENTS.LAYOUT.SIDEBAR.PROGRESS' | translate }}</li>
+      <li routerLink="/profile">{{ 'COMPONENTS.LAYOUT.SIDEBAR.PROFILE' | translate }}</li>
+      <li><app-common-button (click)="logout()">{{ 'COMPONENTS.SHARED.LOGOUT' | translate }}</app-common-button></li>
       <li><app-language-selector></app-language-selector></li>
     </ul>
   </aside>

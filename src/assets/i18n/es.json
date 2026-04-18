@@ -91,8 +91,52 @@
       "NOTIFICATION_LINKED_MESSAGE": "El tag {{tag}} se ha vinculado correctamente.",
       "NOTIFICATION_ERROR_TITLE": "Error vinculando perfil",
       "NOTIFICATION_ERROR_MESSAGE": "No se pudo vincular el tag {{tag}}."
+    },
+    "BATTLES": {
+      "LOADING": "Cargando batallas...",
+      "ERROR": "Error cargando batallas: {{err}}",
+      "NO_CLAN": "Sin clan"
+    },
+    "WEAKNESSES": {
+      "SUMMARY_TITLE": "Resumen de estadísticas",
+      "LOADING_SUMMARY": "Cargando resumen de estadísticas...",
+      "ERROR_SUMMARY": "Error cargando resumen: {{err}}",
+      "TITLE": "Debilidades",
+      "LOADING_WEAKNESSES": "Cargando debilidades...",
+      "ERROR_WEAKNESSES": "Error cargando debilidades: {{err}}",
+      "PROBLEMATIC_CARDS_TITLE": "Cartas problemáticas",
+      "LOADING_PROBLEMATIC_CARDS": "Cargando cartas problemáticas...",
+      "ERROR_PROBLEMATIC_CARDS": "Error cargando cartas problemáticas: {{err}}",
+      "ARCHETYPE": "Arquetipo",
+      "BATTLES_LABEL": "Batallas"
+    },
+    "DASHBOARD": {
+      "TROPHIES_TITLE": "Evolución de trofeos",
+      "WINRATE_TITLE": "Porcentaje de victorias",
+      "STREAK_TITLE": "Racha de victorias",
+      "RECENT_BATTLES": "Batallas recientes",
+      "RECENT_GOALS": "Objetivos recientes",
+      "RECENT_SESSIONS": "Sesiones recientes",
+      "LOADING_METRICS": "Cargando métricas...",
+      "ERROR_METRICS": "Error métricas: {{err}}",
+      "NO_DATA_TROPHIES": "no hay datos...\njuega en el camino de trofeos para generar datos que analizar",
+      "VICTORIES": "Victorias",
+      "DEFEATS": "Derrotas",
+      "LOADING_USER": "Cargando usuario...",
+      "ERROR_USER": "Error usuario: {{err}}",
+      "LOADING_PROFILE": "Cargando perfil de jugador...",
+      "ERROR_PROFILE": "Error perfil: {{err}}",
+      "LOADING_BATTLES": "Cargando batallas...",
+      "ERROR_BATTLES": "Error batallas: {{err}}",
+      "LOADING_GOALS": "Cargando objetivos...",
+      "ERROR_GOALS": "Error objetivos: {{err}}",
+      "LOADING_SESSIONS": "Cargando sesiones...",
+      "ERROR_SESSIONS": "Error sesiones: {{err}}",
+      "TEXT1": "trofeos",
+      "TEXT2": "coronas"
     }
   },
+
   "VALIDATION": {
     "REQUIRED": "Este campo es obligatorio.",
     "EMAIL_INVALID": "Correo no válido.",
@@ -120,27 +164,29 @@
         "ERROR": "Error al registrar el usuario"
       }
     },
-    "TASK": {
-      "CREATED": "Tarea creada correctamente",
-      "UPDATED": "Tarea actualizada correctamente",
-      "TITLE": "Tarea creada",
-      "MESSAGE": "La tarea \"{{title}}\" se ha creado correctamente.",
-      "UPDATED_TITLE": "Tarea actualizada",
-      "UPDATED_MESSAGE": "La tarea \"{{title}}\" se ha actualizado correctamente.",
-      "CREATE_ERROR": "Error al crear la tarea",
-      "CANCELLED": "Operación cancelada"
-    },
-    "GROUP": {
-      "CREATED": "Grupo creado correctamente",
-      "TITLE": "Grupo creado",
-      "MESSAGE": "El grupo \"{{name}}\" se ha creado correctamente.",
-      "CREATE_ERROR": "Error al crear el grupo"
-    },
     "USER": {
       "UPDATED": "Usuario actualizado correctamente",
       "UPDATE_ERROR": "Error al editar el usuario",
       "CANCELLED": "Operación cancelada",
       "GET_ERROR": "Error al obtener los datos del usuario"
+    },
+    "GOALS": {
+      "CREATED": "Objetivo creado correctamente",
+      "CREATE_ERROR": "Error al crear el objetivo",
+      "UPDATED": "Objetivo actualizado correctamente",
+      "UPDATE_ERROR": "Error al actualizar el objetivo",
+      "DELETED": "Objetivo eliminado correctamente",
+      "DELETE_ERROR": "Error al eliminar el objetivo",
+      "GET_ERROR": "Error al obtener los objetivos"
+    },
+    "SESSIONS": {
+      "CREATED": "Sesión creada correctamente",
+      "CREATE_ERROR": "Error al crear la sesión",
+      "UPDATED": "Sesión actualizada correctamente",
+      "UPDATE_ERROR": "Error al actualizar la sesión",
+      "DELETED": "Sesión eliminada correctamente",
+      "DELETE_ERROR": "Error al eliminar la sesión",
+      "GET_ERROR": "Error al obtener las sesiones"
     }
   }
 }

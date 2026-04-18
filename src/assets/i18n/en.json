@@ -91,8 +91,52 @@
       "NOTIFICATION_LINKED_MESSAGE": "The tag {{tag}} has been linked successfully.",
       "NOTIFICATION_ERROR_TITLE": "Error linking profile",
       "NOTIFICATION_ERROR_MESSAGE": "Could not link the tag {{tag}}."
+    },
+    "BATTLES": {
+      "LOADING": "Loading battles...",
+      "ERROR": "Battles error: {{err}}",
+      "NO_CLAN": "No clan"
+    },
+    "WEAKNESSES": {
+      "SUMMARY_TITLE": "Statistics summary",
+      "LOADING_SUMMARY": "Loading summary...",
+      "ERROR_SUMMARY": "Error loading summary: {{err}}",
+      "TITLE": "Weaknesses",
+      "LOADING_WEAKNESSES": "Loading weaknesses...",
+      "ERROR_WEAKNESSES": "Error loading weaknesses: {{err}}",
+      "PROBLEMATIC_CARDS_TITLE": "Problematic cards",
+      "LOADING_PROBLEMATIC_CARDS": "Loading problematic cards...",
+      "ERROR_PROBLEMATIC_CARDS": "Error loading problematic cards: {{err}}",
+      "ARCHETYPE": "Archetype",
+      "BATTLES_LABEL": "Battles"
+    },
+    "DASHBOARD": {
+      "TROPHIES_TITLE": "Trophies evolution",
+      "WINRATE_TITLE": "Winrate",
+      "STREAK_TITLE": "Win streak",
+      "RECENT_BATTLES": "Recent battles",
+      "RECENT_GOALS": "Recent goals",
+      "RECENT_SESSIONS": "Recent sessions",
+      "LOADING_METRICS": "Loading metrics...",
+      "ERROR_METRICS": "Metrics error: {{err}}",
+      "NO_DATA_TROPHIES": "no data...\nplay on the trophy road to generate data to analyze",
+      "VICTORIES": "Victories",
+      "DEFEATS": "Defeats",
+      "LOADING_USER": "Loading user...",
+      "ERROR_USER": "User error: {{err}}",
+      "LOADING_PROFILE": "Loading player profile...",
+      "ERROR_PROFILE": "Profile error: {{err}}",
+      "LOADING_BATTLES": "Loading battles...",
+      "ERROR_BATTLES": "Battles error: {{err}}",
+      "LOADING_GOALS": "Loading goals...",
+      "ERROR_GOALS": "Goals error: {{err}}",
+      "LOADING_SESSIONS": "Loading sessions...",
+      "ERROR_SESSIONS": "Sessions error: {{err}}",
+      "TEXT1": "trophies",
+      "TEXT2": "crowns"
     }
   },
+
   "VALIDATION": {
     "REQUIRED": "This field is required.",
     "EMAIL_INVALID": "Invalid email.",
@@ -120,27 +164,29 @@
         "ERROR": "Error registering user"
       }
     },
-    "TASK": {
-      "CREATED": "Task created successfully",
-      "UPDATED": "Task updated successfully",
-      "TITLE": "Task created",
-      "MESSAGE": "The task \"{{title}}\" has been created successfully.",
-      "UPDATED_TITLE": "Task updated",
-      "UPDATED_MESSAGE": "The task \"{{title}}\" has been updated successfully.",
-      "CREATE_ERROR": "Error creating task",
-      "CANCELLED": "Operation cancelled"
-    },
-    "GROUP": {
-      "CREATED": "Group created successfully",
-      "TITLE": "Group created",
-      "MESSAGE": "The group \"{{name}}\" has been created successfully.",
-      "CREATE_ERROR": "Error creating group"
-    },
     "USER": {
       "UPDATED": "User updated successfully",
       "UPDATE_ERROR": "Error updating user",
       "CANCELLED": "Operation cancelled",
       "GET_ERROR": "Error fetching user data"
+    },
+    "GOALS": {
+      "CREATED": "Goal created successfully",
+      "CREATE_ERROR": "Error creating goal",
+      "UPDATED": "Goal updated successfully",
+      "UPDATE_ERROR": "Error updating goal",
+      "DELETED": "Goal deleted successfully",
+      "DELETE_ERROR": "Error deleting goal",
+      "GET_ERROR": "Error fetching goals"
+    },
+    "SESSIONS": {
+      "CREATED": "Session created successfully",
+      "CREATE_ERROR": "Error creating session",
+      "UPDATED": "Session updated successfully",
+      "UPDATE_ERROR": "Error updating session",
+      "DELETED": "Session deleted successfully",
+      "DELETE_ERROR": "Error deleting session",
+      "GET_ERROR": "Error fetching sessions"
     }
   }
 }

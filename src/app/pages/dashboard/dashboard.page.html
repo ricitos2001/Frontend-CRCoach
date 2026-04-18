@@ -1,25 +1,112 @@
 <ng-template #headerContent>
-  @if (usersStore.loading() && !usersStore.user()) {
-    <p>Cargando usuario...</p>
-  }
-  @if (usersStore.error(); as uErr) {
-    <p class="error">Error usuario: {{uErr}}</p>
-  }
-  @if (usersStore.user(); as user) {
-    <p>{{user.name}} {{user.surnames}}</p>
-    <p>{{user.username}}</p>
-  }
-  @if (profileStore.loading() && !profileStore.profile()) {
-    <p>Cargando perfil de jugador...</p>
-  }
-  @if (profileStore.error(); as pErr) {
-    <p class="error">Error perfil: {{pErr}}</p>
-  }
-  @if (profileStore.profile(); as profile) {
-    <p>{{profile.trophies}}</p>
-    <p>{{profile.bestTrophies}}</p>
-    <p>{{profile.totalDonations}}</p>
-    <p>{{JSON.parse(profile.currentPathOfLegendSeasonResult).leagueNumber}}</p>
-  }
+  <article>
+    @if (usersStore.loading() && !usersStore.user()) {
+      <p>{{ 'PAGES.DASHBOARD.LOADING_USER' | translate }}</p>
+    }
+    @if (usersStore.error(); as uErr) {
+      <p class="error">{{ 'PAGES.DASHBOARD.ERROR_USER' | translate:{ err: uErr } }}</p>
+    }
+    @if (usersStore.user(); as user) {
+      <p>{{user.name}} {{user.surnames}}</p>
+      <p>{{user.username}}</p>
+    }
+  </article>
+  <article>
+    @if (profileStore.loading() && !profileStore.profile()) {
+      <p>{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
+    }
+    @if (profileStore.error(); as pErr) {
+      <p class="error">{{ 'PAGES.DASHBOARD.ERROR_PROFILE' | translate:{ err: pErr } }}</p>
+    }
+    @if (profileStore.profile(); as profile) {
+      <p>{{profile.trophies}}</p>
+      <p>{{profile.bestTrophies}}</p>
+      <p>{{profile.totalDonations}}</p>
+      <p>{{JSON.parse(profile.currentPathOfLegendSeasonResult).leagueNumber}}</p>
+    }
+  </article>
 </ng-template>
+<section>
+  <section>
+    <article>
+      <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
+      @if (metricsStore.loading() && !metricsStore.metric()) {
+        <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
+      }
+      @if (metricsStore.error(); as mErr) {
+        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
+      }
+      <div class="chart-wrapper">
+        <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
+      </div>
+    </article>
+    <section>
+      <article>
+        <h2>{{ 'PAGES.DASHBOARD.WINRATE_TITLE' | translate }}</h2>
+        @if (metricsStore.metric(); as metric) {
+          <p>{{ 'PAGES.DASHBOARD.VICTORIES' | translate }}: {{ displayPercent(metric, 'winRate') }}%</p>
+          <p>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}: {{ displayPercent(metric, 'lossRate') }}%</p>
+        }
+        <div class="chart-wrapper small">
+          <app-graph [type]="'doughnut'" [labels]="winLabels" [data]="winData" [backgroundColor]="winBackground" [options]="winOptions" [width]="200" [height]="200"></app-graph>
+        </div>
+      </article>
+      <article>
+        <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
+        @if (metricsStore.metric(); as metric) {
+          <p>Actual: {{metric.streak.current}} ({{metric.streak.type}})</p>
+        }
+      </article>
+    </section>
+  </section>
+  <section>
+    <h2>{{ 'PAGES.DASHBOARD.RECENT_BATTLES' | translate }}</h2>
+    <article>
+      @if (battlesStore.loading() && !battlesStore.battles()) {
+        <p>{{ 'PAGES.DASHBOARD.LOADING_BATTLES' | translate }}</p>
+      }
+      @if (battlesStore.error(); as bErr) {
+        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_BATTLES' | translate:{ err: bErr } }}</p>
+      }
+      @if (battlesStore.battles(); as battles) {
+        @for (battle of battles.slice(0,3); track battle.id) {
+          <p><strong>{{battle.team.name}}</strong> — {{battle.team.trophyChange}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+        }
+      }
+    </article>
+  </section>
+  <section>
+    <h2>{{ 'PAGES.DASHBOARD.RECENT_GOALS' | translate }}</h2>
+    <article>
+      @if (goalsStore.loading() && !goalsStore.goals()) {
+        <p>{{ 'PAGES.DASHBOARD.LOADING_GOALS' | translate }}</p>
+      }
+      @if (goalsStore.error(); as gErr) {
+        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_GOALS' | translate:{ err: gErr } }}</p>
+      }
+      @if (goalsStore.goals(); as goalsPage) {
+        @for (goal of pageToArray(goalsPage).slice(0,3); track goal.id) {
+          <p><strong>{{goal.title}}</strong> — {{goal.status}} — {{goal.currentValue}}/{{goal.targetValue}}</p>
+        }
+      }
+    </article>
+  </section>
+
+  <section>
+    <h2>{{ 'PAGES.DASHBOARD.RECENT_SESSIONS' | translate }}</h2>
+    <article>
+      @if (sessionsStore.loading() && !sessionsStore.sessions()) {
+        <p>{{ 'PAGES.DASHBOARD.LOADING_SESSIONS' | translate }}</p>
+      }
+      @if (sessionsStore.error(); as sErr) {
+        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_SESSIONS' | translate:{ err: sErr } }}</p>
+      }
+      @if (sessionsStore.sessions(); as sessionsPage) {
+        @for (s of pageToArray(sessionsPage).slice(0,3); track s.id) {
+          <p><strong>{{s.title}}</strong> — {{s.mood}} — {{s.startTime | date:'short'}}</p>
+        }
+      }
+    </article>
+  </section>
+</section>
 <app-sidebar></app-sidebar>

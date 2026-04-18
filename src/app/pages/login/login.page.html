@@ -1,8 +1,8 @@
 <form class="login-and-register" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" novalidate>
   <article class="image-box">
-    <h1>{{title | translate}}</h1>
-    <h2>{{subtitle | translate}}</h2>
-    <p>{{text | translate}}</p>
+    <h1>{{'PAGES.AUTH.GLOBAL.TITLE' | translate}}</h1>
+    <h2>{{'PAGES.AUTH.GLOBAL.SUBTITLE' | translate}}</h2>
+    <p>{{'PAGES.AUTH.GLOBAL.TEXT' | translate}}</p>
   </article>
   <fieldset class="fieldset">
     <h1 class="form__legend">{{ 'PAGES.AUTH.LOGIN.LEGEND' | translate }}</h1>

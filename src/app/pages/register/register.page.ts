@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
@@ -22,15 +22,13 @@ import { Notification } from '../../interfaces/Notification';
   ],
   templateUrl: './register.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
   @Output() authSuccess = new EventEmitter<void>();
   submitted = false;
   registerForm: FormGroup;
   loading = false;
-  title = '';
-  subtitle = '';
-  text = '';
 
   constructor(
     private authService: AuthService,
@@ -79,11 +77,6 @@ export class RegisterPage implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.setTranslations();
-    this.translate.onLangChange.subscribe(() => this.setTranslations());
-  }
-
   onSubmit(event: Event) {
     event.preventDefault();
     if (this.registerForm.invalid) {
@@ -119,11 +112,5 @@ export class RegisterPage implements OnInit {
         this.loading = false;
       },
     });
-  }
-
-  private setTranslations() {
-    this.title = this.translate.instant('PAGES.AUTH.GLOBAL.TITLE');
-    this.subtitle = this.translate.instant('PAGES.AUTH.GLOBAL.SUBTITLE');
-    this.text = this.translate.instant('PAGES.AUTH.GLOBAL.TEXT');
   }
 }

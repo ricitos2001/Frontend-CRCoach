@@ -1,10 +1,10 @@
 <section>
-  <h2>Resumen de estadísticas</h2>
+  <h2>{{ 'PAGES.WEAKNESSES.SUMMARY_TITLE' | translate }}</h2>
   @if (analyticsStore.loading() && !analyticsStore.summary()) {
-    <p>Cargando resumen de estadísticas...</p>
+    <p>{{ 'PAGES.WEAKNESSES.LOADING_SUMMARY' | translate }}</p>
   }
   @if (analyticsStore.error(); as pErr) {
-    <p class="error">Error cargando debilidades: {{pErr}}</p>
+    <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_SUMMARY' | translate:{ err: pErr } }}</p>
   }
   @if (analyticsStore.summary(); as summaryReport) {
     <p>{{summaryReport.totalBattles}}</p>
@@ -16,31 +16,30 @@
   }
 </section>
 <section>
-  <h2>Debilidades</h2>
+  <h2>{{ 'PAGES.WEAKNESSES.TITLE' | translate }}</h2>
   @if (analyticsStore.loading() && !analyticsStore.weaknesses()) {
-    <p>Cargando debilidades...</p>
+    <p>{{ 'PAGES.WEAKNESSES.LOADING_WEAKNESSES' | translate }}</p>
   }
   @if (analyticsStore.error(); as pErr) {
-    <p class="error">Error cargando debilidades: {{pErr}}</p>
+    <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_WEAKNESSES' | translate:{ err: pErr } }}</p>
   }
-  @if (analyticsStore.weaknesses(); as weaknessReport) {
-    <!-- Gráfico de barras: batallas por arquetipo -->
-    <div class="chart-container" style="max-width:900px; margin: 1rem 0; height: 420px;">
-      <canvas #weaknessesChart style="width:100%; height:100%; display:block;"></canvas>
-    </div>
+  @if (analyticsStore.weaknesses()) {
+    <article class="chart-container" style="max-width:900px; margin: 1rem 0; height: 420px;">
+      <canvas #weaknessesChart style="width:100%; height:100%; display:block;" class="canvas"></canvas>
+    </article>
   }
 </section>
 <section>
-  <h2>Cartas problematicas</h2>
+  <h2>{{ 'PAGES.WEAKNESSES.PROBLEMATIC_CARDS_TITLE' | translate }}</h2>
   @if (analyticsStore.loading() && !analyticsStore.problematicCards()) {
-    <p>Cargando cartas problematicas...</p>
+    <p>{{ 'PAGES.WEAKNESSES.LOADING_PROBLEMATIC_CARDS' | translate }}</p>
   }
   @if (analyticsStore.error(); as pErr) {
-    <p class="error">Error cargando debilidades: {{pErr}}</p>
+    <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_PROBLEMATIC_CARDS' | translate:{ err: pErr } }}</p>
   }
   @if (analyticsStore.problematicCards(); as problematicCardsReport) {
     @for (problematicCard of problematicCardsReport.problematicCards; track problematicCard.cardId) {
-      <img [src]="problematicCard.iconUrl" alt="{{problematicCard.name}}" />
+      <img src="{{problematicCard.iconUrl}}" alt="{{problematicCard.name}}" />
       <article>
         <p>{{problematicCard.name}}</p>
         <p>{{problematicCard.playerLossRate.toFixed(2)}}</p>

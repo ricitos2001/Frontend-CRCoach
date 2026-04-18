@@ -21,6 +21,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
   ],
   templateUrl: './recover-password.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
 export class RecoverPasswordPage implements OnInit {
   @Output() authSuccess = new EventEmitter<void>();
@@ -31,9 +32,6 @@ export class RecoverPasswordPage implements OnInit {
   message?: string;
   error?: string;
   recoverPasswordForm!: FormGroup;
-  title = '';
-  subtitle = '';
-  text = '';
 
   constructor(
     private fb: FormBuilder,
@@ -46,8 +44,6 @@ export class RecoverPasswordPage implements OnInit {
   ngOnInit(): void {
     this.recoverPasswordForm = this.fb.group({});
     this.token = this.route.snapshot.queryParamMap.get('token') ?? undefined;
-    this.setTranslations();
-    this.translate.onLangChange.subscribe(() => this.setTranslations());
     if (this.token) {
       this.verifyToken(this.token);
     } else {
@@ -132,11 +128,5 @@ export class RecoverPasswordPage implements OnInit {
         this.submitted = false;
       },
     });
-  }
-
-  private setTranslations() {
-    this.title = this.translate.instant('PAGES.AUTH.GLOBAL.TITLE');
-    this.subtitle = this.translate.instant('PAGES.AUTH.GLOBAL.SUBTITLE');
-    this.text = this.translate.instant('PAGES.AUTH.GLOBAL.TEXT');
   }
 }

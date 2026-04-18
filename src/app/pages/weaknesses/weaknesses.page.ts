@@ -1,20 +1,23 @@
 import { Component, effect, OnInit, ViewChild, ElementRef, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { AnalyticsSignalStore } from '../../signal_stores/analytics.signal.store';
-// (JsonPipe removed because not used)
-// ng2-charts / chart.js
 import { Chart, registerables, ChartOptions } from 'chart.js';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-weaknesses',
-  imports: [SidebarComponent],
+  imports: [SidebarComponent, TranslatePipe],
   templateUrl: './weaknesses.page.html',
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
 export class WeaknessesPage implements OnInit {
   tag = localStorage.getItem('tag');
-  constructor(public analyticsStore: AnalyticsSignalStore, private destroyRef: DestroyRef) {
+  constructor(
+    public analyticsStore: AnalyticsSignalStore,
+    private destroyRef: DestroyRef,
+    private translate: TranslateService,
+  ) {
     effect(() => {
       if (this.tag != null) {
         this.analyticsStore.loadSummary(this.tag);
@@ -23,8 +26,6 @@ export class WeaknessesPage implements OnInit {
       }
     });
 
-    // Efecto 2: escuchar cambios en el signal `weaknesses` y actualizar el
-    // gráfico. IMPORTANTE: no hacer llamadas de carga desde este efecto.
     effect(() => {
       const wr = this.analyticsStore.weaknesses();
       if (wr) {
@@ -52,8 +53,11 @@ export class WeaknessesPage implements OnInit {
         legend: { display: false },
       },
       scales: {
-        x: { title: { display: true, text: 'Arquetipo' } },
-        y: { title: { display: true, text: 'Batallas' }, beginAtZero: true },
+        x: { title: { display: true, text: this.translate.instant('PAGES.WEAKNESSES.ARCHETYPE') } },
+        y: {
+          title: { display: true, text: this.translate.instant('PAGES.WEAKNESSES.BATTLES_LABEL') },
+          beginAtZero: true,
+        },
       },
     } as ChartOptions;
   }
@@ -90,7 +94,7 @@ export class WeaknessesPage implements OnInit {
         labels,
         datasets: [
           {
-            label: 'Batallas',
+            label: this.translate.instant('PAGES.WEAKNESSES.BATTLES_LABEL'),
             data,
             backgroundColor: bgColors,
             borderColor: bgColors,

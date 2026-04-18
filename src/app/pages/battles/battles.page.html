@@ -3,17 +3,17 @@
     <app-refresh-button (click)="refreshBattles()"></app-refresh-button>
   </article>
   @if (battlesStore.loading() && !battlesStore.battles()) {
-    <p>Cargando batallas...</p>
+    <p>{{ 'PAGES.BATTLES.LOADING' | translate }}</p>
   }
   @if (battlesStore.error(); as bErr) {
-    <p class="error">Error cargando batallas: {{bErr}}</p>
+    <p class="error">{{ 'PAGES.BATTLES.ERROR' | translate:{ err: bErr } }}</p>
   }
   @if (battlesStore.battles(); as battles) {
     @for (battle of battles; track battle.id) {
       <section>
         <p>{{battle.team.name}}</p>
         @if (battle.team.clan === null) {
-          <p>Sin clan</p>
+          <p>{{ 'PAGES.BATTLES.NO_CLAN' | translate }}</p>
         } @else {
           <p>{{battle.team.clan.name}}</p>
         }
@@ -21,13 +21,13 @@
         <p>{{battle.team.crowns}}</p>
         <p>{{battle.team.playerDeck.archetype}}</p>
         @for (card of battle.team.playerDeck.playerCards; track card.id) {
-          <img [src]="card.iconUrl.medium" alt="{{card.name}}" />
+          <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" />
         }
       </section>
       <section>
         <p>{{battle.opponent.name}}</p>
         @if (battle.opponent.clan === null) {
-          <p>Sin clan</p>
+          <p>{{ 'PAGES.BATTLES.NO_CLAN' | translate }}</p>
         } @else {
           <p>{{battle.opponent.clan.name}}</p>
         }
@@ -35,7 +35,7 @@
         <p>{{battle.opponent.crowns}}</p>
         <p>{{battle.opponent.playerDeck.archetype}}</p>
         @for (card of battle.opponent.playerDeck.playerCards; track card.id) {
-          <img [src]="card.iconUrl.medium" alt="{{card.name}}" />
+          <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" />
         }
       </section>
     }

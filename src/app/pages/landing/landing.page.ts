@@ -1,6 +1,6 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
 
 @Component({
@@ -8,23 +8,8 @@ import { CommonButtonComponent } from '../../components/shared/common-button/com
   imports: [TranslatePipe, CommonButtonComponent, RouterLink],
   templateUrl: './landing.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
-export class LandingPage implements OnInit {
+export class LandingPage {
   protected readonly title = signal('Frontend-CRCoach');
-  constructor(
-    private translate: TranslateService,
-  ) {}
-
-  helloWorld = '';
-  getStarted = '';
-
-  ngOnInit() {
-    this.setTranslations();
-    this.translate.onLangChange.subscribe(() => this.setTranslations());
-  }
-
-  private setTranslations() {
-    this.helloWorld = this.translate.instant('PAGES.LANDING.HELLO_WORLD');
-    this.getStarted = this.translate.instant('COMPONENTS.SHARED.GET_STARTED');
-  }
 }
