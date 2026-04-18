@@ -119,7 +119,7 @@ export class ProgressPage implements OnInit {
     this.donationsLabels = labels;
     this.donationsDatasets = [
       {
-        label: 'Donaciones',
+        label: this.translate.instant('PAGES.PROGRESS.DONATIONS_LABEL'),
         data: donations,
         borderColor: 'rgba(155,89,182,0.9)',
         backgroundColor: 'rgba(155,89,182,0.2)',
@@ -130,8 +130,8 @@ export class ProgressPage implements OnInit {
       responsive: true,
       plugins: { legend: { display: false } },
       scales: {
-        x: { title: { display: true, text: 'Fecha' } },
-        y: { title: { display: true, text: 'Donaciones' }, beginAtZero: true },
+        x: { title: { display: true, text: this.translate.instant('PAGES.PROGRESS.TROPHIES_TITLE') } },
+        y: { title: { display: true, text: this.translate.instant('PAGES.PROGRESS.DONATIONS_LABEL') }, beginAtZero: true },
       },
     } as ChartOptions;
 
@@ -156,14 +156,14 @@ export class ProgressPage implements OnInit {
     this.battlesCompLabels = labels;
     this.battlesCompDatasets = [
       {
-        label: 'Total batallas',
+        label: this.translate.instant('PAGES.PROGRESS.BATTLES_TOTAL_LABEL'),
         data: battleTotals,
         borderColor: 'rgba(52,152,219,0.9)',
         backgroundColor: 'rgba(52,152,219,0.2)',
         tension: 0.3,
       },
       {
-        label: 'Batallas últimas 24h',
+        label: this.translate.instant('PAGES.PROGRESS.BATTLES_LAST24_LABEL'),
         data: battles24h,
         borderColor: 'rgba(241,196,15,0.9)',
         backgroundColor: 'rgba(241,196,15,0.2)',
