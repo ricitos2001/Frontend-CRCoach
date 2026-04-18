@@ -135,6 +135,18 @@
       "TEXT1": "trofeos",
       "TEXT2": "coronas"
     }
+    ,
+    "PROGRESS": {
+      "TITLE": "Progreso",
+      "TROPHIES_TITLE": "Evolución de trofeos",
+      "WINRATE_TITLE": "Porcentaje de victorias",
+      "BATTLES_COMPARISON": "Comparación de batallas",
+      "DONATIONS_LABEL": "Donaciones",
+      "BATTLES_TOTAL_LABEL": "Total batallas",
+      "BATTLES_LAST24_LABEL": "Batallas últimas 24h",
+      "TROPHIES_LABEL": "Trofeos",
+      "NO_DATA": "no hay datos"
+    }
   },
 
   "VALIDATION": {
