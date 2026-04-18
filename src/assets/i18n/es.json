@@ -93,15 +93,16 @@
       "NOTIFICATION_ERROR_MESSAGE": "No se pudo vincular el tag {{tag}}."
     },
     "BATTLES": {
+      "TITLE": "Registro de batallas",
       "LOADING": "Cargando batallas...",
       "ERROR": "Error cargando batallas: {{err}}",
       "NO_CLAN": "Sin clan"
     },
     "WEAKNESSES": {
+      "TITLE": "Diagnóstico de debilidades",
       "SUMMARY_TITLE": "Resumen de estadísticas",
       "LOADING_SUMMARY": "Cargando resumen de estadísticas...",
       "ERROR_SUMMARY": "Error cargando resumen: {{err}}",
-      "TITLE": "Debilidades",
       "LOADING_WEAKNESSES": "Cargando debilidades...",
       "ERROR_WEAKNESSES": "Error cargando debilidades: {{err}}",
       "PROBLEMATIC_CARDS_TITLE": "Cartas problemáticas",
@@ -137,7 +138,7 @@
     }
     ,
     "PROGRESS": {
-      "TITLE": "Progreso",
+      "TITLE": "Progreso del jugador",
       "TROPHIES_TITLE": "Evolución de trofeos",
       "WINRATE_TITLE": "Porcentaje de victorias",
       "BATTLES_COMPARISON": "Comparación de batallas",

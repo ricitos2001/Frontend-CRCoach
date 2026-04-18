@@ -93,15 +93,16 @@
       "NOTIFICATION_ERROR_MESSAGE": "Could not link the tag {{tag}}."
     },
     "BATTLES": {
+      "TITLE": "Battle log",
       "LOADING": "Loading battles...",
       "ERROR": "Battles error: {{err}}",
       "NO_CLAN": "No clan"
     },
     "WEAKNESSES": {
+      "TITLE": "Weaknesses diagnostic",
       "SUMMARY_TITLE": "Statistics summary",
       "LOADING_SUMMARY": "Loading summary...",
       "ERROR_SUMMARY": "Error loading summary: {{err}}",
-      "TITLE": "Weaknesses",
       "LOADING_WEAKNESSES": "Loading weaknesses...",
       "ERROR_WEAKNESSES": "Error loading weaknesses: {{err}}",
       "PROBLEMATIC_CARDS_TITLE": "Problematic cards",
@@ -137,7 +138,7 @@
     }
     ,
     "PROGRESS": {
-      "TITLE": "Progress",
+      "TITLE": "Player progress",
       "TROPHIES_TITLE": "Trophies evolution",
       "WINRATE_TITLE": "Winrate",
       "BATTLES_COMPARISON": "Battles comparison",
