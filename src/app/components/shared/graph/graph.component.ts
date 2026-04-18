@@ -32,9 +32,6 @@ export class GraphComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('canvas', { static: true }) private canvasRef?: ElementRef<HTMLCanvasElement>;
   private chart?: Chart;
-  // Evitar registrar registerables múltiples veces (puede causar comportamiento inconsistente
-  // especialmente con HMR).
-  private static _chartRegistered = false;
 
   constructor(private destroyRef: DestroyRef) {}
 
@@ -106,35 +103,17 @@ export class GraphComponent implements AfterViewInit, OnChanges {
       plugins: [noDataPlugin],
     };
 
-    // Registrar solo una vez los elementos de Chart.js
-    if (!GraphComponent._chartRegistered) {
-      Chart.register(...registerables);
-      GraphComponent._chartRegistered = true;
-    }
+    Chart.register(...registerables);
 
     if (this.chart) {
       this.chart.data.labels = config.data.labels as any;
       this.chart.data.datasets = config.data.datasets as any;
       this.chart.options = config.options as any;
       this.chart.update();
-      return;
+    } else {
+      const ctx = this.canvasRef.nativeElement.getContext('2d');
+      if (!ctx) return;
+      this.chart = new Chart(ctx, config as any);
     }
-
-    const canvasEl = this.canvasRef.nativeElement;
-    const ctx = canvasEl.getContext('2d');
-    if (!ctx) return;
-
-    // Si por alguna razón ya existe un Chart asociado al canvas (HMR, reload, etc.) lo destruimos.
-    try {
-      // Chart.getChart puede recibir el elemento canvas directamente en Chart.js v4
-      const existing = (Chart as any).getChart ? (Chart as any).getChart(canvasEl) : undefined;
-      if (existing) {
-        existing.destroy();
-      }
-    } catch (e) {
-      // ignore
-    }
-
-    this.chart = new Chart(ctx, config as any);
   }
 }
