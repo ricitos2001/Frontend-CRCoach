@@ -146,7 +146,8 @@
       "BATTLES_TOTAL_LABEL": "Total battles",
       "BATTLES_LAST24_LABEL": "Battles last 24h",
       "TROPHIES_LABEL": "Trophies",
-      "NO_DATA": "no data"
+      "NO_DATA": "no data",
+      "BATTLES_LABEL": "Battles"
     }
   },
 

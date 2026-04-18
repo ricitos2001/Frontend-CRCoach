@@ -10,11 +10,7 @@ import { GraphComponent } from '../../components/shared/graph/graph.component';
 @Component({
   selector: 'app-progress',
   standalone: true,
-  imports: [
-    SidebarComponent,
-    TranslatePipe,
-    GraphComponent,
-  ],
+  imports: [SidebarComponent, TranslatePipe, GraphComponent],
   templateUrl: './progress.page.html',
   styleUrl: '../../../styles/styles.css',
 })
@@ -32,7 +28,17 @@ export class ProgressPage implements OnInit {
 
     effect(() => {
       const metric = this.metricsStore.metric();
-      if (metric) this.updateWinrate(metric);
+      if (metric) {
+        this.updateWinrate(metric);
+        this.updateDonations(metric);
+        this.updateBattles(metric);
+      } else {
+        // Clear charts when there's no metric
+        this.donationsLabels = [];
+        this.donationsDatasets = [];
+        this.battlesCompLabels = [];
+        this.battlesCompDatasets = [];
+      }
     });
   }
 
@@ -113,27 +119,6 @@ export class ProgressPage implements OnInit {
     } as ChartOptions;
 
     this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
-
-    // Preparar datos para donaciones (por snapshot)
-    const donations = sorted.map((s) => s.donations ?? 0);
-    this.donationsLabels = labels;
-    this.donationsDatasets = [
-      {
-        label: this.translate.instant('PAGES.PROGRESS.DONATIONS_LABEL'),
-        data: donations,
-        borderColor: 'rgba(155,89,182,0.9)',
-        backgroundColor: 'rgba(155,89,182,0.2)',
-        tension: 0.3,
-      },
-    ];
-    this.donationsOptions = {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { title: { display: true, text: this.translate.instant('PAGES.PROGRESS.TROPHIES_TITLE') } },
-        y: { title: { display: true, text: this.translate.instant('PAGES.PROGRESS.DONATIONS_LABEL') }, beginAtZero: true },
-      },
-    } as ChartOptions;
 
     // Preparar datos para comparación de batallas: total batalla por snapshot y batallas en últimas 24h
     const battleTotals = sorted.map((s) => s.battleCount ?? 0);
@@ -222,6 +207,49 @@ export class ProgressPage implements OnInit {
           },
         },
       },
+    } as ChartOptions;
+  }
+
+  private updateDonations(metric: any) {
+    const donations = this.asNumber(metric.donations) ?? 0;
+    this.donationsLabels = [this.translate.instant('PAGES.PROGRESS.DONATIONS_LABEL')];
+    this.donationsDatasets = [
+      {
+        label: this.translate.instant('PAGES.PROGRESS.DONATIONS_TITLE') || 'Donaciones',
+        data: [donations],
+        backgroundColor: 'rgba(46, 204, 113, 0.9)',
+      },
+    ];
+    this.donationsOptions = {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: '' } },
+        y: { title: { display: true, text: '' } },
+      },
+    } as ChartOptions;
+  }
+
+  private updateBattles(metric: any) {
+    const total = this.asNumber(metric.battles?.total) ?? 0;
+    const last24 = this.asNumber(metric.battles?.last24hr) ?? 0;
+
+    this.battlesCompLabels = [
+      this.translate.instant('PAGES.PROGRESS.BATTLES_TOTAL_LABEL'),
+      this.translate.instant('PAGES.PROGRESS.BATTLES_LAST24_LABEL'),
+    ];
+
+    this.battlesCompDatasets = [
+      {
+        label: this.translate.instant('PAGES.PROGRESS.BATTLES_LABEL') || 'Batallas',
+        data: [total, last24],
+        backgroundColor: ['rgba(52,152,219,0.9)', 'rgba(241,196,15,0.9)'],
+      },
+    ];
+
+    this.battlesCompOptions = {
+      responsive: true,
+      plugins: { legend: { position: 'bottom' } },
     } as ChartOptions;
   }
 }
