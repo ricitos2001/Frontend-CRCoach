@@ -1,4 +1,13 @@
-import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, DestroyRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges,
+  DestroyRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables, ChartDataset, ChartOptions } from 'chart.js';
 
@@ -66,10 +75,12 @@ export class GraphComponent implements AfterViewInit, OnChanges {
       id: 'noDataPlugin',
       beforeDraw: (chart: any) => {
         const datasets = chart.data && chart.data.datasets ? chart.data.datasets : [];
-        const hasDataLocal = Array.isArray(datasets) && datasets.some((ds: any) => {
-          const d = ds.data || [];
-          return Array.isArray(d) && d.some((n: any) => typeof n === 'number');
-        });
+        const hasDataLocal =
+          Array.isArray(datasets) &&
+          datasets.some((ds: any) => {
+            const d = ds.data || [];
+            return Array.isArray(d) && d.some((n: any) => typeof n === 'number');
+          });
         if (hasDataLocal) return;
         const ctx = chart.ctx;
         const width = chart.width;
@@ -106,4 +117,3 @@ export class GraphComponent implements AfterViewInit, OnChanges {
     }
   }
 }
-
