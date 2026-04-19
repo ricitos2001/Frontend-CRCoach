@@ -1,6 +1,14 @@
 <section>
   <h1>{{'PAGES.BATTLES.TITLE' | translate}}</h1>
-  <article>
+  <article class="flex">
+    <app-searcher (search)="onSearch($event)"></app-searcher>
+
+    <!-- Game mode filter -->
+    <app-form-input type="select" name="gameMode" [hideLabel]="true" [options]="gameModes" [(ngModel)]="selectedMode"></app-form-input>
+
+    <!-- Result filter -->
+    <app-form-input type="select" name="result" [hideLabel]="true" [options]="resultOptions" [(ngModel)]="selectedResult"></app-form-input>
+
     <app-refresh-button (click)="refreshBattles()"></app-refresh-button>
   </article>
   @if (battlesStore.loading() && !battlesStore.battles()) {
@@ -9,8 +17,23 @@
   @if (battlesStore.error(); as bErr) {
     <p class="error">{{ 'PAGES.BATTLES.ERROR' | translate:{ err: bErr } }}</p>
   }
-  @if (battlesStore.battles(); as battles) {
+  @if (filteredBattles(); as battles) {
     @for (battle of battles; track battle.id) {
+      @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
+        <p>{{ 'PAGES.BATTLES.VICTORY' | translate }}</p>
+      } @else if (battle.team.trophyChange < 0 && battle.opponent.trophyChange > 0) {
+        <p>{{ 'PAGES.BATTLES.DEFEAT' | translate }}</p>
+      } @else if (battle.team.trophyChange === 0 && battle.opponent.trophyChange === 0) {
+        <p>{{ 'PAGES.BATTLES.DRAW' | translate }}</p>
+      } @else {
+        @if (battle.team.crowns > battle.opponent.crowns) {
+          <p>{{ 'PAGES.BATTLES.VICTORY' | translate }}</p>
+        } @else if (battle.team.crowns < battle.opponent.crowns) {
+          <p>{{ 'PAGES.BATTLES.DEFEAT' | translate }}</p>
+        } @else {
+          <p>{{ 'PAGES.BATTLES.DRAW' | translate }}</p>
+        }
+      }
       <section>
         <p>{{battle.team.name}}</p>
         @if (battle.team.clan === null) {
@@ -18,7 +41,11 @@
         } @else {
           <p>{{battle.team.clan.name}}</p>
         }
-        <p>{{battle.team.trophyChange}}</p>
+        @if (battle.team.trophyChange === null) {
+          <p>0</p>
+        } @else {
+          <p>{{battle.team.trophyChange}}</p>
+        }
         <p>{{battle.team.crowns}}</p>
         <p>{{battle.team.playerDeck.archetype}}</p>
         @for (card of battle.team.playerDeck.playerCards; track card.id) {
@@ -32,7 +59,11 @@
         } @else {
           <p>{{battle.opponent.clan.name}}</p>
         }
-        <p>{{battle.opponent.trophyChange}}</p>
+        @if (battle.opponent.trophyChange === null) {
+          <p>0</p>
+        } @else {
+          <p>{{battle.opponent.trophyChange}}</p>
+        }
         <p>{{battle.opponent.crowns}}</p>
         <p>{{battle.opponent.playerDeck.archetype}}</p>
         @for (card of battle.opponent.playerDeck.playerCards; track card.id) {

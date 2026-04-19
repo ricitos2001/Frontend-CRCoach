@@ -96,7 +96,11 @@
       "TITLE": "Registro de batallas",
       "LOADING": "Cargando batallas...",
       "ERROR": "Error cargando batallas: {{err}}",
-      "NO_CLAN": "Sin clan"
+      "NO_CLAN": "Sin clan",
+      "VICTORY": "Victorias",
+      "DEFEAT": "Derrotas",
+      "DRAW": "Empates",
+      "ALL": "todas las batallas"
     },
     "WEAKNESSES": {
       "TITLE": "Diagnóstico de debilidades",
@@ -109,7 +113,8 @@
       "LOADING_PROBLEMATIC_CARDS": "Cargando cartas problemáticas...",
       "ERROR_PROBLEMATIC_CARDS": "Error cargando cartas problemáticas: {{err}}",
       "ARCHETYPE": "Arquetipo",
-      "BATTLES_LABEL": "Batallas"
+      "BATTLES_LABEL": "Batallas",
+      "BUTTON": "Búsqueda avanzada"
     },
     "DASHBOARD": {
       "TROPHIES_TITLE": "Evolución de trofeos",

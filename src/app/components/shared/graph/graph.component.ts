@@ -13,10 +13,10 @@ import { Chart, registerables, ChartDataset, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-graph',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './graph.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class GraphComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() type: 'line' | 'bar' | 'doughnut' | 'pie' = 'line';

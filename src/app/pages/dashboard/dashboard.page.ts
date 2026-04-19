@@ -185,8 +185,8 @@ export class DashboardPage implements OnInit {
       return;
     }
 
-    let labels: string[] = [];
-    let data: number[] = [];
+    let labels: string[];
+    let data: number[];
 
     // Si viene un array (compatibilidad con snapshots)
     if (Array.isArray(metricOrArray) && metricOrArray.length > 0) {
@@ -220,9 +220,39 @@ export class DashboardPage implements OnInit {
       }
     }
 
-    const hasUsefulData = data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
+    // If only one data point is available, duplicate it (previous day) so the line chart can render a flat line.
+    if (data.length === 1) {
+      const singleDateLabel = labels[0];
+      // try to parse original date from metric history dates if possible
+      const originalDate = new Date(metricOrArray.history?.[0]?.generatedAt ?? metricOrArray[0]?.capturedAt ?? new Date());
+      const prevDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
+      const prevLabel = prevDate.toLocaleDateString();
+      labels = [prevLabel, singleDateLabel];
+      data = [data[0], data[0]];
+    }
+
+    let hasUsefulData = data.length >= 1;
+    // If no useful data from metrics, try fallback to snapshotsStore (older implementation)
+    if (!hasUsefulData) {
+      const snaps = this.snapshotsStore.snapshots();
+      if (Array.isArray(snaps) && snaps.length > 0) {
+        const sorted = [...snaps].sort((a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime());
+        labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
+        data = sorted.map((s) => s.trophies);
+        // duplicate single point if needed
+        if (data.length === 1) {
+          const originalDate = new Date(sorted[0].capturedAt ?? new Date());
+          const prevDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
+          labels = [prevDate.toLocaleDateString(), labels[0]];
+          data = [data[0], data[0]];
+        }
+      }
+      // recompute usefulness after fallback
+      hasUsefulData = data.length >= 1;
+    }
 
     this.trophiesLabels = hasUsefulData ? labels : [];
+    // debug: console.log('trophiesLabels', this.trophiesLabels, 'data', data);
     this.trophiesDatasets = hasUsefulData
       ? [
           {

@@ -1,6 +1,8 @@
 <section>
-  <article>
-    <h2>{{ 'PAGES.PROGRESS.TITLE' | translate }}</h2>
+  <h2>{{ 'PAGES.PROGRESS.TITLE' | translate }}</h2>
+  <article class="flex">
+    <app-searcher></app-searcher>
+    <app-refresh-button></app-refresh-button>
   </article>
   <section>
     <section>
@@ -32,7 +34,6 @@
       }
       <app-graph [type]="'bar'" [labels]="battlesCompLabels" [datasets]="battlesCompDatasets" [options]="battlesCompOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
     </article>
-
   </section>
 </section>
 <app-sidebar></app-sidebar>

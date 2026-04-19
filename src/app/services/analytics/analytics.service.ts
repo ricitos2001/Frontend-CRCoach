@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlayerProfile } from '../../interfaces/PlayerProfile';
 import { environment } from '../../../enviroments/enviroment';
 import { finalize } from 'rxjs/operators';
 import { SummaryReport } from '../../interfaces/SummaryReport';
@@ -20,12 +19,19 @@ export class AnalyticsService {
     private loadingService: LoadingService,
   ) {}
 
-  getWeaknesses(tag: string): Observable<WeaknessReport> {
+  getWeaknesses(tag: string, gameMode?:string, from?: string, to?: string, minBattles?: number): Observable<WeaknessReport> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
+    let url = `${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/weaknesses`;
+    const params: string[] = [];
+    if (gameMode) params.push(`gameMode=${encodeURIComponent(gameMode)}`);
+    if (from) params.push(`from=${encodeURIComponent(from)}`);
+    if (to) params.push(`to=${encodeURIComponent(to)}`);
+    if (minBattles) params.push(`minBattles=${encodeURIComponent(minBattles)}`);
+    if (params.length) url += `?${params.join('&')}`;
 
     return this.http
-      .get<WeaknessReport>(`${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/weaknesses`, {
+      .get<WeaknessReport>(url, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -33,13 +39,22 @@ export class AnalyticsService {
       .pipe(finalize(() => this.loadingService.hide()));
   }
 
-  getProblematicCards(tag: string): Observable<ProblematicCardsReport> {
+  getProblematicCards(tag: string, gameMode?: string, from?: string, to?: string, limit?: number, minAppearances?: number): Observable<ProblematicCardsReport> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
 
+    let url = `${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/cards`;
+    const params: string[] = [];
+    if (gameMode) params.push(`gameMode=${encodeURIComponent(gameMode)}`);
+    if (from) params.push(`from=${encodeURIComponent(from)}`);
+    if (to) params.push(`to=${encodeURIComponent(to)}`);
+    if (limit) params.push(`limit=${encodeURIComponent(limit)}`);
+    if (minAppearances) params.push(`minAppearances=${encodeURIComponent(minAppearances)}`);
+    if (params.length) url += `?${params.join('&')}`;
+
     return this.http
       .get<ProblematicCardsReport>(
-        `${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/cards`,
+        url,
         {
           headers: {
             Authorization: `Bearer ${this.token}`,
@@ -49,12 +64,19 @@ export class AnalyticsService {
       .pipe(finalize(() => this.loadingService.hide()));
   }
 
-  getSummary(tag: string): Observable<SummaryReport> {
+  getSummary(tag: string, gameMode?: string, from?: string, to?: string): Observable<SummaryReport> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
 
+    let url = `${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/summary`;
+    const params: string[] = [];
+    if (gameMode) params.push(`gameMode=${encodeURIComponent(gameMode)}`);
+    if (from) params.push(`from=${encodeURIComponent(from)}`);
+    if (to) params.push(`to=${encodeURIComponent(to)}`);
+    if (params.length) url += `?${params.join('&')}`;
+
     return this.http
-      .get<SummaryReport>(`${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/summary`, {
+      .get<SummaryReport>(url, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },

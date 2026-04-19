@@ -28,21 +28,21 @@
 </ng-template>
 <section>
   <section>
-    <article>
+    <section>
       <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
-      @if (metricsStore.loading() && !metricsStore.metric()) {
-        <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
-      }
-      @if (metricsStore.error(); as mErr) {
-        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
-      }
-      <div class="chart-wrapper">
+      <article class="chart-wrapper">
         <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
-      </div>
-    </article>
+      </article>
+    </section>
     <section>
       <article>
         <h2>{{ 'PAGES.DASHBOARD.WINRATE_TITLE' | translate }}</h2>
+        @if (metricsStore.loading() && !metricsStore.metric()) {
+          <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
+        }
+        @if (metricsStore.error(); as mErr) {
+          <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
+        }
         @if (metricsStore.metric(); as metric) {
           <p>{{ 'PAGES.DASHBOARD.VICTORIES' | translate }}: {{ displayPercent(metric, 'winRate') }}%</p>
           <p>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}: {{ displayPercent(metric, 'lossRate') }}%</p>
@@ -70,7 +70,7 @@
       }
       @if (battlesStore.battles(); as battles) {
         @for (battle of battles.slice(0,3); track battle.id) {
-          <p><strong>{{battle.team.name}}</strong> — {{battle.team.trophyChange}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+          <p><strong>{{battle.team.name}}</strong> — @if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
         }
       }
     </article>

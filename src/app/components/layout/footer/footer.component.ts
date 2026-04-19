@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   imports: [],
   templateUrl: './footer.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class FooterComponent {
   constructor(protected router: Router) {}

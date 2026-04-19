@@ -1,5 +1,16 @@
 <section>
   <h2>{{ 'PAGES.WEAKNESSES.SUMMARY_TITLE' | translate }}</h2>
+  <article class="flex">
+    <app-searcher (periodFilter)="onPeriodFilter($event)"></app-searcher>
+    <app-form-input type="select" name="gameMode" [hideLabel]="true" [options]="gameModes" [(ngModel)]="selectedMode" (ngModelChange)="onModeChange($event)"></app-form-input>
+
+    <app-common-button (click)="openAdvanced()">{{ 'PAGES.WEAKNESSES.BUTTON' | translate }}</app-common-button>
+
+    <app-refresh-button></app-refresh-button>
+    <app-modal [isOpen]="advancedOpen" title="{{ 'PAGES.WEAKNESSES.ADVANCED_TITLE' | translate }}" (close)="closeAdvanced()">
+      <app-advanced-search (apply)="onAdvancedApply($event)" (reset)="onAdvancedReset()"></app-advanced-search>
+    </app-modal>
+  </article>
   @if (analyticsStore.loading() && !analyticsStore.summary()) {
     <p>{{ 'PAGES.WEAKNESSES.LOADING_SUMMARY' | translate }}</p>
   }

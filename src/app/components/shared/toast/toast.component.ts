@@ -4,10 +4,10 @@ import { ToastMessage, ToastService } from '../../../services/toast/toast.servic
 
 @Component({
   selector: 'app-toast',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './toast.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class ToastComponent {
   toasts = signal<ToastMessage[]>([]);

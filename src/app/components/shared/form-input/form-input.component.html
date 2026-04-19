@@ -1,12 +1,39 @@
-@if (type === 'textarea') {
-  <label [for]="name">{{ label || placeholder }}</label>
-  <textarea [id]="name" [placeholder]="placeholder" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()">{{ value }}</textarea>
-} @if (type === 'checkbox') {
-  <input [id]="name" type="checkbox" [checked]="value" [disabled]="disabled" (change)="onCheckboxChange($event)" (blur)="onBlur()" />
-  <label [for]="name">{{ label || placeholder }}</label>
-} @else {
-  <label [for]="name">{{ label || placeholder }}</label>
-  <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()"/>
+@switch (type) {
+  @case ('textarea') {
+    @if (!hideLabel) {
+      <label [for]="name">{{ label || placeholder }}</label>
+    }
+    <textarea [id]="name" [placeholder]="placeholder" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()">{{ value }}</textarea>
+  }
+  @case ('checkbox') {
+    <input [id]="name" type="checkbox" [checked]="value" [disabled]="disabled" (change)="onCheckboxChange($event)" (blur)="onBlur()" />
+    @if (!hideLabel) {
+      <label [for]="name">{{ label || placeholder }}</label>
+    }
+  }
+  @case ('radio') {
+    @if (!hideLabel) {
+      <label [for]="name">{{ label || placeholder }}</label>
+    }
+    @for (option of options; track option.value) {
+      <input [id]="name + '-' + option.value" type="radio" [name]="name" [value]="option.value" [checked]="value === option.value" [disabled]="disabled" (change)="onInput($event)" (blur)="onBlur()" />
+      <label [for]="name + '-' + option.value">{{ option.label | translate }}</label>
+    }
+  }
+  @case ('select') {
+    @if (!hideLabel) {
+      <label [for]="name">{{ label || placeholder }}</label>
+    }
+    <select [id]="name" [disabled]="disabled" (change)="onInput($event)" (blur)="onBlur()" [value]="value">
+      @for (option of options; track option.value) {
+        <option [value]="option.value">{{ option.label | translate }}</option>
+      }
+    </select>
+  }
+  @default {
+    @if (!hideLabel) {
+      <label [for]="name">{{ label || placeholder }}</label>
+    }
+    <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()" />
+  }
 }
-
-

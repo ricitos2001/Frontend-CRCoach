@@ -26,12 +26,12 @@ export class AnalyticsSignalStore {
     private translate: TranslateService,
   ) {}
 
-  loadSummary(tag: string) {
+  loadSummary(tag: string, gameMode?: string, from?: string, to?: string) {
     if (!tag) return;
     this._loading.set(true);
     this._error.set(null);
     this.analyticsService
-      .getSummary(tag)
+      .getSummary(tag, gameMode, from, to)
       .pipe(
         take(1),
         finalize(() => this._loading.set(false)),
@@ -45,12 +45,12 @@ export class AnalyticsSignalStore {
       });
   }
 
-  loadWeaknesses(tag: string) {
+  loadWeaknesses(tag: string, gameMode?: string, from?: string, to?: string, minBattles?: number) {
     if (!tag) return;
     this._loading.set(true);
     this._error.set(null);
     this.analyticsService
-      .getWeaknesses(tag)
+      .getWeaknesses(tag, gameMode, from, to, minBattles)
       .pipe(
         take(1),
         finalize(() => this._loading.set(false)),
@@ -64,12 +64,12 @@ export class AnalyticsSignalStore {
       });
   }
 
-  loadProblematicCards(tag: string) {
+  loadProblematicCards(tag: string, gameMode?: string, from?: string, to?: string, limit?: number, minAppearances?: number,) {
     if (!tag) return;
     this._loading.set(true);
     this._error.set(null);
     this.analyticsService
-      .getProblematicCards(tag)
+      .getProblematicCards(tag, gameMode, from, to, limit, minAppearances)
       .pipe(
         take(1),
         finalize(() => this._loading.set(false)),

@@ -96,7 +96,11 @@
       "TITLE": "Battle log",
       "LOADING": "Loading battles...",
       "ERROR": "Battles error: {{err}}",
-      "NO_CLAN": "No clan"
+      "NO_CLAN": "No clan",
+      "VICTORY": "Victories",
+      "DEFEAT": "Defeats",
+      "DRAW": "Draws",
+      "ALL": "All battles"
     },
     "WEAKNESSES": {
       "TITLE": "Weaknesses diagnostic",
@@ -109,7 +113,8 @@
       "LOADING_PROBLEMATIC_CARDS": "Loading problematic cards...",
       "ERROR_PROBLEMATIC_CARDS": "Error loading problematic cards: {{err}}",
       "ARCHETYPE": "Archetype",
-      "BATTLES_LABEL": "Battles"
+      "BATTLES_LABEL": "Battles",
+      "BUTTON": "Advanced search"
     },
     "DASHBOARD": {
       "TROPHIES_TITLE": "Trophies evolution",

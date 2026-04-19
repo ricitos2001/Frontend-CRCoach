@@ -6,13 +6,21 @@ import { ChartOptions } from 'chart.js';
 // Replaced old specific graph components with unified GraphComponent
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
+import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
+import { SearcherComponent } from '../../components/shared/searcher/searcher.component';
 
 @Component({
   selector: 'app-progress',
-  standalone: true,
-  imports: [SidebarComponent, TranslatePipe, GraphComponent],
+  imports: [
+    SidebarComponent,
+    TranslatePipe,
+    GraphComponent,
+    RefreshButtonComponent,
+    SearcherComponent,
+  ],
   templateUrl: './progress.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
 export class ProgressPage implements OnInit {
   constructor(
@@ -126,7 +134,8 @@ export class ProgressPage implements OnInit {
       } else if (metric.changeTrophiesIn24h !== undefined && metric.changeTrophiesIn24h !== null) {
         const currentDate = new Date(metric.generatedAt ?? new Date());
         const prevDate = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000);
-        const prev = (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
+        const prev =
+          (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
         labels = [prevDate.toLocaleDateString(), currentDate.toLocaleDateString()];
         data = [prev, this.asNumber(metric.trophies) ?? 0];
       } else {
@@ -136,7 +145,8 @@ export class ProgressPage implements OnInit {
       }
     }
 
-    const hasUsefulData = data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
+    const hasUsefulData =
+      data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
 
     this.trophiesLabels = hasUsefulData ? labels : [];
     this.trophiesDatasets = hasUsefulData

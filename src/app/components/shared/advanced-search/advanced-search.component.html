@@ -1,0 +1,18 @@
+<form class="advanced-search" (ngSubmit)="applyFilters()" style="display:flex;flex-direction:column;gap:0.5rem;max-width:520px;">
+  <div style="display:flex;gap:0.5rem;">
+	<app-form-input type="datetime-local" name="periodFrom" label="{{ 'PAGES.WEAKNESSES.FILTER_FROM' | translate }}" [(ngModel)]="periodFrom"></app-form-input>
+	<app-form-input type="datetime-local" name="periodTo" label="{{ 'PAGES.WEAKNESSES.FILTER_TO' | translate }}" [(ngModel)]="periodTo"></app-form-input>
+  </div>
+
+  <div style="display:flex;gap:0.5rem;">
+	<app-form-input type="select" name="gameMode" label="{{ 'PAGES.WEAKNESSES.FILTER_MODE' | translate }}" [options]="gameModes" [(ngModel)]="selectedMode"></app-form-input>
+	<app-form-input type="number" name="minBattles" label="{{ 'PAGES.WEAKNESSES.FILTER_MIN_BATTLES' | translate }}" [(ngModel)]="minBattles"></app-form-input>
+	<app-form-input type="number" name="limit" label="{{ 'PAGES.WEAKNESSES.FILTER_LIMIT' | translate }}" [(ngModel)]="limit"></app-form-input>
+	<app-form-input type="number" name="minAppearances" label="{{ 'PAGES.WEAKNESSES.FILTER_MIN_APPEARANCES' | translate }}" [(ngModel)]="minAppearances"></app-form-input>
+  </div>
+
+  <div style="display:flex;gap:0.5rem;justify-content:flex-end;margin-top:0.5rem;">
+	<app-common-button type="button" (click)="resetFilters()">Reset</app-common-button>
+	<app-common-button type="submit">Apply</app-common-button>
+  </div>
+</form>

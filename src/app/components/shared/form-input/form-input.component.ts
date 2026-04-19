@@ -1,9 +1,11 @@
 import { Component, Input, forwardRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-form-input',
-  imports: [],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './form-input.component.html',
   styleUrl: '../../../../styles/styles.css',
   providers: [
@@ -20,8 +22,13 @@ export class FormInputComponent implements ControlValueAccessor {
   @Input() name!: string;
   @Input() placeholder: string = '';
   @Input() label?: string;
+  @Input() hideLabel: boolean = false;
   @Input() required: boolean = false;
   @Input() value: any = '';
+  /**
+   * Options for select inputs. Each option should be { value: any, label: string }
+   */
+  @Input() options: Array<{ value: any; label: string }> = [];
 
   disabled = false;
   touched = false;
@@ -50,7 +57,8 @@ export class FormInputComponent implements ControlValueAccessor {
   }
 
   onInput(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
+    const target = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+    const value = target.value;
     this.value = value;
     this.onChange(value);
   }
