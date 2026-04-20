@@ -189,7 +189,7 @@ app-form-input.grid .error {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 12ch; /* resumir texto visible */
+  max-width: 24rem; /* resumir texto visible */
   box-shadow: 0 6px 18px rgba(0,0,0,0.35);
   opacity: 0;
   pointer-events: auto;
