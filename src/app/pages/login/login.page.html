@@ -8,20 +8,16 @@
     <h1 class="form__legend">{{ 'PAGES.AUTH.LOGIN.LEGEND' | translate }}</h1>
 
     <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.LOGIN.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.EMAIL_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-      @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
-        @if (loginForm.get('email')?.errors?.['required']) {
-          <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED_SHORT' | translate }}</article>
-        } @else if (loginForm.get('email')?.errors?.['email']) {
-          <article class="error" title="{{ 'VALIDATION.EMAIL_INVALID' | translate }}">{{ 'VALIDATION.EMAIL_INVALID_SHORT' | translate }}</article>
-        } @else {
-          <article class="error" title="{{ 'VALIDATION.INVALID' | translate }}">{{ 'VALIDATION.INVALID_SHORT' | translate }}</article>
-        }
+      @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid && loginForm.get('email')?.errors?.['required']) {
+        <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED' | translate }}</article>
+      } @else if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid && loginForm.get('email')?.errors?.['email']) {
+        <article class="error" title="{{ 'VALIDATION.EMAIL_INVALID' | translate }}">{{ 'VALIDATION.EMAIL_INVALID' | translate }}</article>
       }
     </app-form-input>
 
     <app-form-input formControlName="password" type="password" name="password" [label]="'PAGES.AUTH.LOGIN.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.PASSWORD_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
       @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
-        <article class="error" title="{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}">{{ 'VALIDATION.PASSWORD_REQUIRED_SHORT' | translate }}</article>
+        <article class="error" title="{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}">{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}</article>
       }
     </app-form-input>
 
