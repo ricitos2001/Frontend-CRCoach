@@ -39,7 +39,9 @@
       }
     </app-form-input>
     <app-form-input formControlName="playerTag" name="playerTag" [label]="'PAGES.AUTH.REGISTER.PLAYERTAG_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PLAYERTAG_PLACEHOLDER' | translate" class="glass-input" [class.has-error]="registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid">
-      @if (registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid && registerForm.get('playerTag')?.errors?.['tagNotFound']) {
+      @if (registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid && registerForm.get('playerTag')?.errors?.['required']) {
+        <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED' | translate }}</article>
+      } @else if (registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid && registerForm.get('playerTag')?.errors?.['tagNotFound']) {
         <article class="error" title="{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}">{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}</article>
       }
     </app-form-input>
@@ -69,7 +71,11 @@
         </app-form-input>
       </article>
     </section>
-    <app-form-input formControlName="acceptTerms" type="checkbox" name="acceptTerms" [label]="'PAGES.AUTH.REGISTER.ACCEPT_TERMS_LABEL' | translate" [required]="true" class="glass-input"></app-form-input>
+    <app-form-input formControlName="acceptTerms" type="checkbox" name="acceptTerms" [label]="'PAGES.AUTH.REGISTER.ACCEPT_TERMS_LABEL' | translate" [required]="true" class="glass-input">
+      @if (registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.invalid) {
+        <article class="error" title="{{ 'VALIDATION.ACCEPT_TERMS' | translate }}">{{ 'VALIDATION.ACCEPT_TERMS' | translate }}</article>
+      }
+    </app-form-input>
     <app-common-button type="submit" [disabled]="registerForm.invalid || registerForm.pending || loading">
       @if (!loading) {
         <ng-container>{{ 'PAGES.AUTH.REGISTER.SUBMIT' | translate }}</ng-container>

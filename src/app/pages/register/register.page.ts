@@ -63,7 +63,7 @@ export class RegisterPage {
         playerTag: [
           '',
           {
-            validators: [],
+            validators: [Validators.required],
             asyncValidators: [this.asyncValidators.playerTagExists()],
             updateOn: 'blur',
           },
@@ -71,7 +71,7 @@ export class RegisterPage {
         role: 'USER',
         createdAt: new Date(),
         enabled: true,
-        acceptTerms: [false, Validators.requiredTrue],
+        acceptTerms: [false, [Validators.requiredTrue]],
       },
       { validators: passwordMatch('passwordHash', 'repeatPassword') },
     );

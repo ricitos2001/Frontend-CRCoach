@@ -168,7 +168,8 @@
     "PASSWORD_NO_NUMBER": "Must include a number.",
     "PASSWORD_NO_SPECIAL": "Must include a special character.",
     "PASSWORDS_MISMATCH": "Passwords do not match.",
-    "MIN_LENGTH": "Minimum length not met."
+    "MIN_LENGTH": "Minimum length not met.",
+    "ACCEPT_TERMS": "You must accept the privacy policy and terms of service"
   },
   "NOTIFICATIONS": {
     "AUTH": {

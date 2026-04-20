@@ -150,6 +150,12 @@ footer {
   align-content: center;
 }
 
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 /* ============================================================
    Página de error 404 / Not Found
    ============================================================ */
@@ -355,10 +361,6 @@ app-form-input.glass-input textarea:focus {
   margin: 0;
 }
 
-.terms {
-  flex-wrap: nowrap;
-}
-
 .error {
   color: var(--color-error-1);
 }
@@ -380,11 +382,27 @@ app-form-input.grid .error {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 24rem; /* resumir texto visible */
+  max-width: 32rem; /* resumir texto visible */
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   opacity: 0;
   pointer-events: auto;
   animation: error-chip-in 0.16s ease forwards;
+}
+
+/* Ajuste específico para errores de checkbox: mostrar el chip encima del grupo checkbox/label
+   sin solaparlo con el texto. Nos apoyamos en la relación DOM donde el error viene después
+   del input y del label: input + label + .error. Sólo afectamos a los checkbox para no
+   alterar el comportamiento/estilos del resto de inputs. */
+app-form-input.glass-input input[type=checkbox] + label + .error,
+app-form-input.grid input[type=checkbox] + label + .error {
+  position: relative; /* sacar del posicionamiento absoluto global */
+  top: auto;
+  right: auto;
+  transform: translateY(-1.25rem); /* desplazar hacia arriba para situarlo sobre el checkbox */
+  display: block;
+  margin: 0 0 0.5rem 0; /* separar del checkbox/label */
+  max-width: 100%;
+  box-shadow: none; /* evitar sombra prominente sobre el texto */
 }
 
 @keyframes error-chip-in {
