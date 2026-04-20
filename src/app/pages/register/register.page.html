@@ -23,49 +23,41 @@
       </article>
     </section>
     <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.REGISTER.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.EMAIL_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
-      @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
-        @if (registerForm.get('email')?.errors?.['required']) {
-          <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED' | translate }}</article>
-        } @else if (registerForm.get('email')?.errors?.['email']) {
-          <article class="error" title="{{ 'VALIDATION.EMAIL_INVALID' | translate }}">{{ 'VALIDATION.EMAIL_INVALID' | translate }}</article>
-        } @else if (registerForm.get('email')?.errors?.['emailTaken']) {
-          <article class="error" title="{{ 'VALIDATION.EMAIL_TAKEN' | translate }}">{{ 'VALIDATION.EMAIL_TAKEN' | translate }}</article>
-        } @else {
-          <article class="error" title="{{ 'VALIDATION.INVALID' | translate }}">{{ 'VALIDATION.INVALID' | translate }}</article>
-        }
+      @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid && registerForm.get('email')?.errors?.['required']) {
+        <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED' | translate }}</article>
+      } @else if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid && registerForm.get('email')?.errors?.['email']) {
+        <article class="error" title="{{ 'VALIDATION.EMAIL_INVALID' | translate }}">{{ 'VALIDATION.EMAIL_INVALID' | translate }}</article>
+      } @else if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid && registerForm.get('email')?.errors?.['emailTaken']) {
+        <article class="error" title="{{ 'VALIDATION.EMAIL_TAKEN' | translate }}">{{ 'VALIDATION.EMAIL_TAKEN' | translate }}</article>
       }
     </app-form-input>
     <app-form-input formControlName="username" name="username" [label]="'PAGES.AUTH.REGISTER.USERNAME_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.USERNAME_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="registerForm.get('username')?.touched && registerForm.get('username')?.invalid">
-      @if (registerForm.get('username')?.touched && registerForm.get('username')?.invalid) {
-        @if (registerForm.get('username')?.errors?.['required']) {
-          <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED' | translate }}</article>
-        } @else if (registerForm.get('username')?.errors?.['usernameTaken']) {
-          <article class="error" title="{{ 'VALIDATION.USERNAME_TAKEN' | translate }}">{{ 'VALIDATION.USERNAME_TAKEN' | translate }}</article>
-        } @else {
-          <article class="error" title="{{ 'VALIDATION.INVALID' | translate }}">{{ 'VALIDATION.INVALID' | translate }}</article>
-        }
+      @if (registerForm.get('username')?.touched && registerForm.get('username')?.invalid && registerForm.get('username')?.errors?.['required']) {
+        <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED' | translate }}</article>
+      } @else if(registerForm.get('username')?.touched && registerForm.get('username')?.invalid && registerForm.get('username')?.errors?.['usernameTaken']) {
+        <article class="error" title="{{ 'VALIDATION.USERNAME_TAKEN' | translate }}">{{ 'VALIDATION.USERNAME_TAKEN' | translate }}</article>
       }
     </app-form-input>
     <app-form-input formControlName="playerTag" name="playerTag" [label]="'PAGES.AUTH.REGISTER.PLAYERTAG_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PLAYERTAG_PLACEHOLDER' | translate" class="glass-input" [class.has-error]="registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid">
-      @if (registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid) {
-        @if (registerForm.get('playerTag')?.errors?.['tagNotFound']) {
-          <article class="error" title="{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}">{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}</article>
-        } @else {
-          <article class="error" title="{{ 'PAGES.AUTH.REGISTER.PLAYERTAG_INVALID' | translate }}">{{ 'PAGES.AUTH.REGISTER.PLAYERTAG_INVALID' | translate }}</article>
-        }
+      @if (registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid && registerForm.get('playerTag')?.errors?.['tagNotFound']) {
+        <article class="error" title="{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}">{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}</article>
       }
     </app-form-input>
     <section class="flex">
       <article>
         <app-form-input formControlName="passwordHash" type="password" name="passwordHash" [label]="'PAGES.AUTH.REGISTER.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.PASSWORD_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid">
-          @if (registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid) {
-            @if (registerForm.get('passwordHash')?.errors?.['required']) {
-              <article class="error" title="{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}">{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}</article>
-            } @else if (registerForm.get('passwordHash')?.errors?.['minLength']) {
-              <article class="error" title="{{ 'VALIDATION.MIN_LENGTH' | translate }}">{{ 'VALIDATION.MIN_LENGTH' | translate }}</article>
-            } @else {
-              <article class="error" title="{{ 'VALIDATION.PASSWORD_WEAK' | translate }}">{{ 'VALIDATION.PASSWORD_WEAK' | translate }}</article>
-            }
+          @if (registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid && registerForm.get('passwordHash')?.errors?.['required']) {
+            <article class="error" title="{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}">{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}</article>
+          } @else if (registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid && registerForm.get('passwordHash')?.errors?.['minLength']) {
+            <article class="error" title="{{ 'VALIDATION.MIN_LENGTH' | translate }}">{{ 'VALIDATION.MIN_LENGTH' | translate }}</article>
+          } @else if (registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid && registerForm.get('passwordHash')?.errors?.['noUppercase']) {
+            <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_UPPER' | translate }}">{{ 'VALIDATION.PASSWORD_NO_UPPER' | translate }}</article>
+          } @else if (registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid && registerForm.get('passwordHash')?.errors?.['noLowercase']) {
+            <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_LOWER' | translate }}">{{ 'VALIDATION.PASSWORD_NO_LOWER' | translate }}</article>
+          } @else if (registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid && registerForm.get('passwordHash')?.errors?.['noNumber']) {
+            <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_NUMBER' | translate }}">{{ 'VALIDATION.PASSWORD_NO_NUMBER' | translate }}</article>
+          } @else if (registerForm.get('passwordHash')?.touched && registerForm.get('passwordHash')?.invalid && registerForm.get('passwordHash')?.errors?.['noSpecial']) {
+            <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_SPECIAL' | translate }}">{{ 'VALIDATION.PASSWORD_NO_SPECIAL' | translate }}</article>
           }
         </app-form-input>
       </article>
