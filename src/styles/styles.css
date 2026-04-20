@@ -195,7 +195,7 @@ footer {
 }
 
 .image-box {
-  width: 50%;
+  width: 58%;
   position: relative;
   background: url("/assets/img/wallpaper.jpg") no-repeat center/cover;
   display: flex;
@@ -222,20 +222,41 @@ footer {
 }
 
 .image-box h1 {
-  font-size: 3rem;
+  font-size: 4rem; /* título más grande - look tipo banner */
   font-family: var(--font-secondary), sans-serif;
   letter-spacing: 0.02em;
+  line-height: 1.03; /* compactar line-height como en la imagen */
+  font-weight: 300; /* aspecto más delgado */
+  margin: 0 auto 1rem; /* centrar y separar del subtítulo */
+  max-width: 60ch; /* limitar ancho para mantener líneas legibles */
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); /* mejorar legibilidad sobre la imagen */
+  z-index: 1;
 }
 
 .image-box h2 {
   font-size: 1.25rem;
-  margin-top: 0.5rem;
+  margin: 0.75rem 0 0.6rem; /* más separación con título y descripción */
+  line-height: 1.4;
+  font-weight: 400;
+  max-width: 58ch;
+  z-index: 1;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); /* mejorar legibilidad sobre la imagen */
+}
+
+.image-box p {
+  padding: 0.25rem 1rem;
+  z-index: 1;
+  margin-top: 0.75rem; /* separación entre subtítulo y descripción */
+  font-size: 1.05rem;
+  max-width: 56ch;
+  line-height: 1.5;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); /* mejorar legibilidad sobre la imagen */
 }
 
 fieldset {
-  width: 50%;
+  width: 42%; /* reducir ancho para dejar más margen lateral y que el formulario quede más compacto */
   min-height: 100vh;
-  padding: 3rem 3.5rem;
+  padding: 3.5rem 4rem; /* un poco más de padding para dar respiración interna */
   margin: 0;
   border: none;
   color: var(--light-color-1);
@@ -250,12 +271,14 @@ fieldset {
   font-family: var(--font-secondary), sans-serif;
   font-size: 3rem;
   color: var(--light-color-1);
+  margin-bottom: 1.5rem; /* separar título del formulario del resto de campos */
 }
 
 app-form-input.glass-input,
 app-form-input.grid {
   display: block;
   margin-bottom: 1rem;
+  position: relative; /* contenedor relativo para ubicar chips de error sin afectar el flow */
 }
 
 app-form-input.glass-input label,
@@ -332,6 +355,78 @@ app-form-input.glass-input textarea:focus {
   margin: 0;
 }
 
+.error {
+  color: var(--color-error-1);
+}
+
+/* Error chips: aparecerán en la esquina del campo/label sin desplazar elementos */
+app-form-input .error,
+app-form-input.glass-input .error,
+app-form-input.grid .error {
+  position: absolute;
+  top: 0.6rem; /* junto al label */
+  right: 0.6rem;
+  transform: translateY(-50%);
+  background: var(--color-error-1);
+  color: #fff;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 12ch; /* resumir texto visible */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: auto;
+  animation: error-chip-in 0.16s ease forwards;
+}
+
+@keyframes error-chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* Resaltar campo con borde y animación cuando esté en estado de error. */
+app-form-input.glass-input.has-error input:not([type=checkbox]),
+app-form-input.grid.has-error input:not([type=checkbox]),
+app-form-input.glass-input.has-error textarea {
+  border-color: var(--color-error-1);
+  box-shadow: inset 0 6px 18px rgba(0, 0, 0, 0.45), 0 0 0 4px rgba(255, 0, 0, 0.06);
+  animation: field-shake 0.36s ease;
+}
+
+@keyframes field-shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+/* Evitar que errores largos desplacen o rompan el layout: mostrar texto resumido con tooltip (title) posible */
+app-form-input .error[title] {
+  cursor: help;
+}
+
 @media (max-width: 48rem) {
   .login-and-register {
     flex-direction: column;
@@ -347,6 +442,7 @@ app-form-input.glass-input textarea:focus {
   .form__legend {
     font-size: 2rem;
     margin-top: 1rem;
+    margin-bottom: 1rem; /* mantener separación en móvil */
   }
 }
 

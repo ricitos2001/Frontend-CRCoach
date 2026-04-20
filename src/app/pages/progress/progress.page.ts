@@ -1,9 +1,7 @@
 import { Component, effect, OnInit, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
-// snapshots were previously used for trophies, now trophies come from MetricsSignalStore
 import { MetricsSignalStore } from '../../signal_stores/metrics.signal.store';
 import { ChartOptions } from 'chart.js';
-// Replaced old specific graph components with unified GraphComponent
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
@@ -104,8 +102,8 @@ export class ProgressPage implements OnInit {
       return;
     }
 
-    let labels: string[] = [];
-    let data: number[] = [];
+    let labels: string[];
+    let data: number[];
 
     // Caso: arreglo (compatibilidad con snapshots)
     if (Array.isArray(metricOrArray) && metricOrArray.length > 0) {
