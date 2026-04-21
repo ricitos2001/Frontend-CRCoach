@@ -9,6 +9,16 @@
         "SESSIONS": "Diario de sesiones",
         "PROGRESS": "Progreso del jugador",
         "PROFILE": "Perfil de usuario"
+      },
+      "FOOTER": {
+        "TITLE1": "Información legal",
+        "TITLE2": "Ayuda",
+        "TITLE3": "Contacto",
+        "LINK1": "Términos y condiciones",
+        "LINK2": "Acuerdo con los TOS",
+        "LINK3": "Aviso legal",
+        "LINK4": "Política de privacidad",
+        "LINK5": "Información sobre las cookies"
       }
     },
     "SHARED": {

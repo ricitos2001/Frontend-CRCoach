@@ -40,6 +40,16 @@ export class LanguageSelectorComponent implements OnInit {
     this.currentLang = lang;
   }
 
+  getFlagPath(lang: string) {
+    // Map language codes to flag filenames in assets/img/flags
+    const map: { [k: string]: string } = {
+      es: 'espana.png',
+      en: 'reino-unido.png',
+    };
+    const file = map[lang] || 'union-europea.png';
+    return `/assets/img/flags/${file}`;
+  }
+
   private setTranslations() {
     this.languageLabel = this.translate.instant('COMPONENTS.SHARED.LANGUAGE');
   }

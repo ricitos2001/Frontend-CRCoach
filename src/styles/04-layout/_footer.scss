@@ -11,4 +11,13 @@ footer {
   background-size: 47.8px 47.8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   align-content: center;
+  color: var(--light-color-1);
+}
+
+svg {
+  width: 2.5rem;
+}
+
+svg circle {
+  fill: var(--light-color-1);
 }

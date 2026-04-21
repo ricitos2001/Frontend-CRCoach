@@ -1,4 +1,7 @@
-<label for="lang-select" class="language-selector__languages">{{languageLabel | translate}}</label>
+<!--label for="lang-select" class="language-selector__languages">{{languageLabel | translate}}</label-->
+<label for="lang-select" class="language-selector__languages">
+  <img [src]="getFlagPath(currentLang)" [alt]="languageLabel | translate" class="language-selector__flag" />
+</label>
 <select id="lang-select" (change)="setLanguage($any($event.target).value)" class="language-selector">
   @for (l of languages; track l.code) {
     <option [value]="l.code" [selected]="l.code === currentLang" class="language-selector__languages">{{l.label}}</option>

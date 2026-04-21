@@ -9,6 +9,16 @@
         "SESSIONS": "Session journal",
         "PROGRESS": "Player progress",
         "PROFILE": "User profile"
+      },
+      "FOOTER": {
+        "TITLE1": "Legal information",
+        "TITLE2": "Help",
+        "TITLE3": "Contact",
+        "LINK1": "Terms and conditions",
+        "LINK2": "TOS agreement",
+        "LINK3": "Legal notice",
+        "LINK4": "Privacy policy",
+        "LINK5": "Cookie information"
       }
     },
     "SHARED": {

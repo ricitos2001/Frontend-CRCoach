@@ -10,6 +10,7 @@ import { filter } from 'rxjs';
   imports: [RouterOutlet, HeaderComponent, MainComponent, FooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  standalone: true,
 })
 export class App implements OnInit {
   constructor(
