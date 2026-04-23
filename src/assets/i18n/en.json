@@ -62,12 +62,12 @@
       "STEP_3_TITLE": "Analyze and improve",
       "STEP_3_DESC": "See data, set goals and climb trophies.",
       "READY_TITLE": "Ready to climb trophies?",
-      "READY_DESC": "Join, link your account and start improving today. It's free."
+      "READY_DESC": "Join, link your account and start improving today. It's free.",
+      "STATS_PLAYERS_ACTIVE": "Active players",
+      "STATS_BATTLES_ANALYZED": "Matches analyzed",
+      "STATS_WINRATE_ACCURACY": "Winrate accuracy",
+      "STATS_COUNTRIES": "Countries"
     },
-    "STATS_PLAYERS_ACTIVE": "Active players",
-    "STATS_BATTLES_ANALYZED": "Matches analyzed",
-    "STATS_WINRATE_ACCURACY": "Winrate accuracy",
-    "STATS_COUNTRIES": "Countries",
     "AUTH": {
       "GLOBAL": {
         "TITLE": "COACH ROYALE",

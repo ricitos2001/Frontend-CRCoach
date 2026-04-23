@@ -62,12 +62,12 @@
       "STEP_3_TITLE": "Analiza y mejora",
       "STEP_3_DESC": "Ve datos, establece objetivos y sube copas.",
       "READY_TITLE": "¿Listo para subir de trofeos?",
-      "READY_DESC": "Únete, vincula tu cuenta y empieza a mejorar hoy mismo. Es gratis."
+      "READY_DESC": "Únete, vincula tu cuenta y empieza a mejorar hoy mismo. Es gratis.",
+      "STATS_PLAYERS_ACTIVE": "Jugadores activos",
+      "STATS_BATTLES_ANALYZED": "Batallas analizadas",
+      "STATS_WINRATE_ACCURACY": "Precisión de winrate",
+      "STATS_COUNTRIES": "Países"
     },
-    "STATS_PLAYERS_ACTIVE": "Jugadores activos",
-    "STATS_BATTLES_ANALYZED": "Batallas analizadas",
-    "STATS_WINRATE_ACCURACY": "Precisión de winrate",
-    "STATS_COUNTRIES": "Países",
     "AUTH": {
       "GLOBAL": {
         "TITLE": "COACH ROYALE",
