@@ -1,6 +1,7 @@
 footer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   min-width: 100%;
   min-height: 6.00rem;
   background-color: var(--color-primary-1);
@@ -10,8 +11,6 @@ footer {
   color: var(--light-color-1);
   align-items: center;
   justify-content: space-between;
-  text-align: center;
-
 }
 
 footer h1, footer .app {
@@ -21,10 +20,17 @@ footer h1, footer .app {
   padding: 0 1rem;
 }
 
+footer h2 {
+  padding: 0.5rem;
+}
+
 footer ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+footer ul li {
+  padding: 0.5rem;
 }
 
 footer .social-media {
