@@ -33,3 +33,40 @@ header svg {
 header svg circle {
   fill: var(--light-color-1);
 }
+
+/* Header navigation buttons - estilo tipo botón como en la imagen */
+header ul li a,
+header ul li button {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: transparent;
+  border: 1px none rgba(255,255,255,0.06);
+}
+
+/* versión activa/seleccionada */
+header ul li a.active,
+header ul li button.active {
+  background: rgba(255,255,255,0.12);
+}
+
+/* espaciado entre items para que se vean como botones separados */
+header ul li { margin: 0 0.35rem; }
+
+/* Estilos para elementos <select> (ej. selector de idioma) */
+header ul li select, header ul li select option {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0.35rem 1.4rem 0.35rem 0.6rem;
+  height: 2.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--color-primary-1);
+  color: var(--light-color-1);
+  border: none;
+}
