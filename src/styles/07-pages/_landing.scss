@@ -1,0 +1,21 @@
+.landing {
+  text-align: center;
+}
+
+.landing__grid-container-x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+}
+
+.landing__grid-container-x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+}
+
+.landing__grid-container-x4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+}

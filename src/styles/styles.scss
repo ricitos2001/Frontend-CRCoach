@@ -12,8 +12,7 @@
 // 4. Base (element styles)
 @use '03-elements/base' as *;
 
-// 5. Layout (grid, containers)
-@use '04-layout/grid' as *;
+// 5. Layout (header, main, footer, sidebar)
 @use '04-layout/header' as *;
 @use '04-layout/main' as *;
 @use '04-layout/footer' as *;
@@ -27,4 +26,5 @@
 
 // 8. Pages
 @use '07-pages/not-found' as *;
-@use '07-pages/_forms' as *;
+@use '07-pages/forms' as *;
+@use '07-pages/landing' as *;

@@ -1,21 +1,44 @@
 footer {
+  display: flex;
+  flex-direction: row;
   min-width: 100%;
   min-height: 6.00rem;
   background-color: var(--color-primary-1);
   font-family: var(--font-primary), sans-serif;
-  background-image:
-    linear-gradient(45deg, var(--color-primary-3) 25%, transparent 25%),
-    linear-gradient(-45deg, var(--color-primary-3) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, var(--color-primary-3) 75%),
-    linear-gradient(-45deg, transparent 75%, var(--color-primary-3) 75%);
-  background-size: 47.8px 47.8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   align-content: center;
   color: var(--light-color-1);
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+
 }
 
-svg {
+footer h1, footer .app {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+footer ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .social-media {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+footer svg {
   width: 2.5rem;
+}
+
+footer .logo {
+ width: 5rem;
 }
 
 svg circle {

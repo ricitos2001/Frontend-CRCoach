@@ -1,4 +1,106 @@
-<main class="main">
-  <h1>{{ 'PAGES.LANDING.HELLO_WORLD' | translate }}</h1>
-  <app-common-button routerLink="/register">{{ 'COMPONENTS.SHARED.GET_STARTED' | translate }}</app-common-button>
-</main>
+<section class="landing">
+  <article>
+    <h1>{{ 'PAGES.LANDING.HERO_TITLE' | translate }}</h1>
+    <p>{{ 'PAGES.LANDING.HERO_PARAGRAPH' | translate }}</p>
+    <app-common-button routerLink="/register">{{ 'COMPONENTS.SHARED.GET_STARTED' | translate }}</app-common-button>
+  </article>
+  <section class="landing__grid-container-x4">
+    <article>
+      <h2>12.400+</h2>
+      <p>{{ 'PAGES.LANDING.STATS_PLAYERS_ACTIVE' | translate }}</p>
+    </article>
+    <article>
+      <h2>12M+</h2>
+      <p>{{ 'PAGES.LANDING.STATS_BATTLES_ANALYZED' | translate }}</p>
+    </article>
+    <article>
+      <h2>100%</h2>
+      <p>{{ 'PAGES.LANDING.STATS_WINRATE_ACCURACY' | translate }}</p>
+    </article>
+    <article>
+      <h2>195</h2>
+      <p>{{ 'PAGES.LANDING.STATS_COUNTRIES' | translate }}</p>
+    </article>
+  </section>
+  <section>
+    <article id="what-offers">
+      <h1>{{ 'PAGES.LANDING.WHAT_OFFERS_TITLE' | translate }}</h1>
+      <p>{{ 'PAGES.LANDING.WHAT_OFFERS_DESC' | translate }}</p>
+    </article>
+    <section class="landing__grid-container-x2">
+      <section>
+        <article>
+          <img src="" alt="{{ 'PAGES.LANDING.FEATURE_BATTLES_TITLE' | translate }}">
+          <h2>{{ 'PAGES.LANDING.FEATURE_BATTLES_TITLE' | translate }}</h2>
+        </article>
+        <p>{{ 'PAGES.LANDING.FEATURE_BATTLES_DESC' | translate }}</p>
+      </section>
+      <section>
+        <article>
+          <img src="" alt="{{ 'PAGES.LANDING.FEATURE_SESSIONS_TITLE' | translate }}">
+          <h2>{{ 'PAGES.LANDING.FEATURE_SESSIONS_TITLE' | translate }}</h2>
+        </article>
+        <p>{{ 'PAGES.LANDING.FEATURE_SESSIONS_DESC' | translate }}</p>
+      </section>
+      <section>
+        <article>
+          <img src="" alt="{{ 'PAGES.LANDING.FEATURE_GOALS_TITLE' | translate }}">
+          <h2>{{ 'PAGES.LANDING.FEATURE_GOALS_TITLE' | translate }}</h2>
+        </article>
+        <p>{{ 'PAGES.LANDING.FEATURE_GOALS_DESC' | translate }}</p>
+      </section>
+
+      <section>
+        <article>
+          <img src="" alt="{{ 'PAGES.LANDING.FEATURE_WEAKNESSES_TITLE' | translate }}">
+          <h2>{{ 'PAGES.LANDING.FEATURE_WEAKNESSES_TITLE' | translate }}</h2>
+        </article>
+        <p>{{ 'PAGES.LANDING.FEATURE_WEAKNESSES_DESC' | translate }}</p>
+      </section>
+
+      <section>
+        <article>
+          <img src="" alt="{{ 'PAGES.LANDING.FEATURE_TROPHIES_TITLE' | translate }}">
+          <h2>{{ 'PAGES.LANDING.FEATURE_TROPHIES_TITLE' | translate }}</h2>
+        </article>
+        <p>{{ 'PAGES.LANDING.FEATURE_TROPHIES_DESC' | translate }}</p>
+      </section>
+
+      <section>
+        <article>
+          <img src="" alt="{{ 'PAGES.LANDING.FEATURE_STATS_TITLE' | translate }}">
+          <h2>{{ 'PAGES.LANDING.FEATURE_STATS_TITLE' | translate }}</h2>
+        </article>
+        <p>{{ 'PAGES.LANDING.FEATURE_STATS_DESC' | translate }}</p>
+      </section>
+
+    </section>
+  </section>
+  <section>
+    <article>
+      <h1>{{ 'PAGES.LANDING.STEPS_TITLE' | translate }}</h1>
+    </article>
+    <section class="landing__grid-container-x3">
+      <article>
+        <h1>{{ 'PAGES.LANDING.STEP_1_NUMBER' | translate }}</h1>
+        <h2>{{ 'PAGES.LANDING.STEP_1_TITLE' | translate }}</h2>
+        <p>{{ 'PAGES.LANDING.STEP_1_DESC' | translate }}</p>
+      </article>
+      <article>
+        <h1>{{ 'PAGES.LANDING.STEP_2_NUMBER' | translate }}</h1>
+        <h2>{{ 'PAGES.LANDING.STEP_2_TITLE' | translate }}</h2>
+        <p>{{ 'PAGES.LANDING.STEP_2_DESC' | translate }}</p>
+      </article>
+      <article>
+        <h1>{{ 'PAGES.LANDING.STEP_3_NUMBER' | translate }}</h1>
+        <h2>{{ 'PAGES.LANDING.STEP_3_TITLE' | translate }}</h2>
+        <p>{{ 'PAGES.LANDING.STEP_3_DESC' | translate }}</p>
+      </article>
+    </section>
+  </section>
+  <article>
+    <h1>{{ 'PAGES.LANDING.READY_TITLE' | translate }}</h1>
+    <p>{{ 'PAGES.LANDING.READY_DESC' | translate }}</p>
+    <app-common-button routerLink="/register">{{ 'COMPONENTS.SHARED.GET_STARTED' | translate }}</app-common-button>
+  </article>
+</section>

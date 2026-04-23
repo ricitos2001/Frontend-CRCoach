@@ -21,17 +21,5 @@ export class App implements OnInit {
   ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        const url = event.urlAfterRedirects;
-        this.renderer.removeClass(document.body, 'auth-page');
-
-        if (
-          url.includes('/login') ||
-          url.includes('/register') ||
-          url.includes('/recover-password')
-        ) {
-          this.renderer.addClass(document.body, 'auth-page');
-        }
-      });
   }
 }

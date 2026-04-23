@@ -10,6 +10,12 @@
         "PROGRESS": "Player progress",
         "PROFILE": "User profile"
       },
+      "HEADER": {
+        "START": "Home",
+        "WHAT_OFFERS": "What we offer",
+        "CONTACT": "Contact",
+        "GET_STARTED": "Get started"
+      },
       "FOOTER": {
         "TITLE1": "Legal information",
         "TITLE2": "Help",
@@ -29,11 +35,42 @@
   },
   "PAGES": {
     "LANDING": {
-      "HELLO_WORLD": "Hello World!"
+      "HERO_TITLE": "Stop losing, start winning.",
+      "HERO_PARAGRAPH": "CR Coach analyzes every match, detects your weaknesses and guides you with clear goals so you steadily climb trophies.",
+      "WHAT_OFFERS_TITLE": "Everything you need to improve",
+      "WHAT_OFFERS_DESC": "Tools designed specifically for players who want to level up.",
+      "FEATURE_BATTLES_TITLE": "Battle History",
+      "FEATURE_BATTLES_DESC": "View and analyze all your matches with detailed statistics.",
+      "FEATURE_SESSIONS_TITLE": "Session Journal",
+      "FEATURE_SESSIONS_DESC": "Write reflections, lessons learned and the mood of each session.",
+      "FEATURE_GOALS_TITLE": "Measurable Goals",
+      "FEATURE_GOALS_DESC": "Set concrete goals and track your progress automatically.",
+      "FEATURE_WEAKNESSES_TITLE": "Weaknesses Diagnostic",
+      "FEATURE_WEAKNESSES_DESC": "Discover which archetypes and cards you lose against the most so you can improve.",
+      "FEATURE_TROPHIES_TITLE": "Trophies Evolution",
+      "FEATURE_TROPHIES_DESC": "Record and analyze your trophy progress over time.",
+      "FEATURE_STATS_TITLE": "Advanced Statistics",
+      "FEATURE_STATS_DESC": "Winrate by archetype, win streaks, trophy evolution and much more.",
+      "STEPS_TITLE": "Start in 3 steps",
+      "STEP_1_NUMBER": "01",
+      "STEP_1_TITLE": "Create your account",
+      "STEP_1_DESC": "Sign up for free in seconds with your email.",
+      "STEP_2_NUMBER": "02",
+      "STEP_2_TITLE": "Play matches",
+      "STEP_2_DESC": "Play Clash Royale matches to generate data.",
+      "STEP_3_NUMBER": "03",
+      "STEP_3_TITLE": "Analyze and improve",
+      "STEP_3_DESC": "See data, set goals and climb trophies.",
+      "READY_TITLE": "Ready to climb trophies?",
+      "READY_DESC": "Join, link your account and start improving today. It's free."
     },
+    "STATS_PLAYERS_ACTIVE": "Active players",
+    "STATS_BATTLES_ANALYZED": "Matches analyzed",
+    "STATS_WINRATE_ACCURACY": "Winrate accuracy",
+    "STATS_COUNTRIES": "Countries",
     "AUTH": {
       "GLOBAL": {
-        "TITLE": "CRCOACH",
+        "TITLE": "COACH ROYALE",
         "SUBTITLE": "Claim your throne",
         "TEXT": "Domain the battlefield with sovereign-level analytics. The evolution of your strategy begins at the Etherea Citadel"
       },

@@ -10,6 +10,12 @@
         "PROGRESS": "Progreso del jugador",
         "PROFILE": "Perfil de usuario"
       },
+      "HEADER": {
+        "START": "Inicio",
+        "WHAT_OFFERS": "Que ofrecemos",
+        "CONTACT": "Contacto",
+        "GET_STARTED": "Empecemos"
+      },
       "FOOTER": {
         "TITLE1": "Información legal",
         "TITLE2": "Ayuda",
@@ -29,11 +35,42 @@
   },
   "PAGES": {
     "LANDING": {
-      "HELLO_WORLD": "¡Hola Mundo!"
+      "HERO_TITLE": "Deja de perder, empieza a ganar.",
+      "HERO_PARAGRAPH": "CR Coach analiza cada partida, detecta tus debilidades y te guía con objetivos claros para que subas de trofeos de forma constante.",
+      "WHAT_OFFERS_TITLE": "Todo lo que necesitas para mejorar",
+      "WHAT_OFFERS_DESC": "Herramientas diseñadas específicamente para jugadores que quieren subir de nivel.",
+      "FEATURE_BATTLES_TITLE": "Historial de Batallas",
+      "FEATURE_BATTLES_DESC": "Visualiza y analiza todas tus partidas con estadísticas detalladas.",
+      "FEATURE_SESSIONS_TITLE": "Diario de Sesiones",
+      "FEATURE_SESSIONS_DESC": "Anota reflexiones, lecciones aprendidas y el estado de ánimo de cada sesión.",
+      "FEATURE_GOALS_TITLE": "Objetivos Medibles",
+      "FEATURE_GOALS_DESC": "Define metas concretas y realiza un seguimiento automático de tu progreso.",
+      "FEATURE_WEAKNESSES_TITLE": "Diagnóstico de Debilidades",
+      "FEATURE_WEAKNESSES_DESC": "Descubre contra qué arquetipos y cartas pierdes más para mejorar.",
+      "FEATURE_TROPHIES_TITLE": "Evolución de Trofeos",
+      "FEATURE_TROPHIES_DESC": "Registra y analiza tu progreso de trofeos a lo largo del tiempo.",
+      "FEATURE_STATS_TITLE": "Estadísticas Avanzadas",
+      "FEATURE_STATS_DESC": "Winrate por arquetipo, racha de victorias, evolución de trofeos y mucho más.",
+      "STEPS_TITLE": "Empieza en 3 pasos",
+      "STEP_1_NUMBER": "01",
+      "STEP_1_TITLE": "Crea tu cuenta",
+      "STEP_1_DESC": "Regístrate gratis en segundos con tu email.",
+      "STEP_2_NUMBER": "02",
+      "STEP_2_TITLE": "Juega partidas",
+      "STEP_2_DESC": "Juega partidas de Clash Royale para obtener datos.",
+      "STEP_3_NUMBER": "03",
+      "STEP_3_TITLE": "Analiza y mejora",
+      "STEP_3_DESC": "Ve datos, establece objetivos y sube copas.",
+      "READY_TITLE": "¿Listo para subir de trofeos?",
+      "READY_DESC": "Únete, vincula tu cuenta y empieza a mejorar hoy mismo. Es gratis."
     },
+    "STATS_PLAYERS_ACTIVE": "Jugadores activos",
+    "STATS_BATTLES_ANALYZED": "Batallas analizadas",
+    "STATS_WINRATE_ACCURACY": "Precisión de winrate",
+    "STATS_COUNTRIES": "Países",
     "AUTH": {
       "GLOBAL": {
-        "TITLE": "CRCOACH",
+        "TITLE": "COACH ROYALE",
         "SUBTITLE": "Reclama tu trono",
         "TEXT": "Domina el campo de batalla con analíticas de nivel soberano. La evolución de tu estrategia comienza en la Ciudadela Etherea"
       },
