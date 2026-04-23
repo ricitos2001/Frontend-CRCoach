@@ -1,9 +1,11 @@
 <section class="landing">
-  <article>
-    <h1>{{ 'PAGES.LANDING.HERO_TITLE' | translate }}</h1>
-    <p>{{ 'PAGES.LANDING.HERO_PARAGRAPH' | translate }}</p>
+  <section class="landing__hero">
+    <article class="landing__hero-text">
+      <h1>{{ 'PAGES.LANDING.HERO_TITLE' | translate }}</h1>
+      <p>{{ 'PAGES.LANDING.HERO_PARAGRAPH' | translate }}</p>
+    </article>
     <app-common-button routerLink="/register">{{ 'COMPONENTS.SHARED.GET_STARTED' | translate }}</app-common-button>
-  </article>
+  </section>
   <section class="landing__grid-container-x4">
     <article>
       <h2>12.400+</h2>
@@ -22,8 +24,8 @@
       <p>{{ 'PAGES.LANDING.STATS_COUNTRIES' | translate }}</p>
     </article>
   </section>
-  <section>
-    <article id="what-offers">
+  <section class="landing__hero">
+    <article id="what-offers" class="landing__hero-text">
       <h1>{{ 'PAGES.LANDING.WHAT_OFFERS_TITLE' | translate }}</h1>
       <p>{{ 'PAGES.LANDING.WHAT_OFFERS_DESC' | translate }}</p>
     </article>
@@ -76,8 +78,8 @@
 
     </section>
   </section>
-  <section>
-    <article>
+  <section class="landing__hero">
+    <article class="landing__hero-text">
       <h1>{{ 'PAGES.LANDING.STEPS_TITLE' | translate }}</h1>
     </article>
     <section class="landing__grid-container-x3">
@@ -98,9 +100,11 @@
       </article>
     </section>
   </section>
-  <article>
-    <h1>{{ 'PAGES.LANDING.READY_TITLE' | translate }}</h1>
-    <p>{{ 'PAGES.LANDING.READY_DESC' | translate }}</p>
+  <section class="landing__hero">
+    <article class="landing__hero-text">
+      <h1>{{ 'PAGES.LANDING.READY_TITLE' | translate }}</h1>
+      <p>{{ 'PAGES.LANDING.READY_DESC' | translate }}</p>
+    </article>
     <app-common-button routerLink="/register">{{ 'COMPONENTS.SHARED.GET_STARTED' | translate }}</app-common-button>
-  </article>
+  </section>
 </section>

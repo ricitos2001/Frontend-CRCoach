@@ -190,6 +190,7 @@ header ul li select, header ul li select option {
 footer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   min-width: 100%;
   min-height: 6rem;
   background-color: var(--color-primary-1);
@@ -199,7 +200,6 @@ footer {
   color: var(--light-color-1);
   align-items: center;
   justify-content: space-between;
-  text-align: center;
 }
 
 footer h1, footer .app {
@@ -209,10 +209,17 @@ footer h1, footer .app {
   padding: 0 1rem;
 }
 
+footer h2 {
+  padding: 0.5rem;
+}
+
 footer ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+footer ul li {
+  padding: 0.5rem;
 }
 
 footer .social-media {
@@ -562,13 +569,30 @@ app-form-input .error[title] {
 
 .landing {
   text-align: center;
-  color: #fff;
-  padding: 6rem 0 6rem;
+  color: var(--light-color-1);
+  padding: 6rem 0 4rem;
+}
+
+.landing__hero {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing__hero app-common-button {
+  padding: 0 0 4rem;
+}
+
+.landing__hero-text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
 }
 
 .landing h1 {
   font-size: 3.2rem;
-  line-height: 1.05;
   margin: 0.25rem 0 0.8rem;
   font-weight: 800;
   text-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
@@ -585,7 +609,7 @@ app-form-input .error[title] {
   position: relative;
   min-width: 220px;
   padding: 0.75rem 2.25rem;
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 255, 255, 0.08);
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%);
   color: var(--light-color-1);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -623,17 +647,16 @@ app-form-input .error[title] {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-  gap: 1rem;
-  margin: 1.5rem auto;
+  gap: 1.6rem;
+  margin: 0 auto;
   padding: 1.25rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 6px;
   box-shadow: 0 8px 40px rgba(2, 10, 20, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(4px);
   position: relative;
 }
 
-/* add subtle top/bottom separators in the stats bar like the reference */
 .landing__grid-container-x4::before,
 .landing__grid-container-x4::after {
   content: "";
@@ -647,14 +670,14 @@ app-form-input .error[title] {
 }
 
 .landing__grid-container-x4 article h2 {
-  font-size: 1.9rem;
-  margin: 0 0 0.35rem;
+  font-size: 1.25rem; /* más pequeño */
+  margin: 0 0 0.2rem;
   font-weight: 800;
 }
 
 .landing__grid-container-x4 article p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.82rem; /* más pequeño */
   opacity: 0.95;
 }
 
@@ -671,7 +694,7 @@ app-form-input .error[title] {
   text-align: left;
   /* glassmorphism card */
   padding: 0.8rem;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 8px;
   border: 4px solid rgba(255, 255, 255, 0.22);
   box-shadow: 0 12px 28px rgba(2, 10, 20, 0.55);
