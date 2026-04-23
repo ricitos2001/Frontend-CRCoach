@@ -26,16 +26,6 @@ header ul li {
   padding: 0 1rem;
 }
 
-header app-common-button, header app-language-selector {
-  font-family: var(--font-primary), sans-serif;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--color-primary-1);
-  color: var(--light-color-1);
-  border: solid 0.125rem var(--light-color-1);
-  border-collapse: collapse;
-  border-radius: 0.50rem;
-}
-
 header svg {
   width: 2.5rem;
 }
