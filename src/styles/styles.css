@@ -149,6 +149,10 @@ footer .icon-background {
   fill: var(--elements-color);
 }
 
+.code-only {
+  display: none;
+}
+
 header {
   border-radius: 0 0 8px 8px;
 }
