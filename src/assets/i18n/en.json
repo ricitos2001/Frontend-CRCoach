@@ -66,7 +66,15 @@
       "STATS_PLAYERS_ACTIVE": "Active players",
       "STATS_BATTLES_ANALYZED": "Matches analyzed",
       "STATS_WINRATE_ACCURACY": "Winrate accuracy",
-      "STATS_COUNTRIES": "Countries"
+      "STATS_COUNTRIES": "Countries",
+      "STATS_DAILY_ANALYSIS": "Daily analyses",
+      "STATS_RESPONSE_TIME": "Response time",
+      "STATS_UPTIME": "System uptime",
+      "STATS_MATCHUPS_PROCESSED": "Matchups processed",
+      "STATS_GAME_MODES_SUPPORTED": "Supported game modes",
+      "STATS_ACTIVE_DAILY_USERS": "Daily active users",
+      "STATS_USER_IMPROVEMENT": "Average performance improvement",
+      "STATS_AVAILABILITY": "24/7 availability"
     },
     "AUTH": {
       "GLOBAL": {

@@ -70,6 +70,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--color-primary-5);
   font-family: var(--font-primary), sans-serif;
@@ -643,9 +647,9 @@ app-form-input .error[title] {
   padding: 0.5rem 1.2rem;
 }
 
-.landing__grid-container-x4 {
+.landing__grid-container-x12 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   place-items: center;
   gap: 1.6rem;
   margin: 0 auto;
@@ -655,9 +659,13 @@ app-form-input .error[title] {
   box-shadow: 0 8px 40px rgba(2, 10, 20, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(4px);
   position: relative;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  will-change: transform;
+  overflow: hidden;
+  width: 100%;
 }
 
-.landing__grid-container-x4::before,
 .landing__grid-container-x4::after {
   content: "";
   position: absolute;

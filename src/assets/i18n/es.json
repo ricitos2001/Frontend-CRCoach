@@ -66,7 +66,15 @@
       "STATS_PLAYERS_ACTIVE": "Jugadores activos",
       "STATS_BATTLES_ANALYZED": "Batallas analizadas",
       "STATS_WINRATE_ACCURACY": "Precisión de winrate",
-      "STATS_COUNTRIES": "Países"
+      "STATS_COUNTRIES": "Países",
+      "STATS_DAILY_ANALYSIS": "Análisis diarios",
+      "STATS_RESPONSE_TIME": "Tiempo de respuesta",
+      "STATS_UPTIME": "Disponibilidad del sistema",
+      "STATS_MATCHUPS_PROCESSED": "Enfrentamientos procesados",
+      "STATS_GAME_MODES_SUPPORTED": "Modos de juego soportados",
+      "STATS_ACTIVE_DAILY_USERS": "Usuarios activos diarios",
+      "STATS_USER_IMPROVEMENT": "Mejora media de rendimiento",
+      "STATS_AVAILABILITY": "Disponibilidad 24/7"
     },
     "AUTH": {
       "GLOBAL": {

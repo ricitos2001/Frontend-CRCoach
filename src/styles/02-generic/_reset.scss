@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--color-primary-5);
   font-family: var(--font-primary), sans-serif;
