@@ -1,5 +1,5 @@
 <section>
-  <h2>{{ 'PAGES.WEAKNESSES.SUMMARY_TITLE' | translate }}</h2>
+  <h1>{{'PAGES.WEAKNESSES.TITLE' | translate }}</h1>
   <article class="flex">
     <app-searcher (periodFilter)="onPeriodFilter($event)"></app-searcher>
     <app-form-input type="select" name="gameMode" [hideLabel]="true" [options]="gameModes" [(ngModel)]="selectedMode" (ngModelChange)="onModeChange($event)"></app-form-input>
@@ -11,23 +11,26 @@
       <app-advanced-search (apply)="onAdvancedApply($event)" (reset)="onAdvancedReset()"></app-advanced-search>
     </app-modal>
   </article>
-  @if (analyticsStore.loading() && !analyticsStore.summary()) {
-    <p>{{ 'PAGES.WEAKNESSES.LOADING_SUMMARY' | translate }}</p>
-  }
-  @if (analyticsStore.error(); as pErr) {
-    <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_SUMMARY' | translate:{ err: pErr } }}</p>
-  }
-  @if (analyticsStore.summary(); as summaryReport) {
-    <p>{{summaryReport.totalBattles}}</p>
-    <p>{{summaryReport.avgElixirLastDeck}}</p>
-    <p>{{summaryReport.weakestArchetype}}</p>
-    <p>{{summaryReport.strongestArchetype}}</p>
-    <p>{{summaryReport.winRateLast25}}</p>
-    <p>{{summaryReport.winRateLast7d}}</p>
-  }
+  <article>
+    <h2>{{ 'PAGES.WEAKNESSES.SUMMARY_TITLE' | translate }}</h2>
+    @if (analyticsStore.loading() && !analyticsStore.summary()) {
+      <p>{{ 'PAGES.WEAKNESSES.LOADING_SUMMARY' | translate }}</p>
+    }
+    @if (analyticsStore.error(); as pErr) {
+      <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_SUMMARY' | translate:{ err: pErr } }}</p>
+    }
+    @if (analyticsStore.summary(); as summaryReport) {
+      <p>{{summaryReport.totalBattles}}</p>
+      <p>{{summaryReport.avgElixirLastDeck}}</p>
+      <p>{{summaryReport.weakestArchetype}}</p>
+      <p>{{summaryReport.strongestArchetype}}</p>
+      <p>{{summaryReport.winRateLast25}}</p>
+      <p>{{summaryReport.winRateLast7d}}</p>
+    }
+  </article>
 </section>
 <section>
-  <h2>{{ 'PAGES.WEAKNESSES.TITLE' | translate }}</h2>
+  <h2>{{ 'PAGES.WEAKNESSES.WEAKNESSES_TITLE' | translate }}</h2>
   @if (analyticsStore.loading() && !analyticsStore.weaknesses()) {
     <p>{{ 'PAGES.WEAKNESSES.LOADING_WEAKNESSES' | translate }}</p>
   }
@@ -35,7 +38,6 @@
     <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_WEAKNESSES' | translate:{ err: pErr } }}</p>
   }
   @if (analyticsStore.weaknesses()) {
-    <!--GRAFICO DE DEBILIDADES - reutiliza componente app-graph -->
     <article class="chart-container" style="max-width:900px; margin: 1rem 0; height: 420px;">
       <app-graph [type]="'bar'" [labels]="weaknessesLabels" [datasets]="weaknessesDatasets" [options]="barChartOptions" [width]="900" [height]="420" [noDataMessage]="( 'PAGES.WEAKNESSES.NO_DATA' | translate )"></app-graph>
     </article>

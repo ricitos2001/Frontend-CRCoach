@@ -169,7 +169,16 @@
       "ERROR_PROBLEMATIC_CARDS": "Error cargando cartas problemáticas: {{err}}",
       "ARCHETYPE": "Arquetipo",
       "BATTLES_LABEL": "Batallas",
-      "BUTTON": "Búsqueda avanzada"
+      "BUTTON": "Búsqueda avanzada",
+      "FILTER_FROM": "Desde",
+      "FILTER_TO": "Hasta",
+      "FILTER_MODE": "Modo de juego",
+      "FILTER_MIN_BATTLES": "Batallas mínimas",
+      "FILTER_LIMIT": "Límite",
+      "FILTER_MIN_APPEARANCES": "Apariciones mínimas",
+      "FILTER_RESET": "Restablecer",
+      "FILTER_APPLY": "Aplicar",
+      "WEAKNESSES_TITLE": "Debilidades por arquetipo rival"
     },
     "DASHBOARD": {
       "TROPHIES_TITLE": "Evolución de trofeos",

@@ -1,16 +1,15 @@
 <section>
-  <h2>{{ 'PAGES.PROGRESS.TITLE' | translate }}</h2>
   <article class="flex">
-    <app-searcher></app-searcher>
+    <h1>{{ 'PAGES.PROGRESS.TITLE' | translate }}</h1>
     <app-refresh-button></app-refresh-button>
   </article>
   <section>
     <section>
       <article>
         <h2>{{ 'PAGES.PROGRESS.TROPHIES_TITLE' | translate }}</h2>
-        <div class="chart-wrapper">
-          <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="600" [height]="300" [noDataMessage]="trophiesNoDataMessage"></app-graph>
-        </div>
+        <article class="chart-wrapper">
+          <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
+        </article>
       </article>
       <section>
         <article>
@@ -30,7 +29,7 @@
     <article>
       <h3>{{ 'PAGES.PROGRESS.BATTLES_COMPARISON' | translate }}</h3>
       @if (metricsStore.metric(); as metric) {
-        <p>Actual: {{metric.battles.total}} ({{metric.battles.last24hr}})</p>
+        <p>Actual: {{metric.battles.total}}/{{metric.battles.last24h}}</p>
       }
       <app-graph [type]="'bar'" [labels]="battlesCompLabels" [datasets]="battlesCompDatasets" [options]="battlesCompOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
     </article>

@@ -169,7 +169,16 @@
       "ERROR_PROBLEMATIC_CARDS": "Error loading problematic cards: {{err}}",
       "ARCHETYPE": "Archetype",
       "BATTLES_LABEL": "Battles",
-      "BUTTON": "Advanced search"
+      "BUTTON": "Advanced search",
+      "FILTER_FROM": "From",
+      "FILTER_TO": "To",
+      "FILTER_MODE": "Game mode",
+      "FILTER_MIN_BATTLES": "Minimum battles",
+      "FILTER_LIMIT": "Limit",
+      "FILTER_MIN_APPEARANCES": "Minimum appearances",
+      "FILTER_RESET": "Reset",
+      "FILTER_APPLY": "Apply",
+      "WEAKNESSES_TITLE": "Weaknesses for opponent archetype"
     },
     "DASHBOARD": {
       "TROPHIES_TITLE": "Trophies evolution",

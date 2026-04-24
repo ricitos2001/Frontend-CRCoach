@@ -6,6 +6,7 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
 import { SearcherComponent } from '../../components/shared/searcher/searcher.component';
+import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store';
 
 @Component({
   selector: 'app-progress',
@@ -23,6 +24,7 @@ import { SearcherComponent } from '../../components/shared/searcher/searcher.com
 export class ProgressPage implements OnInit {
   constructor(
     public metricsStore: MetricsSignalStore,
+    public snapshotsStore: SnapshotsSignalStore,
     public destroyRef: DestroyRef,
     public translate: TranslateService,
   ) {
@@ -75,6 +77,7 @@ export class ProgressPage implements OnInit {
     const tag = localStorage.getItem('tag');
     if (tag) {
       this.metricsStore.loadMetrics(tag);
+      this.snapshotsStore.loadSnapshots(tag);
     }
 
     void this.winLabels;
@@ -95,36 +98,37 @@ export class ProgressPage implements OnInit {
   }
 
   private updateTrophies(metricOrArray: any) {
-    // Soportar varios formatos por compatibilidad: array de snapshots, objeto metric, o metric con history
     if (!metricOrArray) {
       this.trophiesLabels = [];
       this.trophiesDatasets = [];
+      this.trophiesOptions = {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { title: { display: true, text: 'Fecha' } },
+          y: { title: { display: true, text: 'Trofeos' }, beginAtZero: false },
+        },
+      } as ChartOptions;
+      this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
       return;
     }
 
     let labels: string[];
     let data: number[];
 
-    // Caso: arreglo (compatibilidad con snapshots)
     if (Array.isArray(metricOrArray) && metricOrArray.length > 0) {
       const sorted = [...metricOrArray].sort(
         (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
       );
       labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
       data = sorted.map((s) => s.trophies);
-    } else if (Array.isArray(metricOrArray)) {
-      // arreglo vacío
-      labels = [];
-      data = [];
-    } else if (metricOrArray.history && Array.isArray(metricOrArray.history)) {
-      // Caso: metric.history: [{ generatedAt, trophies }, ...]
+    } else if (metricOrArray && Array.isArray(metricOrArray.history)) {
       const sorted = [...metricOrArray.history].sort(
         (a, b) => new Date(a.generatedAt).getTime() - new Date(b.generatedAt).getTime(),
       );
       labels = sorted.map((s) => new Date(s.generatedAt).toLocaleDateString());
       data = sorted.map((s) => s.trophies);
     } else {
-      // Caso: único metric -> intentar construir un pequeño historial si disponemos de changeTrophiesIn24h
       const metric = metricOrArray;
       if (metric.trophies === undefined || metric.trophies === null) {
         labels = [];
@@ -132,19 +136,41 @@ export class ProgressPage implements OnInit {
       } else if (metric.changeTrophiesIn24h !== undefined && metric.changeTrophiesIn24h !== null) {
         const currentDate = new Date(metric.generatedAt ?? new Date());
         const prevDate = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000);
-        const prev =
-          (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
+        const prev = (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
         labels = [prevDate.toLocaleDateString(), currentDate.toLocaleDateString()];
         data = [prev, this.asNumber(metric.trophies) ?? 0];
       } else {
-        // Solo un punto: no mostrar (seguimos la lógica previa que requiere >=2 puntos)
         labels = [];
         data = [];
       }
     }
 
-    const hasUsefulData =
-      data.length >= 2 && data.some((v, i, arr) => (i === 0 ? false : v !== arr[i - 1]));
+    // Si hay solo un punto, duplicarlo para poder renderizar la linea.
+    if (data.length === 1) {
+      const singleDateLabel = labels[0];
+      const originalDate = new Date(metricOrArray.history?.[0]?.generatedAt ?? metricOrArray[0]?.capturedAt ?? new Date());
+      const prevDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
+      labels = [prevDate.toLocaleDateString(), singleDateLabel];
+      data = [data[0], data[0]];
+    }
+
+    let hasUsefulData = data.length >= 1;
+    // Fallback de dashboard: intentar con snapshots si metrics no trae datos utiles.
+    if (!hasUsefulData) {
+      const snaps = this.snapshotsStore.snapshots();
+      if (Array.isArray(snaps) && snaps.length > 0) {
+        const sorted = [...snaps].sort((a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime());
+        labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
+        data = sorted.map((s) => s.trophies);
+        if (data.length === 1) {
+          const originalDate = new Date(sorted[0].capturedAt ?? new Date());
+          const prevDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
+          labels = [prevDate.toLocaleDateString(), labels[0]];
+          data = [data[0], data[0]];
+        }
+      }
+      hasUsefulData = data.length >= 1;
+    }
 
     this.trophiesLabels = hasUsefulData ? labels : [];
     this.trophiesDatasets = hasUsefulData
@@ -164,7 +190,7 @@ export class ProgressPage implements OnInit {
       plugins: { legend: { display: false } },
       scales: {
         x: { title: { display: true, text: 'Fecha' } },
-        y: { title: { display: true, text: 'Trofeos' } },
+        y: { title: { display: true, text: 'Trofeos' }, beginAtZero: false },
       },
     } as ChartOptions;
 
