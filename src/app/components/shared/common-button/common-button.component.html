@@ -1,3 +1,9 @@
-<button [attr.type]="type" [disabled]="disabled">
-  <ng-content></ng-content>
-</button>
+@if (routerLink) {
+  <a [routerLink]="routerLink" class="common-button" role="link">
+    <ng-content></ng-content>
+  </a>
+} @else {
+  <button [attr.type]="type" [disabled]="disabled">
+    <ng-content></ng-content>
+  </button>
+}
