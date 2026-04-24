@@ -1,14 +1,4 @@
 header {
-  display: flex;
-  flex-direction: row;
-  min-width: 100%;
-  min-height: 6.00rem;
-  background-color: var(--components-color);
-  font-family: var(--font-primary), sans-serif;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
   border-radius: 0 0 8px 8px;
 }
 
@@ -32,16 +22,14 @@ header ul li {
   padding: 0 1rem;
 }
 
-header svg {
+header svg,
+footer svg {
   width: 2.5rem;
 }
 
-header svg circle, header .icon-background {
-  fill: var(--elements-color);
-}
-
-header .icon-letters {
-  fill: var(--components-color)
+header .icon-letters,
+footer .icon-letters {
+  fill: var(--components-color);
 }
 
 header app-common-button button {

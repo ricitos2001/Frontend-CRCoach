@@ -1,16 +1,6 @@
 footer {
-  display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  min-width: 100%;
-  min-height: 6.00rem;
-  background-color: var(--components-color);
-  font-family: var(--font-primary), sans-serif;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-  align-content: center;
   color: var(--elements-color);
-  align-items: center;
-  justify-content: space-between;
   border-radius: 8px 8px 0 0;
 }
 
@@ -57,19 +47,6 @@ footer .social-media {
   align-items: center;
 }
 
-footer svg {
-  width: 2.5rem;
-}
-
 footer .logo {
  width: 6rem;
-}
-
-footer svg circle, footer .icon-background {
-  fill: var(--elements-color);
-}
-
-
-footer .icon-letters {
-  fill: var(--components-color)
 }
