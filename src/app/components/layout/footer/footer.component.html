@@ -1,8 +1,10 @@
 @if(router.url === '/landing' || router.url === '/terms' || router.url === '/notice' || router.url === '/privacy' || router.url === '/cookies' || router.url === '/landing#start' || router.url === '/landing#what-offers' || router.url === '/landing#contact') {
   <footer>
       <article class="app">
-      <span class="code-only" aria-hidden="true">{{ 'COMPONENTS.LAYOUT.HEADER.GO_HOME' | translate }}</span>
-      <a routerLink="/landing" aria-label="Ir a la página principal" class="app__logo">
+        <a routerLink="/landing" aria-label="Ir a la página principal" class="app__logo">
+          @if (showCodeOnly) {
+            <span>{{ 'COMPONENTS.LAYOUT.HEADER.GO_HOME' | translate }}</span>
+          }
         <svg class="logo" width="94" height="64" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.3291 20.6582H15.006C18.5001 20.6582 20.2472 20.6582 21.4174 20.2908C25.3695 19.0497 27.7205 14.9972 26.8363 10.9504C26.5744 9.75215 25.7072 8.2355 23.9729 5.2022L23.9729 5.20217L23.9729 5.20214C23.3228 4.06513 22.9977 3.49662 22.6156 3.01676C21.3631 1.44374 19.5642 0.400067 17.5769 0.0935159C16.9707 0 16.3158 0 15.006 0H10.3291C8.16394 0 7.08135 0 6.18662 0.208232C3.21755 0.899225 0.899225 3.21755 0.208232 6.18662C0 7.08135 0 8.16394 0 10.3291C0 12.4943 0 13.5769 0.208232 14.4716C0.899225 17.4407 3.21755 19.759 6.18662 20.45C7.08135 20.6582 8.16394 20.6582 10.3291 20.6582Z" fill="white" class="icon-background"/>
           <path d="M83.6455 20.6582H78.9686C75.4745 20.6582 73.7274 20.6582 72.5572 20.2908C68.6052 19.0497 66.2541 14.9972 67.1384 10.9504C67.4002 9.75215 68.2674 8.23549 70.0017 5.20217C70.6518 4.06514 70.9769 3.49662 71.359 3.01676C72.6115 1.44374 74.4104 0.400067 76.3977 0.0935159C77.004 0 77.6588 0 78.9686 0H83.6455C85.8107 0 86.8933 0 87.788 0.208232C90.7571 0.899225 93.0754 3.21755 93.7664 6.18662C93.9746 7.08135 93.9746 8.16394 93.9746 10.3291C93.9746 12.4943 93.9746 13.5769 93.7664 14.4716C93.0754 17.4407 90.7571 19.759 87.788 20.45C86.8933 20.6582 85.8107 20.6582 83.6455 20.6582Z" fill="white" class="icon-background"/>
@@ -48,7 +50,9 @@
       <ul class="social-media">
         <li>
           <a href="https://discord.gg/y3uXnHjBK6" aria-label="Discord (enlace externo)">
-            <span class="code-only" aria-hidden="true">{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.DISCORD' | translate }}</span>
+            @if(showCodeOnly) {
+              <span>{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.DISCORD' | translate }}</span>
+            }
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true" focusable="false" >
               <defs>
                 <mask id="discord">
@@ -62,7 +66,7 @@
         </li>
         <li>
           <a href="https://www.instagram.com/ricitos2001/?hl=es%2F" aria-label="Instagram (enlace externo)">
-            <span class="code-only" aria-hidden="true">{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.INSTAGRAM' | translate }}</span>
+            <span class="code-only">{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.INSTAGRAM' | translate }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true" focusable="false" >
               <defs>
                 <mask id="instagram">
@@ -76,7 +80,9 @@
         </li>
         <li>
           <a href="https://x.com/ricitos2001" aria-label="X / Twitter (enlace externo)">
-            <span class="code-only" aria-hidden="true">{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.TWITTER' | translate }}</span>
+            @if (showCodeOnly) {
+              <span>{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.TWITTER' | translate }}</span>
+            }
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true" focusable="false" >
               <defs>
                 <mask id="X">
@@ -90,7 +96,9 @@
         </li>
         <li>
           <a href="https://github.com/ricitos2001" aria-label="GitHub (enlace externo)">
-            <span class="code-only" aria-hidden="true">{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.GITHUB' | translate }}</span>
+            @if (showCodeOnly) {
+              <span>{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.GITHUB' | translate }}</span>
+            }
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true" focusable="false" >
               <defs>
                 <mask id="github">
@@ -104,7 +112,9 @@
         </li>
         <li>
           <a href="https://www.linkedin.com/in/cesar-gabriel-ucha-sousa-78386339a/" aria-label="LinkedIn (enlace externo)">
-            <span class="code-only" aria-hidden="true">{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.LINKEDIN' | translate }}</span>
+            @if (showCodeOnly) {
+              <span>{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.LINKEDIN' | translate }}</span>
+            }
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true" focusable="false" >
               <defs>
                 <mask id="linkedin">
@@ -118,7 +128,9 @@
         </li>
         <li>
           <a href="https://ko-fi.com/ricitos2001/tip" aria-label="Ko-fi (enlace externo)">
-            <span class="code-only" aria-hidden="true">{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.KOFI' | translate }}</span>
+            @if (showCodeOnly) {
+              <span>{{ 'COMPONENTS.LAYOUT.FOOTER.SOCIAL.KOFI' | translate }}</span>
+            }
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true" focusable="false" >
               <defs>
                 <mask id="ko-fi">

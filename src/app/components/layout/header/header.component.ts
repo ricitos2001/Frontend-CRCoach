@@ -26,6 +26,7 @@ export class HeaderComponent {
   constructor(protected router: Router) {}
   headerContentService = inject(HeaderContentService);
   content$ = this.headerContentService.content$;
+  showCodeOnly = !!(window as any).__SHOW_CODE_ONLY;
 
   navigateToFragment(fragment: string, event?: Event) {
     if (event) {
