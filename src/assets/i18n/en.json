@@ -14,8 +14,7 @@
         "START": "Home",
         "WHAT_OFFERS": "What we offer",
         "CONTACT": "Contact",
-        "GET_STARTED": "Get started",
-        "GO_HOME": "Go to homepage"
+        "GET_STARTED": "Get started"
       },
       "FOOTER": {
         "TITLE1": "Legal information",
@@ -26,15 +25,6 @@
         "LINK3": "Legal notice",
         "LINK4": "Privacy policy",
         "LINK5": "Cookie information"
-        ,
-        "SOCIAL": {
-          "DISCORD": "Link to my Discord server",
-          "INSTAGRAM": "Link to my Instagram profile",
-          "TWITTER": "Link to my Twitter profile",
-          "GITHUB": "Link to my GitHub profile",
-          "LINKEDIN": "Link to my LinkedIn profile",
-          "KOFI": "Support me on Ko-fi"
-        }
       }
     },
     "SHARED": {

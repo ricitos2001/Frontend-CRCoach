@@ -11,13 +11,4 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class FooterComponent {
   constructor(protected router: Router) {}
-  // Controla si los textos "solo en código" deben renderizarse en la UI.
-  // Por defecto está desactivado; se puede activar en tiempo de ejecución desde la consola:
-  // window.__SHOW_CODE_ONLY = true
-  showCodeOnly = !!(window as any).__SHOW_CODE_ONLY;
-
-  @HostBinding('class.show-code-only')
-  get hostShowCodeOnly(): boolean {
-    return this.showCodeOnly;
-  }
 }
