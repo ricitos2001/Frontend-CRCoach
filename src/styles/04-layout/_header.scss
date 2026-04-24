@@ -16,6 +16,12 @@ header svg {
   margin: 0 1rem;
 }
 
+/* Tamaño específico para el logo (la corona) en el header */
+header .logo {
+  width: 4rem;
+  height: auto;
+}
+
 header ul {
   display: flex;
   flex-direction: row;
@@ -58,6 +64,20 @@ header app-common-button button:hover, header app-language-selector .language-se
 }
 
 header ul li { margin: 0 0.35rem; }
+
+/* Aumentar tamaño y área de click de los enlaces del header (sin afectar botones ni selects) */
+header ul li a {
+  font-size: 1.05rem; /* un poco más grande */
+  font-weight: 600;
+  color: var(--elements-color);
+  padding: 0.45rem 0.6rem; /* aumentar área clicable */
+  display: inline-block;
+}
+
+header ul li a:hover {
+  text-decoration: none;
+  opacity: 0.95;
+}
 
 header app-language-selector .language-selector {
   -webkit-appearance: none;

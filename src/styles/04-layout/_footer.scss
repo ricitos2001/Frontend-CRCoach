@@ -19,10 +19,14 @@ footer h1, footer .app {
   flex-direction: row;
   align-items: center;
   padding: 0 1rem;
+  font-size: 3rem;
 }
 
 footer h2 {
   padding: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
 }
 
 footer ul {
@@ -32,6 +36,19 @@ footer ul {
 
 footer ul li {
   padding: 0.5rem;
+}
+
+footer ul li a {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--elements-color);
+  padding: 0.35rem 0.2rem;
+  display: inline-block;
+}
+
+footer ul li a:hover {
+  text-decoration: none;
+  opacity: 0.95;
 }
 
 footer .social-media {
@@ -45,12 +62,13 @@ footer svg {
 }
 
 footer .logo {
- width: 5rem;
+ width: 6rem;
 }
 
 footer svg circle, footer .icon-background {
   fill: var(--elements-color);
 }
+
 
 footer .icon-letters {
   fill: var(--components-color)
