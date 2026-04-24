@@ -15,7 +15,6 @@ import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store
     TranslatePipe,
     GraphComponent,
     RefreshButtonComponent,
-    SearcherComponent,
   ],
   templateUrl: './progress.page.html',
   styleUrl: '../../../styles/styles.css',
