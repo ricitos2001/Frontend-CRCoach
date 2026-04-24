@@ -10,6 +10,7 @@ header {
   color: white;
   align-items: center;
   justify-content: space-between;
+  border-radius: 0 0 8px 8px;
 }
 
 header svg {
@@ -44,10 +45,8 @@ header ul li button {
   font-weight: 600;
   letter-spacing: 0.02em;
   background: transparent;
-  border: 1px none rgba(255,255,255,0.06);
 }
 
-/* versión activa/seleccionada */
 header ul li a.active,
 header ul li button.active {
   background: rgba(255,255,255,0.12);
