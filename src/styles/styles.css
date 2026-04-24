@@ -258,7 +258,7 @@ header app-language-selector::after {
 }
 
 header app-dark-mode-button button {
-  background: var(--component-color);
+  background: var(--components-color);
   border: none;
 }
 
@@ -419,7 +419,7 @@ footer .logo {
   margin: 0 auto 1rem;
   max-width: 60ch;
   text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-  color: var(--elemets-color);
+  color: var(--elements-color);
   z-index: 1;
 }
 

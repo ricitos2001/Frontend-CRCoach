@@ -14,7 +14,8 @@
         "START": "Inicio",
         "WHAT_OFFERS": "Que ofrecemos",
         "CONTACT": "Contacto",
-        "GET_STARTED": "Empecemos"
+        "GET_STARTED": "Empecemos",
+        "GO_HOME": "Ir a la página principal"
       },
       "FOOTER": {
         "TITLE1": "Información legal",
@@ -25,6 +26,15 @@
         "LINK3": "Aviso legal",
         "LINK4": "Política de privacidad",
         "LINK5": "Información sobre las cookies"
+        ,
+        "SOCIAL": {
+          "DISCORD": "Enlace a mi servidor de Discord",
+          "INSTAGRAM": "Enlace a mi perfil de Instagram",
+          "TWITTER": "Enlace a mi perfil de Twitter",
+          "GITHUB": "Enlace a mi perfil de GitHub",
+          "LINKEDIN": "Enlace a mi perfil de LinkedIn",
+          "KOFI": "Apóyame en Ko-fi"
+        }
       }
     },
     "SHARED": {
