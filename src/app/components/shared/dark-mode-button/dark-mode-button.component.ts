@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemeService } from '../../../services/theme/theme.service';
 
 @Component({
   selector: 'app-dark-mode-button',
@@ -9,7 +10,11 @@ import { Component } from '@angular/core';
 export class DarkModeButtonComponent {
   toogled = false;
 
+  constructor(private darkMode: ThemeService) {
+    this.darkMode.isDark$.subscribe((v) => (this.toogled = v));
+  }
+
   changeTheme() {
-    this.toogled = !this.toogled;
+    this.darkMode.toggle();
   }
 }

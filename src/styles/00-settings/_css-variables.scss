@@ -56,8 +56,18 @@
   --break-md: #{$break-md};
   --break-lg: #{$break-lg};
   --break-xl: #{$break-xl};
+
+  --first-background-color: var(--color-primary-5);
+  --second-background-color: var(--color-primary-4);
+  --elements-color: var(--light-color-1);
+  --components-color: var(--color-primary-1);
+  --components-color-on-hover: var(--color-secondary-3);
 }
 
 .dark-mode {
-  
+  --first-background-color: var(--dark-color-5);
+  --second-background-color: var(--dark-color-4);
+  --elements-color: var(--color-secondary-1);
+  --components-color: var(--dark-color-1);
+  --components-color-on-hover: var(--dark-color-3);
 }

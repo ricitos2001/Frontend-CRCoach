@@ -46,6 +46,19 @@
   --break-md: 48rem;
   --break-lg: 64rem;
   --break-xl: 80rem;
+  --first-background-color: var(--color-primary-5);
+  --second-background-color: var(--color-primary-4);
+  --elements-color: var(--light-color-1);
+  --components-color: var(--color-primary-1);
+  --components-color-on-hover: var(--color-secondary-3);
+}
+
+.dark-mode {
+  --first-background-color: var(--dark-color-5);
+  --second-background-color: var(--dark-color-4);
+  --elements-color: var(--color-secondary-1);
+  --components-color: var(--dark-color-1);
+  --components-color-on-hover: var(--dark-color-3);
 }
 
 @font-face {
@@ -75,13 +88,14 @@ html, body {
 }
 
 body {
-  background-color: var(--color-primary-5);
+  background-color: var(--first-background-color);
   font-family: var(--font-primary), sans-serif;
-  background-image: linear-gradient(45deg, var(--color-primary-4) 25%, transparent 25%), linear-gradient(-45deg, var(--color-primary-4) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--color-primary-4) 75%), linear-gradient(-45deg, transparent 75%, var(--color-primary-4) 75%);
+  background-image: linear-gradient(45deg, var(--second-background-color) 25%, transparent 25%), linear-gradient(-45deg, var(--second-background-color) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--second-background-color) 75%), linear-gradient(-45deg, transparent 75%, var(--second-background-color) 75%);
   background-size: 47.8px 47.8px;
   line-height: 1.125;
   scroll-snap-type: y proximity;
   scroll-padding-top: 6rem;
+  color: var(--elements-color);
 }
 
 img,
@@ -114,20 +128,15 @@ html {
   scroll-behavior: smooth;
 }
 
-main {
-  color: var(--light-color-1);
-}
-
 header {
   display: flex;
   flex-direction: row;
   min-width: 100%;
   min-height: 6rem;
-  background-color: var(--color-primary-1);
+  background-color: var(--components-color);
   font-family: var(--font-primary), sans-serif;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   align-content: center;
-  color: white;
   align-items: center;
   justify-content: space-between;
   border-radius: 0 0 8px 8px;
@@ -151,31 +160,31 @@ header svg {
   width: 2.5rem;
 }
 
-header svg circle {
-  fill: var(--light-color-1);
+header svg circle, header .icon-background {
+  fill: var(--elements-color);
 }
 
-/* Estilos para el botón específico y para el selector de idioma.
-   No tocar los <a> normales ni el botón de modo oscuro (app-dark-mode-button).
-   Aplicamos reglas dirigidas a los componentes concretos que se usan en el header. */
-/* Estilo del componente de botón común (app-common-button) dentro del header. */
+header .icon-letters {
+  fill: var(--components-color);
+}
+
 header app-common-button button {
-  color: #fff;
+  color: var(--elements-color);
   text-decoration: none;
   display: inline-block;
   padding: 0.45rem 0.9rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  background: var(--color-primary-1);
-  border: 0.125rem solid var(--light-color-1);
+  background: var(--components-color);
+  border: 0.125rem solid var(--elements-color);
   border-radius: 6px;
   cursor: pointer;
   min-height: 2.2rem;
   line-height: 1.2;
 }
 
-header app-common-button button:hover {
-  background: var(--color-primary-3);
+header app-common-button button:hover, header app-language-selector .language-selector:hover {
+  background: var(--components-color-on-hover);
 }
 
 header ul li {
@@ -190,17 +199,17 @@ header app-language-selector .language-selector {
   cursor: pointer;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--light-color-1);
-  background: var(--color-primary-1);
-  border: 0.125rem solid var(--light-color-1);
+  color: var(--elements-color);
+  background: var(--components-color);
+  border: 0.125rem solid var(--elements-color);
   border-radius: 6px;
   padding: 0.35rem 2.2rem 0.35rem 0.6rem;
   position: relative;
 }
 
 header app-language-selector .language-selector option {
-  color: var(--light-color-1);
-  background: var(--color-primary-1);
+  color: var(--elements-color);
+  background: var(--components-color);
 }
 
 header app-language-selector {
@@ -216,16 +225,11 @@ header app-language-selector::after {
   width: 0.6rem;
   height: 0.6rem;
   pointer-events: none;
-  border-right: 2px solid rgba(255, 255, 255, 0.9);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
   transform: translateY(-50%) rotate(45deg);
 }
 
-/* Asegurar que el botón de modo oscuro no se vea afectado por los estilos de
-   botones generales del header. Dejamos fondo transparente, sin borde y con
-   padding reducido para que el SVG interno mantenga su tamaño original. */
 header app-dark-mode-button button {
-  background: var(--color-primary-1);
+  background: var(--component-color);
   border: none;
 }
 
@@ -235,11 +239,11 @@ footer {
   flex-wrap: wrap;
   min-width: 100%;
   min-height: 6rem;
-  background-color: var(--color-primary-1);
+  background-color: var(--components-color);
   font-family: var(--font-primary), sans-serif;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   align-content: center;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   align-items: center;
   justify-content: space-between;
   border-radius: 8px 8px 0 0;
@@ -279,8 +283,12 @@ footer .logo {
   width: 5rem;
 }
 
-svg circle {
-  fill: var(--light-color-1);
+footer svg circle, footer .icon-background {
+  fill: var(--elements-color);
+}
+
+footer .icon-letters {
+  fill: var(--components-color);
 }
 
 .checkbox {
@@ -356,7 +364,7 @@ svg circle {
   align-items: center;
   text-align: center;
   padding: 2.5rem;
-  color: var(--light-color-1);
+  color: var(--elements-color);
 }
 
 .image-box::before {
@@ -387,6 +395,7 @@ svg circle {
   margin: 0 auto 1rem;
   max-width: 60ch;
   text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  color: var(--elemets-color);
   z-index: 1;
 }
 
@@ -415,7 +424,7 @@ fieldset {
   min-height: 100vh;
   padding: 3.5rem 4rem;
   border: none;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -431,7 +440,7 @@ fieldset {
 .form__legend {
   font-family: var(--font-secondary), sans-serif;
   font-size: 3rem;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   margin-bottom: 1.5rem;
 }
 
@@ -445,7 +454,7 @@ app-form-input.grid {
 app-form-input.glass-input label,
 app-form-input.grid label {
   display: block;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
 }
@@ -464,7 +473,7 @@ app-form-input.grid input[type=checkbox] + label {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   font-size: 0.95rem;
 }
 
@@ -479,7 +488,7 @@ app-form-input.glass-input textarea {
   background-clip: padding-box;
   border-radius: 0.6rem;
   padding: 0.85rem 1rem;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   box-shadow: inset 0 6px 18px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(255, 255, 255, 0.02) inset;
   outline: none;
   transition: box-shadow 160ms ease, transform 160ms ease;
@@ -488,7 +497,7 @@ app-form-input.glass-input textarea {
 app-form-input.glass-input input::placeholder,
 app-form-input.grid input::placeholder,
 app-form-input.glass-input textarea::placeholder {
-  color: var(--light-color-5);
+  color: var(--elements-color);
   opacity: 1;
 }
 
@@ -513,8 +522,8 @@ app-form-input.glass-input textarea:focus {
 
 .fieldset app-common-button button {
   width: 100%;
-  background: var(--light-color-1);
-  color: var(--color-primary-1);
+  background: var(--elements-color);
+  color: var(--components-color);
   font-family: var(--font-secondary), sans-serif;
   font-size: 1.35rem;
   font-weight: 700;
@@ -524,7 +533,7 @@ app-form-input.glass-input textarea:focus {
 }
 
 .fieldset a {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--elements-color);
   font-size: 0.9rem;
   margin: 0;
 }
@@ -541,7 +550,7 @@ app-form-input.grid .error {
   right: 0.6rem;
   transform: translateY(-50%);
   background: var(--color-error-1);
-  color: var(--light-color-1);
+  color: var(--elements-color);
   padding: 0.28rem 0.6rem;
   border-radius: 999px;
   font-size: 0.75rem;
@@ -612,7 +621,7 @@ app-form-input .error[title] {
 
 .landing {
   text-align: center;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   padding: 6rem 0 4rem;
 }
 
@@ -654,7 +663,7 @@ app-form-input .error[title] {
   padding: 0.75rem 2.25rem;
   background-color: rgba(255, 255, 255, 0.08);
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%);
-  color: var(--light-color-1);
+  color: var(--elements-color);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 6px;
   box-shadow: 0 12px 22px rgba(2, 12, 30, 0.6), inset 0 -6px 12px rgba(255, 255, 255, 0.03);
@@ -762,7 +771,7 @@ app-form-input .error[title] {
   width: 56px;
   height: 56px;
   object-fit: contain;
-  background: #fff;
+  background: var(--elements-color);
   padding: 10px;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);

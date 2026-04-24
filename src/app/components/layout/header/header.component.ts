@@ -26,4 +26,20 @@ export class HeaderComponent {
   constructor(protected router: Router) {}
   headerContentService = inject(HeaderContentService);
   content$ = this.headerContentService.content$;
+
+  navigateToFragment(fragment: string, event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    // Navegar a /landing con fragment y forzar scroll tras la navegación
+    this.router.navigate(['/landing'], { fragment }).then(() => {
+      // small timeout to ensure elements are rendered
+      setTimeout(() => {
+        const el = document.getElementById(fragment);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    });
+  }
 }

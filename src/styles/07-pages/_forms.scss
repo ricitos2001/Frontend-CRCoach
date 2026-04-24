@@ -18,7 +18,7 @@
   align-items: center;
   text-align: center;
   padding: 2.5rem;
-  color: var(--light-color-1);
+  color: var(--elements-color);
 }
 
 .image-box::before {
@@ -49,6 +49,7 @@
   margin: 0 auto 1rem;
   max-width: 60ch;
   text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  color: var(--elemets-color);
   z-index: 1;
 }
 
@@ -77,7 +78,7 @@ fieldset {
   min-height: 100vh;
   padding: 3.5rem 4rem;
   border: none;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -93,7 +94,7 @@ fieldset {
 .form__legend {
   font-family: var(--font-secondary), sans-serif;
   font-size: 3rem;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   margin-bottom: 1.5rem;
 }
 
@@ -107,7 +108,7 @@ app-form-input.grid {
 app-form-input.glass-input label,
 app-form-input.grid label {
   display: block;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
 }
@@ -126,7 +127,7 @@ app-form-input.grid input[type="checkbox"] + label {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   font-size: 0.95rem;
 }
 
@@ -141,7 +142,7 @@ app-form-input.glass-input textarea {
   background-clip: padding-box;
   border-radius: 0.6rem;
   padding: 0.85rem 1rem;
-  color: var(--light-color-1);
+  color: var(--elements-color);
   box-shadow: inset 0 6px 18px rgba(0,0,0,0.45), 0 2px 0 rgba(255,255,255,0.02) inset;
   outline: none;
   transition: box-shadow 160ms ease, transform 160ms ease;
@@ -150,7 +151,7 @@ app-form-input.glass-input textarea {
 app-form-input.glass-input input::placeholder,
 app-form-input.grid input::placeholder,
 app-form-input.glass-input textarea::placeholder {
-  color: var(--light-color-5);
+  color: var(--elements-color);
   opacity: 1;
 }
 
@@ -175,8 +176,8 @@ app-form-input.glass-input textarea:focus {
 
 .fieldset app-common-button button {
   width: 100%;
-  background: var(--light-color-1);
-  color: var(--color-primary-1);
+  background: var(--elements-color);
+  color: var(--components-color);
   font-family: var(--font-secondary), sans-serif;
   font-size: 1.35rem;
   font-weight: 700;
@@ -186,7 +187,7 @@ app-form-input.glass-input textarea:focus {
 }
 
 .fieldset a {
-  color: rgba(255,255,255,0.85);
+  color: var(--elements-color);
   font-size: 0.9rem;
   margin: 0;
 }
@@ -203,7 +204,7 @@ app-form-input.grid .error {
   right: 0.6rem;
   transform: translateY(-50%);
   background: var(--color-error-1);
-  color: var(--light-color-1);
+  color: var(--elements-color);
   padding: 0.28rem 0.6rem;
   border-radius: 999px;
   font-size: 0.75rem;

@@ -3,11 +3,10 @@ header {
   flex-direction: row;
   min-width: 100%;
   min-height: 6.00rem;
-  background-color: var(--color-primary-1);
+  background-color: var(--components-color);
   font-family: var(--font-primary), sans-serif;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   align-content: center;
-  color: white;
   align-items: center;
   justify-content: space-between;
   border-radius: 0 0 8px 8px;
@@ -31,27 +30,31 @@ header svg {
   width: 2.5rem;
 }
 
-header svg circle {
-  fill: var(--light-color-1);
+header svg circle, header .icon-background {
+  fill: var(--elements-color);
+}
+
+header .icon-letters {
+  fill: var(--components-color)
 }
 
 header app-common-button button {
-  color: #fff;
+  color: var(--elements-color);
   text-decoration: none;
   display: inline-block;
   padding: 0.45rem 0.9rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  background: var(--color-primary-1);
-  border: 0.125rem solid var(--light-color-1);
+  background: var(--components-color);
+  border: 0.125rem solid var(--elements-color);
   border-radius: 6px;
   cursor: pointer;
   min-height: 2.2rem;
   line-height: 1.2;
 }
 
-header app-common-button button:hover {
-  background: var(--color-primary-3);
+header app-common-button button:hover, header app-language-selector .language-selector:hover {
+  background: var(--components-color-on-hover);
 }
 
 header ul li { margin: 0 0.35rem; }
@@ -64,17 +67,17 @@ header app-language-selector .language-selector {
   cursor: pointer;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--light-color-1);
-  background: var(--color-primary-1);
-  border: 0.125rem solid var(--light-color-1);
+  color: var(--elements-color);
+  background: var(--components-color);
+  border: 0.125rem solid var(--elements-color);
   border-radius: 6px;
   padding: 0.35rem 2.2rem 0.35rem 0.6rem;
   position: relative;
 }
 
 header app-language-selector .language-selector option {
-  color: var(--light-color-1);
-  background: var(--color-primary-1);
+  color: var(--elements-color);
+  background: var(--components-color);
 }
 
 
@@ -91,13 +94,10 @@ header app-language-selector::after {
   width: 0.6rem;
   height: 0.6rem;
   pointer-events: none;
-  border-right: 2px solid rgba(255,255,255,0.9);
-  border-bottom: 2px solid rgba(255,255,255,0.9);
   transform: translateY(-50%) rotate(45deg);
 }
 
 header app-dark-mode-button button {
-  background: var(--color-primary-1);
+  background: var(--component-color);
   border: none;
 }
-
