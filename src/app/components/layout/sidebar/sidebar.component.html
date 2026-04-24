@@ -1,16 +1,16 @@
 @if (isOpened) {
   <aside>
     <ul>
-      <li routerLink="/dashboard">{{ 'COMPONENTS.LAYOUT.SIDEBAR.DASHBOARD' | translate }}</li>
-      <li routerLink="/battles">{{ 'COMPONENTS.LAYOUT.SIDEBAR.BATTLES' | translate}}</li>
-      <li routerLink="/weaknesses">{{ 'COMPONENTS.LAYOUT.SIDEBAR.WEAKNESSES' | translate }}</li>
-      <li routerLink="/goals">{{ 'COMPONENTS.LAYOUT.SIDEBAR.GOALS' | translate }}</li>
-      <li routerLink="/sessions">{{ 'COMPONENTS.LAYOUT.SIDEBAR.SESSIONS' | translate }}</li>
-      <li routerLink="/progress">{{ 'COMPONENTS.LAYOUT.SIDEBAR.PROGRESS' | translate }}</li>
-      <li routerLink="/profile">{{ 'COMPONENTS.LAYOUT.SIDEBAR.PROFILE' | translate }}</li>
+      <li><a routerLink="/dashboard">{{ 'COMPONENTS.LAYOUT.SIDEBAR.DASHBOARD' | translate }}</a></li>
+      <li><a routerLink="/battles">{{ 'COMPONENTS.LAYOUT.SIDEBAR.BATTLES' | translate}}</a></li>
+      <li><a routerLink="/weaknesses">{{ 'COMPONENTS.LAYOUT.SIDEBAR.WEAKNESSES' | translate }}</a></li>
+      <li><a routerLink="/goals">{{ 'COMPONENTS.LAYOUT.SIDEBAR.GOALS' | translate }}</a></li>
+      <li><a routerLink="/sessions">{{ 'COMPONENTS.LAYOUT.SIDEBAR.SESSIONS' | translate }}</a></li>
+      <li><a routerLink="/progress">{{ 'COMPONENTS.LAYOUT.SIDEBAR.PROGRESS' | translate }}</a></li>
+      <li><a routerLink="/profile">{{ 'COMPONENTS.LAYOUT.SIDEBAR.PROFILE' | translate }}</a></li>
       <li><app-common-button (click)="logout()">{{ 'COMPONENTS.SHARED.LOGOUT' | translate }}</app-common-button></li>
       <li><app-language-selector></app-language-selector></li>
     </ul>
   </aside>
 }
-<button (click)="openOrCloseSidebar()">sidebar</button>
+<button (click)="openOrCloseSidebar()" aria-label="Abrir o cerrar la barra lateral">sidebar</button>
