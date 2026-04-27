@@ -4,7 +4,7 @@ export interface Goal {
   id: number;
   title: string;
   description: string;
-  metrycType: string;
+  metricType: string;
   targetValue: number;
   currentValue: number;
   status: string;

@@ -206,6 +206,61 @@
       "TEXT2": "crowns"
     }
     ,
+    "GOALS": {
+      "TITLE": "Goal list",
+      "ADD": "Add goal",
+      "LOADING": "Loading goals...",
+      "ERROR": "Error loading goals: {{err}}",
+      "STATUS": {
+        "LABEL": "Status",
+        "ALL": "All",
+        "IN_PROGRESS": "In progress",
+        "PAUSED": "Paused",
+        "COMPLETED": "Completed",
+        "FAILED": "Failed"
+      },
+      "ACTIONS": {
+        "PAUSE": "Pause",
+        "RESUME": "Resume",
+        "FAIL": "Mark as failed",
+        "COMPLETE": "Mark as completed"
+      },
+      "CREATE_TITLE": "Create goal",
+      "EDIT_TITLE": "Edit goal",
+      "LABEL": {
+        "TITLE": "Title",
+        "DESCRIPTION": "Description",
+        "METRYC": "Metric type",
+        "TARGET": "Target value",
+        "DEADLINE": "Deadline"
+      },
+      "METRYC_OPTIONS": {
+        "TROPHIES": "Trophies",
+        "WINRATE": "Winrate",
+        "BATTLES": "Battles",
+        "DONATIONS": "Donations",
+        "STREAK": "Streak"
+      },
+      "SAVE": "Save",
+      "CANCEL": "Cancel"
+    },
+    "SESSIONS": {
+      "TITLE": "Session journal",
+      "ADD": "Add session",
+      "LOADING": "Loading sessions...",
+      "ERROR": "Error loading sessions: {{err}}",
+      "CREATE_TITLE": "Create session",
+      "EDIT_TITLE": "Edit session",
+      "LABEL": {
+        "TITLE": "Title",
+        "NOTES": "Notes",
+        "MOOD": "Mood",
+        "START": "Start",
+        "END": "End"
+      },
+      "SAVE": "Save",
+      "CANCEL": "Cancel"
+    },
     "PROGRESS": {
       "TITLE": "Player progress",
       "TROPHIES_TITLE": "Trophies evolution",
@@ -218,6 +273,11 @@
       "NO_DATA": "no data",
       "BATTLES_LABEL": "Battles"
     }
+  },
+  "PAGINATION": {
+    "PREV": "Previous",
+    "NEXT": "Next",
+    "PAGE": "Page"
   },
 
   "VALIDATION": {

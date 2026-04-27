@@ -2,9 +2,90 @@
   <h1>Lista de objetivos</h1>
   <article class="flex">
     <app-searcher></app-searcher>
-    <app-form-input type="select" [hideLabel]="true"></app-form-input>
-    <app-common-button>Agregar objetivo</app-common-button>
-    <app-refresh-button></app-refresh-button>
+    <label class="sr-only" for="goal-status-select">{{ 'PAGES.GOALS.STATUS.LABEL' | translate }}</label>
+    <app-form-input name="goal-status-select" type="select" [hideLabel]="true" [options]="statusOptionsMap" [(ngModel)]="selectedStatus" (ngModelChange)="onStatusChange($event)"></app-form-input>
+    <app-common-button (click)="openCreate()">{{ 'PAGES.GOALS.ADD' | translate }}</app-common-button>
+    <app-refresh-button (click)="reload()"></app-refresh-button>
   </article>
+
+  <section>
+    @if (goalsStore.loading() && !goalsStore.goals()) {
+      <p>{{ 'PAGES.GOALS.LOADING' | translate }}</p>
+    }
+    @if (goalsStore.error(); as gErr) {
+      <p class="error">{{ 'PAGES.GOALS.ERROR' | translate:{ err: gErr } }}</p>
+    }
+
+    @if (goalsStore.goals(); as goalsPage) {
+      @if (creating) {
+        <app-goal-form (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
+      }
+      @if (editingGoal) {
+        <app-goal-form [goal]="editingGoal" (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
+      }
+
+      @for (goal of filteredGoals(goalsPage); track goal.id) {
+        <article class="card">
+          <h3>{{goal.title}}</h3>
+          <p>{{goal.description}}</p>
+          <p>{{goal.currentValue}} / {{goal.targetValue}}</p>
+          <p>{{goal.status}} — {{goal.deadline | date:'shortDate'}}</p>
+          <article class="flex">
+            <app-common-button (click)="editGoal(goal)">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 26.6667H28M22 4.66667C22.5304 4.13623 23.2499 3.83824 24 3.83824C24.3714 3.83824 24.7392 3.9114 25.0824 4.05354C25.4256 4.19568 25.7374 4.40402 26 4.66667C26.2626 4.92931 26.471 5.24111 26.6131 5.58427C26.7553 5.92743 26.8284 6.29523 26.8284 6.66667C26.8284 7.0381 26.7553 7.4059 26.6131 7.74906C26.471 8.09222 26.2626 8.40402 26 8.66667L9.33333 25.3333L4 26.6667L5.33333 21.3333L22 4.66667Z" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </app-common-button>
+            <app-common-button (click)="deleteGoal(goal)">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 8H6.66667M6.66667 8H28M6.66667 8L6.66667 26.6667C6.66667 27.3739 6.94762 28.0522 7.44772 28.5523C7.94781 29.0524 8.62609 29.3333 9.33333 29.3333H22.6667C23.3739 29.3333 24.0522 29.0524 24.5523 28.5523C25.0524 28.0522 25.3333 27.3739 25.3333 26.6667V8M10.6667 8V5.33333C10.6667 4.62609 10.9476 3.94781 11.4477 3.44771C11.9478 2.94762 12.6261 2.66667 13.3333 2.66667H18.6667C19.3739 2.66667 20.0522 2.94762 20.5523 3.44771C21.0524 3.94781 21.3333 4.62609 21.3333 5.33333V8M13.3333 14.6667V22.6667M18.6667 14.6667V22.6667" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </app-common-button>
+            @if (goal.status === 'IN_PROGRESS') {
+              <app-common-button (click)="pauseGoal(goal)">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.3333 5.33333H8V26.6667H13.3333V5.33333Z" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M24 5.33333H18.6667V26.6667H24V5.33333Z" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </app-common-button>
+              <app-common-button (click)="failGoal(goal)">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M36 12L12 36M12 12L36 36" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </app-common-button>
+              <app-common-button (click)="completeGoal(goal)">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 14.6667L16 18.6667L29.3333 5.33333M28 16V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H21.3333" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </app-common-button>
+            }
+            @if (goal.status === 'PAUSED') {
+              <app-common-button (click)="resumeGoal(goal)">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 6L38 24L10 42V6Z" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </app-common-button>
+              <app-common-button (click)="failGoal(goal)">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M36 12L12 36M12 12L36 36" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </app-common-button>
+              <app-common-button (click)="completeGoal(goal)">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 14.6667L16 18.6667L29.3333 5.33333M28 16V25.3333C28 26.0406 27.719 26.7189 27.219 27.219C26.7189 27.719 26.0406 28 25.3333 28H6.66667C5.95942 28 5.28115 27.719 4.78105 27.219C4.28095 26.7189 4 26.0406 4 25.3333V6.66667C4 5.95942 4.28095 5.28115 4.78105 4.78105C5.28115 4.28095 5.95942 4 6.66667 4H21.3333" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </app-common-button>
+            }
+          </article>
+        </article>
+      }
+
+      <nav class="pagination">
+        <button class="btn" (click)="prevPage(goalsPage)" [disabled]="goalsPage.first">{{ 'PAGINATION.PREV' | translate }}</button>
+        <span>{{ 'PAGINATION.PAGE' | translate }}: {{goalsPage.number + 1}} / {{goalsPage.totalPages}}</span>
+        <button class="btn" (click)="nextPage(goalsPage)" [disabled]="goalsPage.number >= goalsPage.totalPages - 1">{{ 'PAGINATION.NEXT' | translate }}</button>
+      </nav>
+    }
+  </section>
 </section>
 <app-sidebar></app-sidebar>

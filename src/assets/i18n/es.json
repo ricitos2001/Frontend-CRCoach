@@ -206,6 +206,61 @@
       "TEXT2": "coronas"
     }
     ,
+    "GOALS": {
+      "TITLE": "Lista de objetivos",
+      "ADD": "Agregar objetivo",
+      "LOADING": "Cargando objetivos...",
+      "ERROR": "Error al cargar objetivos: {{err}}",
+      "STATUS": {
+        "LABEL": "Estado",
+        "ALL": "Todos",
+        "IN_PROGRESS": "En progreso",
+        "PAUSED": "En pausa",
+        "COMPLETED": "Completado",
+        "FAILED": "Fallado"
+      },
+      "ACTIONS": {
+        "PAUSE": "Pausar",
+        "RESUME": "Reanudar",
+        "FAIL": "Marcar como fallado",
+        "COMPLETE": "Marcar como completado"
+      },
+      "CREATE_TITLE": "Crear objetivo",
+      "EDIT_TITLE": "Editar objetivo",
+      "LABEL": {
+        "TITLE": "Título",
+        "DESCRIPTION": "Descripción",
+        "METRYC": "Tipo de métrica",
+        "TARGET": "Valor objetivo",
+        "DEADLINE": "Fecha límite"
+      },
+      "METRYC_OPTIONS": {
+        "TROPHIES": "Trofeos",
+        "WINRATE": "Porcentaje de victorias",
+        "BATTLES": "Batallas",
+        "DONATIONS": "Donaciones",
+        "STREAK": "Racha"
+      },
+      "SAVE": "Guardar",
+      "CANCEL": "Cancelar"
+    },
+    "SESSIONS": {
+      "TITLE": "Diario de sesiones",
+      "ADD": "Agregar sesión",
+      "LOADING": "Cargando sesiones...",
+      "ERROR": "Error al cargar sesiones: {{err}}",
+      "CREATE_TITLE": "Crear sesión",
+      "EDIT_TITLE": "Editar sesión",
+      "LABEL": {
+        "TITLE": "Título",
+        "NOTES": "Notas",
+        "MOOD": "Estado de ánimo",
+        "START": "Inicio",
+        "END": "Fin"
+      },
+      "SAVE": "Guardar",
+      "CANCEL": "Cancelar"
+    },
     "PROGRESS": {
       "TITLE": "Progreso del jugador",
       "TROPHIES_TITLE": "Evolución de trofeos",
@@ -219,7 +274,11 @@
       "BATTLES_LABEL": "Batallas"
     }
   },
-
+  "PAGINATION": {
+    "PREV": "Anterior",
+    "NEXT": "Siguiente",
+    "PAGE": "Página"
+  },
   "VALIDATION": {
     "REQUIRED": "Este campo es obligatorio.",
     "EMAIL_INVALID": "Correo no válido.",
