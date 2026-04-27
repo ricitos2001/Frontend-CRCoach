@@ -912,6 +912,10 @@ app-form-input .error[title] {
   margin-bottom: 18px;
   color: var(--elements-color);
   position: relative;
+  z-index: 0;
+  /* stronger base shadow and smooth lift on hover */
+  box-shadow: 0 10px 28px rgba(3, 27, 38, 0.28);
+  transition: transform 200ms cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 200ms cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 .battles-page .battle-card .battle-header {
   display: flex;
@@ -950,6 +954,27 @@ app-form-input .error[title] {
 }
 .battles-page .battle-card .battle-header .draw {
   background: var(--color-warning-1);
+}
+.battles-page .battle-card {
+  /* parallel shadow effect behind each battle card */
+}
+.battles-page .battle-card .battle-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  /* offset to create a more pronounced parallel long shadow */
+  box-shadow: 26px 26px 48px rgba(3, 27, 38, 0.36);
+  transform: translate(12px, 12px);
+  z-index: -1;
+  pointer-events: none;
+}
+.battles-page .battle-card .battle-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 26px 60px rgba(3, 27, 38, 0.32);
 }
 .battles-page .battle-card .battle-body {
   display: flex;
@@ -995,7 +1020,7 @@ app-form-input .error[title] {
   background: var(--elements-color);
   color: var(--components-color);
   border-radius: 10px;
-  padding: 18px;
+  padding: 40px;
   margin-bottom: 18px;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
 }
@@ -1009,8 +1034,8 @@ app-form-input .error[title] {
   gap: 10px;
 }
 .battles-page .battle-card .battle-body .team .deck .cards .card {
-  width: 72px;
-  height: 72px;
+  width: 128px;
+  height: 128px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
