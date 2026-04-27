@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { Session } from '../../interfaces/Session';
 import { SessionsService } from '../../services/sessions/sessions.service';
 import { SessionFormComponent } from '../../components/shared/session-form/session-form.component';
+import { ModalComponent } from '../../components/shared/modal/modal.component';
 
 @Component({
   selector: 'app-sessions',
@@ -20,6 +21,7 @@ import { SessionFormComponent } from '../../components/shared/session-form/sessi
     TranslatePipe,
     DatePipe,
     SessionFormComponent,
+    ModalComponent,
   ],
   templateUrl: './sessions.page.html',
   styleUrl: '../../../styles/styles.css',

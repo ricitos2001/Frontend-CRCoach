@@ -17,12 +17,14 @@
     }
 
     @if (goalsStore.goals(); as goalsPage) {
-      @if (creating) {
-        <app-goal-form (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
-      }
-      @if (editingGoal) {
-        <app-goal-form [goal]="editingGoal" (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
-      }
+      <app-modal [isOpen]="creating || !!editingGoal" title="{{ creating ? ( 'PAGES.GOALS.ADD' | translate ) : ( 'PAGES.GOALS.EDIT' | translate ) }}" (close)="onCancel()">
+        @if (creating) {
+          <app-goal-form (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
+        }
+        @if (editingGoal) {
+          <app-goal-form [goal]="editingGoal" (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
+        }
+      </app-modal>
 
       @for (goal of filteredGoals(goalsPage); track goal.id) {
         <article class="card">

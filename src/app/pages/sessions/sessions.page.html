@@ -15,12 +15,14 @@
     }
 
     @if (sessionsStore.sessions(); as sessionsPage) {
-      @if (creating) {
-        <app-session-form (saved)="onSessionSaved($event)" (cancel)="onCancel()"></app-session-form>
-      }
-      @if (editingSession) {
-        <app-session-form [session]="editingSession" (saved)="onSessionSaved($event)" (cancel)="onCancel()"></app-session-form>
-      }
+      <app-modal [isOpen]="creating || !!editingSession" title="{{ creating ? ( 'PAGES.SESSIONS.ADD' | translate ) : ( 'PAGES.SESSIONS.EDIT' | translate ) }}" (close)="onCancel()">
+        @if (creating) {
+          <app-session-form (saved)="onSessionSaved($event)" (cancel)="onCancel()"></app-session-form>
+        }
+        @if (editingSession) {
+          <app-session-form [session]="editingSession" (saved)="onSessionSaved($event)" (cancel)="onCancel()"></app-session-form>
+        }
+      </app-modal>
 
       @for (s of pageToArray(sessionsPage); track s.id) {
         <article class="card">

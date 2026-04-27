@@ -9,6 +9,7 @@ import { GoalsSignalStore } from '../../signal_stores/goals.signal.store';
 import { GoalsService } from '../../services/goals/goals.service';
 import { Goal } from '../../interfaces/Goal';
 import { GoalFormComponent } from '../../components/shared/goal-form/goal-form.component';
+import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
 
@@ -24,14 +25,13 @@ import { DatePipe } from '@angular/common';
     TranslatePipe,
     DatePipe,
     GoalFormComponent,
+    ModalComponent,
   ],
   templateUrl: './goals.page.html',
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
 export class GoalsPage implements OnInit {
-  // Reference to avoid unused-import analyzer warnings about standalone component imports
-  protected readonly _FormInput = FormInputComponent;
   public page = 0;
   public pageSize = 10;
   public editingGoal: Goal | null = null;
