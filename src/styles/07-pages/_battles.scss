@@ -30,15 +30,9 @@
 	  inset: 0;
 	  border-radius: inherit;
 	  /* shadow oscuro para que no parezca blanca */
-	  box-shadow: 24px 24px 48px rgba(0,0,0,0.55), 10px 10px 22px rgba(0,0,0,0.28);
-	  transform: translate(8px,8px);
+    box-shadow: 32px 32px 72px rgba(0,0,0,0.65), 14px 14px 30px rgba(0,0,0,0.36);
 	  z-index: -1;
 	  pointer-events: none;
-	}
-
-	/* intensificar sombra al hover para dar más profundidad */
-	&:hover::before {
-	  box-shadow: 32px 32px 72px rgba(0,0,0,0.65), 14px 14px 30px rgba(0,0,0,0.36);
 	}
 
 	.battle-header {

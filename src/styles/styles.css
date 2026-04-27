@@ -320,17 +320,75 @@ footer .logo {
 /* Styles for the sidebar component and its toggle button */
 app-sidebar {
   position: relative;
+  /* Sidebar panel: fixed on the left, with smooth slide-in/out animation.
+     When closed it is shifted left leaving the toggle button visible. */
 }
 app-sidebar aside {
-  /* keep existing layout responsibility elsewhere, but ensure a nice panel look */
+  position: fixed;
+  left: 12px;
+  top: 40px;
+  bottom: 40px;
+  width: 220px; /* expanded width matching the design */
+  max-width: 85vw;
   background: var(--components-color);
   color: var(--elements-color);
-  border-radius: 10px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 18px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  overflow: auto;
+  transform: translateX(-204px); /* hidden state (only a sliver remains if desired) */
+  transition: transform 0.26s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.18s ease, opacity 0.18s ease;
+  will-change: transform;
+}
+app-sidebar {
+  /* Open state: slide into view */
+}
+app-sidebar aside.open {
+  transform: translateX(0);
+}
+app-sidebar {
+  /* Inner list: vertical aligned items */
+}
+app-sidebar aside ul {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+app-sidebar aside ul li {
+  display: block;
+}
+app-sidebar aside ul li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+app-sidebar aside ul li a:hover {
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateX(2px);
+}
+app-sidebar aside ul li a svg {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+}
+app-sidebar aside ul li a span {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--elements-color);
 }
 app-sidebar {
   /* Toggle button placed midway on the left edge of the page, styled to match the battles UI */
+  /* The button moves slightly when the sidebar is open so it sits on the panel edge. */
 }
 app-sidebar > button {
   position: fixed;
@@ -360,6 +418,12 @@ app-sidebar > button:hover {
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.55);
 }
 app-sidebar {
+  /* When the aside is open, move the button to sit at the panel edge */
+}
+app-sidebar aside.open + button {
+  transform: translateY(-50%) translateX(220px);
+}
+app-sidebar {
   /* SVG inside the button: larger, centered and crisp */
 }
 app-sidebar > button svg {
@@ -371,9 +435,9 @@ app-sidebar > button svg {
   opacity: 0.98;
 }
 app-sidebar {
-  /* If the aside exists (open), rotate the chevron to point left */
+  /* Rotate the chevron when the panel is open */
 }
-app-sidebar aside + button svg {
+app-sidebar aside.open + button svg {
   transform: rotate(180deg);
 }
 app-sidebar {
@@ -990,16 +1054,9 @@ app-form-input .error[title] {
   inset: 0;
   border-radius: inherit;
   /* shadow oscuro para que no parezca blanca */
-  box-shadow: 24px 24px 48px rgba(0, 0, 0, 0.55), 10px 10px 22px rgba(0, 0, 0, 0.28);
-  transform: translate(8px, 8px);
+  box-shadow: 32px 32px 72px rgba(0, 0, 0, 0.65), 14px 14px 30px rgba(0, 0, 0, 0.36);
   z-index: -1;
   pointer-events: none;
-}
-.battles-page .battle-card {
-  /* intensificar sombra al hover para dar más profundidad */
-}
-.battles-page .battle-card:hover::before {
-  box-shadow: 32px 32px 72px rgba(0, 0, 0, 0.65), 14px 14px 30px rgba(0, 0, 0, 0.36);
 }
 .battles-page .battle-card .battle-header {
   display: flex;
