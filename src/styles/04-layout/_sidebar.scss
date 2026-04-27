@@ -1,18 +1,14 @@
 /* Estilos para el sidebar (coincidir con sidebar_extended.png) */
 aside[aria-label="Sidebar"] {
   position: fixed;
-  top: 1rem;
-  bottom: 1rem;
-  left: 1rem;
-  width: 14.5rem; /* ~232px */
-  max-width: 18rem;
-  background: linear-gradient(180deg, var(--color-primary-3), var(--color-primary-2));
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 20rem;
+  background: var(--color-primary-1);
   color: var(--elements-color);
-  border-radius: 8px;
-  box-shadow:
-	inset 6px 0 18px rgba(255,255,255,0.05), /* ligero borde interior izquierdo */
-	inset -6px 0 18px rgba(0,0,0,0.35),     /* sombreado interior derecho */
-	0 6px 20px rgba(0,0,0,0.45);            /* sombra exterior para profundidad */
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   overflow: hidden;
   padding: 0.75rem 0.5rem 1.75rem 0.5rem;
   display: flex;
@@ -73,14 +69,8 @@ aside[aria-label="Sidebar"] ul li:hover a {
   font-size: 1.35rem;
 }
 
-/* Separar ligeramente el primer item del borde superior y darle más radio en la parte superior */
-aside[aria-label="Sidebar"] ul li:first-child a {
-  margin-top: 0.1rem;
-  border-radius: 10px;
-}
-
 aside[aria-label="Sidebar"] ul li a:hover {
-  background: rgba(255,255,255,0.06);
+  background: var(--elements-color);
   transform: translateX(2px);
 }
 
@@ -125,9 +115,6 @@ aside[aria-label="Sidebar"]:not(.open) ul li a {
   gap: 0.6rem;
 }
 
-/* Icono logout: mantengo su color blanco; el botón con texto grande y negrita */
-aside[aria-label="Sidebar"] article svg { width: 2.8rem; height: auto; color: var(--elements-color); }
-
 aside[aria-label="Sidebar"] article app-common-button button {
   background: transparent;
   border: none;
@@ -141,7 +128,7 @@ aside[aria-label="Sidebar"] article app-common-button button {
 /* Toggle button: estético para que quede como en el diseño (pequeña pestaña con chevrón) */
 button[aria-label="Abrir o cerrar la barra lateral"] {
   position: fixed;
-  left: calc(14.5rem + 0.6rem); /* pegado al borde derecho del sidebar */
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 3.2rem;
@@ -153,10 +140,10 @@ button[aria-label="Abrir o cerrar la barra lateral"] {
   color: var(--elements-color);
   border: none;
   border-radius: 8px;
-  box-shadow: 0 10px 18px rgba(0,0,0,0.5), inset 6px 0 12px rgba(255,255,255,0.03);
   cursor: pointer;
   z-index: 60;
   padding: 0;
+  transition: left 240ms cubic-bezier(.2,.8,.2,1), transform 160ms ease, box-shadow 160ms ease;
 }
 
 /* Ajustes del SVG interno: chevrón blanco y trazo grueso, centrado */
@@ -171,6 +158,15 @@ button[aria-label="Abrir o cerrar la barra lateral"] svg path {
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
+}
+
+/* Cuando el botón tiene la clase .open (sidebar abierto), desplazarlo hacia la derecha y rotar el icono */
+button[aria-label="Abrir o cerrar la barra lateral"].open {
+  left: calc(1rem + 14.5rem - 1.8rem);
+}
+
+button[aria-label="Abrir o cerrar la barra lateral"].open svg {
+  transform: rotate(180deg);
 }
 
 /* Estado hover/focus similar a la imagen: resaltar ligeramente */
