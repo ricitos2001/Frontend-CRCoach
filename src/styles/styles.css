@@ -996,6 +996,8 @@ app-form-input .error[title] {
   background: var(--elements-color);
   border-radius: 8px;
   object-fit: cover;
+  align-content: center;
+  justify-items: center;
 }
 .battles-page .battle-card .battle-body .team .team-top .clan-badge {
   width: 20px;

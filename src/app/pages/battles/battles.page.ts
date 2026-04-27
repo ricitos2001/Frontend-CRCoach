@@ -124,7 +124,6 @@ export class BattlesPage {
   }
 
   getClanBadgeUrl(badgeId: number) {
-    console.log(badgeId)
     return `https://royaleapi.github.io/cr-api-assets/badges/medium/${badgeId}.png`;
   }
 }
