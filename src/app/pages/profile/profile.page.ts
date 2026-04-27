@@ -3,8 +3,6 @@ import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { HeaderContentService } from '../../services/header-content/header-content.service';
-import { JsonPipe } from '@angular/common';
-import { parseJson } from '@angular/cli/src/utilities/json-file';
 
 @Component({
   selector: 'app-profile',
@@ -39,7 +37,4 @@ export class ProfilePage implements OnInit {
     }
     this.headerContentService.setContent(this.headerContent);
   }
-
-  protected readonly JSON = JSON;
-  protected readonly parseJson = parseJson;
 }
