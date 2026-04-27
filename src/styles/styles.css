@@ -275,7 +275,6 @@ header app-dark-mode-button button {
 */
 main {
   padding: 3rem;
-  transition: margin-left 240ms ease-in-out, padding 200ms ease-in-out;
 }
 
 body.sidebar-open main {
