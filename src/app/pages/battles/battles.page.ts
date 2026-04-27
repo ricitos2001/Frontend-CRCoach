@@ -122,8 +122,4 @@ export class BattlesPage {
     if (!this.tag) return;
     this.battlesStore.importBattles(this.tag);
   }
-
-  getClanBadgeUrl(badgeId: number) {
-    return `https://royaleapi.github.io/cr-api-assets/badges/medium/${badgeId}.png`;
-  }
 }
