@@ -12,12 +12,12 @@ aside {
   left: 0;
   top: 0;
   height: 100vh;
-  width: 88px; /* ancho cerrado */
+  width: var(--sidebar-closed-width); /* ancho cerrado */
   background: var(--components-color);
   color: var(--elements-color);
   box-shadow: 2px 0 8px rgba(0,0,0,0.12);
   overflow: hidden;
-  transition: width 240ms ease-in-out, background-color 200ms;
+  transition: width 240ms ease-in-out, padding 240ms ease-in-out, background-color 200ms;
   z-index: 80;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ aside {
 }
 
 aside.open {
-  width: 320px;
+  width: var(--sidebar-open-width);
 }
 
 aside ul {
@@ -67,7 +67,8 @@ aside ul li a span {
   font-size: 14px;
   opacity: 0;
   transform: translateX(-8px);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 220ms ease-in-out, transform 220ms ease-in-out;
+  transition-delay: 0ms;
   color: inherit;
 }
 
@@ -75,6 +76,8 @@ aside ul li a span {
 aside.open ul li a span {
   opacity: 1;
   transform: translateX(0);
+  /* dar un pequeño retardo para que el texto aparezca cuando el ancho ya ha comenzado */
+  transition-delay: 120ms;
 }
 
 /* Resaltar el enlace al pasar el ratón */
@@ -202,9 +205,10 @@ app-common-button button svg {
 
 button.sidebar-toggle {
   position: fixed;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
+  width: var(--sidebar-toggle-width);
   height: 64px;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
@@ -215,7 +219,7 @@ button.sidebar-toggle {
   justify-content: center;
   padding: 6px;
   cursor: pointer;
-  transition: transform 160ms, left 200ms, background 120ms;
+  transition: transform 160ms, left 240ms ease-in-out, background 120ms;
   z-index: 90;
 }
 
@@ -233,19 +237,5 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
-}
-
-@media (max-width: 720px) {
-  aside {
-    transform: translateX(-6px);
-  }
-  button.sidebar-toggle {
-    left: 12px;
-    top: 12px;
-    transform: none;
-  }
-  button.sidebar-toggle.open {
-    left: calc(100% - 56px);
-  }
 }
 

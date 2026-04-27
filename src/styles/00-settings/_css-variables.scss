@@ -57,6 +57,11 @@
   --break-lg: #{$break-lg};
   --break-xl: #{$break-xl};
 
+  /* Sidebar layout variables (usadas por main y sidebar) */
+  --sidebar-closed-width: 88px;
+  --sidebar-open-width: 320px;
+  --sidebar-toggle-width: 44px;
+
   --first-background-color: var(--color-primary-5);
   --second-background-color: var(--color-primary-4);
   --elements-color: var(--light-color-1);

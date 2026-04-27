@@ -28,6 +28,16 @@ export class SidebarComponent {
 
   protected openOrCloseSidebar() {
     this.isOpened = !this.isOpened;
+    try {
+      if (this.isOpened) {
+        document.body.classList.add('sidebar-open');
+      } else {
+        document.body.classList.remove('sidebar-open');
+      }
+    } catch (e) {
+      // en entornos donde `document` no esté disponible (SSR) evitamos errores
+      // el comportamiento por defecto de la UI permanecerá, pero la clase no se aplicará
+    }
   }
 
   protected logout() {
