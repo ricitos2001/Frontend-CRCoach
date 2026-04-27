@@ -373,12 +373,6 @@ aside[aria-label=Sidebar] ul li svg {
 }
 
 /* Forzar que los paths SVG usen el color del texto (permite cambiar a azul cuando el item está activo con fondo blanco) */
-aside[aria-label=Sidebar] ul li svg path,
-aside[aria-label=Sidebar] ul li svg circle,
-aside[aria-label=Sidebar] ul li svg rect {
-  fill: currentColor !important;
-}
-
 /* Estilo del item activo (Dashboard en la imagen): fondo blanco con texto/ícono azul) */
 aside[aria-label=Sidebar] ul li:first-child a {
   background: var(--light-color-1);
@@ -439,15 +433,51 @@ aside[aria-label=Sidebar] article app-common-button button {
   text-transform: none;
 }
 
-/* Toggle button: estético para que no choque con el sidebar */
+/* Toggle button: estético para que quede como en el diseño (pequeña pestaña con chevrón) */
 button[aria-label="Abrir o cerrar la barra lateral"] {
   position: fixed;
-  left: 15.7rem;
-  top: 1rem;
-  background: transparent;
+  left: 15.1rem; /* pegado al borde derecho del sidebar */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3.2rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(7, 40, 62, 0.98), rgba(19, 64, 86, 0.98));
+  color: var(--light-color-1);
   border: none;
-  padding: 0.2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.5), inset 6px 0 12px rgba(255, 255, 255, 0.03);
+  cursor: pointer;
   z-index: 60;
+  padding: 0;
+}
+
+/* Ajustes del SVG interno: chevrón blanco y trazo grueso, centrado */
+button[aria-label="Abrir o cerrar la barra lateral"] svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+button[aria-label="Abrir o cerrar la barra lateral"] svg path {
+  stroke: var(--light-color-1) !important;
+  stroke-width: 4 !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none !important;
+}
+
+/* Estado hover/focus similar a la imagen: resaltar ligeramente */
+button[aria-label="Abrir o cerrar la barra lateral"]:hover,
+button[aria-label="Abrir o cerrar la barra lateral"]:focus {
+  transform: translateY(-50%) translateX(4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55), inset 6px 0 14px rgba(255, 255, 255, 0.04);
+}
+
+/* Cuando el sidebar esté abierto (clase .open en el botón), rotar el chevrón */
+button[aria-label="Abrir o cerrar la barra lateral"].open svg {
+  transform: rotate(180deg);
 }
 
 .checkbox {
