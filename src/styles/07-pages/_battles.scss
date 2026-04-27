@@ -1,4 +1,3 @@
-
 .battles-page {
   padding: 20px;
   h1 {
@@ -15,33 +14,50 @@
   .helper { color: var(--elements-color); }
 
   .battle-card {
-	background: var(--components-color-two);
+	background: rgba(255,255,255,0.03);
+	border: 1px solid rgba(255,255,255,0.06);
+	backdrop-filter: blur(6px);
 	border-radius: 12px;
-	margin-bottom: 18px;
+	margin-bottom: 24px; /* más separación entre cards */
 	color: var(--elements-color);
 	position: relative;
-	z-index: 0;
-	/* stronger base shadow and smooth lift on hover */
-	box-shadow: 0 10px 28px rgba(3, 27, 38, 0.28);
-	transition: transform 200ms cubic-bezier(.2,.9,.3,1), box-shadow 200ms cubic-bezier(.2,.9,.3,1);
+	overflow: visible;
+
+	/* sombra paralela más oscura detrás de cada card (usar negro semi-transparente) */
+	&::before {
+	  content: '';
+	  position: absolute;
+	  inset: 0;
+	  border-radius: inherit;
+	  /* shadow oscuro para que no parezca blanca */
+	  box-shadow: 24px 24px 48px rgba(0,0,0,0.55), 10px 10px 22px rgba(0,0,0,0.28);
+	  transform: translate(8px,8px);
+	  z-index: -1;
+	  pointer-events: none;
+	}
+
+	/* intensificar sombra al hover para dar más profundidad */
+	&:hover::before {
+	  box-shadow: 32px 32px 72px rgba(0,0,0,0.65), 14px 14px 30px rgba(0,0,0,0.36);
+	}
 
 	.battle-header {
 	  display: flex;
 	  justify-content: flex-start;
 	  align-items: center;
-	  margin-bottom: 14px;
 	  background: var(--components-color);
-	  padding: 10px 18px;
-	  border-radius: 8px 8px 0 0;
+	  padding: 8px 12px; /* más compacto */
+	  border-radius: 8px;
 	  position: relative;
 
 	  .result-pill {
 		display: inline-block;
 		background: transparent;
 		color: var(--components-color);
-		padding: 6px 14px;
+		padding: 8px 16px; /* más destacado */
 		border-radius: 12px;
-		font-weight: 700;
+		font-weight: 800;
+		font-size: 14px;
 		box-shadow: 0 1px 0 rgba(0,0,0,0.06);
 	  }
 
@@ -50,69 +66,53 @@
 		margin-left: auto; /* push to right */
 		background: transparent;
 		color: var(--components-color);
-		padding: 6px 12px;
+		padding: 8px 14px;
 		border-radius: 12px;
-		font-weight: 700;
+		font-weight: 800;
+		font-size: 14px;
 		box-shadow: 0 1px 0 rgba(0,0,0,0.06);
 	  }
 
-	  .victory {
-		background: var(--color-success-1);
-	  }
-
-	  .defeat {
-		background: var(--color-error-1);
-	  }
-
-	  .draw {
-		background: var(--color-warning-1);
-	  }
-	}
-
-	/* parallel shadow effect behind each battle card */
-	.battle-card::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		border-radius: inherit;
-		/* offset to create a more pronounced parallel long shadow */
-		box-shadow: 26px 26px 48px rgba(3, 27, 38, 0.36);
-		transform: translate(12px, 12px);
-		z-index: -1;
-		pointer-events: none;
-	}
-
-	.battle-card:hover {
-		transform: translateY(-8px);
-		box-shadow: 0 26px 60px rgba(3,27,38,0.32);
+	  .victory { background: var(--color-success-1); }
+	  .defeat  { background: var(--color-error-1); }
+	  .draw    { background: var(--color-warning-1); }
 	}
 
 	.battle-body {
 	  display: flex;
-	  gap: 20px;
-    margin: 18px;
-    align-items: center;
+	  gap: 12px; /* más compacto */
+	  margin: 10px; /* menos padding interior */
+	  align-items: center;
 	  justify-content: space-between;
 
 	  .team {
-		width: calc(50% - 80px);
+		width: calc(50% - 60px);
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
+		gap: 8px;
 
 		.team-top {
 		  display: flex;
 		  align-items: center;
-		  gap: 12px;
+		  gap: 10px;
 
 		  .avatar {
-			width: 64px;
-			height: 64px;
+			width: 56px;
+			height: 56px;
 			background: var(--elements-color);
 			border-radius: 8px;
+			object-fit: cover;
+		  }
+
+		  .clan-badge {
+			width: 20px;
+			height: 20px;
+			object-fit: contain;
+			vertical-align: middle;
+			margin-right: 8px;
+			border-radius: 4px;
+			background: rgba(255,255,255,0.02);
+			display: inline-block;
 		  }
 
 		  .team-info {
@@ -123,29 +123,38 @@
 
 		  .team-trophy {
 			font-weight: 700;
-			min-width: 48px;
+			min-width: 44px;
 			text-align: right;
 		  }
 		}
 
 		.deck {
 		  background: var(--elements-color);
-		  color: var(--components-color);
-		  border-radius: 10px;
-		  padding: 40px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+		  border-radius: 8px;
+		  padding: 10px; /* compacto */
+		  margin-bottom: 10px;
+		  border: 1px solid rgba(255,255,255,0.03);
+      color: var(--components-color);
 
-		  .archetype { margin: 0 0 8px 0; font-weight: 700; }
+		  .deck-header {
+			padding: 6px 10px;
+			border-radius: 8px;
+			font-weight: 800;
+			font-size: 13px;
+			margin-bottom: 8px;
+			display: inline-block;
+		  }
+
+		  .archetype { margin: 0 0 6px 0; font-weight: 700; }
 
 		  .cards {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
-			gap: 10px;
+			gap: 8px;
 
 			.card {
-			  width: 128px;
-			  height: 128px;
+			  width: 96px; /* más compacto */
+			  height: 96px;
 			  object-fit: contain;
 			  display: block;
 			  margin: 0 auto;
@@ -154,48 +163,58 @@
 		}
 	  }
 
-	/* opponent reuses .team styles; adjust top to mirror layout */
-	.team.team-right {
-	  /* same width as .team */
-	  width: calc(50% - 80px);
+	  /* opponent reuses .team styles; adjust top to mirror layout */
+	  .team.team-right {
+		/* same width as .team */
+		width: calc(50% - 60px);
 
-	  .team-top.right {
-		display: flex;
-		flex-direction: row-reverse;
-		align-items: center;
-		gap: 12px;
+		.team-top.right {
+		  display: flex;
+		  flex-direction: row-reverse;
+		  align-items: center;
+		  gap: 10px;
 
-		.avatar {
-		  width: 64px;
-		  height: 64px;
-		  background: var(--elements-color);
-		  border-radius: 8px;
-		}
+		  .avatar {
+			width: 56px;
+			height: 56px;
+			background: var(--elements-color);
+			border-radius: 8px;
+		  }
 
-		.team-info {
-		  flex: 1;
-		  text-align: right;
-		  .player-name { font-weight: 700; margin: 0; }
-		  .player-clan { margin: 0; opacity: 0.9; }
-		}
+		  .team-info {
+			flex: 1;
+			text-align: right;
+			.player-name { font-weight: 700; margin: 0; }
+			.player-clan { margin: 0; opacity: 0.9; }
+		  }
 
-		.team-trophy {
-		  font-weight: 700;
-		  min-width: 48px;
-		  text-align: left; /* keep trophy closer to center */
+		  .team-trophy {
+			font-weight: 700;
+			min-width: 44px;
+			text-align: left; /* keep trophy closer to center */
+		  }
 		}
 	  }
-	}
 
 	  .center {
-		width: 160px;
+		width: 140px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		text-align: center;
 		color: var(--elements-color);
 
-		.swords { font-size: 36px; margin-bottom: 8px; }
-		.score { font-size: 20px; font-weight: 700; }
+		/* target the svg.swords: make it larger and centered */
+		.swords {
+			display: block;
+			margin: 0 0 6px 0;
+			max-width: 100%;
+		}
+
+		.score { font-size: 28px; font-weight: 900; }
 	  }
-	}
+  }
   }
 
   /* Responsive */
@@ -205,4 +224,5 @@
 	.center { width: 100%; }
   }
 }
+
 
