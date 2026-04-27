@@ -319,6 +319,137 @@ footer .logo {
   width: 6rem;
 }
 
+/* Estilos para el sidebar (coincidir con sidebar_extended.png) */
+aside[aria-label=Sidebar] {
+  position: fixed;
+  top: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  width: 14.5rem; /* ~232px */
+  max-width: 18rem;
+  background: linear-gradient(180deg, var(--color-primary-3), var(--color-primary-2));
+  color: var(--elements-color);
+  border-radius: 8px;
+  box-shadow: inset 6px 0 18px rgba(255, 255, 255, 0.05), inset -6px 0 18px rgba(0, 0, 0, 0.35), 0 6px 20px rgba(0, 0, 0, 0.45); /* sombra exterior para profundidad */
+  overflow: hidden;
+  padding: 0.75rem 0.5rem 1.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+}
+
+/* Lista de items vertical */
+aside[aria-label=Sidebar] ul {
+  margin: 0;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  list-style: none;
+  display: block;
+}
+
+aside[aria-label=Sidebar] ul li {
+  margin: 0.6rem 0;
+}
+
+aside[aria-label=Sidebar] ul li a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--elements-color);
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-family: var(--font-secondary), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-weight: 700;
+  font-size: 1.35rem; /* tamaño de texto grande como en la imagen */
+  line-height: 1;
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+/* Ajuste de tamaño de iconos (los SVG vienen con width/height grandes) */
+aside[aria-label=Sidebar] ul li svg {
+  width: 2.5rem;
+  height: auto;
+  flex: 0 0 2.5rem;
+}
+
+/* Forzar que los paths SVG usen el color del texto (permite cambiar a azul cuando el item está activo con fondo blanco) */
+aside[aria-label=Sidebar] ul li svg path,
+aside[aria-label=Sidebar] ul li svg circle,
+aside[aria-label=Sidebar] ul li svg rect {
+  fill: currentColor !important;
+}
+
+/* Estilo del item activo (Dashboard en la imagen): fondo blanco con texto/ícono azul) */
+aside[aria-label=Sidebar] ul li:first-child a {
+  background: var(--light-color-1);
+  color: var(--components-color);
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  font-size: 1.35rem;
+}
+
+/* Separar ligeramente el primer item del borde superior y darle más radio en la parte superior */
+aside[aria-label=Sidebar] ul li:first-child a {
+  margin-top: 0.1rem;
+  border-radius: 10px;
+}
+
+aside[aria-label=Sidebar] ul li a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(2px);
+}
+
+/* Texto del span (etiqueta del menú) */
+aside[aria-label=Sidebar] ul li span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Botones (idioma / modo oscuro) agrupados */
+aside[aria-label=Sidebar] ul li.buttons {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+/* Área inferior con logout */
+aside[aria-label=Sidebar] article {
+  margin-top: auto;
+  padding: 0.75rem 0.6rem 0 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Icono logout: mantengo su color blanco; el botón con texto grande y negrita */
+aside[aria-label=Sidebar] article svg {
+  width: 2.8rem;
+  height: auto;
+  color: var(--elements-color);
+}
+
+aside[aria-label=Sidebar] article app-common-button button {
+  background: transparent;
+  border: none;
+  color: var(--elements-color);
+  padding: 0;
+  font-weight: 800;
+  font-size: 1.35rem;
+  text-transform: none;
+}
+
+/* Toggle button: estético para que no choque con el sidebar */
+button[aria-label="Abrir o cerrar la barra lateral"] {
+  position: fixed;
+  left: 15.7rem;
+  top: 1rem;
+  background: transparent;
+  border: none;
+  padding: 0.2rem;
+  z-index: 60;
+}
+
 .checkbox {
   display: flex;
   flex-direction: row;
