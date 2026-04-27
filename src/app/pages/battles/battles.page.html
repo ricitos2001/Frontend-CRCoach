@@ -1,6 +1,7 @@
-<section>
+<section class="battles-page">
   <h1>{{'PAGES.BATTLES.TITLE' | translate}}</h1>
-  <article class="flex">
+
+  <article class="controls flex">
     <app-searcher (search)="onSearch($event)"></app-searcher>
 
     <!-- Game mode filter -->
@@ -11,66 +12,124 @@
 
     <app-refresh-button (click)="refreshBattles()"></app-refresh-button>
   </article>
+
   @if (battlesStore.loading() && !battlesStore.battles()) {
-    <p>{{ 'PAGES.BATTLES.LOADING' | translate }}</p>
+    <p class="helper">{{ 'PAGES.BATTLES.LOADING' | translate }}</p>
   }
   @if (battlesStore.error(); as bErr) {
     <p class="error">{{ 'PAGES.BATTLES.ERROR' | translate:{ err: bErr } }}</p>
   }
+
   @if (filteredBattles(); as battles) {
     @for (battle of battles; track battle.id) {
-      @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
-        <p>{{ 'PAGES.BATTLES.VICTORY' | translate }}</p>
-      } @else if (battle.team.trophyChange < 0 && battle.opponent.trophyChange > 0) {
-        <p>{{ 'PAGES.BATTLES.DEFEAT' | translate }}</p>
-      } @else if (battle.team.trophyChange === 0 && battle.opponent.trophyChange === 0) {
-        <p>{{ 'PAGES.BATTLES.DRAW' | translate }}</p>
-      } @else {
-        @if (battle.team.crowns > battle.opponent.crowns) {
-          <p>{{ 'PAGES.BATTLES.VICTORY' | translate }}</p>
-        } @else if (battle.team.crowns < battle.opponent.crowns) {
-          <p>{{ 'PAGES.BATTLES.DEFEAT' | translate }}</p>
+      <section class="battle-card">
+        <!-- header: result left, trophy change right -->
+        @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
+          <section class="battle-header">
+            <article class="result-pill victory">{{ 'PAGES.BATTLES.VICTORY' | translate }}</article>
+            <article class="trophy-pill victory">@if (true) { +{{battle.team.trophyChange}} }</article>
+          </section>
+        } @else if (battle.team.trophyChange < 0 && battle.opponent.trophyChange > 0) {
+          <section class="battle-header">
+            <article class="result-pill defeat">{{ 'PAGES.BATTLES.DEFEAT' | translate }}</article>
+            <article class="trophy-pill defeat">@if (true) { {{battle.team.trophyChange}} }</article>
+          </section>
+        } @else if (battle.team.trophyChange === 0 && battle.opponent.trophyChange === 0) {
+          <section class="battle-header">
+            <article class="result-pill draw">{{ 'PAGES.BATTLES.DRAW' | translate }}</article>
+            <article class="trophy-pill draw">{{battle.team.trophyChange}}</article>
+          </section>
         } @else {
-          <p>{{ 'PAGES.BATTLES.DRAW' | translate }}</p>
+          @if (battle.team.crowns > battle.opponent.crowns) {
+            <section class="battle-header">
+              <article class="result-pill victory">{{ 'PAGES.BATTLES.VICTORY' | translate }}</article>
+              <article class="trophy-pill victory">0</article>
+            </section>
+          } @else if (battle.team.crowns < battle.opponent.crowns) {
+            <section class="battle-header">
+              <article class="result-pill defeat">{{ 'PAGES.BATTLES.DEFEAT' | translate }}</article>
+              <article class="trophy-pill defeat">0</article>
+            </section>
+          } @else {
+            <section class="battle-header">
+              <article class="result-pill draw">{{ 'PAGES.BATTLES.DRAW' | translate }}</article>
+              <article class="trophy-pill draw">0</article>
+            </section>
+          }
         }
-      }
-      <section>
-        <p>{{battle.team.name}}</p>
-        @if (battle.team.clan === null) {
-          <p>{{ 'PAGES.BATTLES.NO_CLAN' | translate }}</p>
-        } @else {
-          <p>{{battle.team.clan.name}}</p>
-        }
-        @if (battle.team.trophyChange === null) {
-          <p>0</p>
-        } @else {
-          <p>{{battle.team.trophyChange}}</p>
-        }
-        <p>{{battle.team.crowns}}</p>
-        <p>{{battle.team.playerDeck.archetype}}</p>
-        @for (card of battle.team.playerDeck.playerCards; track card.id) {
-          <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" />
-        }
-      </section>
-      <section>
-        <p>{{battle.opponent.name}}</p>
-        @if (battle.opponent.clan === null) {
-          <p>{{ 'PAGES.BATTLES.NO_CLAN' | translate }}</p>
-        } @else {
-          <p>{{battle.opponent.clan.name}}</p>
-        }
-        @if (battle.opponent.trophyChange === null) {
-          <p>0</p>
-        } @else {
-          <p>{{battle.opponent.trophyChange}}</p>
-        }
-        <p>{{battle.opponent.crowns}}</p>
-        <p>{{battle.opponent.playerDeck.archetype}}</p>
-        @for (card of battle.opponent.playerDeck.playerCards; track card.id) {
-          <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" />
-        }
+
+        <section class="battle-body">
+          <!-- TEAM (left) -->
+          <section class="team team-left">
+            <section class="team-top">
+              <article class="avatar"></article>
+              <article class="team-info">
+                <p class="player-name">{{battle.team.name}}</p>
+                @if (battle.team.clan === null) {
+                  <p class="player-clan">{{ 'PAGES.BATTLES.NO_CLAN' | translate }}</p>
+                } @else {
+                  <p class="player-clan">{{battle.team.clan.name}}</p>
+                }
+              </article>
+              <article class="team-trophy">
+                @if (battle.team.trophyChange === null) {
+                  <span>0</span>
+                } @else {
+                  <span>{{battle.team.trophyChange}}</span>
+                }
+              </article>
+            </section>
+
+            <section class="deck">
+              <p class="archetype">{{battle.team.playerDeck.archetype}}</p>
+              <article class="cards">
+                @for (card of battle.team.playerDeck.playerCards; track card.id) {
+                  <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
+                }
+              </article>
+            </section>
+          </section>
+
+          <!-- CENTER (score) -->
+          <section class="center">
+            <article class="swords">⚔️</article>
+            <article class="score">{{battle.team.crowns}}-{{battle.opponent.crowns}}</article>
+          </section>
+
+          <!-- OPPONENT (right) -->
+          <section class="team team-right">
+            <section class="team-top right">
+              <article class="avatar"></article>
+              <article class="team-info">
+                <p class="player-name">{{battle.opponent.name}}</p>
+                @if (battle.opponent.clan === null) {
+                  <p class="player-clan">{{ 'PAGES.BATTLES.NO_CLAN' | translate }}</p>
+                } @else {
+                  <p class="player-clan">{{battle.opponent.clan.name}}</p>
+                }
+              </article>
+              <article class="team-trophy">
+                @if (battle.opponent.trophyChange === null) {
+                  <span>0</span>
+                } @else {
+                  <span>{{battle.opponent.trophyChange}}</span>
+                }
+              </article>
+            </section>
+
+            <section class="deck">
+              <p class="archetype">{{battle.opponent.playerDeck.archetype}}</p>
+              <article class="cards">
+                @for (card of battle.opponent.playerDeck.playerCards; track card.id) {
+                  <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
+                }
+              </article>
+            </section>
+          </section>
+        </section>
       </section>
     }
   }
+
 </section>
 <app-sidebar></app-sidebar>

@@ -152,9 +152,9 @@
       "LOADING": "Cargando batallas...",
       "ERROR": "Error cargando batallas: {{err}}",
       "NO_CLAN": "Sin clan",
-      "VICTORY": "Victorias",
-      "DEFEAT": "Derrotas",
-      "DRAW": "Empates",
+      "VICTORY": "Victoria",
+      "DEFEAT": "Derrota",
+      "DRAW": "Empate",
       "ALL": "todas las batallas"
     },
     "WEAKNESSES": {

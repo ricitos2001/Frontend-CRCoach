@@ -152,9 +152,9 @@
       "LOADING": "Loading battles...",
       "ERROR": "Battles error: {{err}}",
       "NO_CLAN": "No clan",
-      "VICTORY": "Victories",
-      "DEFEAT": "Defeats",
-      "DRAW": "Draws",
+      "VICTORY": "Victory",
+      "DEFEAT": "Defeat",
+      "DRAW": "Draw",
       "ALL": "All battles"
     },
     "WEAKNESSES": {

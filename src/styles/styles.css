@@ -51,6 +51,7 @@
   --elements-color: var(--light-color-1);
   --components-color: var(--color-primary-1);
   --components-color-on-hover: var(--color-secondary-3);
+  --components-color-two: var(--color-primary-2);
 }
 
 .dark-mode {
@@ -59,6 +60,7 @@
   --elements-color: var(--color-secondary-1);
   --components-color: var(--dark-color-1);
   --components-color-on-hover: var(--dark-color-3);
+  --components-color-two: var(--dark-color-2);
 }
 
 @font-face {
@@ -147,32 +149,6 @@ header .icon-background,
 footer svg circle,
 footer .icon-background {
   fill: var(--elements-color);
-}
-
-/* Hide visually but keep available to assistive technologies */
-.code-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* When host has this class (development mode), show the texts */
-.show-code-only .code-only {
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  overflow: visible !important;
-  clip: auto !important;
-  white-space: normal !important;
-  border: none !important;
-  display: inline !important;
 }
 
 header {
@@ -913,6 +889,194 @@ app-form-input .error[title] {
 .landing > article:last-of-type h1 {
   font-size: 2.6rem;
   margin-bottom: 0.4rem;
+}
+
+.battles-page {
+  padding: 20px;
+}
+.battles-page h1 {
+  margin-bottom: 12px;
+  color: var(--elements-color);
+}
+.battles-page .controls {
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.battles-page .helper {
+  color: var(--elements-color);
+}
+.battles-page .battle-card {
+  background: var(--components-color-two);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  color: var(--elements-color);
+  position: relative;
+}
+.battles-page .battle-card .battle-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 14px;
+  background: var(--components-color);
+  padding: 10px 18px;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+}
+.battles-page .battle-card .battle-header .result-pill {
+  display: inline-block;
+  background: transparent;
+  color: var(--components-color);
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+.battles-page .battle-card .battle-header .trophy-pill {
+  display: inline-block;
+  margin-left: auto; /* push to right */
+  background: transparent;
+  color: var(--components-color);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+.battles-page .battle-card .battle-header .victory {
+  background: var(--color-success-1);
+}
+.battles-page .battle-card .battle-header .defeat {
+  background: var(--color-error-1);
+}
+.battles-page .battle-card .battle-header .draw {
+  background: var(--color-warning-1);
+}
+.battles-page .battle-card .battle-body {
+  display: flex;
+  gap: 20px;
+  margin: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+.battles-page .battle-card .battle-body .team {
+  width: calc(50% - 80px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.battles-page .battle-card .battle-body .team .team-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.battles-page .battle-card .battle-body .team .team-top .avatar {
+  width: 64px;
+  height: 64px;
+  background: var(--elements-color);
+  border-radius: 8px;
+}
+.battles-page .battle-card .battle-body .team .team-top .team-info {
+  flex: 1;
+}
+.battles-page .battle-card .battle-body .team .team-top .team-info .player-name {
+  font-weight: 700;
+  margin: 0;
+}
+.battles-page .battle-card .battle-body .team .team-top .team-info .player-clan {
+  margin: 0;
+  opacity: 0.9;
+}
+.battles-page .battle-card .battle-body .team .team-top .team-trophy {
+  font-weight: 700;
+  min-width: 48px;
+  text-align: right;
+}
+.battles-page .battle-card .battle-body .team .deck {
+  background: var(--elements-color);
+  color: var(--components-color);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+.battles-page .battle-card .battle-body .team .deck .archetype {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+.battles-page .battle-card .battle-body .team .deck .cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.battles-page .battle-card .battle-body .team .deck .cards .card {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.battles-page .battle-card .battle-body {
+  /* opponent reuses .team styles; adjust top to mirror layout */
+}
+.battles-page .battle-card .battle-body .team.team-right {
+  /* same width as .team */
+  width: calc(50% - 80px);
+}
+.battles-page .battle-card .battle-body .team.team-right .team-top.right {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 12px;
+}
+.battles-page .battle-card .battle-body .team.team-right .team-top.right .avatar {
+  width: 64px;
+  height: 64px;
+  background: var(--elements-color);
+  border-radius: 8px;
+}
+.battles-page .battle-card .battle-body .team.team-right .team-top.right .team-info {
+  flex: 1;
+  text-align: right;
+}
+.battles-page .battle-card .battle-body .team.team-right .team-top.right .team-info .player-name {
+  font-weight: 700;
+  margin: 0;
+}
+.battles-page .battle-card .battle-body .team.team-right .team-top.right .team-info .player-clan {
+  margin: 0;
+  opacity: 0.9;
+}
+.battles-page .battle-card .battle-body .team.team-right .team-top.right .team-trophy {
+  font-weight: 700;
+  min-width: 48px;
+  text-align: left; /* keep trophy closer to center */
+}
+.battles-page .battle-card .battle-body .center {
+  width: 160px;
+  text-align: center;
+  color: var(--elements-color);
+}
+.battles-page .battle-card .battle-body .center .swords {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+.battles-page .battle-card .battle-body .center .score {
+  font-size: 20px;
+  font-weight: 700;
+}
+.battles-page {
+  /* Responsive */
+}
+@media (max-width: 900px) {
+  .battles-page .battle-card .battle-body {
+    flex-direction: column;
+  }
+  .battles-page .battle-card .team {
+    width: 100%;
+  }
+  .battles-page .center {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
