@@ -36,7 +36,7 @@ export interface PlayerProfile {
   leagueStadistics: LeagueStadistics;
   badges: string[];
   achievements: string[];
-  playerCrads: PlayerCard[];
+  playerCards: PlayerCard[];
   supportCards: SupportCard[];
   currentDeck: Deck;
   currentDecSupportCarda: SupportDeck;

@@ -19,9 +19,22 @@
     <p class="error">Error perfil: {{pErr}}</p>
   }
   @if (profileStore.profile(); as profile) {
+    <p>{{profile.name}}</p>
+    <p>{{profile.tag }}</p>
     <p>{{profile.trophies}}</p>
     <p>{{profile.bestTrophies}}</p>
     <p>{{(profile.totalDonations)}}</p>
+    <img src="{{profile.currentFavouriteCard.iconUrl.medium}}" alt="Imagen de la carta favorita actual">
+    <p>{{profile.currentPathOfLegendSeasonResult}}</p>
+    <p>{{profile.arena.name}}</p>
+    @for (playerCard of profile.currentDeck.playerCards; track playerCard.id) {
+      <img src="{{playerCard.iconUrl.medium}}" alt="carta del mazo actual">
+    }
+    <p>{{profile.achievements}}</p>
+    <p>{{profile.currentDeck.playerCards}}</p>
+    @for (playerCard of profile.playerCards; track playerCard.id) {
+      <img src="{{playerCard.iconUrl.medium}}" alt="carta del jugador">
+    }
   }
 </section>
 <app-sidebar></app-sidebar>

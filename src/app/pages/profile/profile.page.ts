@@ -3,6 +3,8 @@ import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { HeaderContentService } from '../../services/header-content/header-content.service';
+import { JsonPipe } from '@angular/common';
+import { parseJson } from '@angular/cli/src/utilities/json-file';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +22,7 @@ export class ProfilePage implements OnInit {
     effect(() => {
       const user = this.usersStore.user();
       if (user && user.playerTag && user.playerTag.trim() !== '') {
+        localStorage.setItem('tag', user.playerTag);
         this.profileStore.loadByTag(user.playerTag);
       }
     });
@@ -27,6 +30,16 @@ export class ProfilePage implements OnInit {
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 
   ngOnInit(): void {
+    const email = localStorage.getItem('email');
+    const tag = localStorage.getItem('tag');
+    if (!email) return;
+    this.usersStore.loadByEmail(email);
+    if (tag) {
+      this.profileStore.loadByTag(tag);
+    }
     this.headerContentService.setContent(this.headerContent);
   }
+
+  protected readonly JSON = JSON;
+  protected readonly parseJson = parseJson;
 }
