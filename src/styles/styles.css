@@ -354,7 +354,6 @@ aside {
   color: var(--elements-color);
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  transition: width 240ms ease-in-out, padding 240ms ease-in-out, background-color 200ms;
   z-index: 80;
   display: flex;
   flex-direction: column;
@@ -556,7 +555,6 @@ button.sidebar-toggle {
   justify-content: center;
   padding: 6px;
   cursor: pointer;
-  transition: transform 160ms, left 240ms ease-in-out, background 120ms;
   z-index: 90;
 }
 
