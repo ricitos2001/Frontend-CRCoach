@@ -367,6 +367,7 @@ export class DashboardPage implements OnInit {
       ...this.pieChartOptions,
       plugins: {
         ...(this.pieChartOptions.plugins ?? {}),
+        legend: { display: false },
         tooltip: {
           callbacks: {
             label: function (context: any) {
