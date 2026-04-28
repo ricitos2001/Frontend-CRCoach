@@ -9,7 +9,6 @@ import { GoalsSignalStore } from '../../signal_stores/goals.signal.store';
 import { MetricsSignalStore } from '../../signal_stores/metrics.signal.store';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { ChartOptions } from 'chart.js';
-// Replaced old specific graph components with unified GraphComponent
 import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
@@ -64,6 +63,64 @@ export class DashboardPage implements OnInit {
         this.createOrUpdateWinrateChart();
       }
     });
+
+    // Construir las pastillas (pills) de la racha a partir de batallas o metric.streak
+    effect(() => {
+      const battles = this.battlesStore.battles();
+      const metric = this.metricsStore.metric();
+
+      // Priorizar batallas (si existen)
+      if (Array.isArray(battles) && battles.length > 0) {
+        const slice = battles.slice(0, 12);
+        const pills = slice.map((b: any) => {
+          // Preferir trophyChange si está disponible
+          const teamChange = this.asNumber(b.team?.trophyChange);
+          if (teamChange !== undefined && teamChange !== null) {
+            if (teamChange > 0) return 'victory' as const;
+            if (teamChange < 0) return 'defeat' as const;
+            return 'draw' as const;
+          }
+          // Fallback a comparar crowns si no hay trophyChange
+          const teamCrowns = this.asNumber(b.team?.crowns);
+          const oppCrowns = this.asNumber(b.opponent?.crowns);
+          if (teamCrowns !== undefined && oppCrowns !== undefined) {
+            if (teamCrowns > oppCrowns) return 'victory' as const;
+            if (teamCrowns < oppCrowns) return 'defeat' as const;
+            return 'draw' as const;
+          }
+          // Si no se puede determinar, marcar como 'none' (neutral)
+          return 'none' as const;
+        });
+        // Mostrar de izquierda (más antiguo) a derecha (más reciente)
+        this.streakPills = pills.slice().reverse();
+        return;
+      }
+
+      // Si metric trae historia de racha
+      if (
+        metric &&
+        Array.isArray((metric as any).streak?.history) &&
+        (metric as any).streak.history.length > 0
+      ) {
+        const pills = (metric as any).streak.history.slice(0, 12).map((h: any) => {
+          const v = String(h).toLowerCase();
+          if (v.includes('win') || v === 'victory' || v === 'v') return 'victory' as const;
+          if (v.includes('loss') || v.includes('defeat') || v === 'd') return 'defeat' as const;
+          if (v.includes('draw') || v === 'draw' || v === 'tie') return 'draw' as const;
+          return 'none' as const;
+        });
+        this.streakPills = pills.slice().reverse();
+        return;
+      }
+
+      // Fallback: construir a partir de metric.streak.current (número de victorias consecutivas)
+      const current = metric?.streak?.current ? Number(metric.streak.current) : 0;
+      const total = 12;
+      // Llenar con 'victory' para las victorias actuales y 'none' para el resto
+      this.streakPills = Array.from({ length: total }, (_, i) =>
+        i < current ? 'victory' : 'none',
+      );
+    });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 
@@ -77,6 +134,8 @@ export class DashboardPage implements OnInit {
   public winData: number[] = [];
   public winBackground: string[] = [];
   public winOptions?: ChartOptions;
+  // Pills to render the recent streak (victory/defeat/draw/none)
+  public streakPills: ('victory' | 'defeat' | 'draw' | 'none')[] = [];
 
   // Usamos ngOnInit para inicializar la vista y también para registrar la
   // destrucción de los charts (según petición del usuario: evitar ngAfterViewInit y ngOnDestroy).
@@ -322,3 +381,4 @@ export class DashboardPage implements OnInit {
   }
   protected readonly JSON = JSON;
 }
+

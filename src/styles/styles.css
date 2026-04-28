@@ -1449,6 +1449,102 @@ app-form-input .error[title] {
   margin-left: 8px;
 }
 
+/* Streak / racha styles */
+.streak-card {
+  padding: 20px 24px;
+}
+
+.streak-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.streak-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.streak-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  background: var(--elements-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(3, 39, 58, 0.15);
+}
+
+.streak-number {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--elements-color);
+  line-height: 1;
+}
+
+.streak-sub {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.streak-right {
+  flex: 1 1 auto;
+}
+
+.streak-bar {
+  background: var(--components-color);
+  padding: 10px;
+  border-radius: 999px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  box-shadow: 0 8px 18px rgba(3, 39, 58, 0.25);
+}
+
+.streak-pill {
+  display: inline-block;
+  width: 36px;
+  height: 16px;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08) inset;
+}
+
+/* explicit colors by result */
+.streak-pill.victory {
+  background: var(--color-success-1);
+}
+
+.streak-pill.defeat {
+  background: var(--color-error-1);
+}
+
+.streak-pill.draw {
+  background: var(--color-warning-1);
+}
+
+.streak-pill.none {
+  background: rgba(255, 255, 255, 0.06);
+  opacity: 0.9;
+}
+
+/* responsive tweak: stack icon/number above bar on small screens */
+@media (max-width: 640px) {
+  .streak-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .streak-right {
+    width: 100%;
+  }
+  .streak-bar {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
 /* Recent cards stacked below */
 .dashboard__recent {
   background: var(--components-color);
