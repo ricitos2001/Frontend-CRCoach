@@ -57,10 +57,10 @@
         <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
         @if (metricsStore.metric(); as metric) {
           <section class="streak-card chart-wrapper small">
-              <section class="streak-inner">
-                  <section class="streak-left">
-                    <div class="streak-top">
-                      <article class="streak-icon">
+            <section class="streak-inner">
+              <section class="streak-left">
+                <section class="streak-top">
+                  <article class="streak-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                     <defs>
                       <mask id="cutout">
@@ -70,13 +70,12 @@
                     </defs>
                     <circle cx="320" cy="320" r="320" fill="#000" mask="url(#cutout)"/>
                   </svg>
-
                   </article>
-                  <div class="streak-info">
+                  <article class="streak-info">
                     <p class="streak-number">{{ metric.streak.current }}</p>
                     <p class="streak-sub">{{ 'PAGES.DASHBOARD.STREAK_SUBTITLE' | translate }}</p>
-                  </div>
-                </div>
+                  </article>
+                </section>
                 <article class="streak-bar below">
                   @for(pill of streakPills; track pill) {
                     <span class="streak-pill" [class.victory]="pill === 'victory'" [class.defeat]="pill === 'defeat'" [class.draw]="pill === 'draw'" [class.none]="pill === 'none'"></span>

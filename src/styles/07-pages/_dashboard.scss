@@ -80,8 +80,9 @@
 }
 .streak-left {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  flex-direction: column; /* stack top (icon+texts) and bar below */
+  align-items: flex-start;
+  gap: 12px;
 }
 .streak-icon {
   width: 84px;
