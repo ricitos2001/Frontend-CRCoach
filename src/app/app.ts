@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MainComponent } from './components/layout/main/main.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -15,7 +15,6 @@ import { filter } from 'rxjs';
 export class App implements OnInit {
   constructor(
     private router: Router,
-    private renderer: Renderer2,
   ) {}
 
   ngOnInit() {

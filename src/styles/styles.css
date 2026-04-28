@@ -1253,6 +1253,10 @@ app-form-input .error[title] {
   background: var(--elements-color);
   border-radius: 8px;
   object-fit: cover;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
 }
 .battles-page .battle-card .battle-body .team .team-top .clan-badge {
   width: 20px;
@@ -1438,8 +1442,7 @@ app-form-input .error[title] {
   min-width: 160px;
 }
 .chart-wrapper.small .winrate-stats .stat {
-  background: rgba(255, 255, 255, 0.95);
-  color: #053745;
+  color: var(--components-color);
   padding: 8px 12px;
   border-radius: 16px;
   font-weight: 700;
@@ -1451,6 +1454,12 @@ app-form-input .error[title] {
 .chart-wrapper.small .winrate-stats .stat .value {
   font-weight: 800;
   margin-left: 8px;
+}
+.chart-wrapper.small .winrate-stats .victory {
+  background: var(--color-success-1);
+}
+.chart-wrapper.small .winrate-stats .defeat {
+  background: var(--color-error-1);
 }
 
 /* Streak / racha styles */
@@ -1472,11 +1481,11 @@ app-form-input .error[title] {
   gap: 12px;
 }
 
-.streak-icon {
+.streak-icon path {
   width: 84px;
   height: 84px;
   border-radius: 14px;
-  background: var(--elements-color);
+  fill: var(--elements-color);
   display: flex;
   align-items: center;
   justify-content: center;

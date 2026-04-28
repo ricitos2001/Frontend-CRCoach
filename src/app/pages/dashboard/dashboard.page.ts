@@ -64,7 +64,6 @@ export class DashboardPage implements OnInit {
       }
     });
 
-    // Construir las pastillas (pills) de la racha a partir de batallas o metric.streak
     effect(() => {
       const battles = this.battlesStore.battles();
       const metric = this.metricsStore.metric();
@@ -362,7 +361,7 @@ export class DashboardPage implements OnInit {
     }
 
     this.winData = [winsPercent ?? 0, lossesPercent ?? 0];
-    this.winBackground = ['rgba(46, 204, 113, 0.9)', 'rgba(231, 76, 60, 0.9)'];
+    this.winBackground = ['#EBF9C8', '#F8C9C9'];
     this.winOptions = {
       ...this.pieChartOptions,
       plugins: {

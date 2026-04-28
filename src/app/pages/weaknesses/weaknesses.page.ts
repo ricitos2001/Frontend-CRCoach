@@ -241,9 +241,9 @@ export class WeaknessesPage implements OnInit {
     const data = filtered.map((a: any) => a.battles);
     // Colors must match the filtered entries (not the original byArchetype) to avoid mismatch
     const bgColors = filtered.map((a: any) => {
-      if (a.label && a.label.toLowerCase().includes('fort')) return 'rgba(46, 204, 113, 0.9)';
-      if (a.label && a.label.toLowerCase().includes('debil')) return 'rgba(231, 76, 60, 0.9)';
-      return 'rgba(149, 165, 166, 0.9)';
+      if (a.label && a.label.toLowerCase().includes('fort')) return '#EBF9C8';
+      if (a.label && a.label.toLowerCase().includes('debil')) return '#F8C9C9';
+      return '#F8E2C9';
     });
 
     // Asignar a propiedades usadas por <app-graph>

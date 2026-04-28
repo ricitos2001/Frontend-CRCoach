@@ -91,11 +91,15 @@
 		  gap: 10px;
 
 		  .avatar {
-			width: 56px;
-			height: 56px;
-			background: var(--elements-color);
-			border-radius: 8px;
-			object-fit: cover;
+        width: 56px;
+        height: 56px;
+        background: var(--elements-color);
+        border-radius: 8px;
+        object-fit: cover;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
 		  }
 
 		  .clan-badge {
