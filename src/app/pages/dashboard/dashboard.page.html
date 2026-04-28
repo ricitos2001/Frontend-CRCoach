@@ -1,30 +1,43 @@
-<ng-template #headerContent>
-  <article>
+<ng-template #headerContent class="dashboard__header">
+  <section class="header-user">
     @if (usersStore.loading() && !usersStore.user()) {
-      <p>{{ 'PAGES.DASHBOARD.LOADING_USER' | translate }}</p>
+      <p class="muted">{{ 'PAGES.DASHBOARD.LOADING_USER' | translate }}</p>
     }
     @if (usersStore.error(); as uErr) {
       <p class="error">{{ 'PAGES.DASHBOARD.ERROR_USER' | translate:{ err: uErr } }}</p>
     }
     @if (usersStore.user(); as user) {
-      <p>{{user.name}} {{user.surnames}}</p>
-      <p>{{user.username}}</p>
+      <article class="header-avatar">
+        @if (user.avatarUrl === null) {
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M62.9842 64H1.01578C0.454933 64 0 63.5454 0 62.9849V57.1999C0 47.5755 7.8356 39.7453 17.4668 39.7453H46.5332C56.1648 39.7453 64 47.5755 64 57.1999V62.9849C64 63.5454 63.5455 64 62.9842 64ZM32 37.0164C21.7876 37.0164 13.4791 28.7137 13.4791 18.508C13.4791 8.30268 21.7876 0 32 0C42.2124 0 50.5209 8.30268 50.5209 18.508C50.5209 28.7137 42.2124 37.0164 32 37.0164Z" fill="white"/>
+          </svg>
+        } @else {
+          <img src="{{user.avatarUrl}}" alt="{{ 'PAGES.DASHBOARD.AVATAR_ALT' | translate }}">
+        }
+      </article>
+      <article>
+        <p class="welcome">{{ 'PAGES.DASHBOARD.WELCOME' | translate}} {{ user.name }}</p>
+        <p class="username">{{user.username}}</p>
+      </article>
     }
-  </article>
-  <article>
+  </section>
+
+  <article class="header-cards">
     @if (profileStore.loading() && !profileStore.profile()) {
-      <p>{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
+      <p class="muted">{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
     }
     @if (profileStore.error(); as pErr) {
       <p class="error">{{ 'PAGES.DASHBOARD.ERROR_PROFILE' | translate:{ err: pErr } }}</p>
     }
     @if (profileStore.profile(); as profile) {
-      <p>{{profile.trophies}}</p>
-      <p>{{profile.bestTrophies}}</p>
-      <p>{{profile.totalDonations}}</p>
-      <p>{{JSON.parse(profile.currentPathOfLegendSeasonResult).leagueNumber}}</p>
+      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.TROPHIES' | translate }}</span><span class="value">{{profile.trophies}}</span></p>
+      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.BEST_TROPHIES' | translate }}</span><span class="value">{{profile.bestTrophies}}</span></p>
+      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.DONATIONS' | translate }}</span><span class="value">{{profile.totalDonations}}</span></p>
+      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.CURRENT_LEAGUE' | translate }}</span><span class="value">{{JSON.parse(profile.currentPathOfLegendSeasonResult).leagueNumber}}</span></p>
     }
   </article>
+  <app-refresh-button></app-refresh-button>
 </ng-template>
 <section class="dashboard__flex">
   <section class="dashboard__graphs">

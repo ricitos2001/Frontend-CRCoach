@@ -12,10 +12,18 @@ import { ChartOptions } from 'chart.js';
 import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
+import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [SidebarComponent, DatePipe, TranslatePipe, GraphComponent, DecimalPipe],
+  imports: [
+    SidebarComponent,
+    DatePipe,
+    TranslatePipe,
+    GraphComponent,
+    DecimalPipe,
+    RefreshButtonComponent,
+  ],
   templateUrl: './dashboard.page.html',
   styleUrl: '../../../styles/styles.css',
   standalone: true,

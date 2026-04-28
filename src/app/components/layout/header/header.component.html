@@ -24,11 +24,9 @@
 
   @case (['/dashboard','/profile'].includes(router.url)) {
     <header>
-      <section>
-        @if(content$ | async; as content) {
-          <ng-container *ngTemplateOutlet="content"></ng-container>
-        }
-      </section>
+      @if(content$ | async; as content) {
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+      }
     </header>
   }
 }

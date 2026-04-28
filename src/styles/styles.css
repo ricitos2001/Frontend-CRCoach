@@ -1386,6 +1386,12 @@ app-form-input .error[title] {
   }
 }
 
+.dashboard__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .dashboard__flex {
   display: flex;
   flex-direction: column;
