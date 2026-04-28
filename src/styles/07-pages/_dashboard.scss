@@ -4,6 +4,25 @@
   justify-content: space-between;
 }
 
+.header-user {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.dashboard__header-cards {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard__header-cards p {
+  display: flex;
+  flex-direction: column;
+}
+
 .dashboard__flex {
   display: flex;
   flex-direction: column;
