@@ -30,6 +30,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   private routerSub?: Subscription;
 
   ngOnInit(): void {
+    try {
+      document.body.classList.add('has-sidebar');
+    } catch (e) {}
+
     this.routerSub = this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationStart) {
         this.closeSidebar();
@@ -39,11 +43,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   protected openOrCloseSidebar() {
     this.isOpened = !this.isOpened;
-    if (this.isOpened) {
-      document.body.classList.add('sidebar-open');
-    } else {
-      document.body.classList.remove('sidebar-open');
-    }
+    try {
+      if (this.isOpened) {
+        document.body.classList.add('sidebar-open');
+      } else {
+        document.body.classList.remove('sidebar-open');
+      }
+    } catch (e) {}
   }
 
   /**
@@ -52,10 +58,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
    */
   protected closeSidebar() {
     this.isOpened = false;
-    document.body.classList.remove('sidebar-open');
+    try {
+      document.body.classList.remove('sidebar-open');
+    } catch (e) {}
   }
 
   ngOnDestroy(): void {
+    try {
+      document.body.classList.remove('has-sidebar');
+      document.body.classList.remove('sidebar-open');
+    } catch (e) {}
+
     if (this.routerSub) {
       this.routerSub.unsubscribe();
     }

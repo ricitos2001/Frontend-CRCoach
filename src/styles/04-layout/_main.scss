@@ -1,12 +1,10 @@
-/* Reglas para que el contenido principal se desplace cuando el sidebar cambia de estado.
-   La clase `sidebar-open` se añadirá/quitará en el body desde el componente del sidebar.
-*/
 
-main {
+body.has-sidebar main {
   padding: 3rem;
-  //transition: margin-left 240ms ease-in-out, padding 200ms ease-in-out;
 }
 
+/* Cuando el sidebar está abierto (clase en el body) */
+body.has-sidebar.sidebar-open main,
 body.sidebar-open main {
   margin-left: var(--sidebar-open-width);
 }
