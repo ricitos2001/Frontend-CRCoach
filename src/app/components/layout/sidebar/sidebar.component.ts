@@ -46,8 +46,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
     try {
       if (this.isOpened) {
         document.body.classList.add('sidebar-open');
+        try {
+          const header = document.querySelector('header');
+          if (header) {
+            header.classList.add('sidebar-open-header');
+          }
+        } catch (e) {}
       } else {
         document.body.classList.remove('sidebar-open');
+        try {
+          const header = document.querySelector('header');
+          if (header) {
+            header.classList.remove('sidebar-open-header');
+          }
+        } catch (e) {}
       }
     } catch (e) {}
   }
@@ -60,6 +72,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.isOpened = false;
     try {
       document.body.classList.remove('sidebar-open');
+      // Asegurar que la clase del header se elimine también
+      try {
+        const header = document.querySelector('header');
+        if (header) {
+          header.classList.remove('sidebar-open-header');
+        }
+      } catch (e) {}
     } catch (e) {}
   }
 
@@ -67,6 +86,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     try {
       document.body.classList.remove('has-sidebar');
       document.body.classList.remove('sidebar-open');
+      // Limpiar la clase aplicada al header por si acaso
+      try {
+        const header = document.querySelector('header');
+        if (header) {
+          header.classList.remove('sidebar-open-header');
+        }
+      } catch (e) {}
     } catch (e) {}
 
     if (this.routerSub) {

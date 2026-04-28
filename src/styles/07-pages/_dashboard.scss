@@ -10,7 +10,7 @@
   border-radius: 0 0 18px 18px;
   box-shadow: 0 16px 40px rgba(3,39,58,0.6);
   position: relative;
-  margin-bottom: 28px;
+  margin-bottom: 28px
 }
 
 .header-user {
@@ -142,21 +142,6 @@
 
 .dashboard__header app-refresh-button button:active {
   transform: translateY(0);
-}
-
-@media (max-width: 980px) {
-  .dashboard__header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-  }
-  .dashboard__header-cards {
-    margin-top: 12px;
-    width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-  .stat-card { min-width: 120px; margin-bottom: 8px; }
 }
 
 .dashboard__flex {
