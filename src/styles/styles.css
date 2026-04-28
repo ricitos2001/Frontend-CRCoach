@@ -1150,6 +1150,10 @@ app-form-input .error[title] {
   font-size: 3rem;
 }
 
+.landing svg path {
+  fill: var(--elements-color);
+}
+
 .battles-page {
   padding: 20px;
 }
@@ -1511,6 +1515,22 @@ app-form-input .error[title] {
   height: 16px;
   border-radius: 12px;
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08) inset;
+}
+
+.streak-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.streak-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.streak-bar.below {
+  margin-top: 14px;
 }
 
 /* explicit colors by result */
