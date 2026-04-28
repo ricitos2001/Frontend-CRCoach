@@ -7,7 +7,7 @@ import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
 import { SessionsSignalStore } from '../../signal_stores/sessions.signal.store';
 import { GoalsSignalStore } from '../../signal_stores/goals.signal.store';
 import { MetricsSignalStore } from '../../signal_stores/metrics.signal.store';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { ChartOptions } from 'chart.js';
 // Replaced old specific graph components with unified GraphComponent
 import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store';
@@ -16,12 +16,7 @@ import { GraphComponent } from '../../components/shared/graph/graph.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [
-    SidebarComponent,
-    DatePipe,
-    TranslatePipe,
-    GraphComponent,
-  ],
+  imports: [SidebarComponent, DatePipe, TranslatePipe, GraphComponent, DecimalPipe],
   templateUrl: './dashboard.page.html',
   styleUrl: '../../../styles/styles.css',
   standalone: true,
@@ -211,7 +206,8 @@ export class DashboardPage implements OnInit {
       } else if (metric.changeTrophiesIn24h !== undefined && metric.changeTrophiesIn24h !== null) {
         const currentDate = new Date(metric.generatedAt ?? new Date());
         const prevDate = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000);
-        const prev = (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
+        const prev =
+          (this.asNumber(metric.trophies) ?? 0) - (this.asNumber(metric.changeTrophiesIn24h) ?? 0);
         labels = [prevDate.toLocaleDateString(), currentDate.toLocaleDateString()];
         data = [prev, this.asNumber(metric.trophies) ?? 0];
       } else {
@@ -224,7 +220,9 @@ export class DashboardPage implements OnInit {
     if (data.length === 1) {
       const singleDateLabel = labels[0];
       // try to parse original date from metric history dates if possible
-      const originalDate = new Date(metricOrArray.history?.[0]?.generatedAt ?? metricOrArray[0]?.capturedAt ?? new Date());
+      const originalDate = new Date(
+        metricOrArray.history?.[0]?.generatedAt ?? metricOrArray[0]?.capturedAt ?? new Date(),
+      );
       const prevDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
       const prevLabel = prevDate.toLocaleDateString();
       labels = [prevLabel, singleDateLabel];
@@ -236,7 +234,9 @@ export class DashboardPage implements OnInit {
     if (!hasUsefulData) {
       const snaps = this.snapshotsStore.snapshots();
       if (Array.isArray(snaps) && snaps.length > 0) {
-        const sorted = [...snaps].sort((a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime());
+        const sorted = [...snaps].sort(
+          (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
+        );
         labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
         data = sorted.map((s) => s.trophies);
         // duplicate single point if needed

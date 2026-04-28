@@ -26,8 +26,8 @@
     }
   </article>
 </ng-template>
-<section>
-  <section>
+<section class="dashboard__flex">
+  <section class="dashboard__graphs">
     <section>
       <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
       <article class="chart-wrapper">
@@ -44,12 +44,16 @@
           <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
         }
         @if (metricsStore.metric(); as metric) {
-          <p>{{ 'PAGES.DASHBOARD.VICTORIES' | translate }}: {{ displayPercent(metric, 'winRate') }}%</p>
-          <p>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}: {{ displayPercent(metric, 'lossRate') }}%</p>
+          <article class="chart-wrapper small">
+            <div class="winrate-block">
+              <div class="winrate-stats">
+                <div class="stat"><strong>{{ 'PAGES.DASHBOARD.VICTORIES' | translate }}:</strong> <span class="value">{{ displayPercent(metric, 'winRate') | number:'1.2-2' }}%</span></div>
+                <div class="stat"><strong>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}:</strong> <span class="value">{{ displayPercent(metric, 'lossRate') | number:'1.2-2' }}%</span></div>
+              </div>
+              <app-graph [type]="'doughnut'" [labels]="winLabels" [data]="winData" [backgroundColor]="winBackground" [options]="winOptions" [width]="200" [height]="200"></app-graph>
+            </div>
+          </article>
         }
-        <div class="chart-wrapper small">
-          <app-graph [type]="'doughnut'" [labels]="winLabels" [data]="winData" [backgroundColor]="winBackground" [options]="winOptions" [width]="200" [height]="200"></app-graph>
-        </div>
       </article>
       <article>
         <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
@@ -59,7 +63,7 @@
       </article>
     </section>
   </section>
-  <section>
+  <section class="dashboard__recent">
     <h2>{{ 'PAGES.DASHBOARD.RECENT_BATTLES' | translate }}</h2>
     <article>
       @if (battlesStore.loading() && !battlesStore.battles()) {
@@ -70,12 +74,24 @@
       }
       @if (battlesStore.battles(); as battles) {
         @for (battle of battles.slice(0,3); track battle.id) {
-          <p><strong>{{battle.team.name}}</strong> — @if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+          @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
+            <p class="dashboard__recent__victory"><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+          } @else if (battle.team.trophyChange < 0 && battle.opponent.trophyChange > 0) {
+            <p class="dashboard__recent__defeat"><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+          } @else {
+            @if (battle.team.crowns > battle.opponent.crowns) {
+              <p class="dashboard__recent__victory"><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+            } @else if(battle.team.crowns < battle.opponent.crowns) {
+              <p class="dashboard__recent__defeat"><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+            } @else if (battle.team.crowns === battle.opponent.crowns) {
+              <p class="dashboard__recent__draw"><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+            }
+          }
         }
       }
     </article>
   </section>
-  <section>
+  <section class="dashboard__recent">
     <h2>{{ 'PAGES.DASHBOARD.RECENT_GOALS' | translate }}</h2>
     <article>
       @if (goalsStore.loading() && !goalsStore.goals()) {
@@ -86,13 +102,12 @@
       }
       @if (goalsStore.goals(); as goalsPage) {
         @for (goal of pageToArray(goalsPage).slice(0,3); track goal.id) {
-          <p><strong>{{goal.title}}</strong> — {{goal.status}} — {{goal.currentValue}}/{{goal.targetValue}}</p>
+          <p class="dashboard__recent__content"><strong>{{goal.title}}</strong> — {{goal.status}} — {{goal.currentValue}}/{{goal.targetValue}}</p>
         }
       }
     </article>
   </section>
-
-  <section>
+  <section class="dashboard__recent">
     <h2>{{ 'PAGES.DASHBOARD.RECENT_SESSIONS' | translate }}</h2>
     <article>
       @if (sessionsStore.loading() && !sessionsStore.sessions()) {
@@ -103,7 +118,7 @@
       }
       @if (sessionsStore.sessions(); as sessionsPage) {
         @for (s of pageToArray(sessionsPage).slice(0,3); track s.id) {
-          <p><strong>{{s.title}}</strong> — {{s.mood}} — {{s.startTime | date:'short'}}</p>
+          <p class="dashboard__recent__content"><strong>{{s.title}}</strong> — {{s.mood}} — {{s.startTime | date:'short'}}</p>
         }
       }
     </article>

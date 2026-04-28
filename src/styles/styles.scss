@@ -21,6 +21,7 @@
 // 6. Components (BEM components)
 @use '05-components/form-input' as *;
 @use '05-components/language-selector' as *;
+@use '05-components/graph' as *;
 // 7. Utilities
 
 
@@ -29,3 +30,4 @@
 @use '07-pages/forms' as *;
 @use '07-pages/landing' as *;
 @use '07-pages/battles' as *;
+@use '07-pages/dashboard' as *;
