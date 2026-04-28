@@ -11,13 +11,27 @@ export class ThemeService {
   public isDark$ = this._isDark.asObservable();
 
   constructor() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const dark =
-      saved === 'true' ||
-      (saved === null &&
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches);
-    this.setDark(dark, false);
+    // No eager initialization in constructor. Call `init()` during app
+    // bootstrap (APP_INITIALIZER) to ensure the theme is applied before UI
+    // renders. Keeping constructor lightweight improves testability.
+  }
+
+  /**
+   * Inicializa el servicio leyendo el valor persistido y aplicando la clase.
+   * Llamar desde APP_INITIALIZER para asegurar que el tema se aplica al arranque.
+   */
+  init(): void {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const dark =
+        saved === 'true' ||
+        (saved === null &&
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+      this.setDark(dark, false);
+    } catch (e) {
+      // Silencioso: si localStorage no está disponible, no hacemos nada.
+    }
   }
 
   toggle() {

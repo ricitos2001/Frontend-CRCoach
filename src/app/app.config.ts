@@ -6,6 +6,7 @@ import {
   provideAppInitializer,
   inject,
 } from '@angular/core';
+import { ThemeService } from './services/theme/theme.service';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { registerLocaleData } from '@angular/common';
@@ -35,6 +36,11 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       const ls = inject(LanguageService);
       return ls.init();
+    }),
+    // Inicializar tema en el arranque de la app (reemplaza APP_INITIALIZER)
+    provideAppInitializer(() => {
+      const theme = inject(ThemeService);
+      return theme.init();
     }),
     provideHttpClient(),
     importProvidersFrom(
