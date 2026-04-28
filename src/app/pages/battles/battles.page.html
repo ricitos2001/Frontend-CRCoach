@@ -10,7 +10,7 @@
     <!-- Result filter -->
     <app-form-input type="select" name="result" [hideLabel]="true" [options]="resultOptions" [(ngModel)]="selectedResult"></app-form-input>
 
-    <app-refresh-button (click)="refreshBattles()"></app-refresh-button>
+    <app-refresh-button></app-refresh-button>
   </article>
 
   @if (battlesStore.loading() && !battlesStore.battles()) {

@@ -5,7 +5,7 @@
     <label class="sr-only" for="goal-status-select">{{ 'PAGES.GOALS.STATUS.LABEL' | translate }}</label>
     <app-form-input name="goal-status-select" type="select" [hideLabel]="true" [options]="statusOptionsMap" [(ngModel)]="selectedStatus" (ngModelChange)="onStatusChange($event)"></app-form-input>
     <app-common-button (click)="openCreate()">{{ 'PAGES.GOALS.ADD' | translate }}</app-common-button>
-    <app-refresh-button (click)="reload()"></app-refresh-button>
+    <app-refresh-button></app-refresh-button>
   </article>
 
   <section>
