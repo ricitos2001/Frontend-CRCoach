@@ -31,3 +31,14 @@ main .refresh-button svg {
 main .refresh-button svg path,{
   stroke: var(--elements-color);
 }
+
+/* rotation animation for refresh button when loading */
+.refresh-button.loading svg {
+  animation: refresh-rotate 1s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes refresh-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

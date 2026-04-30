@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BattlesSignalStore } from '../../../signal_stores/battles.signal.store';
 import { PlayerProfileSignalStore } from '../../../signal_stores/player-profile.signal.store';
 import { MetricsSignalStore } from '../../../signal_stores/metrics.signal.store';
@@ -12,7 +12,10 @@ import { ToastService } from '../../../services/toast/toast.service';
   styleUrl: '../../../../styles/styles.css',
   standalone: true,
 })
-export class RefreshButtonComponent {
+export class RefreshButtonComponent implements OnDestroy {
+  public loading = false;
+  private _pollHandle: any = null;
+
   constructor(
     private battlesStore: BattlesSignalStore,
     private profileStore: PlayerProfileSignalStore,
@@ -38,6 +41,9 @@ export class RefreshButtonComponent {
 
     // Importar batallas y perfil (llamadas que pueden realizar import si hace falta)
     this.toast.show({ type: 'info', message: 'PAGES.REFRESH.STARTED', duration: 2000 });
+    // Set loading state and start poller to stop animation when all stores finished
+    this.loading = true;
+    this.startPoller();
     try {
       this.battlesStore.importBattles(tag);
     } catch (e) {
@@ -64,6 +70,37 @@ export class RefreshButtonComponent {
       this.analyticsStore.loadProblematicCards(tag);
     } catch (e) {
       console.warn('Error triggering analytics loads', e);
+    }
+  }
+
+  private startPoller() {
+    // clear existing if any
+    if (this._pollHandle) clearInterval(this._pollHandle);
+    this._pollHandle = setInterval(() => {
+      try {
+        const anyLoading = !!(
+          this.battlesStore.loading() ||
+          this.profileStore.loading() ||
+          this.metricsStore.loading() ||
+          this.analyticsStore.loading()
+        );
+        if (!anyLoading) {
+          this.loading = false;
+          clearInterval(this._pollHandle);
+          this._pollHandle = null;
+          this.toast.show({ type: 'success', message: 'PAGES.REFRESH.DONE', duration: 2000 });
+        }
+      } catch (e) {
+        // keep trying, but avoid silent crash
+        console.warn('RefreshButton poller error', e);
+      }
+    }, 250);
+  }
+
+  ngOnDestroy(): void {
+    if (this._pollHandle) {
+      clearInterval(this._pollHandle);
+      this._pollHandle = null;
     }
   }
 }

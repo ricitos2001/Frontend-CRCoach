@@ -20,6 +20,44 @@ export class GoalsSignalStore {
 
   constructor(private goalsService: GoalsService, private translate: TranslateService) {}
 
+  /**
+   * Update goals' currentValue based on player profile values.
+   * Currently supports metricType 'TROPHIES' (sets currentValue to player's trophies).
+   * This will persist changes to backend via GoalsService.editGoal and update local cache.
+   */
+  updateProgressFromProfile(profile: any) {
+    if (!profile) return;
+    const page = this._goals();
+    if (!page) return;
+    const content = Array.isArray((page as any).content) ? (page as any).content : [];
+    if (!content || !content.length) return;
+
+    content.forEach((g: any) => {
+      try {
+        if (!g || !g.id) return;
+        // Only updating TROPHIES metric for now
+        if ((g.metricType || '').toUpperCase() === 'TROPHIES') {
+          const newVal = Number(profile.trophies ?? 0);
+          if (Number(g.currentValue ?? 0) !== newVal) {
+            const payload = { ...g, currentValue: newVal };
+            this.goalsService.editGoal(String(g.id), payload).pipe(take(1)).subscribe({
+              next: (updated) => {
+                // update local cached page content immutably
+                const currentPage = this._goals();
+                if (!currentPage) return;
+                const updatedContent = (currentPage as any).content.map((cg: any) => (cg.id === updated.id ? updated : cg));
+                this._goals.set({ ...(currentPage as any), content: updatedContent });
+              },
+              error: (err) => console.warn('Failed to update goal progress from profile', err),
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('updateProgressFromProfile error', e);
+      }
+    });
+  }
+
   loadGoals(page: number, pageSize: number, email: string | null) {
     this._loading.set(true);
     this._error.set(null);

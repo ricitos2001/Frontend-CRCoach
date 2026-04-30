@@ -671,6 +671,20 @@ main .refresh-button svg path {
   stroke: var(--elements-color);
 }
 
+/* rotation animation for refresh button when loading */
+.refresh-button.loading svg {
+  animation: refresh-rotate 1s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes refresh-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 main .common-button {
   padding: 1rem;
   border: none;
@@ -1895,7 +1909,7 @@ app-form-input .error[title] {
 
 .goals {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   align-items: start;
   padding: 12px;
@@ -1937,7 +1951,6 @@ app-form-input .error[title] {
   align-items: center;
 }
 
-/* Style the shared button inside goals so icons are in white rounded squares */
 .goal__buttons app-common-button button {
   background: var(--elements-color);
   color: var(--components-color);
@@ -1955,6 +1968,57 @@ app-form-input .error[title] {
 .goal__buttons app-common-button svg path,
 .goal__buttons app-common-button svg {
   stroke: var(--components-color);
+}
+
+/* Progress bar inside goal card */
+.goal__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Style native <progress> element for consistent look */
+progress.goal__progress-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  background: var(--elements-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Webkit/Blink */
+progress.goal__progress-bar::-webkit-progress-bar {
+  background: var(--elements-color);
+}
+
+progress.goal__progress-bar::-webkit-progress-value {
+  background: var(--components-color);
+  transition: width 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Firefox */
+progress.goal__progress-bar::-moz-progress-bar {
+  background: var(--components-color);
+  transition: width 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.goal__progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--elements-color);
+  font-size: 0.9rem;
+}
+
+.goal__progress-text {
+  color: var(--elements-color);
+}
+
+.goal__progress-percent {
+  font-weight: 700;
+  color: var(--elements-color);
 }
 
 /* Large white description area inside the card */

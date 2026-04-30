@@ -75,7 +75,14 @@
             </article>
           </article>
           <p>{{goal.description}}</p>
-          <p>{{goal.currentValue}} / {{goal.targetValue}}</p>
+
+          <section class="goal__progress" aria-hidden="false">
+            <progress class="goal__progress-bar" [value]="computeProgress(goal)" max="100"></progress>
+            <article class="goal__progress-meta">
+              <p class="goal__progress-text">{{goal.currentValue}} / {{goal.targetValue}}</p>
+              <p class="goal__progress-percent">{{ computeProgress(goal) }}%</p>
+            </article>
+          </section>
           <p>{{goal.status}} — {{goal.deadline | date:'shortDate'}}</p>
         </section>
       }

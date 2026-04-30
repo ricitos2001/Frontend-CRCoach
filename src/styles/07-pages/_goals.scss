@@ -1,6 +1,6 @@
 .goals {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   align-items: start;
   padding: 12px;
@@ -60,6 +60,45 @@
 .goal__buttons app-common-button svg {
   stroke: var(--components-color);
 }
+
+/* Progress bar inside goal card */
+.goal__progress{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+/* Style native <progress> element for consistent look */
+progress.goal__progress-bar{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  background: var(--elements-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+/* Webkit/Blink */
+progress.goal__progress-bar::-webkit-progress-bar{
+  background: var(--elements-color);
+}
+progress.goal__progress-bar::-webkit-progress-value{
+  background: var(--components-color);
+  transition: width 450ms cubic-bezier(.2,.8,.2,1);
+}
+/* Firefox */
+progress.goal__progress-bar::-moz-progress-bar{
+  background: var(--components-color);
+  transition: width 450ms cubic-bezier(.2,.8,.2,1);
+}
+.goal__progress-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color: var(--elements-color);
+  font-size:0.9rem;
+}
+.goal__progress-text{ color: var(--elements-color); }
+.goal__progress-percent{ font-weight:700; color: var(--elements-color); }
 
 /* Large white description area inside the card */
 .goal > p:nth-of-type(1) {

@@ -3,6 +3,7 @@ import { signal } from '@angular/core';
 import { throwError, timer, of, EMPTY } from 'rxjs';
 import { PlayerProfile } from '../interfaces/PlayerProfile';
 import { PlayerProfilesService } from '../services/player-profiles/player-profiles.service';
+import { GoalsSignalStore } from './goals.signal.store';
 import { take, finalize, catchError, switchMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -16,7 +17,11 @@ export class PlayerProfileSignalStore {
   readonly loading = this._loading.asReadonly();
   readonly error = this._error.asReadonly();
 
-  constructor(private playerProfilesService: PlayerProfilesService, private translate: TranslateService) {}
+  constructor(
+    private playerProfilesService: PlayerProfilesService,
+    private translate: TranslateService,
+    private goalsStore: GoalsSignalStore,
+  ) {}
 
   loadByTag(tag: string) {
     if (!tag) return;
@@ -34,11 +39,14 @@ export class PlayerProfileSignalStore {
             catchError((profileByTagError) =>
               this.playerProfilesService.importProfile(tag).pipe(
                 catchError((importProfileError) => {
-                  console.error('PlayerProfileSignalStore.loadByTag: no se pudo obtener el perfil del jugador', {
-                    tag,
-                    profileByTagError,
-                    importProfileError,
-                  });
+                  console.error(
+                    'PlayerProfileSignalStore.loadByTag: no se pudo obtener el perfil del jugador',
+                    {
+                      tag,
+                      profileByTagError,
+                      importProfileError,
+                    },
+                  );
                   return throwError(() => importProfileError);
                 }),
               ),
@@ -57,10 +65,15 @@ export class PlayerProfileSignalStore {
           }
 
           this._profile.set(p);
+          try {
+            // Update goals progress based on new profile values (e.g., trophies)
+            this.goalsStore.updateProgressFromProfile(p);
+          } catch (e) {
+            console.warn('Failed to update goals from profile', e);
+          }
         },
         error: (err) => {
-          this._error.set(
-            this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
+          this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
         },
       });
   }
@@ -74,10 +87,13 @@ export class PlayerProfileSignalStore {
       .pipe(
         take(1),
         catchError((importProfileError) => {
-          console.error('PlayerProfileSignalStore.importProfile: no se pudo importar el perfil del jugador', {
-            tag,
-            importProfileError,
-          });
+          console.error(
+            'PlayerProfileSignalStore.importProfile: no se pudo importar el perfil del jugador',
+            {
+              tag,
+              importProfileError,
+            },
+          );
           return throwError(() => importProfileError);
         }),
         finalize(() => this._loading.set(false)),

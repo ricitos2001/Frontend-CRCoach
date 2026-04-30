@@ -3,6 +3,7 @@ import { signal } from '@angular/core';
 import { take, finalize, catchError, switchMap } from 'rxjs/operators';
 import { throwError, timer, of, EMPTY } from 'rxjs';
 import { BattlesService } from '../services/battles/battles.service';
+import { PlayerProfileSignalStore } from './player-profile.signal.store';
 import { Battle } from '../interfaces/Battle';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -19,6 +20,7 @@ export class BattlesSignalStore {
   constructor(
     private battlesService: BattlesService,
     private translate: TranslateService,
+    private profileStore: PlayerProfileSignalStore,
   ) {}
 
   private applyBattlesResponse(res: unknown): boolean {
@@ -93,6 +95,12 @@ export class BattlesSignalStore {
             this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
           } else {
             this._error.set(null);
+            try {
+              // refresh player profile after importing battles so goals/trophies update
+              this.profileStore.loadByTag(tag);
+            } catch (e) {
+              // ignore if profile store not available
+            }
           }
         },
         error: () => {

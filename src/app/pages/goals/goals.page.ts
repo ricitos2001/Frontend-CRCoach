@@ -208,4 +208,17 @@ export class GoalsPage implements OnInit {
     if (page.content && Array.isArray(page.content)) return page.content;
     return [];
   }
+
+  /**
+   * Compute progress percent (0-100) for a goal based on currentValue / targetValue
+   */
+  computeProgress(goal: Goal | any): number {
+    if (!goal) return 0;
+    const current = Number(goal.currentValue ?? 0);
+    const target = Number(goal.targetValue ?? 0);
+    if (!target || target === 0) return 0;
+    const pct = Math.round((current / target) * 100);
+    if (isNaN(pct)) return 0;
+    return Math.max(0, Math.min(100, pct));
+  }
 }
