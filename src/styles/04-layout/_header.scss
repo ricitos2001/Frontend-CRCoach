@@ -23,16 +23,6 @@ header ul li {
   padding: 0 1rem;
 }
 
-header svg,
-footer svg {
-  width: 2.5rem;
-}
-
-header .icon-letters,
-footer .icon-letters {
-  fill: var(--components-color);
-}
-
 header app-common-button button {
   color: var(--elements-color);
   text-decoration: none;
@@ -52,7 +42,6 @@ header app-common-button button:hover, header app-language-selector .language-se
   background: var(--components-color-on-hover);
 }
 
-/* Aumentar tamaño y área de click de los enlaces del header (sin afectar botones ni selects) */
 header ul li a {
   font-size: 1.05rem; /* un poco más grande */
   font-weight: 600;
@@ -86,7 +75,6 @@ header app-language-selector .language-selector option {
   color: var(--elements-color);
   background: var(--components-color);
 }
-
 
 header app-language-selector {
   display: inline-block;

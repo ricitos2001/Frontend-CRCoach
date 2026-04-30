@@ -20,3 +20,13 @@ aside svg circle,
 aside .icon-background{
   fill: var(--elements-color);
 }
+
+header svg,
+footer svg {
+  width: 2.5rem;
+}
+
+header .icon-letters,
+footer .icon-letters {
+  fill: var(--components-color);
+}

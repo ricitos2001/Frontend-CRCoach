@@ -157,6 +157,16 @@ aside .icon-background {
   fill: var(--elements-color);
 }
 
+header svg,
+footer svg {
+  width: 2.5rem;
+}
+
+header .icon-letters,
+footer .icon-letters {
+  fill: var(--components-color);
+}
+
 header {
   border-radius: 0 0 8px 8px;
 }
@@ -182,16 +192,6 @@ header ul li {
   padding: 0 1rem;
 }
 
-header svg,
-footer svg {
-  width: 2.5rem;
-}
-
-header .icon-letters,
-footer .icon-letters {
-  fill: var(--components-color);
-}
-
 header app-common-button button {
   color: var(--elements-color);
   text-decoration: none;
@@ -211,7 +211,6 @@ header app-common-button button:hover, header app-language-selector .language-se
   background: var(--components-color-on-hover);
 }
 
-/* Aumentar tamaño y área de click de los enlaces del header (sin afectar botones ni selects) */
 header ul li a {
   font-size: 1.05rem; /* un poco más grande */
   font-weight: 600;
@@ -592,6 +591,29 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   display: inline-block;
   border-radius: 2px;
   margin-right: 0.5rem;
+}
+
+.refresh-button {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+header .refresh-button svg path {
+  stroke: var(--components-color);
+}
+
+header .refresh-button {
+  background: var(--elements-color);
+  border: none;
+}
+
+main .refresh-button {
+  background: var(--components-color);
+}
+
+main .refresh-button svg path {
+  stroke: var(--elements-color);
 }
 
 /* ============================================================
@@ -1392,7 +1414,6 @@ app-form-input .error[title] {
 }
 
 .dashboard__header {
-  /* Cabecera grande tipo "panel" */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1403,7 +1424,6 @@ app-form-input .error[title] {
   border-radius: 0 0 18px 18px;
   box-shadow: 0 16px 40px rgba(3, 39, 58, 0.6);
   position: relative;
-  margin-bottom: 28px;
 }
 
 .header-user {
@@ -1411,6 +1431,7 @@ app-form-input .error[title] {
   flex-direction: row;
   align-items: center;
   gap: 18px;
+  padding: 1rem;
 }
 
 .header-avatar {
@@ -1453,6 +1474,7 @@ app-form-input .error[title] {
   flex-direction: row;
   align-items: center;
   gap: 20px;
+  padding: 1rem;
 }
 
 .dashboard__header-cards p {
@@ -1564,13 +1586,24 @@ app-form-input .error[title] {
 
 /* Glass / card look used for charts */
 .chart-wrapper {
-  background: rgba(255, 255, 255, 0.06);
+  /* semi-transparent background + subtle gradient for depth */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 100%);
+  /* backdrop blur for the glass effect (supported browsers) */
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
   border-radius: 10px;
   padding: 28px;
   box-shadow: 0 14px 30px rgba(3, 39, 58, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   min-height: 420px;
   position: relative;
+}
+
+/* Ensure chart canvas is transparent so the glass effect is visible */
+.chart-wrapper canvas {
+  background: transparent;
+  display: block;
+  max-width: 100%;
 }
 
 .chart-wrapper.small {

@@ -1,0 +1,22 @@
+.refresh-button {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+header .refresh-button svg path,{
+  stroke: var(--components-color);
+}
+
+header .refresh-button {
+  background: var(--elements-color);
+  border: none;
+}
+
+main .refresh-button {
+  background: var(--components-color);
+}
+
+main .refresh-button svg path,{
+  stroke: var(--elements-color);
+}
