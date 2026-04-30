@@ -3,3 +3,40 @@
   flex-direction: row;
   flex-wrap: nowrap;
 }
+
+
+.select select {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--elements-color);
+  background: var(--components-color);
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.search input {
+  padding: 1rem;
+  border: none;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  color: var(--elements-color);
+  background: var(--components-color);
+}
+
+.search svg {
+  width: 48px;
+  height: 48px;
+  padding: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  background: var(--components-color-two);
+}
+
+.search svg path {
+  stroke: var(--elements-color)
+}

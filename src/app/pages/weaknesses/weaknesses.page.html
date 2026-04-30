@@ -1,6 +1,6 @@
 <section>
   <h1>{{'PAGES.WEAKNESSES.TITLE' | translate }}</h1>
-  <article class="flex">
+  <article class="controls">
     <app-searcher (periodFilter)="onPeriodFilter($event)"></app-searcher>
     <app-form-input type="select" name="gameMode" [hideLabel]="true" [options]="gameModes" [(ngModel)]="selectedMode" (ngModelChange)="onModeChange($event)"></app-form-input>
 

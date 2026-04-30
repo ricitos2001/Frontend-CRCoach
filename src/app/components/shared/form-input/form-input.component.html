@@ -38,6 +38,17 @@
       </select>
     </article>
   }
+  @case ('search') {
+    <article class="search">
+      @if (!hideLabel) {
+        <label [for]="name">{{ label || placeholder }}</label>
+      }
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M56 56L44.4 44.4M50.6666 29.3334C50.6666 41.1154 41.1154 50.6666 29.3334 50.6666C17.5513 50.6666 8 41.1154 8 29.3334C8 17.5513 17.5513 8 29.3334 8C41.1154 8 50.6666 17.5513 50.6666 29.3334Z" stroke="#EBFEFE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()" />
+    </article>
+  }
   @default {
     <article class="input">
       @if (!hideLabel) {

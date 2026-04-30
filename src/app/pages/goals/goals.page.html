@@ -1,9 +1,8 @@
 <section>
   <h1>Lista de objetivos</h1>
-  <article class="flex">
+  <article class="controls">
     <app-searcher></app-searcher>
-    <label class="sr-only" for="goal-status-select">{{ 'PAGES.GOALS.STATUS.LABEL' | translate }}</label>
-    <app-form-input name="goal-status-select" type="select" [hideLabel]="true" [options]="statusOptionsMap" [(ngModel)]="selectedStatus" (ngModelChange)="onStatusChange($event)"></app-form-input>
+    <app-form-input name="goal-status-select" type="select" [label]="'PAGES.GOALS.STATUS.LABEL' | translate" [hideLabel]="true" [options]="statusOptionsMap" [(ngModel)]="selectedStatus" (ngModelChange)="onStatusChange($event)"></app-form-input>
     <app-common-button (click)="openCreate()">{{ 'PAGES.GOALS.ADD' | translate }}</app-common-button>
     <app-refresh-button></app-refresh-button>
   </article>
