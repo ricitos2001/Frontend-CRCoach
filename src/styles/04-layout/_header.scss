@@ -19,6 +19,7 @@ header ul {
 }
 
 header ul li {
+  margin: 0 0.35rem;
   padding: 0 1rem;
 }
 
@@ -50,8 +51,6 @@ header app-common-button button {
 header app-common-button button:hover, header app-language-selector .language-selector:hover {
   background: var(--components-color-on-hover);
 }
-
-header ul li { margin: 0 0.35rem; }
 
 /* Aumentar tamaño y área de click de los enlaces del header (sin afectar botones ni selects) */
 header ul li a {
