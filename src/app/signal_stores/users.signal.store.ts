@@ -4,7 +4,8 @@ import { UsersService } from '../services/users/users.service';
 import { User } from '../interfaces/User';
 import { ToastService } from '../services/toast/toast.service';
 import { TranslateService } from '@ngx-translate/core';
-import { take, finalize } from 'rxjs/operators';
+import { take, finalize, switchMap } from 'rxjs/operators';
+import { timer, of, EMPTY } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UsersSignalStore {
@@ -30,8 +31,17 @@ export class UsersSignalStore {
   loadByEmail(email: string) {
 	this._loading.set(true);
 	this._error.set(null);
-	this.usersService.getUser(email)
-	  .pipe(take(1), finalize(() => this._loading.set(false)))
+	timer(0, 500)
+	  .pipe(
+		switchMap(() => {
+		  const t = localStorage.getItem('token');
+		  return t ? of(t) : EMPTY;
+		}),
+		take(1),
+		switchMap(() => this.usersService.getUser(email)),
+		take(1),
+		finalize(() => this._loading.set(false)),
+	  )
 	  .subscribe({
 		next: (u) => this._user.set(u),
 		error: (err) => {

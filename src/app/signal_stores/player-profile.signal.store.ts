@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
-import { throwError } from 'rxjs';
+import { throwError, timer, of, EMPTY } from 'rxjs';
 import { PlayerProfile } from '../interfaces/PlayerProfile';
 import { PlayerProfilesService } from '../services/player-profiles/player-profiles.service';
-import { take, finalize, catchError } from 'rxjs/operators';
+import { take, finalize, catchError, switchMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
@@ -22,19 +22,27 @@ export class PlayerProfileSignalStore {
     if (!tag) return;
     this._loading.set(true);
     this._error.set(null);
-    this.playerProfilesService
-      .getProfileByTag(tag)
+    timer(0, 500)
       .pipe(
-        catchError((profileByTagError) =>
-          this.playerProfilesService.importProfile(tag).pipe(
-            catchError((importProfileError) => {
-              console.error('PlayerProfileSignalStore.loadByTag: no se pudo obtener el perfil del jugador', {
-                tag,
-                profileByTagError,
-                importProfileError,
-              });
-              return throwError(() => importProfileError);
-            }),
+        switchMap(() => {
+          const t = localStorage.getItem('token');
+          return t ? of(t) : EMPTY;
+        }),
+        take(1),
+        switchMap(() =>
+          this.playerProfilesService.getProfileByTag(tag).pipe(
+            catchError((profileByTagError) =>
+              this.playerProfilesService.importProfile(tag).pipe(
+                catchError((importProfileError) => {
+                  console.error('PlayerProfileSignalStore.loadByTag: no se pudo obtener el perfil del jugador', {
+                    tag,
+                    profileByTagError,
+                    importProfileError,
+                  });
+                  return throwError(() => importProfileError);
+                }),
+              ),
+            ),
           ),
         ),
         take(1),

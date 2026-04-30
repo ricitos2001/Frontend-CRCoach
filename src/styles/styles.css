@@ -651,14 +651,19 @@ header .refresh-button svg path {
   stroke: var(--components-color);
 }
 
+header .refresh-button svg {
+  max-width: 32px;
+  max-height: 32px;
+}
+
 main .refresh-button {
   padding: 0.75rem;
   background: var(--components-color);
 }
 
 main .refresh-button svg {
-  width: 24px;
-  height: 24px;
+  max-width: 24px;
+  max-height: 24px;
 }
 
 main .refresh-button svg path {

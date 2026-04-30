@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
 import { take, finalize, catchError, switchMap } from 'rxjs/operators';
-import { throwError, timer } from 'rxjs';
+import { throwError, timer, of, EMPTY } from 'rxjs';
 import { BattlesService } from '../services/battles/battles.service';
 import { Battle } from '../interfaces/Battle';
 import { TranslateService } from '@ngx-translate/core';
@@ -66,17 +66,24 @@ export class BattlesSignalStore {
     if (!tag) return;
     this._loading.set(true);
     this._error.set(null);
-    this.battlesService
-      .getBattlesByTag(tag)
+    timer(0, 500)
       .pipe(
-        catchError((getBattlesError) =>
-          this.battlesService.importBattles(tag).pipe(
-            catchError((importError) =>
-              this.recoverAfterImportError(tag, 'loadByTag', importError, getBattlesError),
+        switchMap(() => {
+          const t = localStorage.getItem('token');
+          return t ? of(t) : EMPTY;
+        }),
+        take(1),
+        switchMap(() =>
+          this.battlesService.getBattlesByTag(tag).pipe(
+            catchError((getBattlesError) =>
+              this.battlesService.importBattles(tag).pipe(
+                catchError((importError) =>
+                  this.recoverAfterImportError(tag, 'loadByTag', importError, getBattlesError),
+                ),
+              ),
             ),
           ),
         ),
-        take(1),
         finalize(() => this._loading.set(false)),
       )
       .subscribe({
@@ -98,11 +105,18 @@ export class BattlesSignalStore {
     if (!tag) return;
     this._loading.set(true);
     this._error.set(null);
-    this.battlesService
-      .importBattles(tag)
+    timer(0, 500)
       .pipe(
+        switchMap(() => {
+          const t = localStorage.getItem('token');
+          return t ? of(t) : EMPTY;
+        }),
         take(1),
-        catchError((importError) => this.recoverAfterImportError(tag, 'importBattles', importError)),
+        switchMap(() =>
+          this.battlesService.importBattles(tag).pipe(
+            catchError((importError) => this.recoverAfterImportError(tag, 'importBattles', importError)),
+          ),
+        ),
         finalize(() => this._loading.set(false)),
       )
       .subscribe({
