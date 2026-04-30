@@ -1895,15 +1895,15 @@ app-form-input .error[title] {
 
 .goals {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   align-items: start;
   padding: 12px;
 }
 
 .goal {
-  background: var(--components-color, #184262);
-  color: var(--elements-color, #ffffff);
+  background: var(--components-color);
+  color: var(--elements-color);
   padding: 20px;
   border-radius: 18px;
   box-shadow: 0 18px 30px rgba(13, 55, 82, 0.4);
@@ -1923,8 +1923,8 @@ app-form-input .error[title] {
 .goal h3 {
   margin: 0;
   padding: 8px 20px;
-  background: var(--elements-color, #ffffff);
-  color: var(--components-color, #184262);
+  background: var(--elements-color);
+  color: var(--components-color, );
   border-radius: 24px;
   font-weight: 700;
   box-shadow: 0 6px 12px rgba(8, 32, 48, 0.25);
@@ -1939,8 +1939,8 @@ app-form-input .error[title] {
 
 /* Style the shared button inside goals so icons are in white rounded squares */
 .goal__buttons app-common-button button {
-  background: var(--elements-color, #ffffff) !important;
-  color: var(--components-color, #184262) !important;
+  background: var(--elements-color);
+  color: var(--components-color);
   width: 48px;
   height: 48px;
   border-radius: 10px;
@@ -1954,14 +1954,14 @@ app-form-input .error[title] {
 
 .goal__buttons app-common-button svg path,
 .goal__buttons app-common-button svg {
-  stroke: var(--components-color, #184262) !important;
+  stroke: var(--components-color);
 }
 
 /* Large white description area inside the card */
 .goal > p:nth-of-type(1) {
   margin: 0;
-  background: var(--elements-color, #ffffff);
-  color: var(--components-color, #184262);
+  background: var(--elements-color);
+  color: var(--components-color);
   padding: 18px;
   border-radius: 8px;
   min-height: 120px;
@@ -1971,8 +1971,8 @@ app-form-input .error[title] {
 /* Small progress pill */
 .goal > p:nth-of-type(2) {
   margin: 0;
-  background: var(--elements-color, #ffffff);
-  color: var(--components-color, #184262);
+  background: var(--elements-color);
+  color: var(--components-color);
   padding: 10px 16px;
   border-radius: 18px;
   width: fit-content;
@@ -1981,7 +1981,7 @@ app-form-input .error[title] {
 /* Status and deadline line */
 .goal > p:nth-of-type(3) {
   margin: 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--elements-color);
   font-size: 0.95rem;
   opacity: 0.95;
 }

@@ -3,6 +3,7 @@ import { BattlesSignalStore } from '../../../signal_stores/battles.signal.store'
 import { PlayerProfileSignalStore } from '../../../signal_stores/player-profile.signal.store';
 import { MetricsSignalStore } from '../../../signal_stores/metrics.signal.store';
 import { AnalyticsSignalStore } from '../../../signal_stores/analytics.signal.store';
+import { ToastService } from '../../../services/toast/toast.service';
 
 @Component({
   selector: 'app-refresh-button',
@@ -17,6 +18,7 @@ export class RefreshButtonComponent {
     private profileStore: PlayerProfileSignalStore,
     private metricsStore: MetricsSignalStore,
     private analyticsStore: AnalyticsSignalStore,
+    private toast: ToastService,
   ) {}
 
   /**
@@ -30,10 +32,12 @@ export class RefreshButtonComponent {
     const tag = localStorage.getItem('tag');
     if (!tag) {
       console.warn('RefreshButton: no tag found in localStorage');
+      this.toast.show({ type: 'error', message: 'PAGES.REFRESH.NO_TAG', duration: 4000 });
       return;
     }
 
     // Importar batallas y perfil (llamadas que pueden realizar import si hace falta)
+    this.toast.show({ type: 'info', message: 'PAGES.REFRESH.STARTED', duration: 2000 });
     try {
       this.battlesStore.importBattles(tag);
     } catch (e) {

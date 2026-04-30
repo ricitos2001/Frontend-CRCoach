@@ -7,11 +7,13 @@ import { FormInputComponent } from '../../components/shared/form-input/form-inpu
 import { FormsModule } from '@angular/forms';
 import { GoalsSignalStore } from '../../signal_stores/goals.signal.store';
 import { GoalsService } from '../../services/goals/goals.service';
+import { ToastService } from '../../services/toast/toast.service';
 import { Goal } from '../../interfaces/Goal';
 import { GoalFormComponent } from '../../components/shared/goal-form/goal-form.component';
 import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
+import { PaginationComponent } from '../../components/shared/pagination/pagination.component';
 
 @Component({
   selector: 'app-goals',
@@ -26,6 +28,7 @@ import { DatePipe } from '@angular/common';
     DatePipe,
     GoalFormComponent,
     ModalComponent,
+    PaginationComponent,
   ],
   templateUrl: './goals.page.html',
   styleUrl: '../../../styles/styles.css',
@@ -43,12 +46,16 @@ export class GoalsPage implements OnInit {
   constructor(
     public goalsStore: GoalsSignalStore,
     private goalsService: GoalsService,
+    private toast: ToastService,
   ) {}
 
   ngOnInit(): void {
     const email = localStorage.getItem('email');
     this.goalsStore.loadGoals(this.page, this.pageSize, email);
-    this.statusOptionsMap = this.statusOptions.map((s) => ({ value: s, label: `PAGES.GOALS.STATUS.${s}` }));
+    this.statusOptionsMap = this.statusOptions.map((s) => ({
+      value: s,
+      label: `PAGES.GOALS.STATUS.${s}`,
+    }));
   }
 
   prevPage(goalsPage?: any) {
@@ -111,8 +118,14 @@ export class GoalsPage implements OnInit {
     const ok = window.confirm('¿Eliminar objetivo "' + goal.title + '"?');
     if (!ok) return;
     this.goalsService.removeGoal(String(goal.id)).subscribe({
-      next: () => this.reload(),
-      error: (err) => console.error('Error deleting goal', err),
+      next: () => {
+        this.toast.show({ type: 'success', message: 'PAGES.GOALS.DELETED', duration: 3000 });
+        this.reload();
+      },
+      error: (err) => {
+        console.error('Error deleting goal', err);
+        this.toast.show({ type: 'error', message: 'PAGES.GOALS.DELETE_ERROR', duration: 4000 });
+      },
     });
   }
 
@@ -123,8 +136,14 @@ export class GoalsPage implements OnInit {
     if (!ok) return;
     const payload: any = { ...goal, status: 'PAUSED' };
     this.goalsService.editGoal(String(goal.id), payload).subscribe({
-      next: () => this.reload(),
-      error: (err) => console.error('Error pausing goal', err),
+      next: () => {
+        this.toast.show({ type: 'success', message: 'PAGES.GOALS.PAUSED', duration: 3000 });
+        this.reload();
+      },
+      error: (err) => {
+        console.error('Error pausing goal', err);
+        this.toast.show({ type: 'error', message: 'PAGES.GOALS.PAUSE_ERROR', duration: 4000 });
+      },
     });
   }
 
@@ -135,8 +154,14 @@ export class GoalsPage implements OnInit {
     if (!ok) return;
     const payload: any = { ...goal, status: 'IN_PROGRESS' };
     this.goalsService.editGoal(String(goal.id), payload).subscribe({
-      next: () => this.reload(),
-      error: (err) => console.error('Error resuming goal', err),
+      next: () => {
+        this.toast.show({ type: 'success', message: 'PAGES.GOALS.RESUMED', duration: 3000 });
+        this.reload();
+      },
+      error: (err) => {
+        console.error('Error resuming goal', err);
+        this.toast.show({ type: 'error', message: 'PAGES.GOALS.RESUME_ERROR', duration: 4000 });
+      },
     });
   }
 
@@ -147,8 +172,14 @@ export class GoalsPage implements OnInit {
     if (!ok) return;
     const payload: any = { ...goal, status: 'COMPLETED', currentValue: goal.targetValue };
     this.goalsService.editGoal(String(goal.id), payload).subscribe({
-      next: () => this.reload(),
-      error: (err) => console.error('Error completing goal', err),
+      next: () => {
+        this.toast.show({ type: 'success', message: 'PAGES.GOALS.COMPLETED', duration: 3000 });
+        this.reload();
+      },
+      error: (err) => {
+        console.error('Error completing goal', err);
+        this.toast.show({ type: 'error', message: 'PAGES.GOALS.COMPLETE_ERROR', duration: 4000 });
+      },
     });
   }
 
@@ -159,8 +190,14 @@ export class GoalsPage implements OnInit {
     if (!ok) return;
     const payload: any = { ...goal, status: 'FAILED' };
     this.goalsService.editGoal(String(goal.id), payload).subscribe({
-      next: () => this.reload(),
-      error: (err) => console.error('Error failing goal', err),
+      next: () => {
+        this.toast.show({ type: 'success', message: 'PAGES.GOALS.FAILED', duration: 3000 });
+        this.reload();
+      },
+      error: (err) => {
+        console.error('Error failing goal', err);
+        this.toast.show({ type: 'error', message: 'PAGES.GOALS.FAIL_ERROR', duration: 4000 });
+      },
     });
   }
 

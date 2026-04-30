@@ -6,7 +6,6 @@
     <app-common-button (click)="openCreate()">{{ 'PAGES.GOALS.ADD' | translate }}</app-common-button>
     <app-refresh-button></app-refresh-button>
   </article>
-
   <app-modal [isOpen]="creating || !!editingGoal" title="{{ creating ? ( 'PAGES.GOALS.ADD' | translate ) : ( 'PAGES.GOALS.EDIT' | translate ) }}" (close)="onCancel()">
     @if (creating) {
       <app-goal-form (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
@@ -15,16 +14,14 @@
       <app-goal-form [goal]="editingGoal" (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
     }
   </app-modal>
-
-  <section class="goals">
-    @if (goalsStore.loading() && !goalsStore.goals()) {
-      <p>{{ 'PAGES.GOALS.LOADING' | translate }}</p>
-    }
-    @if (goalsStore.error(); as gErr) {
-      <p class="error">{{ 'PAGES.GOALS.ERROR' | translate:{ err: gErr } }}</p>
-    }
-
-    @if (goalsStore.goals(); as goalsPage) {
+  @if (goalsStore.loading() && !goalsStore.goals()) {
+    <p>{{ 'PAGES.GOALS.LOADING' | translate }}</p>
+  }
+  @if (goalsStore.error(); as gErr) {
+    <p class="error">{{ 'PAGES.GOALS.ERROR' | translate:{ err: gErr } }}</p>
+  }
+  @if (goalsStore.goals(); as goalsPage) {
+    <section class="goals">
       @for (goal of filteredGoals(goalsPage); track goal.id) {
         <section class="goal">
           <article class="goal__container">
@@ -82,13 +79,8 @@
           <p>{{goal.status}} — {{goal.deadline | date:'shortDate'}}</p>
         </section>
       }
-
-      <nav class="pagination">
-        <button class="btn" (click)="prevPage(goalsPage)" [disabled]="goalsPage.first">{{ 'PAGINATION.PREV' | translate }}</button>
-        <span>{{ 'PAGINATION.PAGE' | translate }}: {{goalsPage.number + 1}} / {{goalsPage.totalPages}}</span>
-        <button class="btn" (click)="nextPage(goalsPage)" [disabled]="goalsPage.number >= goalsPage.totalPages - 1">{{ 'PAGINATION.NEXT' | translate }}</button>
-      </nav>
-    }
-  </section>
+    </section>
+    <app-pagination [page]="goalsPage" (prev)="prevPage($event)" (next)="nextPage($event)"></app-pagination>
+  }
 </section>
 <app-sidebar></app-sidebar>

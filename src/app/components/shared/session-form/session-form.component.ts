@@ -82,10 +82,12 @@ export class SessionFormComponent {
       this.sessionsService.createSession(finalPayload).subscribe({
         next: (res) => {
           this.saved.emit(res);
+          this.toast.show({ type: 'success', message: 'PAGES.SESSIONS.CREATED', duration: 3000 });
           this.loading = false;
         },
         error: (err) => {
           console.error('Error creating session', err);
+          this.toast.show({ type: 'error', message: 'PAGES.SESSIONS.CREATE_ERROR', duration: 4000 });
           this.loading = false;
         },
       });
@@ -95,10 +97,12 @@ export class SessionFormComponent {
       this.sessionsService.editSession(id, finalPayload).subscribe({
         next: (res) => {
           this.saved.emit(res);
+          this.toast.show({ type: 'success', message: 'PAGES.SESSIONS.UPDATED', duration: 3000 });
           this.loading = false;
         },
         error: (err) => {
           console.error('Error updating session', err);
+          this.toast.show({ type: 'error', message: 'PAGES.SESSIONS.UPDATE_ERROR', duration: 4000 });
           this.loading = false;
         },
       });

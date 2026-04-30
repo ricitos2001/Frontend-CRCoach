@@ -1,0 +1,5 @@
+<nav class="pagination">
+  <app-common-button (click)="onPrev()" [disabled]="isFirst()">{{ 'PAGINATION.PREV' | translate }}</app-common-button>
+  <span class="page-info">{{ 'PAGINATION.PAGE' | translate }}: {{ getPageNumber() }} / {{ getTotalPages() }}</span>
+  <app-common-button (click)="onNext()" [disabled]="isLast()">{{ 'PAGINATION.NEXT' | translate }}</app-common-button>
+</nav>

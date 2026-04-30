@@ -77,10 +77,12 @@ export class GoalFormComponent {
       this.goalsService.editGoal(String(this.goal.id), payload).subscribe({
         next: (res) => {
           this.saved.emit(res);
+          this.toast.show({ type: 'success', message: 'PAGES.GOALS.UPDATED', duration: 3000 });
           this.loading = false;
         },
         error: (err) => {
           console.error('Error updating goal', err);
+          this.toast.show({ type: 'error', message: 'PAGES.GOALS.UPDATE_ERROR', duration: 4000 });
           this.loading = false;
         },
       });
@@ -93,13 +95,15 @@ export class GoalFormComponent {
       const currentUser = this.usersStore.user();
       if (currentUser && (currentUser as any).id) {
         payload.user = { id: (currentUser as any).id };
-        this.goalsService.createGoal(payload).subscribe({
+            this.goalsService.createGoal(payload).subscribe({
           next: (res) => {
             this.saved.emit(res);
+            this.toast.show({ type: 'success', message: 'PAGES.GOALS.CREATED', duration: 3000 });
             this.loading = false;
           },
           error: (err) => {
             console.error('Error creating goal', err);
+            this.toast.show({ type: 'error', message: 'PAGES.GOALS.CREATE_ERROR', duration: 4000 });
             this.loading = false;
           },
         });
@@ -117,10 +121,12 @@ export class GoalFormComponent {
             this.goalsService.createGoal(payload).subscribe({
               next: (res) => {
                 this.saved.emit(res);
+                this.toast.show({ type: 'success', message: 'PAGES.GOALS.CREATED', duration: 3000 });
                 this.loading = false;
               },
               error: (err) => {
                 console.error('Error creating goal', err);
+                this.toast.show({ type: 'error', message: 'PAGES.GOALS.CREATE_ERROR', duration: 4000 });
                 this.loading = false;
               },
             });
