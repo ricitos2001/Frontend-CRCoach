@@ -108,9 +108,10 @@
         "PASSWORD_PLACEHOLDER": "Contraseña",
         "REPEAT_PASSWORD_LABEL": "Repetir contraseña",
         "REPEAT_PASSWORD_PLACEHOLDER": "Repetir contraseña",
-        "PLAYERTAG_LABEL": "tag del jugador",
-        "PLAYERTAG_PLACEHOLDER": "tag del jugador",
-        "PLAYERTAG_INVALID": "el tag del jugador no existe",
+        "PLAYERTAG_LABEL": "Tag del jugador",
+        "PLAYERTAG_PLACEHOLDER": "Tag del jugador",
+            "PLAYERTAG_INVALID": "El tag del jugador no existe",
+            "PLAYERTAG_TAKEN": "El tag introducido ya está vinculado a otro usuario",
         "SUBMIT": "Regístrate",
         "SUBMITTING": "Registrando...",
         "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión",
@@ -134,7 +135,7 @@
     },
     "LINK_PLAYER_PROFILE": {
       "LEGEND": "Introduce el tag del jugador",
-      "TAG_LABEL": "tag del jugador",
+      "TAG_LABEL": "Tag del jugador",
       "TAG_PLACEHOLDER": "Introduce el tag",
       "REQUIRED_ERROR": "El tag es obligatorio",
       "TAG_NOT_FOUND": "Tag no encontrado",
@@ -194,7 +195,7 @@
       "VICTORIES": "Victorias",
       "DEFEATS": "Derrotas",
       "LOADING_USER": "Cargando usuario...",
-      "WELCOME": "bienvenido:",
+      "WELCOME": "Bienvenido:",
       "ERROR_USER": "Error usuario: {{err}}",
       "LOADING_PROFILE": "Cargando perfil de jugador...",
       "ERROR_PROFILE": "Error perfil: {{err}}",
@@ -210,8 +211,8 @@
       "ERROR_GOALS": "Error objetivos: {{err}}",
       "LOADING_SESSIONS": "Cargando sesiones...",
       "ERROR_SESSIONS": "Error sesiones: {{err}}",
-      "TEXT1": "trofeos",
-      "TEXT2": "coronas"
+      "TEXT1": "Trofeos",
+      "TEXT2": "Coronas"
     }
     ,
     "GOALS": {

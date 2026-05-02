@@ -63,7 +63,7 @@ export class AsyncValidatorsService {
       return timer(500).pipe(
         switchMap(() =>
           this.http.get<any>(
-            `${environment.apiUrl}/api/v1/player_profiles/exists/${encodedTag}`,
+            `${environment.apiUrl}/api/v1/player_profiles/exists-in-api/${encodedTag}`,
             {
               headers: token
                 ? {
@@ -74,7 +74,6 @@ export class AsyncValidatorsService {
           ),
         ),
         map((res) => {
-          console.debug('[AsyncValidators] playerTagExists: response', res);
           let exists = false;
           if (res === true || res === 'true' || res === 1 || res === '1') {
             exists = true;
@@ -86,6 +85,53 @@ export class AsyncValidatorsService {
         }),
         catchError((err) => {
           console.warn('[AsyncValidators] playerTagExists: request error', err);
+          return of(null);
+        }),
+        take(1),
+      );
+    };
+  }
+
+  /**
+   * Validador asíncrono para usar en el formulario de registro: si el tag ya existe
+   * en la plataforma (está vinculado a otro usuario) debe marcar error { tagTaken: true }.
+   * Implementado por separado para no romper usos existentes de playerTagExists.
+   */
+  playerTagTaken(excludeValue?: string): AsyncValidatorFn {
+    return (control: AbstractControl) => {
+      const val = control.value;
+      if (!val) return of(null);
+      if (excludeValue && val === excludeValue) return of(null);
+      const normalizedTag = val.startsWith('#') ? val : `#${val}`;
+      const encodedTag = encodeURIComponent(normalizedTag);
+      const token = localStorage.getItem('token');
+      console.debug('[AsyncValidators] playerTagTaken: checking tag', normalizedTag, 'encoded:', encodedTag);
+      return timer(500).pipe(
+        switchMap(() =>
+          this.http.get<any>(`${environment.apiUrl}/api/v1/player_profiles/exists-in-local/${encodedTag}`, {
+            headers: token
+              ? {
+                  Authorization: `Bearer ${token}`,
+                }
+              : {},
+          }),
+        ),
+        map((res) => {
+          let exists = false;
+          if (res === true || res === 'true' || res === 1 || res === '1') {
+            exists = true;
+          } else if (res && typeof res === 'object' && typeof (res as any).exists !== 'undefined') {
+            const v = (res as any).exists;
+            exists = typeof v === 'boolean' ? v : v === 'true' || v === '1';
+          }
+          // Si existe => el tag está ya tomado => devolver error { tagTaken: true }
+          return exists ? { tagTaken: true } : null;
+        }),
+        catchError((err) => {
+          // No mapear errores HTTP a { tagTaken: true } — eso provoca falsos positivos.
+          // Si hay un error en la verificación de la DB devolvemos null para no bloquear
+          // el registro; el error queda registrado en consola para depuración.
+          console.warn('[AsyncValidators] playerTagTaken: request error', err);
           return of(null);
         }),
         take(1),

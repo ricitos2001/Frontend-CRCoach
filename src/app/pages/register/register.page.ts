@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
-import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
 import { Router, RouterLink } from '@angular/router';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
@@ -39,8 +37,7 @@ export class RegisterPage {
     private asyncValidators: AsyncValidatorsService,
     private notifications: NotificationsService,
     private translate: TranslateService,
-    private playerProfileStore: PlayerProfileSignalStore,
-    private battlesStore: BattlesSignalStore,
+
   ) {
     this.registerForm = this.fb.group(
       {
@@ -68,7 +65,7 @@ export class RegisterPage {
           '',
           {
             validators: [Validators.required],
-            asyncValidators: [this.asyncValidators.playerTagExists()],
+            asyncValidators: [this.asyncValidators.playerTagExists(), this.asyncValidators.playerTagTaken()],
             updateOn: 'blur',
           },
         ],
@@ -88,25 +85,11 @@ export class RegisterPage {
       return;
     }
     this.submitted = true;
+    this.loading = true; // show loader while registering
     this.authService.register(this.registerForm).subscribe({
       next: (res) => {
         this.authService.saveToken(res.token);
         this.authService.getUserIdFromToken();
-        // guardar tag en localStorage para uso posterior
-        const tag = this.registerForm.value.playerTag;
-        if (tag) {
-          localStorage.setItem('tag', tag);
-          try {
-            this.playerProfileStore.importProfile(tag);
-          } catch (e) {
-            console.warn('No se pudo iniciar importProfile tras registro', e);
-          }
-          try {
-            this.battlesStore.importBattles(tag);
-          } catch (e) {
-            console.warn('No se pudo iniciar importBattles tras registro', e);
-          }
-        }
         this.authSuccess.emit();
         const apiNotification: Notification = {
           title: this.translate.instant('NOTIFICATIONS.AUTH.REGISTER.TITLE'),
@@ -121,10 +104,12 @@ export class RegisterPage {
             console.warn('Error enviando notificación al API:', err);
           },
         });
+        this.loading = false;
         this.router.navigate(['dashboard']).then(() => {});
       },
       error: (err) => {
         console.error('Error en registro', err);
+        this.loading = false;
         this.translate.instant('NOTIFICATIONS.AUTH.REGISTER.ERROR');
       },
       complete: () => {

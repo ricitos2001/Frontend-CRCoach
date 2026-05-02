@@ -114,6 +114,7 @@
         "PLAYERTAG_LABEL": "Player tag",
         "PLAYERTAG_PLACEHOLDER": "Player tag",
         "PLAYERTAG_INVALID": "the player tag does not exist",
+        "PLAYERTAG_TAKEN": "The player tag is already linked to another account",
         "ACCEPT_TERMS_LABEL": "I accept the privacy policy and terms of service"
       },
       "RECOVER": {

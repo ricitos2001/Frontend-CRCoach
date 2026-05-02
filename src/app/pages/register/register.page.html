@@ -43,6 +43,8 @@
         <article class="error" title="{{ 'VALIDATION.REQUIRED' | translate }}">{{ 'VALIDATION.REQUIRED' | translate }}</article>
       } @else if (registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid && registerForm.get('playerTag')?.errors?.['tagNotFound']) {
         <article class="error" title="{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}">{{ 'PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND' | translate }}</article>
+      } @else if (registerForm.get('playerTag')?.touched && registerForm.get('playerTag')?.invalid && registerForm.get('playerTag')?.errors?.['tagTaken']) {
+        <article class="error" title="{{ 'PAGES.AUTH.REGISTER.PLAYERTAG_TAKEN' | translate }}">{{ 'PAGES.AUTH.REGISTER.PLAYERTAG_TAKEN' | translate }}</article>
       }
     </app-form-input>
     <section class="flex">
@@ -66,7 +68,7 @@
       <article>
         <app-form-input formControlName="repeatPassword" type="password" name="repeatPassword" [label]="'PAGES.AUTH.REGISTER.REPEAT_PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.REGISTER.REPEAT_PASSWORD_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="registerForm.errors?.['mismatch'] && registerForm.get('repeatPassword')?.touched">
           @if (registerForm.errors?.['mismatch'] && registerForm.get('repeatPassword')?.touched) {
-            <article class="error" title="{{ 'VALIDATION.PASSWORDS_MISMATCH' | translate }}">{{ 'VALIDATION.PASSWORDS_MISMATCH_SHORT' | translate }}</article>
+            <article class="error" title="{{ 'VALIDATION.PASSWORDS_MISMATCH' | translate }}">{{ 'VALIDATION.PASSWORDS_MISMATCH' | translate }}</article>
           }
         </app-form-input>
       </article>
