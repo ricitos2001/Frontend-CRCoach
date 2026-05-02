@@ -260,10 +260,7 @@ export class WeaknessesPage implements OnInit {
   }
 
   ngOnInit(): void {
-    // Intentar crear/actualizar al inicializar (si ya hay datos)
     this.createOrUpdateChart();
-
-    // No hay chart DOM directo aquí: el componente `app-graph` se encarga de su limpieza.
     this.destroyRef.onDestroy(() => {});
   }
 }

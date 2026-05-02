@@ -45,11 +45,13 @@ export class DashboardPage implements OnInit {
     private translate: TranslateService,
   ) {
     effect(() => {
+      const email = localStorage.getItem('email');
+      if (!email) return;
+      this.usersStore.loadByEmail(email);
       const user = this.usersStore.user();
       if (user && user.playerTag && user.playerTag.trim() !== '') {
         localStorage.setItem('tag', user.playerTag);
         this.profileStore.loadByTag(user.playerTag);
-        // Cargar batallas y métricas cuando el usuario tenga tag
         this.battlesStore.loadByTag(user.playerTag);
         this.metricsStore.loadMetrics(user.playerTag);
         this.snapshotsStore.loadSnapshots(user.playerTag);
@@ -99,7 +101,10 @@ export class DashboardPage implements OnInit {
           return 'none' as const;
         });
         // Mostrar de izquierda (más antiguo) a derecha (más reciente)
-        this.streakPills = pills.slice().reverse();
+        this.streakPills = pills
+          .slice()
+          .reverse()
+          .map((p: any, i: number) => ({ id: i, type: p }));
         return;
       }
 
@@ -116,7 +121,7 @@ export class DashboardPage implements OnInit {
           if (v.includes('draw') || v === 'draw' || v === 'tie') return 'draw' as const;
           return 'none' as const;
         });
-        this.streakPills = pills.slice().reverse();
+        this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
         return;
       }
 
@@ -126,7 +131,7 @@ export class DashboardPage implements OnInit {
       // Llenar con 'victory' para las victorias actuales y 'none' para el resto
       this.streakPills = Array.from({ length: total }, (_, i) =>
         i < current ? 'victory' : 'none',
-      );
+      ).map((p: any, i: number) => ({ id: i, type: p }));
     });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
@@ -141,36 +146,15 @@ export class DashboardPage implements OnInit {
   public winData: number[] = [];
   public winBackground: string[] = [];
   public winOptions?: ChartOptions;
-  // Pills to render the recent streak (victory/defeat/draw/none)
-  public streakPills: ('victory' | 'defeat' | 'draw' | 'none')[] = [];
+  // Pills to render the recent streak (each item has an id and a type)
+  public streakPills: { id: number; type: 'victory' | 'defeat' | 'draw' | 'none' }[] = [];
 
   // Usamos ngOnInit para inicializar la vista y también para registrar la
   // destrucción de los charts (según petición del usuario: evitar ngAfterViewInit y ngOnDestroy).
   ngOnInit(): void {
-    const email = localStorage.getItem('email');
-    const tag = localStorage.getItem('tag');
-    if (!email) return;
-    this.usersStore.loadByEmail(email);
-    this.sessionsStore.loadSessions(0, 3, email);
-    this.goalsStore.loadGoals(0, 3, email);
-    if (tag) {
-      this.profileStore.loadByTag(tag);
-      this.battlesStore.loadByTag(tag);
-      this.metricsStore.loadMetrics(tag);
-    }
     this.headerContentService.setContent(this.headerContent);
-    // Referenciar una propiedad usada en la plantilla para evitar falsas alarmas de analizador.
-    // (No hace nada funcional.)
     void this.winLabels;
-
-    // No destruimos charts aquí: los componentes reutilizables manejan su propia limpieza.
     this.destroyRef.onDestroy(() => {});
-
-    // Intentar crear/actualizar los charts al inicializar la vista (siempre que las referencias existan).
-    // Los efectos en el constructor seguirán actualizando los charts cuando lleguen datos.
-    const metric = this.metricsStore.metric();
-    this.createOrUpdateTrophiesChart(metric);
-    this.createOrUpdateWinrateChart();
   }
 
   // Convierte un valor que puede ser fracción (0.2857) o ya porcentaje (28.57)

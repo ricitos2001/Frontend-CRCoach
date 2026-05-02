@@ -18,6 +18,8 @@ export class ProfilePage implements OnInit {
     public headerContentService: HeaderContentService,
   ) {
     effect(() => {
+      const email = localStorage.getItem('email');
+      this.usersStore.loadByEmail(email);
       const user = this.usersStore.user();
       if (user && user.playerTag && user.playerTag.trim() !== '') {
         localStorage.setItem('tag', user.playerTag);
@@ -28,13 +30,6 @@ export class ProfilePage implements OnInit {
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 
   ngOnInit(): void {
-    const email = localStorage.getItem('email');
-    const tag = localStorage.getItem('tag');
-    if (!email) return;
-    this.usersStore.loadByEmail(email);
-    if (tag) {
-      this.profileStore.loadByTag(tag);
-    }
     this.headerContentService.setContent(this.headerContent);
   }
 }

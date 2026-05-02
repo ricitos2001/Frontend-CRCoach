@@ -82,8 +82,8 @@
                   </article>
                 </section>
                 <article class="streak-bar below">
-                  @for(pill of streakPills; track pill) {
-                    <span class="streak-pill" [class.victory]="pill === 'victory'" [class.defeat]="pill === 'defeat'" [class.draw]="pill === 'draw'" [class.none]="pill === 'none'"></span>
+                  @for(pill of streakPills; track pill.id) {
+                    <span class="streak-pill" [class.victory]="pill.type === 'victory'" [class.defeat]="pill.type === 'defeat'" [class.draw]="pill.type === 'draw'" [class.none]="pill.type === 'none'"></span>
                   }
                 </article>
               </section>

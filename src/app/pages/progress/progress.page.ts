@@ -24,6 +24,7 @@ export class ProgressPage implements OnInit {
     public translate: TranslateService,
     public battlesStore: BattlesSignalStore,
   ) {
+
     // Ahora la gráfica de trofeos se alimenta desde MetricsSignalStore
     effect(() => {
       const metric = this.metricsStore.metric();
@@ -76,7 +77,7 @@ export class ProgressPage implements OnInit {
           return 'none' as const;
         });
         // Mostrar de izquierda (más antiguo) a derecha (más reciente)
-        this.streakPills = pills.slice().reverse();
+        this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
         return;
       }
 
@@ -93,7 +94,7 @@ export class ProgressPage implements OnInit {
           if (v.includes('draw') || v === 'draw' || v === 'tie') return 'draw' as const;
           return 'none' as const;
         });
-        this.streakPills = pills.slice().reverse();
+        this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
         return;
       }
 
@@ -103,7 +104,7 @@ export class ProgressPage implements OnInit {
       // Llenar con 'victory' para las victorias actuales y 'none' para el resto
       this.streakPills = Array.from({ length: total }, (_, i) =>
         i < current ? 'victory' : 'none',
-      );
+      ).map((p: any, i: number) => ({ id: i, type: p }));
     });
   }
 
@@ -116,7 +117,7 @@ export class ProgressPage implements OnInit {
   public winData: number[] = [];
   public winBackground: string[] = [];
   public winOptions?: ChartOptions;
-  public streakPills: ('victory' | 'defeat' | 'draw' | 'none')[] = [];
+  public streakPills: { id: number; type: 'victory' | 'defeat' | 'draw' | 'none' }[] = [];
 
   // Nuevos gráficos: donaciones y comparación de trofeos vs cambio últimas 24h
   public donationsLabels: string[] = [];
