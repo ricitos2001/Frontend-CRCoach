@@ -24,6 +24,7 @@ import { FormInputComponent } from '../../components/shared/form-input/form-inpu
 })
 export class BattlesPage {
   tag = localStorage.getItem('tag');
+  private lastLoadedTag: string | null = null;
   // filter options
   gameModes = [
     { value: 'all', label: 'PAGES.BATTLES.ALL' },
@@ -48,9 +49,18 @@ export class BattlesPage {
   searchTerm: string = '';
   constructor(public battlesStore: BattlesSignalStore) {
     effect(() => {
-      if (this.tag != null) {
-        this.battlesStore.loadByTag(this.tag);
-      }
+      const tag = this.tag;
+      if (!tag) return;
+      if (this.lastLoadedTag === tag) return;
+      this.lastLoadedTag = tag;
+
+      (async () => {
+        await this.battlesStore.loadByTag(tag);
+        const battles = this.battlesStore.battles();
+        if (!battles || (Array.isArray(battles) && battles.length === 0)) {
+          await this.battlesStore.importBattles(tag);
+        }
+      })();
     });
   }
 

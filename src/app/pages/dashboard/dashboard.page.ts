@@ -29,6 +29,10 @@ import { RefreshButtonComponent } from '../../components/shared/refresh-button/r
   standalone: true,
 })
 export class DashboardPage implements OnInit {
+  // Track last loaded identifiers to avoid duplicate network requests
+  private lastLoadedEmail: string | null = null;
+  private lastLoadedTag: string | null = null;
+
   // Referencias para evitar que el compilador/linter marque los componentes como "no usados" cuando
   // la plantilla está en un archivo externo. Estas referencias son inofensivas y serán eliminadas
   // por el tree-shaker si no se usan en producción.
@@ -44,17 +48,31 @@ export class DashboardPage implements OnInit {
     private destroyRef: DestroyRef,
     private translate: TranslateService,
   ) {
+    // React to changes in the current user; do NOT trigger loadByEmail() from here to avoid loops.
     effect(() => {
-      const email = localStorage.getItem('email');
-      if (!email) return;
-      this.usersStore.loadByEmail(email);
       const user = this.usersStore.user();
       if (user && user.playerTag && user.playerTag.trim() !== '') {
-        localStorage.setItem('tag', user.playerTag);
-        this.profileStore.loadByTag(user.playerTag);
-        this.battlesStore.loadByTag(user.playerTag);
-        this.metricsStore.loadMetrics(user.playerTag);
-        this.snapshotsStore.loadSnapshots(user.playerTag);
+        const tagToLoad = user.playerTag.trim();
+        if (this.lastLoadedTag === tagToLoad) return;
+        this.lastLoadedTag = tagToLoad;
+        localStorage.setItem('tag', tagToLoad);
+
+        (async () => {
+          await this.profileStore.loadByTag(tagToLoad);
+          const prof = this.profileStore.profile();
+          if (!prof) {
+            await this.profileStore.importProfile(tagToLoad);
+          }
+
+          await this.battlesStore.loadByTag(tagToLoad);
+          const battles = this.battlesStore.battles();
+          if (!battles || (Array.isArray(battles) && battles.length === 0)) {
+            await this.battlesStore.importBattles(tagToLoad);
+          }
+
+          this.metricsStore.loadMetrics(tagToLoad);
+          this.snapshotsStore.loadSnapshots(tagToLoad);
+        })();
       }
     });
     // Ahora la gráfica de trofeos se alimenta desde MetricsSignalStore
@@ -152,6 +170,13 @@ export class DashboardPage implements OnInit {
   // Usamos ngOnInit para inicializar la vista y también para registrar la
   // destrucción de los charts (según petición del usuario: evitar ngAfterViewInit y ngOnDestroy).
   ngOnInit(): void {
+    // Ensure we load the current user only once (avoid repeated loads in reactive effects)
+    const email = localStorage.getItem('email');
+    if (email && this.lastLoadedEmail !== email) {
+      this.lastLoadedEmail = email;
+      this.usersStore.loadByEmail(email);
+    }
+
     this.headerContentService.setContent(this.headerContent);
     void this.winLabels;
     this.destroyRef.onDestroy(() => {});

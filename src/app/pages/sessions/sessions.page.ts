@@ -45,7 +45,10 @@ export class SessionsPage implements OnInit {
 
   ngOnInit(): void {
     const email = localStorage.getItem('email');
-    this.sessionsStore.loadSessions(this.page, this.pageSize, email);
+    // initial load only when email present (avoid duplicate calls if already loaded elsewhere)
+    if (email) {
+      this.sessionsStore.loadSessions(this.page, this.pageSize, email);
+    }
   }
 
   prevPage(sessionsPage?: any) {

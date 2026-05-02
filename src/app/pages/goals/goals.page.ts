@@ -51,7 +51,10 @@ export class GoalsPage implements OnInit {
 
   ngOnInit(): void {
     const email = localStorage.getItem('email');
-    this.goalsStore.loadGoals(this.page, this.pageSize, email);
+    // Load goals only when we have an email to avoid duplicate requests
+    if (email) {
+      this.goalsStore.loadGoals(this.page, this.pageSize, email);
+    }
     this.statusOptionsMap = this.statusOptions.map((s) => ({
       value: s,
       label: `PAGES.GOALS.STATUS.${s}`,

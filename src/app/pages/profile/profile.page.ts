@@ -12,24 +12,41 @@ import { HeaderContentService } from '../../services/header-content/header-conte
   standalone: true,
 })
 export class ProfilePage implements OnInit {
+  private lastLoadedEmail: string | null = null;
+  private lastLoadedTag: string | null = null;
   constructor(
     public usersStore: UsersSignalStore,
     public profileStore: PlayerProfileSignalStore,
     public headerContentService: HeaderContentService,
   ) {
+    // React to user signal changes, but do not call loadByEmail here (call it once in ngOnInit)
     effect(() => {
-      const email = localStorage.getItem('email');
-      this.usersStore.loadByEmail(email);
       const user = this.usersStore.user();
       if (user && user.playerTag && user.playerTag.trim() !== '') {
-        localStorage.setItem('tag', user.playerTag);
-        this.profileStore.loadByTag(user.playerTag);
+        const tag = user.playerTag.trim();
+        if (this.lastLoadedTag === tag) return;
+        this.lastLoadedTag = tag;
+        localStorage.setItem('tag', tag);
+
+        (async () => {
+          await this.profileStore.loadByTag(tag);
+          const prof = this.profileStore.profile();
+          if (!prof) {
+            await this.profileStore.importProfile(tag);
+          }
+        })();
       }
     });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 
   ngOnInit(): void {
+    const email = localStorage.getItem('email');
+    if (email && this.lastLoadedEmail !== email) {
+      this.lastLoadedEmail = email;
+      this.usersStore.loadByEmail(email);
+    }
+
     this.headerContentService.setContent(this.headerContent);
   }
 }
