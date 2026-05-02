@@ -1,69 +1,67 @@
-import { Injectable } from '@angular/core';
-import { signal, computed } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { UsersService } from '../services/users/users.service';
 import { User } from '../interfaces/User';
-import { ToastService } from '../services/toast/toast.service';
-import { TranslateService } from '@ngx-translate/core';
-import { take, finalize, switchMap } from 'rxjs/operators';
-import { timer, of, EMPTY } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UsersSignalStore {
-  private _user = signal<User | null>(null);
-  private _loading = signal(false);
-  private _error = signal<string | null>(null);
+  // Signals exposed as callables: usersStore.user() works in components
+  public user = signal<User | null>(null);
+  public users = signal<User[] | null>(null);
+  public loading = signal<boolean>(false);
+  public error = signal<string | null>(null);
 
-  readonly user = this._user.asReadonly();
-  readonly loading = this._loading.asReadonly();
-  readonly error = this._error.asReadonly();
+  constructor(private usersService: UsersService) {}
 
-  readonly hasPlayerTag = computed(() => {
-	const u = this._user();
-	return !!(u && u.playerTag && u.playerTag.trim() !== '');
-  });
+  private setLoading(v: boolean) {
+    this.loading.set(v);
+  }
 
-  constructor(
-	private usersService: UsersService,
-	private toast: ToastService,
-	private translate: TranslateService,
-  ) {}
+  private setError(e: any) {
+    const msg = e?.message ?? String(e ?? 'Unknown error');
+    this.error.set(msg);
+  }
 
-  loadByEmail(email: string) {
-	this._loading.set(true);
-	this._error.set(null);
-	timer(0, 500)
-	  .pipe(
-		switchMap(() => {
-		  const t = localStorage.getItem('token');
-		  return t ? of(t) : EMPTY;
-		}),
-		take(1),
-		switchMap(() => this.usersService.getUser(email)),
-		take(1),
-		finalize(() => this._loading.set(false)),
-	  )
-	  .subscribe({
-		next: (u) => this._user.set(u),
-		error: (err) => {
-		  this._error.set(this.translate.instant('NOTIFICATIONS.USER.GET_ERROR'));
-		  console.warn('UsersSignalStore.loadByEmail error', err);
-		},
-	  });
+  async loadByEmail(email: string | null) {
+    if (!email) return;
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.usersService.getUser(email));
+      this.user.set(res);
+    } catch (err) {
+      console.error('UsersSignalStore.loadByEmail error', err);
+      this.user.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async loadUsers() {
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.usersService.getUsers());
+      this.users.set(res);
+    } catch (err) {
+      console.error('UsersSignalStore.loadUsers error', err);
+      this.users.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
   }
 
   setUser(u: User | null) {
-	this._user.set(u);
+    this.user.set(u);
   }
 
   clear() {
-	this._user.set(null);
-	this._error.set(null);
-  }
-
-  // Actualizar localmente el user (por ejemplo después de editar perfil)
-  updateLocal(user: User) {
-	this._user.set(user);
+    this.user.set(null);
+    this.users.set(null);
+    this.loading.set(false);
+    this.error.set(null);
   }
 }
-
 

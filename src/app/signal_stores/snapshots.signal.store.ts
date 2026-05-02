@@ -1,41 +1,45 @@
-import { Injectable } from '@angular/core';
-import { signal } from '@angular/core';
-import { take, finalize } from 'rxjs/operators';
+import { Injectable, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { SnapshotsService } from '../services/snapshots/snapshots.service';
 import { Snapshot } from '../interfaces/Snapshot';
-import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
 export class SnapshotsSignalStore {
-  private _snapshots = signal<Snapshot[] | null>(null);
-  private _loading = signal(false);
-  private _error = signal<string | null>(null);
+  public snapshots = signal<Snapshot[] | null>(null);
+  public loading = signal<boolean>(false);
+  public error = signal<string | null>(null);
 
-  readonly snapshots = this._snapshots.asReadonly();
-  readonly loading = this._loading.asReadonly();
-  readonly error = this._error.asReadonly();
+  constructor(private snapshotsService: SnapshotsService) {}
 
-  constructor(private snapshotsService: SnapshotsService, private translate: TranslateService) {}
+  private setLoading(v: boolean) {
+    this.loading.set(v);
+  }
 
-  loadSnapshots(tag: string) {
+  private setError(e: any) {
+    const msg = e?.message ?? String(e ?? 'Unknown error');
+    this.error.set(msg);
+  }
+
+  async loadSnapshots(tag: string) {
     if (!tag) return;
-    this._loading.set(true);
-    this._error.set(null);
-    this.snapshotsService
-      .getSnapshots(tag)
-      .pipe(take(1), finalize(() => this._loading.set(false)))
-      .subscribe({
-        next: (s) => this._snapshots.set(s),
-        error: (err) => {
-          this._error.set(this.translate.instant('NOTIFICATIONS.SNAPSHOTS.GET_ERROR'));
-          console.warn('SnapshotsSignalStore.loadSnapshots error', err);
-        },
-      });
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.snapshotsService.getSnapshots(tag));
+      this.snapshots.set(res);
+    } catch (err) {
+      console.error('SnapshotsSignalStore.loadSnapshots error', err);
+      this.snapshots.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
   }
 
   clear() {
-    this._snapshots.set(null);
-    this._error.set(null);
+    this.snapshots.set(null);
+    this.loading.set(false);
+    this.error.set(null);
   }
 }
 

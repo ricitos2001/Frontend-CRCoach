@@ -1,93 +1,85 @@
-import { Injectable } from '@angular/core';
-import { signal } from '@angular/core';
-import { take, finalize } from 'rxjs/operators';
+import { Injectable, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { AnalyticsService } from '../services/analytics/analytics.service';
-import { SummaryReport } from '../interfaces/SummaryReport';
 import { WeaknessReport } from '../interfaces/WeaknessReport';
 import { ProblematicCardsReport } from '../interfaces/ProblematicCardsReport';
-import { TranslateService } from '@ngx-translate/core';
+import { SummaryReport } from '../interfaces/SummaryReport';
 
 @Injectable({ providedIn: 'root' })
 export class AnalyticsSignalStore {
-  private _summary = signal<SummaryReport | null>(null);
-  private _weaknesses = signal<WeaknessReport | null>(null);
-  private _problematicCards = signal<ProblematicCardsReport | null>(null);
-  private _loading = signal(false);
-  private _error = signal<string | null>(null);
+  public weaknesses = signal<WeaknessReport | null>(null);
+  public problematicCards = signal<ProblematicCardsReport | null>(null);
+  public summary = signal<SummaryReport | null>(null);
 
-  readonly summary = this._summary.asReadonly();
-  readonly weaknesses = this._weaknesses.asReadonly();
-  readonly problematicCards = this._problematicCards.asReadonly();
-  readonly loading = this._loading.asReadonly();
-  readonly error = this._error.asReadonly();
+  // Signals for status
+  public loading = signal<boolean>(false);
+  public error = signal<string | null>(null);
 
-  constructor(
-    private analyticsService: AnalyticsService,
-    private translate: TranslateService,
-  ) {}
+  constructor(private analyticsService: AnalyticsService) {}
 
-  loadSummary(tag: string, gameMode?: string, from?: string, to?: string) {
-    if (!tag) return;
-    this._loading.set(true);
-    this._error.set(null);
-    this.analyticsService
-      .getSummary(tag, gameMode, from, to)
-      .pipe(
-        take(1),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe({
-        next: (s) => this._summary.set(s),
-        error: (err) => {
-          this._error.set(this.translate.instant('NOTIFICATIONS.ANALYTICS.SUMMARY_ERROR'));
-          console.warn('AnalyticsSignalStore.loadSummary error', err);
-        },
-      });
+  private setLoading(v: boolean) {
+    this.loading.set(v);
   }
 
-  loadWeaknesses(tag: string, gameMode?: string, from?: string, to?: string, minBattles?: number) {
-    if (!tag) return;
-    this._loading.set(true);
-    this._error.set(null);
-    this.analyticsService
-      .getWeaknesses(tag, gameMode, from, to, minBattles)
-      .pipe(
-        take(1),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe({
-        next: (w) => this._weaknesses.set(w),
-        error: (err) => {
-          this._error.set(this.translate.instant('NOTIFICATIONS.ANALYTICS.WEAKNESSES_ERROR'));
-          console.warn('AnalyticsSignalStore.loadWeaknesses error', err);
-        },
-      });
+  private setError(e: any) {
+    const msg = e?.message ?? String(e ?? 'Unknown error');
+    this.error.set(msg);
   }
 
-  loadProblematicCards(tag: string, gameMode?: string, from?: string, to?: string, limit?: number, minAppearances?: number,) {
+  async loadWeaknesses(tag: string, gameMode?: string, from?: string, to?: string, minBattles?: number) {
     if (!tag) return;
-    this._loading.set(true);
-    this._error.set(null);
-    this.analyticsService
-      .getProblematicCards(tag, gameMode, from, to, limit, minAppearances)
-      .pipe(
-        take(1),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe({
-        next: (p) => this._problematicCards.set(p),
-        error: (err) => {
-          this._error.set(this.translate.instant('NOTIFICATIONS.ANALYTICS.CARDS_ERROR'));
-          console.warn('AnalyticsSignalStore.loadProblematicCards error', err);
-        },
-      });
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.analyticsService.getWeaknesses(tag, gameMode, from, to, minBattles));
+      this.weaknesses.set(res);
+    } catch (err) {
+      console.error('AnalyticsSignalStore.loadWeaknesses error', err);
+      this.weaknesses.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async loadProblematicCards(tag: string, gameMode?: string, from?: string, to?: string, limit?: number, minAppearances?: number) {
+    if (!tag) return;
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.analyticsService.getProblematicCards(tag, gameMode, from, to, limit, minAppearances));
+      this.problematicCards.set(res);
+    } catch (err) {
+      console.error('AnalyticsSignalStore.loadProblematicCards error', err);
+      this.problematicCards.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async loadSummary(tag: string, gameMode?: string, from?: string, to?: string) {
+    if (!tag) return;
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.analyticsService.getSummary(tag, gameMode, from, to));
+      this.summary.set(res);
+    } catch (err) {
+      console.error('AnalyticsSignalStore.loadSummary error', err);
+      this.summary.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
   }
 
   clear() {
-    this._summary.set(null);
-    this._weaknesses.set(null);
-    this._problematicCards.set(null);
-    this._error.set(null);
+    this.weaknesses.set(null);
+    this.problematicCards.set(null);
+    this.summary.set(null);
+    this.loading.set(false);
+    this.error.set(null);
   }
 }
 

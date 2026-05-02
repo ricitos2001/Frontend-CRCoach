@@ -14,14 +14,14 @@
     }
   </app-modal>
   <section>
-    @if (sessionsStore.loading() && !sessionsStore.sessions()) {
+    @if (sessionsStore.loading() && !sessionsStore.sessionsPage()) {
       <p>{{ 'PAGES.SESSIONS.LOADING' | translate }}</p>
     }
     @if (sessionsStore.error(); as sErr) {
       <p class="error">{{ 'PAGES.SESSIONS.ERROR' | translate:{ err: sErr } }}</p>
     }
 
-    @if (sessionsStore.sessions(); as sessionsPage) {
+    @if (sessionsStore.sessionsPage(); as sessionsPage) {
       <section class="sessions">
         @for (s of pageToArray(sessionsPage); track s.id) {
           <article class="card">

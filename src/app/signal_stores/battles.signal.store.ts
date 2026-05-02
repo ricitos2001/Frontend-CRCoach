@@ -1,151 +1,60 @@
-import { Injectable } from '@angular/core';
-import { signal } from '@angular/core';
-import { take, finalize, catchError, switchMap } from 'rxjs/operators';
-import { throwError, timer, of, EMPTY } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { BattlesService } from '../services/battles/battles.service';
-import { PlayerProfileSignalStore } from './player-profile.signal.store';
 import { Battle } from '../interfaces/Battle';
-import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
 export class BattlesSignalStore {
-  private _battles = signal<Battle[] | null>(null);
-  private _loading = signal(false);
-  private _error = signal<string | null>(null);
+  public battles = signal<Battle[] | null>(null);
+  public loading = signal<boolean>(false);
+  public error = signal<string | null>(null);
 
-  readonly battles = this._battles.asReadonly();
-  readonly loading = this._loading.asReadonly();
-  readonly error = this._error.asReadonly();
+  constructor(private battlesService: BattlesService) {}
 
-  constructor(
-    private battlesService: BattlesService,
-    private translate: TranslateService,
-    private profileStore: PlayerProfileSignalStore,
-  ) {}
-
-  private applyBattlesResponse(res: unknown): boolean {
-    if (!res) {
-      this._battles.set(null);
-      return false;
-    }
-
-    const maybe = res as any;
-    if (maybe && maybe.content && Array.isArray(maybe.content)) {
-      this._battles.set(maybe.content as Battle[]);
-      return true;
-    }
-
-    if (Array.isArray(res)) {
-      this._battles.set(res as Battle[]);
-      return true;
-    }
-
-    this._battles.set([res as Battle]);
-    return true;
+  private setLoading(v: boolean) {
+    this.loading.set(v);
   }
 
-  private recoverAfterImportError(tag: string, source: 'loadByTag' | 'importBattles', importError: unknown, getBattlesError?: unknown) {
-    return this.battlesService.getBattlesByTag(tag).pipe(
-      take(1),
-      catchError(() =>
-        timer(1200).pipe(
-          switchMap(() => this.battlesService.getBattlesByTag(tag)),
-          take(1),
-          catchError(() => {
-            console.error(`BattlesSignalStore.${source}: no se pudo importar ni recuperar las batallas`, {
-              tag,
-              getBattlesError,
-              importError,
-            });
-            return throwError(() => importError);
-          }),
-        ),
-      ),
-    );
+  private setError(e: any) {
+    const msg = e?.message ?? String(e ?? 'Unknown error');
+    this.error.set(msg);
   }
 
-  loadByTag(tag: string) {
+  async loadByTag(tag: string) {
     if (!tag) return;
-    this._loading.set(true);
-    this._error.set(null);
-    timer(0, 500)
-      .pipe(
-        switchMap(() => {
-          const t = localStorage.getItem('token');
-          return t ? of(t) : EMPTY;
-        }),
-        take(1),
-        switchMap(() =>
-          this.battlesService.getBattlesByTag(tag).pipe(
-            catchError((getBattlesError) =>
-              this.battlesService.importBattles(tag).pipe(
-                catchError((importError) =>
-                  this.recoverAfterImportError(tag, 'loadByTag', importError, getBattlesError),
-                ),
-              ),
-            ),
-          ),
-        ),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe({
-        next: (res) => {
-          const ok = this.applyBattlesResponse(res);
-          if (!ok) {
-            this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
-          } else {
-            this._error.set(null);
-            try {
-              // refresh player profile after importing battles so goals/trophies update
-              this.profileStore.loadByTag(tag);
-            } catch (e) {
-              // ignore if profile store not available
-            }
-          }
-        },
-        error: () => {
-          this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
-        },
-      });
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.battlesService.getBattlesByTag(tag));
+      this.battles.set(res);
+    } catch (err) {
+      console.error('BattlesSignalStore.loadByTag error', err);
+      this.battles.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
   }
 
-  importBattles(tag: string) {
+  async importBattles(tag: string) {
     if (!tag) return;
-    this._loading.set(true);
-    this._error.set(null);
-    timer(0, 500)
-      .pipe(
-        switchMap(() => {
-          const t = localStorage.getItem('token');
-          return t ? of(t) : EMPTY;
-        }),
-        take(1),
-        switchMap(() =>
-          this.battlesService.importBattles(tag).pipe(
-            catchError((importError) => this.recoverAfterImportError(tag, 'importBattles', importError)),
-          ),
-        ),
-        finalize(() => this._loading.set(false)),
-      )
-      .subscribe({
-        next: (res) => {
-          const ok = this.applyBattlesResponse(res);
-          if (!ok) {
-            this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
-          } else {
-            this._error.set(null);
-          }
-        },
-        error: () => {
-          this._error.set(this.translate.instant('PAGES.LINK_PLAYER_PROFILE.TAG_NOT_FOUND'));
-        },
-      });
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.battlesService.importBattles(tag));
+      this.battles.set(res);
+    } catch (err) {
+      console.error('BattlesSignalStore.importBattles error', err);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
   }
 
   clear() {
-    this._battles.set(null);
-    this._error.set(null);
+    this.battles.set(null);
+    this.loading.set(false);
+    this.error.set(null);
   }
 }
-
 

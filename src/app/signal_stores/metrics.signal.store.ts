@@ -1,41 +1,45 @@
-import { Injectable } from '@angular/core';
-import { signal } from '@angular/core';
-import { take, finalize } from 'rxjs/operators';
+import { Injectable, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { MetricsService } from '../services/metrics/metrics.service';
 import { Metric } from '../interfaces/Metric';
-import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
 export class MetricsSignalStore {
-  private _metric = signal<Metric | null>(null);
-  private _loading = signal(false);
-  private _error = signal<string | null>(null);
+  public metric = signal<Metric | null>(null);
+  public loading = signal<boolean>(false);
+  public error = signal<string | null>(null);
 
-  readonly metric = this._metric.asReadonly();
-  readonly loading = this._loading.asReadonly();
-  readonly error = this._error.asReadonly();
+  constructor(private metricsService: MetricsService) {}
 
-  constructor(private metricsService: MetricsService, private translate: TranslateService) {}
+  private setLoading(v: boolean) {
+    this.loading.set(v);
+  }
 
-  loadMetrics(tag: string) {
+  private setError(e: any) {
+    const msg = e?.message ?? String(e ?? 'Unknown error');
+    this.error.set(msg);
+  }
+
+  async loadMetrics(tag: string) {
     if (!tag) return;
-    this._loading.set(true);
-    this._error.set(null);
-    this.metricsService
-      .getMetrics(tag)
-      .pipe(take(1), finalize(() => this._loading.set(false)))
-      .subscribe({
-        next: (m) => this._metric.set(m),
-        error: (err) => {
-          this._error.set(this.translate.instant('NOTIFICATIONS.METRICS.GET_ERROR'));
-          console.warn('MetricsSignalStore.loadMetrics error', err);
-        },
-      });
+    this.setLoading(true);
+    this.error.set(null);
+    try {
+      const res = await firstValueFrom(this.metricsService.getMetrics(tag));
+      this.metric.set(res);
+    } catch (err) {
+      console.error('MetricsSignalStore.loadMetrics error', err);
+      this.metric.set(null);
+      this.setError(err);
+    } finally {
+      this.setLoading(false);
+    }
   }
 
   clear() {
-    this._metric.set(null);
-    this._error.set(null);
+    this.metric.set(null);
+    this.loading.set(false);
+    this.error.set(null);
   }
 }
 

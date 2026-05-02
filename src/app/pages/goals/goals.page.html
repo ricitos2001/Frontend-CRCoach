@@ -14,13 +14,13 @@
       <app-goal-form [goal]="editingGoal" (saved)="onGoalSaved($event)" (cancel)="onCancel()"></app-goal-form>
     }
   </app-modal>
-  @if (goalsStore.loading() && !goalsStore.goals()) {
+  @if (goalsStore.loading() && !goalsStore.goalsPage()) {
     <p>{{ 'PAGES.GOALS.LOADING' | translate }}</p>
   }
   @if (goalsStore.error(); as gErr) {
     <p class="error">{{ 'PAGES.GOALS.ERROR' | translate:{ err: gErr } }}</p>
   }
-  @if (goalsStore.goals(); as goalsPage) {
+  @if (goalsStore.goalsPage(); as goalsPage) {
     <section class="goals">
       @for (goal of filteredGoals(goalsPage); track goal.id) {
         <section class="goal">
