@@ -90,9 +90,7 @@
               <p class="archetype">{{battle.team.playerDeck.archetype}}</p>
               <article class="cards">
                 @for (card of battle.team.playerDeck.playerCards; track card.id) {
-                  @switch (card.useType) {
-                    <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
-                  }
+                  <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
                 }
               </article>
             </section>
