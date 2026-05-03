@@ -1,9 +1,9 @@
 <ng-template #headerContent>
   @if (usersStore.loading() && !usersStore.user()) {
-    <p>Cargando usuario...</p>
+    <p>{{ 'PAGES.DASHBOARD.LOADING_USER' | translate }}</p>
   }
   @if (usersStore.error(); as uErr) {
-    <p class="error">Error usuario: {{uErr}}</p>
+    <p class="error">{{ 'PAGES.DASHBOARD.ERROR_USER' | translate:{ err: uErr } }}</p>
   }
   @if (usersStore.user(); as user) {
     <p>{{user.name}} {{user.surnames}}</p>
@@ -22,10 +22,10 @@
 </app-modal>
 <section class="player-profile">
   @if (profileStore.loading() && !profileStore.profile()) {
-    <p>Cargando perfil de jugador...</p>
+    <p>{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
   }
   @if (profileStore.error(); as pErr) {
-    <p class="error">Error perfil: {{pErr}}</p>
+    <p class="error">{{ 'PAGES.DASHBOARD.ERROR_PROFILE' | translate:{ err: pErr } }}</p>
   }
   @if (profileStore.profile(); as profile) {
     <p>{{profile.name}}</p>
@@ -33,16 +33,15 @@
     <p>{{profile.trophies}}</p>
     <p>{{profile.bestTrophies}}</p>
     <p>{{(profile.totalDonations)}}</p>
-    <img src="{{profile.currentFavouriteCard.iconUrl.medium}}" alt="Imagen de la carta favorita actual">
+    <img src="{{profile.currentFavouriteCard.iconUrl.medium}}" alt="{{ 'PAGES.DASHBOARD.AVATAR_ALT' | translate }}">
     <p>{{profile.currentPathOfLegendSeasonResult}}</p>
     <p>{{profile.arena.name}}</p>
     @for (playerCard of profile.currentDeck.playerCards; track playerCard.id) {
-      <img src="{{playerCard.iconUrl.medium}}" alt="carta del mazo actual">
+      <img src="{{playerCard.iconUrl.medium}}" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}">
     }
-    <p>{{profile.achievements}}</p>
     <p>{{profile.currentDeck.playerCards}}</p>
     @for (playerCard of profile.playerCards; track playerCard.id) {
-      <img src="{{playerCard.iconUrl.medium}}" alt="carta del jugador">
+      <img src="{{playerCard.iconUrl.medium}}" alt="{{ 'PAGES.PROFILE.PLAYER_CARD' | translate }}">
     }
   }
 </section>

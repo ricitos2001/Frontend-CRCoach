@@ -27,6 +27,7 @@ export class RecoverPasswordPage implements OnInit {
   @Output() authSuccess = new EventEmitter<void>();
 
   submitted = false;
+  loading = false;
   tokenValid = false;
   token?: string;
   message?: string;
@@ -102,30 +103,36 @@ export class RecoverPasswordPage implements OnInit {
 
   private sendRecoveryEmail(): void {
     const { email } = this.recoverPasswordForm.value;
+    this.loading = true;
 
     this.passwordResetService.forgotPassword({ email }).subscribe({
       next: (res) => {
         this.message = res.message || this.translate.instant('PAGES.RECOVER.SUCCESS_EMAIL_SENT');
         this.submitted = false;
+        this.loading = false;
       },
       error: () => {
         this.error = this.translate.instant('PAGES.RECOVER.ERROR_PROCESSING_REQUEST');
         this.submitted = false;
+        this.loading = false;
       },
     });
   }
 
   private resetPassword(): void {
     const { newPassword } = this.recoverPasswordForm.value;
+    this.loading = true;
     this.passwordResetService.resetPassword({ token: this.token!, newPassword }).subscribe({
       next: (res) => {
         this.message =
           res.message || this.translate.instant('PAGES.RECOVER.SUCCESS_PASSWORD_CHANGED');
+        this.loading = false;
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: () => {
         this.error = this.translate.instant('PAGES.RECOVER.ERROR_UPDATING_PASSWORD');
         this.submitted = false;
+        this.loading = false;
       },
     });
   }

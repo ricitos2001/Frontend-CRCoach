@@ -1,19 +1,21 @@
-<form class="card form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
-  <h3>@if(goal) { {{ 'PAGES.GOALS.EDIT_TITLE' | translate }} } @else { {{ 'PAGES.GOALS.CREATE_TITLE' | translate }} }</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <div class="fieldset">
+    <h1 class="form__legend">@if(goal) { {{ 'PAGES.GOALS.EDIT_TITLE' | translate }} } @else { {{ 'PAGES.GOALS.CREATE_TITLE' | translate }} }</h1>
 
-  <app-form-input name="title" label="{{ 'PAGES.GOALS.LABEL.TITLE' | translate }}" placeholder="" formControlName="title"></app-form-input>
+    <app-form-input class="glass-input" name="title" label="{{ 'PAGES.GOALS.LABEL.TITLE' | translate }}" placeholder="" formControlName="title"></app-form-input>
 
-  <app-form-input type="textarea" name="description" label="{{ 'PAGES.GOALS.LABEL.DESCRIPTION' | translate }}" formControlName="description"></app-form-input>
+    <app-form-input class="glass-input" type="textarea" name="description" label="{{ 'PAGES.GOALS.LABEL.DESCRIPTION' | translate }}" formControlName="description"></app-form-input>
 
-  <app-form-input type="select" name="metricType" label="{{ 'PAGES.GOALS.LABEL.METRYC' | translate }}" formControlName="metricType" [options]="metricOptionsMap"></app-form-input>
+    <app-form-input class="glass-input" type="select" name="metricType" label="{{ 'PAGES.GOALS.LABEL.METRYC' | translate }}" formControlName="metricType" [options]="metricOptionsMap"></app-form-input>
 
-  <app-form-input type="number" name="targetValue" label="{{ 'PAGES.GOALS.LABEL.TARGET' | translate }}" formControlName="targetValue"></app-form-input>
+    <app-form-input class="glass-input" type="number" name="targetValue" label="{{ 'PAGES.GOALS.LABEL.TARGET' | translate }}" formControlName="targetValue"></app-form-input>
 
-  <app-form-input type="date" name="deadline" label="{{ 'PAGES.GOALS.LABEL.DEADLINE' | translate }}" formControlName="deadline"></app-form-input>
+    <app-form-input class="glass-input" type="date" name="deadline" label="{{ 'PAGES.GOALS.LABEL.DEADLINE' | translate }}" formControlName="deadline"></app-form-input>
 
-  <article class="flex">
-    <app-common-button type="submit" [disabled]="form.invalid || loading">{{ 'PAGES.GOALS.SAVE' | translate }}</app-common-button>
-    <app-common-button type="button" (click)="onCancel()">{{ 'PAGES.GOALS.CANCEL' | translate }}</app-common-button>
-  </article>
+    <article class="flex">
+      <app-common-button type="submit" [disabled]="form.invalid || loading">{{ 'PAGES.GOALS.SAVE' | translate }}</app-common-button>
+      <app-common-button type="button" (click)="onCancel()">{{ 'PAGES.GOALS.CANCEL' | translate }}</app-common-button>
+    </article>
+  </div>
 </form>
 

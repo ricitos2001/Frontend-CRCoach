@@ -25,6 +25,7 @@ import { Notification } from '../../interfaces/Notification';
 export class LoginPage {
   @Output() authSuccess = new EventEmitter<void>();
   submitted = false;
+  loading = false;
   loginForm: FormGroup;
 
   constructor(
@@ -47,6 +48,7 @@ export class LoginPage {
       return;
     }
     this.submitted = true;
+    this.loading = true; // show loading indicator while authenticating
 
     this.authService.login(this.loginForm).subscribe({
       next: (res) => {
@@ -71,7 +73,11 @@ export class LoginPage {
       error: (err) => {
         console.error('Error en login', err);
         this.translate.instant('NOTIFICATIONS.AUTH.LOGIN.ERROR');
+        this.loading = false;
       },
+      complete: () => {
+        this.loading = false;
+      }
     });
   }
 }

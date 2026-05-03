@@ -91,7 +91,8 @@
         "PASSWORD_PLACEHOLDER": "Password",
         "SUBMIT": "Sign in",
         "NO_ACCOUNT": "Don’t have an account? Sign up",
-        "FORGOT_PASSWORD": "Forgot your password? Recover it"
+        "FORGOT_PASSWORD": "Forgot your password? Recover it",
+        "SUBMITTING": "Signing in..."
       },
       "REGISTER": {
         "LEGEND": "Sign up",
@@ -126,6 +127,7 @@
         "CONFIRM_PASSWORD_LABEL": "Confirm password",
         "CONFIRM_PASSWORD_PLACEHOLDER": "Confirm password",
         "SEND_EMAIL": "Send email",
+        "SUBMITTED": "Submitted",
         "CHANGE_PASSWORD": "Change password",
         "BACK_TO_LOGIN": "Back to sign in",
         "SUCCESS_EMAIL_SENT": "An email with instructions has been sent.",
@@ -346,6 +348,9 @@
     ,
       "EDIT_PROFILE": "Edit profile",
       "DELETE_ACCOUNT": "Delete account"
+      ,
+      "CARD_IN_DECK": "Deck card",
+      "PLAYER_CARD": "Player card"
     }
   },
   "USER": {

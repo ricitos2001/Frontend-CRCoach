@@ -1,4 +1,4 @@
-<section>
+<section class="battles-page">
   <h1>{{'PAGES.BATTLES.TITLE' | translate}}</h1>
 
   <article class="controls">
@@ -90,7 +90,17 @@
               <p class="archetype">{{battle.team.playerDeck.archetype}}</p>
               <article class="cards">
                 @for (card of battle.team.playerDeck.playerCards; track card.id) {
-                  <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
+                  @switch (card.useType) {
+                    @case ('NORMAL') {
+                      <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
+                    }
+                    @case ('HERO') {
+                      <img src="{{card.iconUrl.heroMedium}}" alt="{{card.name}}" class="card" />
+                    }
+                    @case ('EVOLUTION') {
+                      <img src="{{card.iconUrl.evolutionMedium}}" alt="{{card.name}}" class="card" />
+                    }
+                  }
                 }
               </article>
             </section>

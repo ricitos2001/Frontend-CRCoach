@@ -91,7 +91,8 @@
         "PASSWORD_PLACEHOLDER": "Contraseña",
         "SUBMIT": "Iniciar sesión",
         "NO_ACCOUNT": "¿No tienes cuenta? Regístrate",
-        "FORGOT_PASSWORD": "¿Has olvidado tu contraseña? Recupérala"
+        "FORGOT_PASSWORD": "¿Has olvidado tu contraseña? Recupérala",
+        "SUBMITTING": "Iniciando sesión..."
       },
       "REGISTER": {
         "LEGEND": "Regístrate",
@@ -126,6 +127,7 @@
         "CONFIRM_PASSWORD_LABEL": "Confirmar contraseña",
         "CONFIRM_PASSWORD_PLACEHOLDER": "Confirmar contraseña",
         "SEND_EMAIL": "Enviar correo",
+        "SUBMITTED": "Enviado",
         "CHANGE_PASSWORD": "Cambiar contraseña",
         "BACK_TO_LOGIN": "Volver a iniciar sesión",
         "SUCCESS_EMAIL_SENT": "Se ha enviado un correo con instrucciones.",
@@ -346,6 +348,9 @@
     ,
       "EDIT_PROFILE": "Editar perfil",
       "DELETE_ACCOUNT": "Borrar cuenta"
+      ,
+      "CARD_IN_DECK": "Carta del mazo",
+      "PLAYER_CARD": "Carta del jugador"
     }
   },
   "USER": {

@@ -21,7 +21,13 @@
       }
     </app-form-input>
 
-    <app-common-button type="submit" [disabled]="loginForm.invalid || loginForm.pending">{{ 'PAGES.AUTH.LOGIN.SUBMIT' | translate }}</app-common-button>
+    <app-common-button type="submit" [disabled]="loginForm.invalid || loginForm.pending || loading">
+      @if (!loading) {
+        <ng-container>{{ 'PAGES.AUTH.LOGIN.SUBMIT' | translate }}</ng-container>
+      } @else {
+        <ng-container>{{ 'PAGES.AUTH.LOGIN.SUBMITTING' | translate }}</ng-container>
+      }
+    </app-common-button>
     <a [routerLink]="['/register']">{{ 'PAGES.AUTH.LOGIN.NO_ACCOUNT' | translate }}</a>
     <a [routerLink]="['/recover-password']">{{ 'PAGES.AUTH.LOGIN.FORGOT_PASSWORD' | translate }}</a>
   </fieldset>

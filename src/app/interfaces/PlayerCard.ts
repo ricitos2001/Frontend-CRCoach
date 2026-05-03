@@ -14,4 +14,5 @@ export interface PlayerCard {
   iconUrl: IconUrl;
   playerProfile: PlayerProfile;
   supportCard: Boolean;
+  useType: string;
 }
