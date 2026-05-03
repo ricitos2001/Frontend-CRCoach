@@ -13,7 +13,11 @@ import { ToastService } from '../../../services/toast/toast.service';
   standalone: true,
 })
 export class RefreshButtonComponent implements OnDestroy {
+  // `loading` mantiene el estado global (deshabilita el botón hasta que
+  // todas las operaciones terminen). `spinning` controla únicamente la
+  // animación (se detendrá cuando llegue la primera respuesta).
   public loading = false;
+  public spinning = false;
   private _pollHandle: any = null;
 
   constructor(
@@ -41,35 +45,65 @@ export class RefreshButtonComponent implements OnDestroy {
 
     // Importar batallas y perfil (llamadas que pueden realizar import si hace falta)
     this.toast.show({ type: 'info', message: 'PAGES.REFRESH.STARTED', duration: 2000 });
-    // Set loading state and start poller to stop animation when all stores finished
+    // Set loading state and start poller to wait until all stores finished
+    // `spinning` controla la animación y será detenida cuando llegue la
+    // primera respuesta (Promise.race). `loading` se mantendrá true hasta
+    // que el poller confirme que todas las cargas terminaron.
     this.loading = true;
+    this.spinning = true;
     this.startPoller();
+    const promises: Promise<any>[] = [];
     try {
-      this.battlesStore.importBattles(tag);
+      const p = this.battlesStore.importBattles(tag);
+      if (p) promises.push(p);
     } catch (e) {
       console.warn('Error triggering importBattles', e);
     }
 
     try {
-      this.profileStore.importProfile(tag);
+      const p = this.profileStore.importProfile(tag);
+      if (p) promises.push(p);
     } catch (e) {
       console.warn('Error triggering importProfile', e);
     }
 
     // Cargar métricas
     try {
-      this.metricsStore.loadMetrics(tag);
+      const p = this.metricsStore.loadMetrics(tag);
+      if (p) promises.push(p);
     } catch (e) {
       console.warn('Error triggering loadMetrics', e);
     }
 
     // Cargar analíticas: resumen, debilidades y cartas problemáticas (parámetros por defecto)
     try {
-      this.analyticsStore.loadSummary(tag);
-      this.analyticsStore.loadWeaknesses(tag);
-      this.analyticsStore.loadProblematicCards(tag);
+      const p1 = this.analyticsStore.loadSummary(tag);
+      const p2 = this.analyticsStore.loadWeaknesses(tag);
+      const p3 = this.analyticsStore.loadProblematicCards(tag);
+      if (p1) promises.push(p1);
+      if (p2) promises.push(p2);
+      if (p3) promises.push(p3);
     } catch (e) {
       console.warn('Error triggering analytics loads', e);
+    }
+
+    // Si alguna promesa se resuelve/rechaza, paramos la animación (spinning=false)
+    // pero mantenemos `loading` hasta que el poller confirme que todas
+    // las cargas han finalizado.
+    if (promises.length > 0) {
+      Promise.race(promises)
+        .then(() => {
+          this.spinning = false;
+        })
+        .catch(() => {
+          // aunque haya error, queremos parar la animación cuando recibimos
+          // la primera respuesta (fallida o exitosa)
+          this.spinning = false;
+        });
+    } else {
+      // por seguridad, si no se recogió ninguna promesa, paramos la animación
+      // para evitar quedar girando indefinidamente
+      this.spinning = false;
     }
   }
 
@@ -78,7 +112,7 @@ export class RefreshButtonComponent implements OnDestroy {
     if (this._pollHandle) clearInterval(this._pollHandle);
     this._pollHandle = setInterval(() => {
       try {
-        const anyLoading = !!(
+        const anyLoading = (
           this.battlesStore.loading() ||
           this.profileStore.loading() ||
           this.metricsStore.loading() ||
