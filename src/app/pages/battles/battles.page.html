@@ -91,15 +91,7 @@
               <article class="cards">
                 @for (card of battle.team.playerDeck.playerCards; track card.id) {
                   @switch (card.useType) {
-                    @case ('NORMAL') {
-                      <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
-                    }
-                    @case ('HERO') {
-                      <img src="{{card.iconUrl.heroMedium}}" alt="{{card.name}}" class="card" />
-                    }
-                    @case ('EVOLUTION') {
-                      <img src="{{card.iconUrl.evolutionMedium}}" alt="{{card.name}}" class="card" />
-                    }
+                    <img src="{{card.iconUrl.medium}}" alt="{{card.name}}" class="card" />
                   }
                 }
               </article>
