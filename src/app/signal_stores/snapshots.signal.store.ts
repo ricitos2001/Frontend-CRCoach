@@ -25,6 +25,7 @@ export class SnapshotsSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.snapshotsService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.snapshotsService.getSnapshots(tag));
       this.snapshots.set(res);
     } catch (err) {

@@ -25,6 +25,7 @@ export class PlayerProfileSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.profilesService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.profilesService.getProfileByTag(tag));
       this.profile.set(res);
     } catch (err) {
@@ -41,6 +42,7 @@ export class PlayerProfileSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.profilesService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.profilesService.importProfile(tag));
       this.profile.set(res);
     } catch (err) {

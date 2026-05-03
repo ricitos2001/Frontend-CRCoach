@@ -25,6 +25,7 @@ export class MetricsSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.metricsService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.metricsService.getMetrics(tag));
       this.metric.set(res);
     } catch (err) {

@@ -31,6 +31,7 @@ export class AnalyticsSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.analyticsService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.analyticsService.getWeaknesses(tag, gameMode, from, to, minBattles));
       this.weaknesses.set(res);
     } catch (err) {
@@ -47,6 +48,7 @@ export class AnalyticsSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.analyticsService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.analyticsService.getProblematicCards(tag, gameMode, from, to, limit, minAppearances));
       this.problematicCards.set(res);
     } catch (err) {
@@ -63,6 +65,7 @@ export class AnalyticsSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.analyticsService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.analyticsService.getSummary(tag, gameMode, from, to));
       this.summary.set(res);
     } catch (err) {

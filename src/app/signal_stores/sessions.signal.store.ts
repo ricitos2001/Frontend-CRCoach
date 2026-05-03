@@ -25,6 +25,7 @@ export class SessionsSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.sessionsService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.sessionsService.getSessionsByUserEmail(page, pageSize, email));
       this.sessionsPage.set(res);
     } catch (err) {

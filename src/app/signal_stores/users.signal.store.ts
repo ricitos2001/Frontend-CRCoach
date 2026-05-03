@@ -27,6 +27,7 @@ export class UsersSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.usersService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.usersService.getUser(email));
       this.user.set(res);
     } catch (err) {

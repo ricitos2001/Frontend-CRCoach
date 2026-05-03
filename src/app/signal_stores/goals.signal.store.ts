@@ -26,6 +26,7 @@ export class GoalsSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.goalsService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.goalsService.getGoalsByUserEmail(page, pageSize, email));
       this.goalsPage.set(res);
     } catch (err) {

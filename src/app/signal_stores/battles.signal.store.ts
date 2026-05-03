@@ -25,6 +25,7 @@ export class BattlesSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.battlesService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.battlesService.getBattlesByTag(tag));
       this.battles.set(res);
     } catch (err) {
@@ -41,6 +42,7 @@ export class BattlesSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
+      this.battlesService.token = localStorage.getItem('token');
       const res = await firstValueFrom(this.battlesService.importBattles(tag));
       this.battles.set(res);
     } catch (err) {
