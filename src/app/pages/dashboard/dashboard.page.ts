@@ -86,6 +86,8 @@ export class DashboardPage implements OnInit {
       else {
         this.trophiesLabels = [];
         this.trophiesDatasets = [];
+        // Marcar inicializado en la próxima macrotarea para evitar ExpressionChangedAfterItHasBeenCheckedError
+        setTimeout(() => (this.trophiesInitialized = true), 0);
       }
     });
 
@@ -163,6 +165,11 @@ export class DashboardPage implements OnInit {
   public trophiesDatasets: any[] = [];
   public trophiesOptions?: ChartOptions;
   public trophiesNoDataMessage = '';
+
+  // Flag para evitar cambios en bindings durante la primera detección de cambios.
+  // Se establece sólo después de que el gráfico tenga valores estabilizados
+  // (actualizaciones diferidas con setTimeout).
+  public trophiesInitialized = false;
 
   public winLabels: string[] = ['Victorias', 'Derrotas'];
   public winData: number[] = [];
@@ -256,6 +263,8 @@ export class DashboardPage implements OnInit {
       this.trophiesDatasets = [];
       this.trophiesOptions = this.lineChartOptions;
       this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
+      // Marcar inicializado en la próxima macrotarea para evitar ExpressionChangedAfterItHasBeenCheckedError
+      setTimeout(() => (this.trophiesInitialized = true), 0);
       return;
     }
 
@@ -351,6 +360,8 @@ export class DashboardPage implements OnInit {
 
       this.trophiesOptions = this.lineChartOptions;
       this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
+      // indicar que el gráfico ya puede renderizarse con valores estables
+      this.trophiesInitialized = true;
     }, 0);
   }
 
