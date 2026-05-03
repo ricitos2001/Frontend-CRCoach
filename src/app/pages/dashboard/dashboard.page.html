@@ -39,9 +39,8 @@
     <app-refresh-button></app-refresh-button>
   </article>
 </ng-template>
-@if (initialRenderDone) {
-  <section class="dashboard__flex">
-    <section class="dashboard__graphs">
+<section class="dashboard__flex">
+  <section class="dashboard__graphs">
     <section>
       <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
       <article class="chart-wrapper">
@@ -98,8 +97,8 @@
         }
       </article>
     </section>
-    </section>
-    <section class="dashboard__recent">
+  </section>
+  <section class="dashboard__recent">
     <h2>{{ 'PAGES.DASHBOARD.RECENT_BATTLES' | translate }}</h2>
     <article>
       @if (battlesStore.loading() && !battlesStore.battles()) {
@@ -126,8 +125,8 @@
         }
       }
     </article>
-    </section>
-    <section class="dashboard__recent">
+  </section>
+  <section class="dashboard__recent">
     <h2>{{ 'PAGES.DASHBOARD.RECENT_GOALS' | translate }}</h2>
     <article>
       @if (goalsStore.loading() && !goalsStore.goalsPage()) {
@@ -158,12 +157,6 @@
         }
       }
     </article>
-    </section>
   </section>
-} @else {
-  <!-- Vista inicial no lista hasta que los stores sincronicen; evita ExpressionChangedAfterItHasBeenCheckedError -->
-  <section class="dashboard__skeleton">
-    <p class="muted">{{ 'PAGES.DASHBOARD.LOADING_DASHBOARD' | translate }}</p>
-  </section>
-}
+</section>
 <app-sidebar></app-sidebar>
