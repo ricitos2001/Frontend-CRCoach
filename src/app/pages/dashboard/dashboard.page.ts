@@ -70,8 +70,8 @@ export class DashboardPage implements OnInit {
             await this.battlesStore.importBattles(tagToLoad);
           }
 
-          this.metricsStore.loadMetrics(tagToLoad);
-          this.snapshotsStore.loadSnapshots(tagToLoad);
+          await this.metricsStore.loadMetrics(tagToLoad);
+          await this.snapshotsStore.loadSnapshots(tagToLoad);
         })();
       }
     });
