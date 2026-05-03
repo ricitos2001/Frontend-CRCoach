@@ -5,6 +5,7 @@ export interface Session {
   title: string;
   notes: string;
   mood: string;
+  enfoque: string;
   startTime: Date;
   endTime: Date;
   createdAt: Date;

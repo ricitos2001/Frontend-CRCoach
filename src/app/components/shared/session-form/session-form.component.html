@@ -1,4 +1,4 @@
-<form class="card form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
   <h3>@if(session) { {{ 'PAGES.SESSIONS.EDIT_TITLE' | translate }} } @else { {{ 'PAGES.SESSIONS.CREATE_TITLE' | translate }} }</h3>
 
   <app-form-input name="title" label="{{ 'PAGES.SESSIONS.LABEL.TITLE' | translate }}" formControlName="title"></app-form-input>
@@ -6,6 +6,8 @@
   <app-form-input type="textarea" name="notes" label="{{ 'PAGES.SESSIONS.LABEL.NOTES' | translate }}" formControlName="notes"></app-form-input>
 
   <app-form-input name="mood" label="{{ 'PAGES.SESSIONS.LABEL.MOOD' | translate }}" formControlName="mood"></app-form-input>
+
+  <app-form-input name="enfoque" label="{{ 'PAGES.SESSIONS.LABEL.ENFOQUE' | translate }}" formControlName="enfoque"></app-form-input>
 
   <app-form-input type="datetime-local" name="startTime" label="{{ 'PAGES.SESSIONS.LABEL.START' | translate }}" formControlName="startTime"></app-form-input>
 

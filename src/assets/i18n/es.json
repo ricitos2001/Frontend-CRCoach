@@ -292,7 +292,8 @@
       "LABEL": {
         "TITLE": "Título",
         "NOTES": "Notas",
-        "MOOD": "Estado de ánimo",
+          "MOOD": "Estado de ánimo",
+          "ENFOQUE": "Área de enfoque",
         "START": "Inicio",
         "END": "Fin"
       },

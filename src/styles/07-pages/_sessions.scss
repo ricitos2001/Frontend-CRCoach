@@ -1,0 +1,154 @@
+.sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  position: relative;
+  background: var(--components-color);
+  border-radius: 10px;
+  padding: 18px 22px;
+  color: var(--elements-color);
+  overflow: visible;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.card__pills {
+  flex: 1 1 auto;
+}
+
+.pills-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: nowrap;
+  min-height: 28px;
+}
+
+.pill {
+  display: inline-block;
+  background: var(--elements-color);
+  color: var(--components-color);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pill.small {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.08) inset;
+}
+
+.pill.long {
+  height: 26px;
+  min-width: 220px; /* longer bars like mock */
+  padding: 0 18px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.card__title {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 0.95rem;
+  display: none; /* title is not visible in the image mockup */
+}
+
+.flex {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* style the action buttons on the right to be white rounded squares */
+.card__header .flex app-common-button button{
+  background: var(--elements-color);
+  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.12);
+}
+
+.card__header .flex app-common-button svg {
+  max-width:48px;
+  max-height:48px;
+}
+
+.card__header .flex app-common-button svg path { stroke: var(--components-color); }
+
+/* rotate expand chevron when expanded */
+.card__header .flex app-common-button.expanded svg {
+  transform: rotate(180deg);
+  transition: transform 180ms ease;
+}
+
+.card__header .flex app-common-button svg {
+  transition: transform 180ms ease;
+}
+
+.session-summary {
+  margin-top: 0.75rem;
+  color: var(--elements-color);
+  background: transparent;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.session-details {
+  margin-top: 0.75rem;
+  padding: 0.75rem 0;
+  transition: all 220ms ease;
+}
+
+.expanded-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.expanded-fields .field label {
+  display: block;
+  color: var(--elements-color);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.expanded-fields .field .value {
+  background: var(--elements-color);
+  color: var(--components-color);
+  min-height: 56px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.12) inset;
+}
+
+.meta {
+  margin-top: 0.75rem;
+  color: var(--elements-color);
+  font-size: 0.85rem;
+}
+
+/* slightly smaller summary text to match mock */
+.session-summary { font-size: 0.85rem; opacity: 0.95; }
+
+/* small screens adjustments */
+@media (max-width: 800px) {
+  .pills-row { flex-wrap: wrap; gap: 0.5rem; }
+  .pill.long { min-width: 100px; }
+}
+

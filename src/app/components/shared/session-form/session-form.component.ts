@@ -34,6 +34,7 @@ export class SessionFormComponent {
       title: ['', [Validators.required, Validators.maxLength(150)]],
       notes: ['', Validators.maxLength(2000)],
       mood: ['', Validators.maxLength(50)],
+      enfoque: ['', Validators.maxLength(150)],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
     });
@@ -45,6 +46,7 @@ export class SessionFormComponent {
         title: this.session.title ?? '',
         notes: this.session.notes ?? '',
         mood: this.session.mood ?? '',
+        enfoque: this.session.enfoque ?? '',
         startTime: this.session.startTime
           ? new Date(this.session.startTime).toISOString().substring(0, 16)
           : '',
@@ -69,6 +71,7 @@ export class SessionFormComponent {
       title: this.form.value.title,
       notes: this.form.value.notes,
       mood: this.form.value.mood,
+      enfoque: this.form.value.enfoque,
       startTime: new Date(this.form.value.startTime).toISOString(),
       endTime: new Date(this.form.value.endTime).toISOString(),
     };

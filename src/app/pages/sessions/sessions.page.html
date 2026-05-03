@@ -1,4 +1,4 @@
-<section class="sessions-page">
+<section>
   <h1>Diario de sesiones</h1>
   <article class="controls">
     <app-searcher></app-searcher>
@@ -24,11 +24,22 @@
     @if (sessionsStore.sessionsPage(); as sessionsPage) {
       <section class="sessions">
         @for (s of pageToArray(sessionsPage); track s.id) {
-          <article class="card">
+          <section class="card">
             <section class="card__header">
-              <h3>{{s.title}}</h3>
+              <section class="card__pills">
+                <article class="pills-row">
+                  <span class="pill small">{{s.title}}</span>
+                  <span class="pill small">{{ s.startTime | date:'short' }} - {{ s.endTime | date:'short' }}</span>
+                  @if(!expandedSessionId) {
+                    <span class="pill long">{{s.enfoque}}</span>
+                    <span class="pill long">{{s.mood}}</span>
+                    <span class="pill long">{{s.notes}}</span>
+                  }
+                </article>
+              </section>
+              <h3 class="card__title">{{s.title}}</h3>
               <article class="flex">
-                <app-common-button (click)="viewDetails(s)">
+                <app-common-button (click)="viewDetails(s)" [class.expanded]="expandedSessionId === s.id">
                   <!-- chevron icon (down when collapsed) -->
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 12L16 20L24 12" stroke="#184262" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -46,17 +57,26 @@
                 </app-common-button>
               </article>
             </section>
+
             @if (expandedSessionId === s.id) {
-              <article class="session-details">
-                <p class="notes">{{s.notes}}</p>
-                <p class="meta">{{s.mood}} — {{s.startTime | date:'short'}} — {{s.endTime | date:'short'}}</p>
-                <!-- aquí puedes añadir más campos detallados si tu interfaz Session los tiene -->
-              </article>
+              <section class="session-details">
+                <section class="expanded-fields">
+                  <article class="field">
+                    <label>{{ 'PAGES.SESSIONS.LABEL.ENFOQUE' | translate }}</label>
+                    <p class="value">{{s.enfoque || ''}}</p>
+                  </article>
+                  <article class="field">
+                    <label>{{ 'PAGES.SESSIONS.LABEL.NOTES' | translate }}</label>
+                    <p class="value">{{s.notes}}</p>
+                  </article>
+                  <article class="field">
+                    <label>{{ 'PAGES.SESSIONS.LABEL.MOOD' | translate }}</label>
+                    <p class="value">{{s.mood}}</p>
+                  </article>
+                </section>
+              </section>
             }
-            @if (expandedSessionId !== s.id) {
-              <p class="session-summary">{{ (s.notes || '').substring(0,120) }}{{ (s.notes && s.notes.length > 120) ? '...' : '' }}</p>
-            }
-          </article>
+          </section>
         }
       </section>
       <app-pagination [page]="sessionsPage" (prev)="prevPage($event)" (next)="nextPage($event)"></app-pagination>
