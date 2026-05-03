@@ -24,6 +24,7 @@
 @use '05-components/graph' as *;
 @use '05-components/refresh-button' as *;
 @use '05-components/common-button' as *;
+@use '05-components/toast' as *;
 // 7. Utilities
 
 
@@ -35,3 +36,5 @@
 @use '07-pages/dashboard' as *;
 @use '07-pages/progress' as *;
 @use '07-pages/goals' as *;
+@use '07-pages/weaknesses' as *;
+@use '07-pages/sessions' as *;

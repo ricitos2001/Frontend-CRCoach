@@ -46,6 +46,7 @@ export class WeaknessesPage implements OnInit {
 
   selectedMode: string = 'all';
   advancedOpen = false;
+  public pageTitle: string = '';
   // current advanced filter state (persist between actions)
   currentMinBattles: number | undefined = undefined;
   currentLimit: number | undefined = undefined;
@@ -57,6 +58,12 @@ export class WeaknessesPage implements OnInit {
     private destroyRef: DestroyRef,
     private translate: TranslateService,
   ) {
+    // Initialize page title synchronously to avoid ExpressionChangedAfterItHasBeenCheckedError
+    this.pageTitle = this.translate.instant('PAGES.WEAKNESSES.TITLE');
+    // Update on language change
+    this.translate.onLangChange?.subscribe(() => {
+      this.pageTitle = this.translate.instant('PAGES.WEAKNESSES.TITLE');
+    });
     effect(() => {
       if (this.tag != null) {
         this.analyticsStore.loadSummary(this.tag);
@@ -74,6 +81,39 @@ export class WeaknessesPage implements OnInit {
         this.weaknessesDatasets = [];
       }
     });
+    // Populate small summary charts when summary is available
+    effect(() => {
+      const s = this.analyticsStore.summary();
+      if (!s) return;
+      const anyS: any = s as any;
+      const raw25 = anyS.winRateLast25;
+      const raw7 = anyS.winRateLast7d;
+
+      const extract = (raw: any) => {
+        if (raw === undefined || raw === null) return 0;
+        if (typeof raw === 'number') return raw;
+        if (typeof raw === 'object') return Number(raw.value ?? raw.percentage ?? raw.last25Battles ?? raw.last7Days ?? 0) || 0;
+        return Number(raw) || 0;
+      };
+
+      const normalize = (v: any) => {
+        const n = Number(v);
+        if (Number.isFinite(n)) return n >= 0 && n <= 1 ? n * 100 : n;
+        return 0;
+      };
+
+      const pw25 = Math.max(0, Math.min(100, normalize(extract(raw25))));
+      const pw7 = Math.max(0, Math.min(100, normalize(extract(raw7))));
+      this.summaryWinData25 = [pw25, Math.max(0, 100 - pw25)];
+      this.summaryWinData7 = [pw7, Math.max(0, 100 - pw7)];
+    });
+  }
+
+  private asNumber(v: any): number | undefined {
+    if (v === null || v === undefined) return undefined;
+    if (typeof v === 'number' && Number.isFinite(v)) return v;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : undefined;
   }
 
   // Period filter applied from app-searcher (format yyyy-mm-dd - yyyy-mm-dd or dd/mm/yyyy - dd/mm/yyyy)
@@ -174,6 +214,11 @@ export class WeaknessesPage implements OnInit {
   // Datos para el componente reutilizable `app-graph`
   public weaknessesLabels: string[] = [];
   public weaknessesDatasets: ChartDataset[] = [];
+  // Summary small charts
+  public summaryWinLabels: string[] = ['Victorias', 'Derrotas'];
+  public summaryWinData25: number[] = [0, 100];
+  public summaryWinData7: number[] = [0, 100];
+  public summaryWinBackground: string[] = ['#EBF9C8', '#F8C9C9'];
 
   public get barChartOptions(): ChartOptions {
     return {

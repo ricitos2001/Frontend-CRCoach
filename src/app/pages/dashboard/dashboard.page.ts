@@ -48,6 +48,10 @@ export class DashboardPage implements OnInit {
     private destroyRef: DestroyRef,
     private translate: TranslateService,
   ) {
+    // Initialize chart options and messages synchronously so bindings
+    // have stable values during the first change-detection cycle.
+    this.trophiesOptions = this.lineChartOptions;
+    this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
     // React to changes in the current user; do NOT trigger loadByEmail() from here to avoid loops.
     effect(() => {
       const user = this.usersStore.user();
@@ -326,22 +330,28 @@ export class DashboardPage implements OnInit {
       hasUsefulData = data.length >= 1;
     }
 
-    this.trophiesLabels = hasUsefulData ? labels : [];
-    // debug: console.log('trophiesLabels', this.trophiesLabels, 'data', data);
-    this.trophiesDatasets = hasUsefulData
-      ? [
-          {
-            label: 'Trofeos',
-            data,
-            borderColor: 'rgba(52,152,219,0.9)',
-            backgroundColor: 'rgba(52,152,219,0.2)',
-            tension: 0.3,
-          },
-        ]
-      : [];
+    // Defer updates to the next macrotask so they happen after Angular's
+    // initial change-detection cycle. Promise microtasks can still run
+    // before the framework completes its checks in some environments,
+    // so use setTimeout(..., 0) which reliably schedules a macrotask.
+    setTimeout(() => {
+      this.trophiesLabels = hasUsefulData ? labels : [];
+      // debug: console.log('trophiesLabels', this.trophiesLabels, 'data', data);
+      this.trophiesDatasets = hasUsefulData
+        ? [
+            {
+              label: 'Trofeos',
+              data,
+              borderColor: 'rgba(52,152,219,0.9)',
+              backgroundColor: 'rgba(52,152,219,0.2)',
+              tension: 0.3,
+            },
+          ]
+        : [];
 
-    this.trophiesOptions = this.lineChartOptions;
-    this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
+      this.trophiesOptions = this.lineChartOptions;
+      this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
+    }, 0);
   }
 
   private createOrUpdateWinrateChart() {
