@@ -1,0 +1,111 @@
+
+// Modal styles (component-level styles included via main styles.scss)
+:root {
+  --modal-overlay-bg: rgba(0, 0, 0, 0.55);
+  --modal-bg: var(--components-color);
+  --modal-radius: 12px;
+  --modal-max-width: 720px;
+  --modal-padding: 1.25rem;
+  --modal-header-padding: 0.75rem 1rem;
+  --modal-z: 1000;
+  --modal-transition: 200ms ease;
+  --modal-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--modal-z);
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--modal-overlay-bg);
+  opacity: 0;
+  transition: opacity var(--modal-transition);
+}
+
+.modal-open .modal__overlay,
+.modal .modal__overlay {
+  opacity: 1;
+}
+
+.modal__container {
+  position: relative;
+  background: var(--modal-bg);
+  border-radius: var(--modal-radius);
+  max-width: var(--modal-max-width);
+  width: calc(100% - 2rem);
+  box-shadow: var(--modal-shadow);
+  transform: translateY(8px) scale(0.995);
+  opacity: 0;
+  transition: transform var(--modal-transition), opacity var(--modal-transition);
+  z-index: calc(var(--modal-z) + 1);
+  padding: var(--modal-padding);
+}
+
+.modal .modal__container:focus {
+  outline: none;
+}
+
+.modal-open .modal__container,
+.modal .modal__container {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--modal-header-padding);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.modal__close {
+  background: transparent;
+  border: none;
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.modal__body {
+  padding: 1rem 0 0;
+  max-height: calc(80vh - 4rem);
+  overflow: auto;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+/* Sizes */
+.modal--small .modal__container {
+  max-width: 360px;
+}
+.modal--medium .modal__container {
+  max-width: 640px;
+}
+.modal--large .modal__container {
+  max-width: 980px;
+}
+
+/* Prevent body scroll when modal open */
+body.modal-open {
+  overflow: hidden;
+}

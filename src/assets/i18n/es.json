@@ -82,6 +82,7 @@
         "SUBTITLE": "Reclama tu trono",
         "TEXT": "Domina el campo de batalla con analíticas de nivel soberano. La evolución de tu estrategia comienza en la Ciudadela Etherea"
       },
+      "SESSION_EXPIRED": "La sesión ha expirado. Vuelva a iniciar sesión.",
       "LOGIN": {
         "LEGEND": "Iniciar sesión",
         "EMAIL_LABEL": "Correo electrónico",
@@ -148,6 +149,11 @@
       "NOTIFICATION_ERROR_TITLE": "Error vinculando perfil",
       "NOTIFICATION_ERROR_MESSAGE": "No se pudo vincular el tag {{tag}}."
     },
+    "REFRESH": {
+      "NO_TAG": "No hay tag vinculado",
+      "STARTED": "Actualización iniciada",
+      "DONE": "Actualización finalizada"
+    },
     "BATTLES": {
       "TITLE": "Registro de batallas",
       "LOADING": "Cargando batallas...",
@@ -163,11 +169,20 @@
       "SUMMARY_TITLE": "Resumen de estadísticas",
       "LOADING_SUMMARY": "Cargando resumen de estadísticas...",
       "ERROR_SUMMARY": "Error cargando resumen: {{err}}",
+      "ADVANCED_TITLE": "Filtros avanzados",
+      "TOTAL_BATTLES": "Batallas totales",
+      "AVG_ELIXIR": "Elixir medio (último mazo)",
+      "WEAKEST_ARCHETYPE": "Arquetipo más débil",
+      "STRONGEST_ARCHETYPE": "Arquetipo más fuerte",
       "LOADING_WEAKNESSES": "Cargando debilidades...",
       "ERROR_WEAKNESSES": "Error cargando debilidades: {{err}}",
       "PROBLEMATIC_CARDS_TITLE": "Cartas problemáticas",
       "LOADING_PROBLEMATIC_CARDS": "Cargando cartas problemáticas...",
       "ERROR_PROBLEMATIC_CARDS": "Error cargando cartas problemáticas: {{err}}",
+      "APPEARANCES": "apariciones",
+      "WINRATE_25": "Winrate (últimas 25)",
+      "WINRATE_7D": "Winrate (7 días)",
+      "NO_DATA": "no hay datos",
       "ARCHETYPE": "Arquetipo",
       "BATTLES_LABEL": "Batallas",
       "BUTTON": "Búsqueda avanzada",
@@ -251,7 +266,21 @@
         "STREAK": "Racha"
       },
       "SAVE": "Guardar",
-      "CANCEL": "Cancelar"
+      "CANCEL": "Cancelar",
+      "CREATED": "Objetivo creado correctamente",
+      "CREATE_ERROR": "Error al crear el objetivo",
+      "UPDATED": "Objetivo actualizado correctamente",
+      "UPDATE_ERROR": "Error al actualizar el objetivo",
+      "DELETED": "Objetivo eliminado correctamente",
+      "DELETE_ERROR": "Error eliminando objetivo",
+      "PAUSED": "Objetivo puesto en pausa",
+      "PAUSE_ERROR": "Error al pausar objetivo",
+      "RESUMED": "Objetivo reanudado",
+      "RESUME_ERROR": "Error al reanudar objetivo",
+      "COMPLETED": "Objetivo marcado como completado",
+      "COMPLETE_ERROR": "Error al completar objetivo",
+      "FAILED": "Objetivo marcado como fallado",
+      "FAIL_ERROR": "Error al marcar objetivo como fallado"
     },
     "SESSIONS": {
       "TITLE": "Diario de sesiones",
@@ -268,7 +297,13 @@
         "END": "Fin"
       },
       "SAVE": "Guardar",
-      "CANCEL": "Cancelar"
+      "CANCEL": "Cancelar",
+      "CREATED": "Sesión creada correctamente",
+      "CREATE_ERROR": "Error al crear la sesión",
+      "UPDATED": "Sesión actualizada correctamente",
+      "UPDATE_ERROR": "Error al actualizar la sesión",
+      "DELETED": "Sesión eliminada correctamente",
+      "DELETE_ERROR": "Error al eliminar la sesión"
     },
     "PROGRESS": {
       "TITLE": "Progreso del jugador",
@@ -282,6 +317,38 @@
       "NO_DATA": "no hay datos",
       "BATTLES_LABEL": "Batallas"
     }
+  ,
+    "EDIT_USER": {
+      "LEGEND": "Editar perfil",
+      "NAME_LABEL": "Nombre",
+      "NAME_PLACEHOLDER": "Nombre",
+      "SURNAMES_LABEL": "Apellidos",
+      "SURNAMES_PLACEHOLDER": "Apellidos",
+      "USERNAME_LABEL": "Nombre de usuario",
+      "USERNAME_PLACEHOLDER": "Nombre de usuario",
+      "EMAIL_LABEL": "Correo electrónico",
+      "EMAIL_PLACEHOLDER": "Correo electrónico",
+      "PHONE_LABEL": "Teléfono",
+      "PHONE_PLACEHOLDER": "Teléfono",
+      "PLAYER_TAG_LABEL": "Tag del jugador (no editable)",
+      "PLAYER_TAG_PLACEHOLDER": "Tag del jugador",
+      "SAVE": "Guardar",
+      "SAVING": "Guardando..."
+    },
+    "PROFILE": {
+      "DELETE_MODAL": {
+        "TITLE": "Confirmar borrado de cuenta",
+        "MESSAGE": "¿Estás seguro de que deseas borrar tu cuenta? Esta acción no se puede deshacer.",
+        "CANCEL": "Cancelar",
+        "CONFIRM": "Confirmar"
+      }
+    ,
+      "EDIT_PROFILE": "Editar perfil",
+      "DELETE_ACCOUNT": "Borrar cuenta"
+    }
+  },
+  "USER": {
+    "NOT_LOADED": "Datos del usuario no cargados"
   },
   "PAGINATION": {
     "PREV": "Anterior",

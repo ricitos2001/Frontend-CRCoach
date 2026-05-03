@@ -82,6 +82,7 @@
         "SUBTITLE": "Claim your throne",
         "TEXT": "Domain the battlefield with sovereign-level analytics. The evolution of your strategy begins at the Etherea Citadel"
       },
+      "SESSION_EXPIRED": "Your session has expired. Please sign in again.",
       "LOGIN": {
         "LEGEND": "Sign in",
         "EMAIL_LABEL": "Email",
@@ -148,6 +149,11 @@
       "NOTIFICATION_ERROR_TITLE": "Error linking profile",
       "NOTIFICATION_ERROR_MESSAGE": "Could not link the tag {{tag}}."
     },
+    "REFRESH": {
+      "NO_TAG": "No tag linked",
+      "STARTED": "Refresh started",
+      "DONE": "Refresh finished"
+    },
     "BATTLES": {
       "TITLE": "Battle log",
       "LOADING": "Loading battles...",
@@ -163,11 +169,20 @@
       "SUMMARY_TITLE": "Statistics summary",
       "LOADING_SUMMARY": "Loading summary...",
       "ERROR_SUMMARY": "Error loading summary: {{err}}",
+      "ADVANCED_TITLE": "Advanced filters",
+      "TOTAL_BATTLES": "Total battles",
+      "AVG_ELIXIR": "Avg elixir (last deck)",
+      "WEAKEST_ARCHETYPE": "Weakest archetype",
+      "STRONGEST_ARCHETYPE": "Strongest archetype",
       "LOADING_WEAKNESSES": "Loading weaknesses...",
       "ERROR_WEAKNESSES": "Error loading weaknesses: {{err}}",
       "PROBLEMATIC_CARDS_TITLE": "Problematic cards",
       "LOADING_PROBLEMATIC_CARDS": "Loading problematic cards...",
       "ERROR_PROBLEMATIC_CARDS": "Error loading problematic cards: {{err}}",
+      "APPEARANCES": "appearances",
+      "WINRATE_25": "Winrate (last 25)",
+      "WINRATE_7D": "Winrate (7 days)",
+      "NO_DATA": "no data",
       "ARCHETYPE": "Archetype",
       "BATTLES_LABEL": "Battles",
       "BUTTON": "Advanced search",
@@ -251,7 +266,21 @@
         "STREAK": "Streak"
       },
       "SAVE": "Save",
-      "CANCEL": "Cancel"
+      "CANCEL": "Cancel",
+      "CREATED": "Goal created successfully",
+      "CREATE_ERROR": "Error creating goal",
+      "UPDATED": "Goal updated successfully",
+      "UPDATE_ERROR": "Error updating goal",
+      "DELETED": "Goal deleted successfully",
+      "DELETE_ERROR": "Error deleting goal",
+      "PAUSED": "Goal paused",
+      "PAUSE_ERROR": "Error pausing goal",
+      "RESUMED": "Goal resumed",
+      "RESUME_ERROR": "Error resuming goal",
+      "COMPLETED": "Goal marked as completed",
+      "COMPLETE_ERROR": "Error completing goal",
+      "FAILED": "Goal marked as failed",
+      "FAIL_ERROR": "Error marking goal as failed"
     },
     "SESSIONS": {
       "TITLE": "Session journal",
@@ -268,7 +297,13 @@
         "END": "End"
       },
       "SAVE": "Save",
-      "CANCEL": "Cancel"
+      "CANCEL": "Cancel",
+      "CREATED": "Session created successfully",
+      "CREATE_ERROR": "Error creating session",
+      "UPDATED": "Session updated successfully",
+      "UPDATE_ERROR": "Error updating session",
+      "DELETED": "Session deleted successfully",
+      "DELETE_ERROR": "Error deleting session"
     },
     "PROGRESS": {
       "TITLE": "Player progress",
@@ -282,6 +317,38 @@
       "NO_DATA": "no data",
       "BATTLES_LABEL": "Battles"
     }
+  ,
+    "EDIT_USER": {
+      "LEGEND": "Edit profile",
+      "NAME_LABEL": "Name",
+      "NAME_PLACEHOLDER": "Name",
+      "SURNAMES_LABEL": "Surnames",
+      "SURNAMES_PLACEHOLDER": "Surnames",
+      "USERNAME_LABEL": "Username",
+      "USERNAME_PLACEHOLDER": "Username",
+      "EMAIL_LABEL": "Email",
+      "EMAIL_PLACEHOLDER": "Email",
+      "PHONE_LABEL": "Phone",
+      "PHONE_PLACEHOLDER": "Phone",
+      "PLAYER_TAG_LABEL": "Player tag (not editable)",
+      "PLAYER_TAG_PLACEHOLDER": "Player tag",
+      "SAVE": "Save",
+      "SAVING": "Saving..."
+    },
+    "PROFILE": {
+      "DELETE_MODAL": {
+        "TITLE": "Confirm account deletion",
+        "MESSAGE": "Are you sure you want to delete your account? This action cannot be undone.",
+        "CANCEL": "Cancel",
+        "CONFIRM": "Confirm"
+      }
+    ,
+      "EDIT_PROFILE": "Edit profile",
+      "DELETE_ACCOUNT": "Delete account"
+    }
+  },
+  "USER": {
+    "NOT_LOADED": "User data not loaded"
   },
   "PAGINATION": {
     "PREV": "Previous",

@@ -4,7 +4,10 @@ import { BehaviorSubject } from 'rxjs';
 export interface ToastMessage {
   id: string;
   type: 'success' | 'error' | 'info' | 'warning';
+  // message can be either a translation key or a plain string
   message: string;
+  // optional params for translation interpolation
+  params?: Record<string, any>;
   duration?: number;
   createdAt: number;
 }

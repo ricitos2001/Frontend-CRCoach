@@ -10,7 +10,16 @@
     <p>{{user.username}}</p>
     <p>{{user.email}}</p>
   }
+  <app-common-button [routerLink]="['/edit-user']">{{ 'PAGES.PROFILE.EDIT_PROFILE' | translate }}</app-common-button>
+  <app-common-button (click)="openDeleteModal()">{{ 'PAGES.PROFILE.DELETE_ACCOUNT' | translate }}</app-common-button>
 </ng-template>
+<app-modal [isOpen]="deleteModalOpen" [title]="'PAGES.PROFILE.DELETE_MODAL.TITLE' | translate" (close)="closeDeleteModal()">
+  <p>{{ 'PAGES.PROFILE.DELETE_MODAL.MESSAGE' | translate }}</p>
+  <div class="modal__actions">
+    <app-common-button (click)="closeDeleteModal()">{{ 'PAGES.PROFILE.DELETE_MODAL.CANCEL' | translate }}</app-common-button>
+    <app-common-button (click)="removeAccount()">{{ 'PAGES.PROFILE.DELETE_MODAL.CONFIRM' | translate }}</app-common-button>
+  </div>
+</app-modal>
 <section class="player-profile">
   @if (profileStore.loading() && !profileStore.profile()) {
     <p>Cargando perfil de jugador...</p>

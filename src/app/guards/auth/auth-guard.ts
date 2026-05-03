@@ -2,6 +2,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToastService } from '../../services/toast/toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
@@ -25,7 +26,8 @@ export const authGuard: CanActivateFn = (route, state) => {
       auth.removeUserData();
       toast.show({
         type: 'warning',
-        message: 'La sesión ha expirado. Vuelva a iniciar sesión.',
+        // pass the translation key so ToastComponent resolves it
+        message: 'PAGES.AUTH.SESSION_EXPIRED',
         duration: 5000,
       });
       return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
@@ -36,7 +38,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     auth.removeUserData();
     toast.show({
       type: 'warning',
-      message: 'La sesión ha expirado. Vuelva a iniciar sesión.',
+      message: 'PAGES.AUTH.SESSION_EXPIRED',
       duration: 5000,
     });
     return router.createUrlTree(['/login'], {

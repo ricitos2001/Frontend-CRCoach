@@ -1,10 +1,11 @@
 import { Component, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ToastMessage, ToastService } from '../../../services/toast/toast.service';
 
 @Component({
   selector: 'app-toast',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './toast.component.html',
   styleUrl: '../../../../styles/styles.css',
   standalone: true,
