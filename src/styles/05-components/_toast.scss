@@ -1,0 +1,97 @@
+/* Estilos específicos para el componente de toasts */
+.toast-container {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 10000;
+  max-width: 360px;
+  pointer-events: none; /* Permite clicks pasar cuando no hay toasts */
+}
+
+.toast {
+  pointer-events: auto; /* habilita interacción en cada toast */
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(20, 20, 20, 0.12);
+  padding: 0.25rem 0.35rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  animation: toast-slide-in 280ms ease;
+  border-left: 4px solid transparent;
+}
+
+.toast-body {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0.6rem;
+}
+
+.toast-message {
+  flex: 1 1 auto;
+  color: #1e293b; /* slate-800 */
+  font-size: 0.95rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.4rem;
+  cursor: pointer;
+  color: #475569; /* slate-600 */
+  border-radius: 6px;
+}
+.toast-close:hover,
+.toast-close:focus {
+  background: rgba(0, 0, 0, 0.04);
+  outline: none;
+}
+
+/* Visual variants */
+.toast[data-type="success"] {
+  border-left-color: #16a34a; /* green-600 */
+  background: linear-gradient(90deg, rgba(245, 255, 250, 0.8), #ffffff);
+}
+.toast[data-type="error"] {
+  border-left-color: #dc2626; /* red-600 */
+  background: linear-gradient(90deg, rgba(255, 245, 245, 0.9), #ffffff);
+}
+.toast[data-type="info"] {
+  border-left-color: #2563eb; /* blue-600 */
+  background: linear-gradient(90deg, rgba(240, 249, 255, 0.9), #ffffff);
+}
+.toast[data-type="warning"] {
+  border-left-color: #d97706; /* amber-600 */
+  background: linear-gradient(90deg, rgba(255, 250, 240, 0.9), #ffffff);
+}
+
+/* Animación de entrada */
+@keyframes toast-slide-in {
+  from {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Adaptaciones para pantallas pequeñas */
+@media (max-width: 480px) {
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+}
+
