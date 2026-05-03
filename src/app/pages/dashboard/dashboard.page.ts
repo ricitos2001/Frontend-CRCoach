@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef, ChangeDetectorRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
@@ -28,7 +28,7 @@ import { RefreshButtonComponent } from '../../components/shared/refresh-button/r
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class DashboardPage implements OnInit, AfterViewInit {
+export class DashboardPage implements OnInit {
   // Track last loaded identifiers to avoid duplicate network requests
   private lastLoadedEmail: string | null = null;
   private lastLoadedTag: string | null = null;
@@ -129,6 +129,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
         // Defer assignment to the next macrotask to avoid ExpressionChangedAfterItHasBeenCheckedError
         setTimeout(() => {
           this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
+          this.streakPillsInitialized = true;
         }, 0);
         return;
       }
@@ -149,6 +150,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
         // Defer assignment to avoid change-detection timing issues
         setTimeout(() => {
           this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
+          this.streakPillsInitialized = true;
         }, 0);
         return;
       }
@@ -160,6 +162,36 @@ export class DashboardPage implements OnInit, AfterViewInit {
       // Defer final fallback assignment as well to keep bindings stable during initial CD
       setTimeout(() => {
         this.streakPills = Array.from({ length: total }, (_, i) => (i < current ? 'victory' : 'none')).map((p: any, i: number) => ({ id: i, type: p }));
+        this.streakPillsInitialized = true;
+      }, 0);
+    });
+
+    // Keep a stable array for recent goals to avoid calling pageToArray(...) in the template
+    // which can produce new references during change detection and trigger ExpressionChangedAfterItHasBeenCheckedError
+    effect(() => {
+      const goalsPage = this.goalsStore.goalsPage();
+      const arr = this.pageToArray(goalsPage).slice(0, 3);
+      // Defer assignment to the next macrotask so Angular's initial CD cycle completes
+      setTimeout(() => {
+        this.recentGoals = arr;
+      }, 0);
+    });
+
+    // Pre-materialize recent battles to avoid calling pageToArray(...).slice(...) in the template
+    effect(() => {
+      const battles = this.battlesStore.battles();
+      const arr = this.pageToArray(battles).slice(0, 3);
+      setTimeout(() => {
+        this.recentBattles = arr;
+      }, 0);
+    });
+
+    // Pre-materialize recent sessions to avoid calling pageToArray(...).slice(...) in the template
+    effect(() => {
+      const sessionsPage = this.sessionsStore.sessionsPage();
+      const arr = this.pageToArray(sessionsPage).slice(0, 3);
+      setTimeout(() => {
+        this.recentSessions = arr;
       }, 0);
     });
   }
@@ -177,8 +209,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
   public trophiesInitialized = false;
 
   // Indica que la vista inicial puede renderizarse sin riesgo de provocar
-  // ExpressionChangedAfterItHasBeenCheckedError. Se activa en ngAfterViewInit.
-  public initialRenderDone = false;
+  // ExpressionChangedAfterItHasBeenCheckedError. (esta bandera ya no se usa)
 
   public winLabels: string[] = ['Victorias', 'Derrotas'];
   public winData: number[] = [];
@@ -186,6 +217,14 @@ export class DashboardPage implements OnInit, AfterViewInit {
   public winOptions?: ChartOptions;
   // Pills to render the recent streak (each item has an id and a type)
   public streakPills: { id: number; type: 'victory' | 'defeat' | 'draw' | 'none' }[] = [];
+  // Indica que `streakPills` ya fue calculado y es seguro mostrar la sección de racha
+  public streakPillsInitialized = false;
+  // Recent goals rendered in the template (materialized to avoid calling methods from the template
+  // which can produce new references during change detection and trigger ExpressionChangedAfterItHasBeenCheckedError)
+  public recentGoals: any[] = [];
+  // Pre-materialized lists for recent battles and sessions to avoid calling pageToArray(...).slice(...) in the template
+  public recentBattles: any[] = [];
+  public recentSessions: any[] = [];
 
   // Usamos ngOnInit para inicializar la vista y también para registrar la
   // destrucción de los charts (según petición del usuario: evitar ngAfterViewInit y ngOnDestroy).
@@ -200,17 +239,6 @@ export class DashboardPage implements OnInit, AfterViewInit {
     this.headerContentService.setContent(this.headerContent);
     void this.winLabels;
     this.destroyRef.onDestroy(() => {});
-  }
-
-  ngAfterViewInit(): void {
-    // Defer a microtask to allow any synchronous updates triggered during
-    // component construction to settle, then run change detection once to
-    // avoid ExpressionChangedAfterItHasBeenCheckedError that can appear when
-    // multiple async stores update view-bound values during initialization.
-    Promise.resolve().then(() => {
-      this.initialRenderDone = true;
-      this.cd.detectChanges();
-    });
   }
 
   // Convierte un valor que puede ser fracción (0.2857) o ya porcentaje (28.57)

@@ -108,7 +108,7 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_BATTLES' | translate:{ err: bErr } }}</p>
       }
       @if (battlesStore.battles(); as battles) {
-        @for (battle of pageToArray(battles).slice(0,3); track battle.id) {
+        @for (battle of recentBattles; track battle.id) {
           @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
             <p class="dashboard__recent__victory"><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
           } @else if (battle.team.trophyChange < 0 && battle.opponent.trophyChange > 0) {
@@ -136,7 +136,7 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_GOALS' | translate:{ err: gErr } }}</p>
       }
       @if (goalsStore.goalsPage(); as goalsPage) {
-        @for (goal of pageToArray(goalsPage).slice(0,3); track goal.id) {
+        @for (goal of recentGoals; track goal.id) {
           <p class="dashboard__recent__content"><strong>{{goal.title}}</strong> — {{goal.status}} — {{goal.currentValue}}/{{goal.targetValue}}</p>
         }
       }
@@ -152,7 +152,7 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_SESSIONS' | translate:{ err: sErr } }}</p>
       }
       @if (sessionsStore.sessionsPage(); as sessionsPage) {
-        @for (s of pageToArray(sessionsPage).slice(0,3); track s.id) {
+        @for (s of recentSessions; track s.id) {
           <p class="dashboard__recent__content"><strong>{{s.title}}</strong> — {{s.mood}} — {{s.startTime | date:'short'}}</p>
         }
       }
