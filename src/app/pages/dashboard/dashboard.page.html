@@ -39,8 +39,9 @@
     <app-refresh-button></app-refresh-button>
   </article>
 </ng-template>
-<section class="dashboard__flex">
-  <section class="dashboard__graphs">
+@if (initialRenderDone) {
+  <section class="dashboard__flex">
+    <section class="dashboard__graphs">
     <section>
       <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
       <article class="chart-wrapper">
@@ -97,8 +98,8 @@
         }
       </article>
     </section>
-  </section>
-  <section class="dashboard__recent">
+    </section>
+    <section class="dashboard__recent">
     <h2>{{ 'PAGES.DASHBOARD.RECENT_BATTLES' | translate }}</h2>
     <article>
       @if (battlesStore.loading() && !battlesStore.battles()) {
@@ -108,7 +109,7 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_BATTLES' | translate:{ err: bErr } }}</p>
       }
       @if (battlesStore.battles(); as battles) {
-        @for (battle of battles.slice(0,3); track battle.id) {
+        @for (battle of pageToArray(battles).slice(0,3); track battle.id) {
           @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
             <p class="dashboard__recent__victory"><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
           } @else if (battle.team.trophyChange < 0 && battle.opponent.trophyChange > 0) {
@@ -125,8 +126,8 @@
         }
       }
     </article>
-  </section>
-  <section class="dashboard__recent">
+    </section>
+    <section class="dashboard__recent">
     <h2>{{ 'PAGES.DASHBOARD.RECENT_GOALS' | translate }}</h2>
     <article>
       @if (goalsStore.loading() && !goalsStore.goalsPage()) {
@@ -157,6 +158,12 @@
         }
       }
     </article>
+    </section>
   </section>
-</section>
+} @else {
+  <!-- Vista inicial no lista hasta que los stores sincronicen; evita ExpressionChangedAfterItHasBeenCheckedError -->
+  <section class="dashboard__skeleton">
+    <p class="muted">{{ 'PAGES.DASHBOARD.LOADING_DASHBOARD' | translate }}</p>
+  </section>
+}
 <app-sidebar></app-sidebar>

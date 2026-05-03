@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef } from '@angular/core';
+import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
@@ -28,7 +28,7 @@ import { RefreshButtonComponent } from '../../components/shared/refresh-button/r
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit, AfterViewInit {
   // Track last loaded identifiers to avoid duplicate network requests
   private lastLoadedEmail: string | null = null;
   private lastLoadedTag: string | null = null;
@@ -46,6 +46,7 @@ export class DashboardPage implements OnInit {
     public metricsStore: MetricsSignalStore,
     public snapshotsStore: SnapshotsSignalStore,
     private destroyRef: DestroyRef,
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     // Initialize chart options and messages synchronously so bindings
@@ -125,10 +126,10 @@ export class DashboardPage implements OnInit {
           return 'none' as const;
         });
         // Mostrar de izquierda (más antiguo) a derecha (más reciente)
-        this.streakPills = pills
-          .slice()
-          .reverse()
-          .map((p: any, i: number) => ({ id: i, type: p }));
+        // Defer assignment to the next macrotask to avoid ExpressionChangedAfterItHasBeenCheckedError
+        setTimeout(() => {
+          this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
+        }, 0);
         return;
       }
 
@@ -145,7 +146,10 @@ export class DashboardPage implements OnInit {
           if (v.includes('draw') || v === 'draw' || v === 'tie') return 'draw' as const;
           return 'none' as const;
         });
-        this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
+        // Defer assignment to avoid change-detection timing issues
+        setTimeout(() => {
+          this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
+        }, 0);
         return;
       }
 
@@ -153,9 +157,10 @@ export class DashboardPage implements OnInit {
       const current = metric?.streak?.current ? Number(metric.streak.current) : 0;
       const total = 12;
       // Llenar con 'victory' para las victorias actuales y 'none' para el resto
-      this.streakPills = Array.from({ length: total }, (_, i) =>
-        i < current ? 'victory' : 'none',
-      ).map((p: any, i: number) => ({ id: i, type: p }));
+      // Defer final fallback assignment as well to keep bindings stable during initial CD
+      setTimeout(() => {
+        this.streakPills = Array.from({ length: total }, (_, i) => (i < current ? 'victory' : 'none')).map((p: any, i: number) => ({ id: i, type: p }));
+      }, 0);
     });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
@@ -170,6 +175,10 @@ export class DashboardPage implements OnInit {
   // Se establece sólo después de que el gráfico tenga valores estabilizados
   // (actualizaciones diferidas con setTimeout).
   public trophiesInitialized = false;
+
+  // Indica que la vista inicial puede renderizarse sin riesgo de provocar
+  // ExpressionChangedAfterItHasBeenCheckedError. Se activa en ngAfterViewInit.
+  public initialRenderDone = false;
 
   public winLabels: string[] = ['Victorias', 'Derrotas'];
   public winData: number[] = [];
@@ -191,6 +200,17 @@ export class DashboardPage implements OnInit {
     this.headerContentService.setContent(this.headerContent);
     void this.winLabels;
     this.destroyRef.onDestroy(() => {});
+  }
+
+  ngAfterViewInit(): void {
+    // Defer a microtask to allow any synchronous updates triggered during
+    // component construction to settle, then run change detection once to
+    // avoid ExpressionChangedAfterItHasBeenCheckedError that can appear when
+    // multiple async stores update view-bound values during initialization.
+    Promise.resolve().then(() => {
+      this.initialRenderDone = true;
+      this.cd.detectChanges();
+    });
   }
 
   // Convierte un valor que puede ser fracción (0.2857) o ya porcentaje (28.57)
