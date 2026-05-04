@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef, ChangeDetectorRef } from '@angular/core';
+import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
@@ -73,9 +73,6 @@ export class DashboardPage implements OnInit {
           if (!battles || (Array.isArray(battles) && battles.length === 0)) {
             await this.battlesStore.importBattles(tagToLoad);
           }
-
-          await this.metricsStore.loadMetrics(tagToLoad);
-          await this.snapshotsStore.loadSnapshots(tagToLoad);
         })();
       }
     });
@@ -83,8 +80,19 @@ export class DashboardPage implements OnInit {
     effect(() => {
       const metric = this.metricsStore.metric();
       if (metric) {
+        this.updateTrophies(metric);
+
+      }
+      else {
+        this.trophiesLabels = [];
+        this.trophiesDatasets = [];
+      }
+    });
+
+    effect(() => {
+      const metric = this.metricsStore.metric();
+      if (metric) {
         this.createOrUpdateWinrateChart();
-        this.createOrUpdateTrophiesChart(metric);
       }
     });
 
@@ -199,34 +207,17 @@ export class DashboardPage implements OnInit {
   public trophiesDatasets: any[] = [];
   public trophiesOptions?: ChartOptions;
   public trophiesNoDataMessage = '';
-
-  // Flag para evitar cambios en bindings durante la primera detección de cambios.
-  // Se establece sólo después de que el gráfico tenga valores estabilizados
-  // (actualizaciones diferidas con setTimeout).
-  public trophiesInitialized = false;
-
-  // Indica que la vista inicial puede renderizarse sin riesgo de provocar
-  // ExpressionChangedAfterItHasBeenCheckedError. (esta bandera ya no se usa)
-
   public winLabels: string[] = ['Victorias', 'Derrotas'];
   public winData: number[] = [];
   public winBackground: string[] = [];
   public winOptions?: ChartOptions;
-  // Pills to render the recent streak (each item has an id and a type)
   public streakPills: { id: number; type: 'victory' | 'defeat' | 'draw' | 'none' }[] = [];
-  // Indica que `streakPills` ya fue calculado y es seguro mostrar la sección de racha
   public streakPillsInitialized = false;
-  // Recent goals rendered in the template (materialized to avoid calling methods from the template
-  // which can produce new references during change detection and trigger ExpressionChangedAfterItHasBeenCheckedError)
   public recentGoals: any[] = [];
-  // Pre-materialized lists for recent battles and sessions to avoid calling pageToArray(...).slice(...) in the template
   public recentBattles: any[] = [];
   public recentSessions: any[] = [];
 
-  // Usamos ngOnInit para inicializar la vista y también para registrar la
-  // destrucción de los charts (según petición del usuario: evitar ngAfterViewInit y ngOnDestroy).
   ngOnInit(): void {
-    // Ensure we load the current user only once (avoid repeated loads in reactive effects)
     const email = localStorage.getItem('email');
     if (email && this.lastLoadedEmail !== email) {
       this.lastLoadedEmail = email;
@@ -234,6 +225,13 @@ export class DashboardPage implements OnInit {
     }
 
     this.headerContentService.setContent(this.headerContent);
+    void this.winLabels;
+    const tag = localStorage.getItem('tag');
+    if (tag) {
+      this.metricsStore.loadMetrics(tag);
+      this.snapshotsStore.loadSnapshots(tag);
+    }
+
     void this.winLabels;
     this.destroyRef.onDestroy(() => {});
   }
@@ -302,7 +300,7 @@ export class DashboardPage implements OnInit {
     return { responsive: true, plugins: { legend: { position: 'right' } } } as ChartOptions;
   }
 
-  private createOrUpdateTrophiesChart(metricOrArray?: any) {
+  private updateTrophies(metricOrArray: any) {
     if (!metricOrArray) {
       this.trophiesLabels = [];
       this.trophiesDatasets = [];
@@ -351,21 +349,19 @@ export class DashboardPage implements OnInit {
       }
     }
 
-    // If only one data point is available, duplicate it (previous day) so the line chart can render a flat line.
+    // Si hay solo un punto, duplicarlo para poder renderizar la linea.
     if (data.length === 1) {
       const singleDateLabel = labels[0];
-      // try to parse original date from metric history dates if possible
       const originalDate = new Date(
         metricOrArray.history?.[0]?.generatedAt ?? metricOrArray[0]?.capturedAt ?? new Date(),
       );
       const prevDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
-      const prevLabel = prevDate.toLocaleDateString();
-      labels = [prevLabel, singleDateLabel];
+      labels = [prevDate.toLocaleDateString(), singleDateLabel];
       data = [data[0], data[0]];
     }
 
     let hasUsefulData = data.length >= 1;
-    // If no useful data from metrics, try fallback to snapshotsStore (older implementation)
+    // Fallback de dashboard: intentar con snapshots si metrics no trae datos utiles.
     if (!hasUsefulData) {
       const snaps = this.snapshotsStore.snapshots();
       if (Array.isArray(snaps) && snaps.length > 0) {
@@ -374,7 +370,6 @@ export class DashboardPage implements OnInit {
         );
         labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
         data = sorted.map((s) => s.trophies);
-        // duplicate single point if needed
         if (data.length === 1) {
           const originalDate = new Date(sorted[0].capturedAt ?? new Date());
           const prevDate = new Date(originalDate.getTime() - 24 * 60 * 60 * 1000);
@@ -382,34 +377,32 @@ export class DashboardPage implements OnInit {
           data = [data[0], data[0]];
         }
       }
-      // recompute usefulness after fallback
       hasUsefulData = data.length >= 1;
     }
 
-    // Defer updates to the next macrotask so they happen after Angular's
-    // initial change-detection cycle. Promise microtasks can still run
-    // before the framework completes its checks in some environments,
-    // so use setTimeout(..., 0) which reliably schedules a macrotask.
-    setTimeout(() => {
-      this.trophiesLabels = hasUsefulData ? labels : [];
-      // debug: console.log('trophiesLabels', this.trophiesLabels, 'data', data);
-      this.trophiesDatasets = hasUsefulData
-        ? [
-            {
-              label: 'Trofeos',
-              data,
-              borderColor: 'rgba(52,152,219,0.9)',
-              backgroundColor: 'rgba(52,152,219,0.2)',
-              tension: 0.3,
-            },
-          ]
-        : [];
+    this.trophiesLabels = hasUsefulData ? labels : [];
+    this.trophiesDatasets = hasUsefulData
+      ? [
+          {
+            label: 'Trofeos',
+            data,
+            borderColor: 'rgba(52,152,219,0.9)',
+            backgroundColor: 'rgba(52,152,219,0.2)',
+            tension: 0.3,
+          },
+        ]
+      : [];
 
-      this.trophiesOptions = this.lineChartOptions;
-      this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
-      // indicar que el gráfico ya puede renderizarse con valores estables
-      this.trophiesInitialized = true;
-    }, 0);
+    this.trophiesOptions = {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: 'Fecha' } },
+        y: { title: { display: true, text: 'Trofeos' }, beginAtZero: false },
+      },
+    } as ChartOptions;
+
+    this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
   }
 
   private createOrUpdateWinrateChart() {
