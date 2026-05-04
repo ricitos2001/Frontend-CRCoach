@@ -61,17 +61,19 @@ export class DashboardPage implements OnInit {
         localStorage.setItem('tag', tagToLoad);
 
         (async () => {
-          await this.profileStore.loadByTag(tagToLoad);
           const prof = this.profileStore.profile();
           if (!prof) {
             await this.profileStore.importProfile(tagToLoad);
           }
-
-          await this.battlesStore.loadByTag(tagToLoad);
-          const battles = this.battlesStore.battles();
+          let battles = this.battlesStore.battles();
           if (!battles || (Array.isArray(battles) && battles.length === 0)) {
             await this.battlesStore.importBattles(tagToLoad);
           }
+          await this.battlesStore.loadByTag(tagToLoad);
+          battles = this.battlesStore.battles();
+          this.recentBattles = this.pageToArray(battles).slice(0, 3);
+          await this.snapshotsStore.loadSnapshots(tagToLoad);
+          await this.metricsStore.loadMetrics(tagToLoad);
         })();
       }
     });
@@ -151,11 +153,6 @@ export class DashboardPage implements OnInit {
     });
 
     effect(() => {
-      const battles = this.battlesStore.battles();
-      this.recentBattles = this.pageToArray(battles).slice(0, 3);
-    });
-
-    effect(() => {
       const goalsPage = this.goalsStore.goalsPage();
       this.recentGoals = this.pageToArray(goalsPage).slice(0, 3);
     });
@@ -164,6 +161,8 @@ export class DashboardPage implements OnInit {
       const sessionsPage = this.sessionsStore.sessionsPage();
       this.recentSessions = this.pageToArray(sessionsPage).slice(0, 3);
     });
+
+
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 

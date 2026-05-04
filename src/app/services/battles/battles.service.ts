@@ -31,8 +31,6 @@ export class BattlesService {
       .pipe(finalize(() => this.loadingService.hide()));
   }
 
-  // The import endpoint usually returns 202 Accepted with no JSON body
-  // so we request text to avoid JSON parse errors in HttpClient.
   importBattles(tag: string): Observable<any> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);

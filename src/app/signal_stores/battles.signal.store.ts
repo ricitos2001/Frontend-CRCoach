@@ -3,6 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { defaultIfEmpty } from 'rxjs/operators';
 import { BattlesService } from '../services/battles/battles.service';
 import { Battle } from '../interfaces/Battle';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class BattlesSignalStore {
@@ -27,12 +28,24 @@ export class BattlesSignalStore {
     this.error.set(null);
     try {
       this.battlesService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.battlesService.getBattlesByTag(tag).pipe(defaultIfEmpty([] as Battle[])));
+      const res = await firstValueFrom(
+        this.battlesService.getBattlesByTag(tag).pipe(defaultIfEmpty([] as Battle[])),
+      );
       this.battles.set(res);
     } catch (err) {
-      console.error('BattlesSignalStore.loadByTag error', err);
-      this.battles.set(null);
-      this.setError(err);
+      const httpErr = err as HttpErrorResponse | undefined;
+      if (httpErr && (httpErr.status === 400 || httpErr.status === 404)) {
+        console.debug(
+          'BattlesSignalStore.loadByTag: battles not found',
+          httpErr.message ?? httpErr.status,
+        );
+        this.battles.set(null);
+        this.error.set(null);
+      } else {
+        console.error('BattlesSignalStore.loadByTag error', err);
+        this.battles.set(null);
+        this.setError(err);
+      }
     } finally {
       this.setLoading(false);
     }
@@ -44,9 +57,7 @@ export class BattlesSignalStore {
     this.error.set(null);
     try {
       this.battlesService.token = localStorage.getItem('token');
-      // Trigger backend import which may return 202 Accepted with no JSON body.
-      await firstValueFrom(this.battlesService.importBattles(tag).pipe(defaultIfEmpty(null as any)));
-      // After triggering import, reload the battles list from the API.
+      await firstValueFrom(this.battlesService.importBattles(tag).pipe(defaultIfEmpty(null as any)),);
       await this.loadByTag(tag);
     } catch (err) {
       console.error('BattlesSignalStore.importBattles error', err);
