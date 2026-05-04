@@ -44,12 +44,7 @@
     <section>
       <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
       <article class="chart-wrapper">
-        @if (trophiesInitialized) {
-          <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
-        } @else {
-          <!-- Placeholder para evitar cambios inesperados durante la detección de cambios -->
-          <article class="chart-placeholder" style="width:400px;height:200px"></article>
-        }
+        <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
       </article>
     </section>
     <section>

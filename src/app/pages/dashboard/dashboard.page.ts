@@ -46,7 +46,6 @@ export class DashboardPage implements OnInit {
     public metricsStore: MetricsSignalStore,
     public snapshotsStore: SnapshotsSignalStore,
     private destroyRef: DestroyRef,
-    private cd: ChangeDetectorRef,
     private translate: TranslateService,
   ) {
     // Initialize chart options and messages synchronously so bindings
@@ -80,22 +79,12 @@ export class DashboardPage implements OnInit {
         })();
       }
     });
-    // Ahora la gráfica de trofeos se alimenta desde MetricsSignalStore
-    effect(() => {
-      const metric = this.metricsStore.metric();
-      if (metric) this.createOrUpdateTrophiesChart(metric);
-      else {
-        this.trophiesLabels = [];
-        this.trophiesDatasets = [];
-        // Marcar inicializado en la próxima macrotarea para evitar ExpressionChangedAfterItHasBeenCheckedError
-        setTimeout(() => (this.trophiesInitialized = true), 0);
-      }
-    });
 
     effect(() => {
       const metric = this.metricsStore.metric();
       if (metric) {
         this.createOrUpdateWinrateChart();
+        this.createOrUpdateTrophiesChart(metric);
       }
     });
 
@@ -128,7 +117,10 @@ export class DashboardPage implements OnInit {
         // Mostrar de izquierda (más antiguo) a derecha (más reciente)
         // Defer assignment to the next macrotask to avoid ExpressionChangedAfterItHasBeenCheckedError
         setTimeout(() => {
-          this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
+          this.streakPills = pills
+            .slice()
+            .reverse()
+            .map((p: any, i: number) => ({ id: i, type: p }));
           this.streakPillsInitialized = true;
         }, 0);
         return;
@@ -149,7 +141,10 @@ export class DashboardPage implements OnInit {
         });
         // Defer assignment to avoid change-detection timing issues
         setTimeout(() => {
-          this.streakPills = pills.slice().reverse().map((p: any, i: number) => ({ id: i, type: p }));
+          this.streakPills = pills
+            .slice()
+            .reverse()
+            .map((p: any, i: number) => ({ id: i, type: p }));
           this.streakPillsInitialized = true;
         }, 0);
         return;
@@ -161,7 +156,9 @@ export class DashboardPage implements OnInit {
       // Llenar con 'victory' para las victorias actuales y 'none' para el resto
       // Defer final fallback assignment as well to keep bindings stable during initial CD
       setTimeout(() => {
-        this.streakPills = Array.from({ length: total }, (_, i) => (i < current ? 'victory' : 'none')).map((p: any, i: number) => ({ id: i, type: p }));
+        this.streakPills = Array.from({ length: total }, (_, i) =>
+          i < current ? 'victory' : 'none',
+        ).map((p: any, i: number) => ({ id: i, type: p }));
         this.streakPillsInitialized = true;
       }, 0);
     });
@@ -309,17 +306,21 @@ export class DashboardPage implements OnInit {
     if (!metricOrArray) {
       this.trophiesLabels = [];
       this.trophiesDatasets = [];
-      this.trophiesOptions = this.lineChartOptions;
+      this.trophiesOptions = {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { title: { display: true, text: 'Fecha' } },
+          y: { title: { display: true, text: 'Trofeos' }, beginAtZero: false },
+        },
+      } as ChartOptions;
       this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
-      // Marcar inicializado en la próxima macrotarea para evitar ExpressionChangedAfterItHasBeenCheckedError
-      setTimeout(() => (this.trophiesInitialized = true), 0);
       return;
     }
 
     let labels: string[];
     let data: number[];
 
-    // Si viene un array (compatibilidad con snapshots)
     if (Array.isArray(metricOrArray) && metricOrArray.length > 0) {
       const sorted = [...metricOrArray].sort(
         (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
@@ -327,14 +328,12 @@ export class DashboardPage implements OnInit {
       labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
       data = sorted.map((s) => s.trophies);
     } else if (metricOrArray && Array.isArray(metricOrArray.history)) {
-      // Si metric trae historia
       const sorted = [...metricOrArray.history].sort(
         (a, b) => new Date(a.generatedAt).getTime() - new Date(b.generatedAt).getTime(),
       );
       labels = sorted.map((s) => new Date(s.generatedAt).toLocaleDateString());
       data = sorted.map((s) => s.trophies);
     } else {
-      // Caso: único metric -> intentar construir un pequeño historial si disponemos de changeTrophiesIn24h
       const metric = metricOrArray;
       if (metric.trophies === undefined || metric.trophies === null) {
         labels = [];
