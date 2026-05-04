@@ -50,7 +50,6 @@ export class DashboardPage implements OnInit {
   ) {
     // Initialize chart options and messages synchronously so bindings
     // have stable values during the first change-detection cycle.
-    this.trophiesOptions = this.lineChartOptions;
     this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
     // React to changes in the current user; do NOT trigger loadByEmail() from here to avoid loops.
     effect(() => {
@@ -81,18 +80,10 @@ export class DashboardPage implements OnInit {
       const metric = this.metricsStore.metric();
       if (metric) {
         this.updateTrophies(metric);
-
-      }
-      else {
+        this.updateWinrate(metric);
+      } else {
         this.trophiesLabels = [];
         this.trophiesDatasets = [];
-      }
-    });
-
-    effect(() => {
-      const metric = this.metricsStore.metric();
-      if (metric) {
-        this.createOrUpdateWinrateChart();
       }
     });
 
@@ -123,14 +114,10 @@ export class DashboardPage implements OnInit {
           return 'none' as const;
         });
         // Mostrar de izquierda (más antiguo) a derecha (más reciente)
-        // Defer assignment to the next macrotask to avoid ExpressionChangedAfterItHasBeenCheckedError
-        setTimeout(() => {
-          this.streakPills = pills
-            .slice()
-            .reverse()
-            .map((p: any, i: number) => ({ id: i, type: p }));
-          this.streakPillsInitialized = true;
-        }, 0);
+        this.streakPills = pills
+          .slice()
+          .reverse()
+          .map((p: any, i: number) => ({ id: i, type: p }));
         return;
       }
 
@@ -147,14 +134,10 @@ export class DashboardPage implements OnInit {
           if (v.includes('draw') || v === 'draw' || v === 'tie') return 'draw' as const;
           return 'none' as const;
         });
-        // Defer assignment to avoid change-detection timing issues
-        setTimeout(() => {
-          this.streakPills = pills
-            .slice()
-            .reverse()
-            .map((p: any, i: number) => ({ id: i, type: p }));
-          this.streakPillsInitialized = true;
-        }, 0);
+        this.streakPills = pills
+          .slice()
+          .reverse()
+          .map((p: any, i: number) => ({ id: i, type: p }));
         return;
       }
 
@@ -162,42 +145,24 @@ export class DashboardPage implements OnInit {
       const current = metric?.streak?.current ? Number(metric.streak.current) : 0;
       const total = 12;
       // Llenar con 'victory' para las victorias actuales y 'none' para el resto
-      // Defer final fallback assignment as well to keep bindings stable during initial CD
-      setTimeout(() => {
-        this.streakPills = Array.from({ length: total }, (_, i) =>
-          i < current ? 'victory' : 'none',
-        ).map((p: any, i: number) => ({ id: i, type: p }));
-        this.streakPillsInitialized = true;
-      }, 0);
+      this.streakPills = Array.from({ length: total }, (_, i) =>
+        i < current ? 'victory' : 'none',
+      ).map((p: any, i: number) => ({ id: i, type: p }));
     });
 
-    // Keep a stable array for recent goals to avoid calling pageToArray(...) in the template
-    // which can produce new references during change detection and trigger ExpressionChangedAfterItHasBeenCheckedError
-    effect(() => {
-      const goalsPage = this.goalsStore.goalsPage();
-      const arr = this.pageToArray(goalsPage).slice(0, 3);
-      // Defer assignment to the next macrotask so Angular's initial CD cycle completes
-      setTimeout(() => {
-        this.recentGoals = arr;
-      }, 0);
-    });
-
-    // Pre-materialize recent battles to avoid calling pageToArray(...).slice(...) in the template
     effect(() => {
       const battles = this.battlesStore.battles();
-      const arr = this.pageToArray(battles).slice(0, 3);
-      setTimeout(() => {
-        this.recentBattles = arr;
-      }, 0);
+      this.recentBattles = this.pageToArray(battles).slice(0, 3);
     });
 
-    // Pre-materialize recent sessions to avoid calling pageToArray(...).slice(...) in the template
+    effect(() => {
+      const goalsPage = this.goalsStore.goalsPage();
+      this.recentGoals = this.pageToArray(goalsPage).slice(0, 3);
+    });
+
     effect(() => {
       const sessionsPage = this.sessionsStore.sessionsPage();
-      const arr = this.pageToArray(sessionsPage).slice(0, 3);
-      setTimeout(() => {
-        this.recentSessions = arr;
-      }, 0);
+      this.recentSessions = this.pageToArray(sessionsPage).slice(0, 3);
     });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
@@ -212,7 +177,6 @@ export class DashboardPage implements OnInit {
   public winBackground: string[] = [];
   public winOptions?: ChartOptions;
   public streakPills: { id: number; type: 'victory' | 'defeat' | 'draw' | 'none' }[] = [];
-  public streakPillsInitialized = false;
   public recentGoals: any[] = [];
   public recentBattles: any[] = [];
   public recentSessions: any[] = [];
@@ -223,9 +187,8 @@ export class DashboardPage implements OnInit {
       this.lastLoadedEmail = email;
       this.usersStore.loadByEmail(email);
     }
-
     this.headerContentService.setContent(this.headerContent);
-    void this.winLabels;
+
     const tag = localStorage.getItem('tag');
     if (tag) {
       this.metricsStore.loadMetrics(tag);
@@ -236,7 +199,6 @@ export class DashboardPage implements OnInit {
     this.destroyRef.onDestroy(() => {});
   }
 
-  // Convierte un valor que puede ser fracción (0.2857) o ya porcentaje (28.57)
   private asNumber(v: any): number | undefined {
     if (v === null || v === undefined) return undefined;
     if (typeof v === 'number' && Number.isFinite(v)) return v;
@@ -246,13 +208,10 @@ export class DashboardPage implements OnInit {
 
   private normalizePercent(n?: number): number {
     if (n === undefined || isNaN(n)) return 0;
-    // si está en rango [0,1], se asume fracción y se multiplica por 100
     if (n >= 0 && n <= 1) return n * 100;
     return n;
   }
 
-  // Helpers para exponer porcentajes preparados a la plantilla y evitar uso de operadores
-  // opcionales/?? en la plantilla que generan advertencias del compilador.
   public displayPercent(metric: any, rateKey: 'winRate' | 'lossRate'): string {
     if (!metric) return '0.00';
 
@@ -275,29 +234,6 @@ export class DashboardPage implements OnInit {
     }
 
     return (percent ?? 0).toFixed(2);
-  }
-
-  // Devuelve un array desde una respuesta que puede ser paginada o un array directo
-  public pageToArray(page: any): any[] {
-    if (!page) return [];
-    if (Array.isArray(page)) return page;
-    if (page.content && Array.isArray(page.content)) return page.content;
-    return [];
-  }
-
-  public get lineChartOptions(): ChartOptions {
-    return {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { title: { display: true, text: 'Fecha' } },
-        y: { title: { display: true, text: 'Trofeos' }, beginAtZero: false },
-      },
-    } as ChartOptions;
-  }
-
-  public get pieChartOptions(): ChartOptions {
-    return { responsive: true, plugins: { legend: { position: 'right' } } } as ChartOptions;
   }
 
   private updateTrophies(metricOrArray: any) {
@@ -405,10 +341,7 @@ export class DashboardPage implements OnInit {
     this.trophiesNoDataMessage = this.translate.instant('PAGES.DASHBOARD.NO_DATA_TROPHIES');
   }
 
-  private createOrUpdateWinrateChart() {
-    const metric = this.metricsStore.metric();
-    if (!metric) return;
-
+  private updateWinrate(metric: any) {
     const win7 = this.asNumber(metric.winRate?.last7Days);
     const loss7 = this.asNumber(metric.lossRate?.last7Days);
 
@@ -440,10 +373,10 @@ export class DashboardPage implements OnInit {
 
     this.winData = [winsPercent ?? 0, lossesPercent ?? 0];
     this.winBackground = ['#EBF9C8', '#F8C9C9'];
+    // Hide Chart.js legend (the colored squares) and keep tooltip
     this.winOptions = {
-      ...this.pieChartOptions,
+      responsive: true,
       plugins: {
-        ...(this.pieChartOptions.plugins ?? {}),
         legend: { display: false },
         tooltip: {
           callbacks: {
@@ -457,6 +390,14 @@ export class DashboardPage implements OnInit {
       },
     } as ChartOptions;
   }
+
+  public pageToArray(page: any): any[] {
+    if (!page) return [];
+    if (Array.isArray(page)) return page;
+    if (page.content && Array.isArray(page.content)) return page.content;
+    return [];
+  }
+
   protected readonly JSON = JSON;
 }
 

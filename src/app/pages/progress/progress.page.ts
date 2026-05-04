@@ -25,24 +25,16 @@ export class ProgressPage implements OnInit {
     public battlesStore: BattlesSignalStore,
   ) {
 
-    // Ahora la gráfica de trofeos se alimenta desde MetricsSignalStore
-    effect(() => {
-      const metric = this.metricsStore.metric();
-      if (metric) this.updateTrophies(metric);
-      else {
-        this.trophiesLabels = [];
-        this.trophiesDatasets = [];
-      }
-    });
-
     effect(() => {
       const metric = this.metricsStore.metric();
       if (metric) {
+        this.updateTrophies(metric);
         this.updateWinrate(metric);
         this.updateDonations(metric);
         this.updateBattles(metric);
       } else {
-        // Clear charts when there's no metric
+        this.trophiesLabels = [];
+        this.trophiesDatasets = [];
         this.donationsLabels = [];
         this.donationsDatasets = [];
         this.battlesCompLabels = [];
