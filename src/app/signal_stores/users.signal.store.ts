@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { UsersService } from '../services/users/users.service';
 import { User } from '../interfaces/User';
 
@@ -28,7 +29,7 @@ export class UsersSignalStore {
     this.error.set(null);
     try {
       this.usersService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.usersService.getUser(email));
+      const res = await firstValueFrom(this.usersService.getUser(email).pipe(defaultIfEmpty(null as unknown as User)));
       this.user.set(res);
     } catch (err) {
       console.error('UsersSignalStore.loadByEmail error', err);
@@ -43,7 +44,7 @@ export class UsersSignalStore {
     this.setLoading(true);
     this.error.set(null);
     try {
-      const res = await firstValueFrom(this.usersService.getUsers());
+      const res = await firstValueFrom(this.usersService.getUsers().pipe(defaultIfEmpty([] as User[])));
       this.users.set(res);
     } catch (err) {
       console.error('UsersSignalStore.loadUsers error', err);

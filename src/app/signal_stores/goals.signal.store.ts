@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { GoalsService } from '../services/goals/goals.service';
 import { PaginatedResponse } from '../interfaces/PaginatedResponse';
 import { Goal } from '../interfaces/Goal';
@@ -27,7 +28,7 @@ export class GoalsSignalStore {
     this.error.set(null);
     try {
       this.goalsService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.goalsService.getGoalsByUserEmail(page, pageSize, email));
+      const res = await firstValueFrom(this.goalsService.getGoalsByUserEmail(page, pageSize, email).pipe(defaultIfEmpty([] as Goal[])));
       this.goalsPage.set(res);
     } catch (err) {
       console.error('GoalsSignalStore.loadGoals error', err);

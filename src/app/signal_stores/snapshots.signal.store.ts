@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { SnapshotsService } from '../services/snapshots/snapshots.service';
 import { Snapshot } from '../interfaces/Snapshot';
 
@@ -26,7 +27,7 @@ export class SnapshotsSignalStore {
     this.error.set(null);
     try {
       this.snapshotsService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.snapshotsService.getSnapshots(tag));
+      const res = await firstValueFrom(this.snapshotsService.getSnapshots(tag).pipe(defaultIfEmpty([] as Snapshot[])));
       this.snapshots.set(res);
     } catch (err) {
       console.error('SnapshotsSignalStore.loadSnapshots error', err);

@@ -37,8 +37,9 @@ export class UsersService {
   }
 
   getUser(email: string | null): Observable<User> {
+    const encoded = email ? encodeURIComponent(email) : '';
     return this.http
-      .get<User>(`${environment.apiUrl}/api/v1/users/email/${email}`, {
+      .get<User>(`${environment.apiUrl}/api/v1/users/email/${encoded}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },

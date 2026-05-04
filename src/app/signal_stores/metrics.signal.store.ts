@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { MetricsService } from '../services/metrics/metrics.service';
 import { Metric } from '../interfaces/Metric';
 
@@ -26,7 +27,7 @@ export class MetricsSignalStore {
     this.error.set(null);
     try {
       this.metricsService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.metricsService.getMetrics(tag));
+      const res = await firstValueFrom(this.metricsService.getMetrics(tag).pipe(defaultIfEmpty(null as unknown as Metric)));
       this.metric.set(res);
     } catch (err) {
       console.error('MetricsSignalStore.loadMetrics error', err);

@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { PlayerProfilesService } from '../services/player-profiles/player-profiles.service';
 import { PlayerProfile } from '../interfaces/PlayerProfile';
 
@@ -26,7 +27,7 @@ export class PlayerProfileSignalStore {
     this.error.set(null);
     try {
       this.profilesService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.profilesService.getProfileByTag(tag));
+      const res = await firstValueFrom(this.profilesService.getProfileByTag(tag).pipe(defaultIfEmpty(null as unknown as PlayerProfile)));
       this.profile.set(res);
     } catch (err) {
       console.error('PlayerProfileSignalStore.loadByTag error', err);
@@ -43,8 +44,9 @@ export class PlayerProfileSignalStore {
     this.error.set(null);
     try {
       this.profilesService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.profilesService.importProfile(tag));
-      this.profile.set(res);
+      await firstValueFrom(this.profilesService.importProfile(tag).pipe(defaultIfEmpty(null as any)));
+      // After triggering import, reload the profile
+      await this.loadByTag(tag);
     } catch (err) {
       console.error('PlayerProfileSignalStore.importProfile error', err);
       this.profile.set(null);

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoadingService } from '../loading/loading.service';
-import { PaginatedResponse } from '../../interfaces/PaginatedResponse';
 import { Battle } from '../../interfaces/Battle';
 import { finalize, Observable } from 'rxjs';
 import { environment } from '../../../enviroments/enviroment';
@@ -32,14 +31,17 @@ export class BattlesService {
       .pipe(finalize(() => this.loadingService.hide()));
   }
 
-  importBattles(tag: string): Observable<Battle[]> {
+  // The import endpoint usually returns 202 Accepted with no JSON body
+  // so we request text to avoid JSON parse errors in HttpClient.
+  importBattles(tag: string): Observable<any> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
     return this.http
-      .get<Battle[]>(`${environment.apiUrl}/api/v1/battles/import/${encodedTag}`, {
+      .get(`${environment.apiUrl}/api/v1/battles/import/${encodedTag}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
+        responseType: 'text',
       })
       .pipe(finalize(() => this.loadingService.hide()));
   }

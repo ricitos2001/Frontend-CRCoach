@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { SessionsService } from '../services/sessions/sessions.service';
 import { PaginatedResponse } from '../interfaces/PaginatedResponse';
 import { Session } from '../interfaces/Session';
@@ -26,7 +27,7 @@ export class SessionsSignalStore {
     this.error.set(null);
     try {
       this.sessionsService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.sessionsService.getSessionsByUserEmail(page, pageSize, email));
+      const res = await firstValueFrom(this.sessionsService.getSessionsByUserEmail(page, pageSize, email).pipe(defaultIfEmpty([] as Session[])));
       this.sessionsPage.set(res);
     } catch (err) {
       console.error('SessionsSignalStore.loadSessions error', err);

@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { AnalyticsService } from '../services/analytics/analytics.service';
 import { WeaknessReport } from '../interfaces/WeaknessReport';
 import { ProblematicCardsReport } from '../interfaces/ProblematicCardsReport';
@@ -32,7 +33,7 @@ export class AnalyticsSignalStore {
     this.error.set(null);
     try {
       this.analyticsService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.analyticsService.getWeaknesses(tag, gameMode, from, to, minBattles));
+      const res = await firstValueFrom(this.analyticsService.getWeaknesses(tag, gameMode, from, to, minBattles).pipe(defaultIfEmpty(null as unknown as WeaknessReport)));
       this.weaknesses.set(res);
     } catch (err) {
       console.error('AnalyticsSignalStore.loadWeaknesses error', err);
@@ -49,7 +50,7 @@ export class AnalyticsSignalStore {
     this.error.set(null);
     try {
       this.analyticsService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.analyticsService.getProblematicCards(tag, gameMode, from, to, limit, minAppearances));
+      const res = await firstValueFrom(this.analyticsService.getProblematicCards(tag, gameMode, from, to, limit, minAppearances).pipe(defaultIfEmpty(null as unknown as ProblematicCardsReport)));
       this.problematicCards.set(res);
     } catch (err) {
       console.error('AnalyticsSignalStore.loadProblematicCards error', err);
@@ -66,7 +67,7 @@ export class AnalyticsSignalStore {
     this.error.set(null);
     try {
       this.analyticsService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.analyticsService.getSummary(tag, gameMode, from, to));
+      const res = await firstValueFrom(this.analyticsService.getSummary(tag, gameMode, from, to).pipe(defaultIfEmpty(null as unknown as SummaryReport)));
       this.summary.set(res);
     } catch (err) {
       console.error('AnalyticsSignalStore.loadSummary error', err);

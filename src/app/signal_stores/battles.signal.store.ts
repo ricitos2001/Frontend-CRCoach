@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { defaultIfEmpty } from 'rxjs/operators';
 import { BattlesService } from '../services/battles/battles.service';
 import { Battle } from '../interfaces/Battle';
 
@@ -26,7 +27,7 @@ export class BattlesSignalStore {
     this.error.set(null);
     try {
       this.battlesService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.battlesService.getBattlesByTag(tag));
+      const res = await firstValueFrom(this.battlesService.getBattlesByTag(tag).pipe(defaultIfEmpty([] as Battle[])));
       this.battles.set(res);
     } catch (err) {
       console.error('BattlesSignalStore.loadByTag error', err);
@@ -43,8 +44,10 @@ export class BattlesSignalStore {
     this.error.set(null);
     try {
       this.battlesService.token = localStorage.getItem('token');
-      const res = await firstValueFrom(this.battlesService.importBattles(tag));
-      this.battles.set(res);
+      // Trigger backend import which may return 202 Accepted with no JSON body.
+      await firstValueFrom(this.battlesService.importBattles(tag).pipe(defaultIfEmpty(null as any)));
+      // After triggering import, reload the battles list from the API.
+      await this.loadByTag(tag);
     } catch (err) {
       console.error('BattlesSignalStore.importBattles error', err);
       this.setError(err);
