@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { defaultIfEmpty } from 'rxjs/operators';
 import { PlayerProfilesService } from '../services/player-profiles/player-profiles.service';
@@ -30,9 +31,17 @@ export class PlayerProfileSignalStore {
       const res = await firstValueFrom(this.profilesService.getProfileByTag(tag).pipe(defaultIfEmpty(null as unknown as PlayerProfile)));
       this.profile.set(res);
     } catch (err) {
-      console.error('PlayerProfileSignalStore.loadByTag error', err);
-      this.profile.set(null);
-      this.setError(err);
+      const httpErr = err as HttpErrorResponse | undefined;
+      if (httpErr && (httpErr.status === 400 || httpErr.status === 404)) {
+        // Debug log only — not a production-level error (profile may be missing)
+        console.debug('PlayerProfileSignalStore.loadByTag: profile not found', httpErr.message ?? httpErr.status);
+        this.profile.set(null);
+        this.error.set(null);
+      } else {
+        console.error('PlayerProfileSignalStore.loadByTag error', err);
+        this.profile.set(null);
+        this.setError(err);
+      }
     } finally {
       this.setLoading(false);
     }
@@ -45,7 +54,6 @@ export class PlayerProfileSignalStore {
     try {
       this.profilesService.token = localStorage.getItem('token');
       await firstValueFrom(this.profilesService.importProfile(tag).pipe(defaultIfEmpty(null as any)));
-      // After triggering import, reload the profile
       await this.loadByTag(tag);
     } catch (err) {
       console.error('PlayerProfileSignalStore.importProfile error', err);
