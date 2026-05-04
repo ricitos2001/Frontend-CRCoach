@@ -19,6 +19,11 @@
   align-items: center;
   justify-content: center;
   z-index: var(--modal-z);
+  /* ensure space on small viewports so the modal doesn't touch edges */
+  padding: 1.5rem;
+  box-sizing: border-box;
+  /* allow the modal area to scroll if the viewport is too small */
+  overflow: auto;
 }
 
 .modal__overlay {
@@ -46,6 +51,10 @@
   transition: transform var(--modal-transition), opacity var(--modal-transition);
   z-index: calc(var(--modal-z) + 1);
   padding: var(--modal-padding);
+  /* Limit modal height to the viewport and allow internal scrolling so the entire form remains reachable */
+  max-height: calc(100vh - 3rem);
+  overflow: auto;
+  box-sizing: border-box;
 }
 
 .modal .modal__container:focus {
@@ -83,8 +92,9 @@
 
 .modal__body {
   padding: 1rem 0 0;
-  max-height: calc(80vh - 4rem);
-  overflow: auto;
+  /* Let the container manage scrolling; avoid nested scroll regions that hide form parts */
+  max-height: none;
+  overflow: visible;
 }
 
 .modal__actions {
