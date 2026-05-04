@@ -94,7 +94,6 @@
 }
 
 .dashboard__header app-refresh-button {
-  /* estilo visual para el componente de refrescar dentro del header */
   width: 56px;
   height: 56px;
   display: flex;
@@ -106,7 +105,6 @@
   flex: 0 0 auto;
 }
 
-/* Target interno: el botón y el SVG dentro del componente */
 .dashboard__header app-refresh-button button {
   background: transparent;
   border: none;
@@ -144,6 +142,8 @@
   transform: translateY(0);
 }
 
+
+// a partir de aqui hay que cambiar el css//
 .dashboard__flex {
   display: flex;
   flex-direction: column;
@@ -152,101 +152,136 @@
 }
 
 .dashboard__graphs {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  align-items: flex-start;
-}
-
-.dashboard__graphs > section:first-child {
-  flex: 2 1 0;
-}
-.dashboard__graphs > section:last-child {
-  flex: 1 1 320px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* Usar filas fr para que las alturas estén controladas por el grid.
+     Con 2 filas 1fr 1fr, la sección 1 que ocupa ambas filas tendrá el doble
+     de altura que cada una de las otras (por tanto 1 + 1 = 2), asegurando
+     que la primera gráfica tenga la misma altura que la suma de la 2ª y 3ª. */
+  grid-template-rows: 1fr 1fr;
+  /* Aseguramos que las filas respondan y estiren al alto disponible */
+  grid-auto-rows: 1fr;
+  align-items: stretch;
   gap: 24px;
 }
 
-/* Glass / card look used for charts */
-.chart-wrapper {
-  /* semi-transparent background + subtle gradient for depth */
-  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
-  /* backdrop blur for the glass effect (supported browsers) */
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  backdrop-filter: blur(8px) saturate(120%);
-  border-radius: 10px;
-  padding: 28px;
-  box-shadow: 0 14px 30px rgba(3,39,58,0.55), inset 0 1px 0 rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  min-height: 420px;
-  position: relative;
+.dashboard__graphs > section:nth-child(1) {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
 }
 
-/* Ensure chart canvas is transparent so the glass effect is visible */
+.dashboard__graphs > section:nth-child(2) {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.dashboard__graphs > section:nth-child(3) {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+
+.chart-wrapper {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(3,39,58,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.chart-body {
+  position: relative;
+  z-index: 2;
+  padding: 18px 20px 28px 20px;
+  height: calc(100% - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .chart-wrapper canvas {
   background: transparent;
   display: block;
   max-width: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-.chart-wrapper.small {
-  min-height: 180px;
-  padding: 18px;
-  display: flex;
+
+.chart-wrapper.small .chart-body {
+  gap: 18px;
   align-items: center;
-  justify-content: center;
-  /* layout children horizontally: stats next to chart */
-  .winrate-block {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
-  .winrate-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    min-width: 160px;
-  }
-  .winrate-stats .stat {
-    color: var(--components-color);
-    padding: 8px 12px;
-    border-radius: 16px;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 8px 18px rgba(3,39,58,0.12);
-  }
-  .winrate-stats .stat .value {
-    font-weight: 800;
-    margin-left: 8px;
-  }
-  .winrate-stats .victory {
-    background: var(--color-success-1);
-  }
-
-  .winrate-stats .defeat {
-    background: var(--color-error-1);
-  }
+  justify-content: space-around;
+  padding: 12px 16px 18px 16px;
 }
 
-/* Streak / racha styles */
+.winrate-card {
+  flex-direction: row;
+}
+
 .streak-card {
-  padding: 20px 24px;
+  flex-direction: column;
 }
-.streak-inner {
+
+.chart-wrapper.small canvas {
+  width: auto;
+  max-width: 220px;
+  height: 180px;
+}
+
+/* Winrate stats to the right of doughnut */
+.winrate-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--components-color);
+  font-weight: 600;
+}
+
+.winrate-stats .stat {
+  font-size: 13px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 8px;
 }
-.streak-left {
+
+.winrate-stats .stat .value {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--elements-color);
+}
+
+.winrate-stats .stat.victory { color: var(--color-success-1); }
+.winrate-stats .stat.defeat { color: var(--color-error-1); }
+
+.streak-top { gap: 14px; }
+.streak-icon { width: 84px; height: 84px; flex: 0 0 auto; }
+.streak-icon path { fill: var(--components-color); }
+
+.streak-number { color: var(--elements-color); }
+
+.streak-top {
   display: flex;
-  flex-direction: column; /* stack top (icon+texts) and bar below */
-  align-items: flex-start;
-  gap: 12px;
+  flex-direction: row;
+  align-items: center;
 }
+
 .streak-icon path{
   width: 84px;
   height: 84px;
@@ -258,20 +293,25 @@
   box-shadow: 0 10px 20px rgba(3,39,58,0.15);
 }
 
+.streak-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .streak-number {
   font-size: 56px;
   font-weight: 800;
   color: var(--elements-color);
   line-height: 1;
 }
+
 .streak-sub {
-  color: rgba(255,255,255,0.9);
+  color: var(--elements-color);
   font-weight: 600;
   margin-top: 6px;
 }
-.streak-right {
-  flex: 1 1 auto;
-}
+
 .streak-bar {
   background: var(--components-color);
   padding: 10px;
@@ -281,6 +321,7 @@
   align-items: center;
   box-shadow: 0 8px 18px rgba(3,39,58,0.25);
 }
+
 .streak-pill {
   display: inline-block;
   width: 36px;
@@ -289,34 +330,15 @@
   box-shadow: 0 3px 0 rgba(0,0,0,0.08) inset;
 }
 
-.streak-top {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.streak-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.streak-bar.below {
-  margin-top: 14px;
-}
-
-/* explicit colors by result */
 .streak-pill.victory { background: var(--color-success-1); }
 .streak-pill.defeat { background: var(--color-error-1); }
 .streak-pill.draw { background: var(--color-warning-1); }
 .streak-pill.none { background: rgba(255,255,255,0.06); opacity: 0.9; }
 
-/* responsive tweak: stack icon/number above bar on small screens */
-@media (max-width: 640px) {
-  .streak-inner { flex-direction: column; align-items: flex-start; }
-  .streak-right { width: 100%; }
-  .streak-bar { width: 100%; justify-content: space-between; }
-}
 
-/* Recent cards stacked below */
+// a partir de aqui dejar css como esta
+
+
 .dashboard__recent {
   background: var(--components-color);
   padding: 22px;
@@ -333,12 +355,6 @@
   padding: 10px 18px;
   border-radius: 10px;
   font-weight: 700;
-  box-shadow: 0 6px 18px rgba(3,39,58,0.25);
-}
-
-.dashboard__recent article,
-.dashboard__graphs > section article {
-  margin-top: 16px;
 }
 
 .dashboard__recent p {
@@ -346,15 +362,6 @@
   margin: 8px 0;
 }
 
-@media (max-width: 980px) {
-  .dashboard__graphs {
-    flex-direction: column;
-  }
-  .dashboard__graphs > section:first-child,
-  .dashboard__graphs > section:last-child {
-    flex: 1 1 auto;
-  }
-}
 .dashboard__recent__content {
   background: var(--elements-color);
 }
@@ -369,6 +376,15 @@
 
 .dashboard__recent__draw {
   background: var(--color-warning-1);
+}
+
+.dashboard__recent__content,
+.dashboard__recent__victory,
+.dashboard__recent__defeat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .dashboard__recent__content,

@@ -3,62 +3,66 @@
     <h1>{{ 'PAGES.PROGRESS.TITLE' | translate }}</h1>
     <app-refresh-button></app-refresh-button>
   </article>
-  <section class="dashboard__flex">
-    <section class="dashboard__graphs">
-      <section>
-        <h2>{{ 'PAGES.PROGRESS.TROPHIES_TITLE' | translate }}</h2>
-        <article class="chart-wrapper">
+  <section class="progress__flex">
+    <section class="progress__graphs">
+      <section class="chart-wrapper">
+        <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
+        <article class="chart-body trophies-card">
           <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
         </article>
       </section>
-      <section>
-        <section>
-          <h2>{{ 'PAGES.PROGRESS.WINRATE_TITLE' | translate }}</h2>
-          <section class="chart-wrapper small">
-            <section class="winrate-block">
-              <app-graph [type]="'doughnut'" [labels]="winLabels" [data]="winData" [backgroundColor]="winBackground" [options]="winOptions" [width]="200" [height]="200"></app-graph>
-              <article class="winrate-stats">
-                <p class="stat victory"><strong>{{ 'PAGES.DASHBOARD.VICTORIES' | translate }}:</strong> <span class="value">{{ displayPercent(metricsStore.metric(), 'winRate') | number:'1.2-2' }}%</span></p>
-                <p class="stat defeat"><strong>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}:</strong> <span class="value">{{ displayPercent(metricsStore.metric(), 'lossRate') | number:'1.2-2' }}%</span></p>
-              </article>
-            </section>
-          </section>
-        </section>
-        <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
+      <section class="chart-wrapper small">
+        <h2>{{ 'PAGES.DASHBOARD.WINRATE_TITLE' | translate }}</h2>
+        @if (metricsStore.loading() && !metricsStore.metric()) {
+          <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
+        }
+        @if (metricsStore.error(); as mErr) {
+          <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
+        }
         @if (metricsStore.metric(); as metric) {
-          <section class="streak-card chart-wrapper small">
-            <section class="streak-inner">
-              <section class="streak-left">
-                <section class="streak-top">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="streak-icon">
-                    <path d="M256.5 37.6C265.8 29.8 279.5 30.1 288.4 38.5C300.7 50.1 311.7 62.9 322.3 75.9C335.8 92.4 352 114.2 367.6 140.1C372.8 133.3 377.6 127.3 381.8 122.2C382.9 120.9 384 119.5 385.1 118.1C393 108.3 402.8 96 415.9 96C429.3 96 438.7 107.9 446.7 118.1C448 119.8 449.3 121.4 450.6 122.9C460.9 135.3 474.6 153.2 488.3 175.3C515.5 219.2 543.9 281.7 543.9 351.9C543.9 475.6 443.6 575.9 319.9 575.9C196.2 575.9 96 475.7 96 352C96 260.9 137.1 182 176.5 127C196.4 99.3 216.2 77.1 231.1 61.9C239.3 53.5 247.6 45.2 256.6 37.7zM321.7 480C347 480 369.4 473 390.5 459C432.6 429.6 443.9 370.8 418.6 324.6C414.1 315.6 402.6 315 396.1 322.6L370.9 351.9C364.3 359.5 352.4 359.3 346.2 351.4C328.9 329.3 297.1 289 280.9 268.4C275.5 261.5 265.7 260.4 259.4 266.5C241.1 284.3 207.9 323.3 207.9 370.8C207.9 439.4 258.5 480 321.6 480z"/>
-                  </svg>
-                  <article class="streak-info">
-                    <p class="streak-number">{{ metric.streak.current }}</p>
-                    <p class="streak-sub">{{ 'PAGES.DASHBOARD.STREAK_SUBTITLE' | translate }}</p>
-                  </article>
-                </section>
-                <article class="streak-bar below">
-                  @for(pill of streakPills; track pill.id) {
-                    <span class="streak-pill" [class.victory]="pill.type === 'victory'" [class.defeat]="pill.type === 'defeat'" [class.draw]="pill.type === 'draw'" [class.none]="pill.type === 'none'"></span>
-                  }
-                </article>
-              </section>
-            </section>
+          <section class="chart-body winrate-card">
+            <app-graph [type]="'doughnut'" [labels]="winLabels" [data]="winData" [backgroundColor]="winBackground" [options]="winOptions" [width]="200" [height]="200"></app-graph>
+            <article class="winrate-stats">
+              <p class="stat victory"><strong>{{ 'PAGES.DASHBOARD.VICTORIES' | translate }}:</strong> <span class="value">{{ displayPercent(metric, 'winRate') | number:'1.2-2' }}%</span></p>
+              <p class="stat defeat"><strong>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}:</strong> <span class="value">{{ displayPercent(metric, 'lossRate') | number:'1.2-2' }}%</span></p>
+            </article>
           </section>
         }
       </section>
+      <section class="chart-wrapper small">
+        <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
+        @if (metricsStore.metric(); as metric) {
+          <section class="chart-body streak-card">
+            <section class="streak-top">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="streak-icon">
+                <path d="M256.5 37.6C265.8 29.8 279.5 30.1 288.4 38.5C300.7 50.1 311.7 62.9 322.3 75.9C335.8 92.4 352 114.2 367.6 140.1C372.8 133.3 377.6 127.3 381.8 122.2C382.9 120.9 384 119.5 385.1 118.1C393 108.3 402.8 96 415.9 96C429.3 96 438.7 107.9 446.7 118.1C448 119.8 449.3 121.4 450.6 122.9C460.9 135.3 474.6 153.2 488.3 175.3C515.5 219.2 543.9 281.7 543.9 351.9C543.9 475.6 443.6 575.9 319.9 575.9C196.2 575.9 96 475.7 96 352C96 260.9 137.1 182 176.5 127C196.4 99.3 216.2 77.1 231.1 61.9C239.3 53.5 247.6 45.2 256.6 37.7zM321.7 480C347 480 369.4 473 390.5 459C432.6 429.6 443.9 370.8 418.6 324.6C414.1 315.6 402.6 315 396.1 322.6L370.9 351.9C364.3 359.5 352.4 359.3 346.2 351.4C328.9 329.3 297.1 289 280.9 268.4C275.5 261.5 265.7 260.4 259.4 266.5C241.1 284.3 207.9 323.3 207.9 370.8C207.9 439.4 258.5 480 321.6 480z"/>
+              </svg>
+              <article class="streak-info">
+                <p class="streak-number">{{ metric.streak.current }}</p>
+                <p class="streak-sub">{{ 'PAGES.DASHBOARD.STREAK_SUBTITLE' | translate }}</p>
+              </article>
+            </section>
+            <article class="streak-bar below">
+              @for(pill of streakPills; track pill.id) {
+                <span class="streak-pill" [class.victory]="pill.type === 'victory'" [class.defeat]="pill.type === 'defeat'" [class.draw]="pill.type === 'draw'" [class.none]="pill.type === 'none'"></span>
+              }
+            </article>
+          </section>
+        }
+      </section>
+      <section class="chart-wrapper">
+        <h2>{{'PAGES.PROGRESS.DONATIONS' | translate }}</h2>
+        <article class="chart-body">
+          <app-graph [type]="'bar'" [labels]="donationsLabels" [datasets]="donationsDatasets" [options]="donationsOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
+        </article>
+      </section>
+      <section class="chart-wrapper">
+        <h2>{{ 'PAGES.PROGRESS.BATTLES_COMPARISON' | translate }}</h2>
+        <article class="chart-body">
+          <app-graph [type]="'bar'" [labels]="battlesCompLabels" [datasets]="battlesCompDatasets" [options]="battlesCompOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
+        </article>
+      </section>
     </section>
-    <article>
-      <app-graph [type]="'bar'" [labels]="donationsLabels" [datasets]="donationsDatasets" [options]="donationsOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
-    </article>
-    <article>
-      <h3>{{ 'PAGES.PROGRESS.BATTLES_COMPARISON' | translate }}</h3>
-      @if (metricsStore.metric(); as metric) {
-        <p>Actual: {{metric.battles.total}}/{{metric.battles.last24h}}</p>
-      }
-      <app-graph [type]="'bar'" [labels]="battlesCompLabels" [datasets]="battlesCompDatasets" [options]="battlesCompOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
-    </article>
   </section>
 </section>
 <app-sidebar></app-sidebar>

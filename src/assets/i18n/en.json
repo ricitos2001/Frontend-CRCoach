@@ -318,7 +318,8 @@
       "BATTLES_LAST24_LABEL": "Battles last 24h",
       "TROPHIES_LABEL": "Trophies",
       "NO_DATA": "no data",
-      "BATTLES_LABEL": "Battles"
+      "BATTLES_LABEL": "Battles",
+      "DONATIONS": "Donations"
     }
   ,
     "EDIT_USER": {

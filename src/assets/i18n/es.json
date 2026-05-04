@@ -317,8 +317,9 @@
       "BATTLES_TOTAL_LABEL": "Total batallas",
       "BATTLES_LAST24_LABEL": "Batallas últimas 24h",
       "TROPHIES_LABEL": "Trofeos",
-      "NO_DATA": "no hay datos",
-      "BATTLES_LABEL": "Batallas"
+      "NO_DATA": "No hay datos",
+      "BATTLES_LABEL": "Batallas",
+      "DONATIONS": "Donaciones"
     }
   ,
     "EDIT_USER": {
