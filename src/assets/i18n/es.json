@@ -229,7 +229,8 @@
       "LOADING_SESSIONS": "Cargando sesiones...",
       "ERROR_SESSIONS": "Error sesiones: {{err}}",
       "TEXT1": "Trofeos",
-      "TEXT2": "Coronas"
+      "TEXT2": "Coronas",
+      "TEXT3": "Sin clan"
     }
     ,
     "GOALS": {

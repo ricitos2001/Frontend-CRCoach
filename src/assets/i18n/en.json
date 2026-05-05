@@ -229,9 +229,9 @@
       "LOADING_SESSIONS": "Loading sessions...",
       "ERROR_SESSIONS": "Sessions error: {{err}}",
       "TEXT1": "trophies",
-      "TEXT2": "crowns"
-    }
-    ,
+      "TEXT2": "crowns",
+      "TEXT3": "without clan"
+    },
     "GOALS": {
       "TITLE": "Goal list",
       "ADD": "Add goal",

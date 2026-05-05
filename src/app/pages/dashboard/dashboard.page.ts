@@ -112,6 +112,16 @@ export class DashboardPage implements OnInit {
             } catch (err) {
               console.warn('Dashboard: loadMetrics failed', err);
             }
+            try {
+              await this.goalsStore.loadGoals(0, 3, localStorage.getItem('email'));
+            } catch (err) {
+              console.warn('Dashboard: loadGoals failed', err);
+            }
+            try {
+              await this.sessionsStore.loadSessions(0, 3, localStorage.getItem('email'));
+            } catch (err) {
+              console.warn('Dashboard: loadGoals failed', err);
+            }
           } catch (err) {
             console.error('Dashboard initial load sequence failed', err);
           }

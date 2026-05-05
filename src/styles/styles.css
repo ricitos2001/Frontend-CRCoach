@@ -1805,11 +1805,15 @@ app-form-input .error[title] {
   display: block;
 }
 
+.header-avatar svg path {
+  fill: var(--elements-color);
+}
+
 .welcome {
   margin: 0;
   font-size: 34px;
   font-weight: 800;
-  color: #f6fbff;
+  color: var(--elements-color);
   letter-spacing: -0.4px;
   text-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
 }
@@ -1817,7 +1821,7 @@ app-form-input .error[title] {
 .username {
   margin: 6px 0 0 0;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--elements-color);
   font-weight: 600;
 }
 
@@ -1967,6 +1971,18 @@ app-form-input .error[title] {
   opacity: 0.38;
 }
 
+.team-data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.opponent-data {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
 .chart-body {
   position: relative;
   z-index: 2;
@@ -1977,10 +1993,33 @@ app-form-input .error[title] {
   justify-content: center;
 }
 
+/* Make the large dashboard chart fill its container.
+   Chart libraries sometimes set canvas width/height attributes; to ensure
+   the chart visually fills the card we position the canvas absolutely and
+   force width/height 100%. */
+.dashboard__graphs > section:nth-child(1) .chart-body {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dashboard__graphs > section:nth-child(1) .chart-body app-graph,
+.dashboard__graphs > section:nth-child(1) .chart-body canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  display: block;
+  z-index: 0;
+}
+
 .chart-wrapper canvas {
   background: transparent;
   display: block;
-  max-width: 100%;
+  max-width: none;
   width: 100%;
   height: 100%;
 }
@@ -1988,7 +2027,6 @@ app-form-input .error[title] {
 .chart-wrapper.small .chart-body {
   gap: 18px;
   align-items: center;
-  justify-content: space-around;
   padding: 12px 16px 18px 16px;
 }
 
@@ -1998,12 +2036,6 @@ app-form-input .error[title] {
 
 .streak-card {
   flex-direction: column;
-}
-
-.chart-wrapper.small canvas {
-  width: auto;
-  max-width: 220px;
-  height: 180px;
 }
 
 /* Winrate stats to the right of doughnut */
@@ -2098,6 +2130,12 @@ app-form-input .error[title] {
   gap: 8px;
   align-items: center;
   box-shadow: 0 8px 18px rgba(3, 39, 58, 0.25);
+}
+
+/* Make the streak bar expand to the full width of its card */
+.streak-card .streak-bar {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .streak-pill {
@@ -2451,7 +2489,7 @@ section .chart-wrapper {
   box-shadow: 0 10px 30px rgba(11, 32, 54, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
-section h2 {
+section .chart-wrapper h2 {
   display: inline-block;
   background: var(--components-color);
   color: var(--elements-color);

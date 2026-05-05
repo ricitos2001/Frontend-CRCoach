@@ -100,7 +100,7 @@
         @for (battle of recentBattles; track battle.id) {
           @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
             <article class="dashboard__recent__victory">
-              <p><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+              <p class="team-data">{{battle.team.name}} —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} -  @if (battle.team.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.team.clan.name }}}</p>
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_3851_11591" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
                   <path d="M64 0H0V64H64V0Z" fill="white"/>
@@ -120,11 +120,11 @@
                   </g>
                 </g>
               </svg>
-              <p><strong>{{battle.opponent.name}}</strong> —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+              <p class="opponent-data">{{battle.opponent.name}} —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} - @if (battle.opponent.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.opponent.clan.name }}}</p>
             </article>
           } @else if (battle.team.trophyChange < 0 && battle.opponent.trophyChange > 0) {
             <article class="dashboard__recent__defeat">
-              <p><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+              <p class="team-data">{{battle.team.name}} —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} -  @if (battle.team.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.team.clan.name }}}</p>
               <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_3851_11591" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
                   <path d="M64 0H0V64H64V0Z" fill="white"/>
@@ -144,12 +144,12 @@
                   </g>
                 </g>
               </svg>
-              <p><strong>{{battle.opponent.name}}</strong> —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+              <p class="opponent-data">{{battle.opponent.name}} —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} - @if (battle.opponent.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.opponent.clan.name }}}</p>
             </article>
           } @else {
             @if (battle.team.crowns > battle.opponent.crowns) {
               <article class="dashboard__recent__victory">
-                <p><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+                <p class="team-data">{{battle.team.name}} —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} -  @if (battle.team.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.team.clan.name }}}</p>
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <mask id="mask0_3851_11591" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
                     <path d="M64 0H0V64H64V0Z" fill="white"/>
@@ -169,12 +169,11 @@
                     </g>
                   </g>
                 </svg>
-                <p><strong>{{battle.opponent.name}}</strong> —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
-
+                <p class="opponent-data">{{battle.opponent.name}} —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} - @if (battle.opponent.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.opponent.clan.name }}}</p>
               </article>
             } @else if(battle.team.crowns < battle.opponent.crowns) {
               <article class="dashboard__recent__defeat">
-                <p><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+                <p class="team-data">{{battle.team.name}} —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} -  @if (battle.team.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.team.clan.name }}}</p>
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <mask id="mask0_3851_11591" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
                     <path d="M64 0H0V64H64V0Z" fill="white"/>
@@ -194,11 +193,11 @@
                     </g>
                   </g>
                 </svg>
-                <p><strong>{{battle.opponent.name}}</strong> —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+                <p class="opponent-data">{{battle.opponent.name}} —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} - @if (battle.opponent.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.opponent.clan.name }}}</p>
               </article>
             } @else if (battle.team.crowns === battle.opponent.crowns) {
               <article class="dashboard__recent__draw">
-                <p><strong>{{battle.team.name}}</strong> —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+                <p class="team-data">{{battle.team.name}} —@if(battle.team.trophyChange === null) {0} @else {{{battle.team.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.team.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} -  @if (battle.team.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.team.clan.name }}}</p>
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <mask id="mask0_3851_11591" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
                     <path d="M64 0H0V64H64V0Z" fill="white"/>
@@ -218,7 +217,7 @@
                     </g>
                   </g>
                 </svg>
-                <p><strong>{{battle.opponent.name}}</strong> —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}}</p>
+                <p class="opponent-data">{{battle.opponent.name}} —@if(battle.opponent.trophyChange === null) {0} @else {{{battle.opponent.trophyChange}}} {{ 'PAGES.DASHBOARD.TEXT1'| translate}} — {{battle.opponent.crowns}} {{'PAGES.DASHBOARD.TEXT2' | translate}} - @if (battle.opponent.clan.name === null) {{{'PAGES.DASHBOARD.TEXT3' | translate }}} @else {{{ battle.opponent.clan.name }}}</p>
               </article>
             }
           }
