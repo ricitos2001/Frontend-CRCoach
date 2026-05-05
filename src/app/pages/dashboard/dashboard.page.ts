@@ -65,15 +65,10 @@ export class DashboardPage implements OnInit {
           if (!prof) {
             await this.profileStore.importProfile(tagToLoad);
           }
-          let battles = this.battlesStore.battles();
+          const battles = this.battlesStore.battles();
           if (!battles || (Array.isArray(battles) && battles.length === 0)) {
             await this.battlesStore.importBattles(tagToLoad);
           }
-          await this.battlesStore.loadByTag(tagToLoad);
-          battles = this.battlesStore.battles();
-          this.recentBattles = this.pageToArray(battles).slice(0, 3);
-          await this.snapshotsStore.loadSnapshots(tagToLoad);
-          await this.metricsStore.loadMetrics(tagToLoad);
         })();
       }
     });
@@ -153,6 +148,16 @@ export class DashboardPage implements OnInit {
     });
 
     effect(() => {
+      (async () => {
+        await this.battlesStore.loadByTag(localStorage.getItem('tag') ?? '');
+        const battles = this.battlesStore.battles();
+        this.recentBattles = this.pageToArray(battles).slice(0, 3);
+        await this.snapshotsStore.loadSnapshots(localStorage.getItem('tag') ?? '');
+        await this.metricsStore.loadMetrics(localStorage.getItem('tag') ?? '');
+      })();
+    });
+
+    effect(() => {
       const goalsPage = this.goalsStore.goalsPage();
       this.recentGoals = this.pageToArray(goalsPage).slice(0, 3);
     });
@@ -187,13 +192,6 @@ export class DashboardPage implements OnInit {
       this.usersStore.loadByEmail(email);
     }
     this.headerContentService.setContent(this.headerContent);
-
-    const tag = localStorage.getItem('tag');
-    if (tag) {
-      this.metricsStore.loadMetrics(tag);
-      this.snapshotsStore.loadSnapshots(tag);
-    }
-
     void this.winLabels;
     this.destroyRef.onDestroy(() => {});
   }
