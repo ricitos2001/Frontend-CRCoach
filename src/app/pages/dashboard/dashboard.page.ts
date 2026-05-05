@@ -61,16 +61,74 @@ export class DashboardPage implements OnInit {
         localStorage.setItem('tag', tagToLoad);
 
         (async () => {
-          const prof = this.profileStore.profile();
-          if (!prof) {
-            await this.profileStore.importProfile(tagToLoad);
-          }
-          const battles = this.battlesStore.battles();
-          if (!battles || (Array.isArray(battles) && battles.length === 0)) {
-            await this.battlesStore.importBattles(tagToLoad);
+          // Ensure we have a token before calling protected endpoints to avoid 401/400.
+          const token = localStorage.getItem('token');
+          if (!token) return;
+
+          try {
+            await this.profileStore.loadByTag(tagToLoad);
+            const prof = this.profileStore.profile();
+            if (!prof) {
+              try {
+                await this.profileStore.importProfile(tagToLoad);
+              } catch (err) {
+                // If import profile fails (e.g. unauthorized), stop further imports to avoid cascaded errors
+                console.warn('Dashboard: importProfile failed, aborting further loads', err);
+                return;
+              }
+            }
+
+            // Load existing battles first. If none, try importing and then reload.
+            try {
+              await this.battlesStore.loadByTag(tagToLoad);
+              let battles = this.battlesStore.battles();
+              if (!battles || (Array.isArray(battles) && battles.length === 0)) {
+                try {
+                  await this.battlesStore.importBattles(tagToLoad);
+                  // Ensure battles are reloaded after import completes
+                  await this.battlesStore.loadByTag(tagToLoad);
+                } catch (err) {
+                  console.warn('Dashboard: importBattles failed', err);
+                }
+              }
+            } catch (err) {
+              console.warn('Dashboard: loadByTag/importBattles sequence failed', err);
+            }
+
+            // Load snapshots (non-fatal)
+            try {
+              await this.snapshotsStore.loadSnapshots(tagToLoad);
+            } catch (err) {
+              console.warn('Dashboard: loadSnapshots failed', err);
+            }
+
+            // Load metrics only after battles/snapshots have been attempted
+            try {
+              await this.metricsStore.loadMetrics(tagToLoad);
+            } catch (err) {
+              console.warn('Dashboard: loadMetrics failed', err);
+            }
+          } catch (err) {
+            console.error('Dashboard initial load sequence failed', err);
           }
         })();
       }
+    });
+
+    // Keep recentBattles in sync with the store, but avoid triggering loads here
+    effect(() => {
+      const battles = this.battlesStore.battles();
+      this.recentBattles = this.pageToArray(battles).slice(0, 3);
+    });
+
+    effect(() => {
+      const goalsPage = this.goalsStore.goalsPage();
+      this.recentGoals = this.pageToArray(goalsPage).slice(0, 3);
+    });
+
+    effect(() => {
+      const sessionsPage = this.sessionsStore.sessionsPage();
+      this.recentSessions = this.pageToArray(sessionsPage).slice(0, 3);
     });
 
     effect(() => {
@@ -146,28 +204,6 @@ export class DashboardPage implements OnInit {
         i < current ? 'victory' : 'none',
       ).map((p: any, i: number) => ({ id: i, type: p }));
     });
-
-    effect(() => {
-      (async () => {
-        await this.battlesStore.loadByTag(localStorage.getItem('tag') ?? '');
-        const battles = this.battlesStore.battles();
-        this.recentBattles = this.pageToArray(battles).slice(0, 3);
-        await this.snapshotsStore.loadSnapshots(localStorage.getItem('tag') ?? '');
-        await this.metricsStore.loadMetrics(localStorage.getItem('tag') ?? '');
-      })();
-    });
-
-    effect(() => {
-      const goalsPage = this.goalsStore.goalsPage();
-      this.recentGoals = this.pageToArray(goalsPage).slice(0, 3);
-    });
-
-    effect(() => {
-      const sessionsPage = this.sessionsStore.sessionsPage();
-      this.recentSessions = this.pageToArray(sessionsPage).slice(0, 3);
-    });
-
-
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 

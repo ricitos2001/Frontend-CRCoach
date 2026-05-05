@@ -9,7 +9,10 @@ import { passwordStrength } from '../../validators/password-strength.validator';
 import { AsyncValidatorsService } from '../../services/async-validators/async-validators.service';
 import { NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
+import { MetricsSignalStore } from '../../signal_stores/metrics.signal.store';
 import { Notification } from '../../interfaces/Notification';
+import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 
 @Component({
   selector: 'app-register',
@@ -37,6 +40,9 @@ export class RegisterPage {
     private asyncValidators: AsyncValidatorsService,
     private notifications: NotificationsService,
     private translate: TranslateService,
+    private battlesStore: BattlesSignalStore,
+    private metricsStore: MetricsSignalStore,
+    private profileStore: PlayerProfileSignalStore,
 
   ) {
     this.registerForm = this.fb.group(
@@ -104,8 +110,23 @@ export class RegisterPage {
             console.warn('Error enviando notificación al API:', err);
           },
         });
-        this.loading = false;
-        this.router.navigate(['dashboard']).then(() => {});
+        // After successful registration we import battles and fetch metrics for the
+        // registered player's tag so the app has up-to-date data before showing the dashboard.
+        (async () => {
+          try {
+            const tagFromForm = String(this.registerForm.value.playerTag ?? '').trim();
+            const tag = tagFromForm || localStorage.getItem('tag') || '';
+            if (tag) {
+              await this.profileStore.importProfile(tag)
+              await this.battlesStore.importBattles(tag);
+            }
+          } catch (err) {
+            console.warn('Error importing battles or loading metrics after register:', err);
+          } finally {
+            this.loading = false;
+            this.router.navigate(['dashboard']).then(() => {});
+          }
+        })();
       },
       error: (err) => {
         console.error('Error en registro', err);
