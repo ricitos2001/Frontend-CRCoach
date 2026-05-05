@@ -2451,6 +2451,15 @@ section .chart-wrapper {
   box-shadow: 0 10px 30px rgba(11, 32, 54, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+section h2 {
+  display: inline-block;
+  background: var(--components-color);
+  color: var(--elements-color);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
 section .summary-wrapper {
   padding: 1.25rem 1rem 1.5rem 1rem;
 }
@@ -2506,7 +2515,7 @@ section .chart-container {
 }
 section .problematic-cards-wrapper .problematic-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-top: 0.8rem;
 }
@@ -2521,12 +2530,9 @@ section .problematic-cards-wrapper .problematic-cards .problematic-card {
   box-shadow: 0 6px 14px rgba(7, 18, 30, 0.45);
 }
 section .problematic-cards-wrapper .problematic-cards .problematic-card img {
-  width: 56px;
-  height: 56px;
+  width: 128px;
+  height: 128px;
   object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info {
   flex: 1;
