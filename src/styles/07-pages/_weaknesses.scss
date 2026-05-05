@@ -1,0 +1,156 @@
+section {
+  color: var(--elements-color);
+  position: relative;
+
+  h1 {
+	font-size: 3.25rem;
+	font-weight: 700;
+	margin: 0 0 1.25rem 0;
+	letter-spacing: -0.01em;
+	text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+	color: var(--elements-color);
+  }
+
+  .chart-wrapper {
+	background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.012));
+	border-radius: 12px;
+	padding: 1.25rem;
+	margin-bottom: 1.6rem;
+	box-shadow:
+	  0 10px 30px rgba(11,32,54,0.5),
+	  inset 0 1px 0 rgba(255,255,255,0.03);
+	border: 1px solid rgba(255,255,255,0.06);
+
+
+  }
+
+  .summary-wrapper {
+	padding: 1.25rem 1rem 1.5rem 1rem;
+
+	.summary-grid {
+	  display: grid;
+	  grid-template-columns: repeat(4, 1fr);
+	  gap: 1rem;
+	  align-items: center;
+	  margin-top: 0.8rem;
+
+	  .stat-card {
+		background: rgba(255,255,255,0.035);
+		border-radius: 8px;
+		padding: 0.9rem 1rem;
+		display:flex;
+		flex-direction:column;
+		gap:0.5rem;
+		min-height:64px;
+		justify-content:center;
+		border: 1px solid rgba(255,255,255,0.06);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+
+		.label {
+		  font-size: 0.75rem;
+		  color: var(--elements-color);
+		  text-transform: lowercase;
+		}
+		.value {
+		  font-weight:700;
+		  font-size: 1.05rem;
+		  color: var(--elements-color);
+		}
+	  }
+
+	  .chart-small {
+		display:flex;
+		flex-direction:column;
+		align-items:center;
+		gap:0.5rem;
+		padding: 0.5rem;
+
+		h3 {
+		  font-size: 0.8rem;
+		  color: var(--elements-color);
+		  background: transparent;
+		  margin: 0;
+		}
+	  }
+	}
+  }
+
+  .chart-container {
+	background: transparent;
+	margin-top: 0.6rem;
+	padding: 1rem 1rem 1.25rem 1rem;
+	border-radius: 8px;
+	border: 1px solid rgba(255,255,255,0.04);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+
+  // Sección de cartas problemáticas
+  .problematic-cards-wrapper {
+	.problematic-cards {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  gap: 1rem;
+	  margin-top: 0.8rem;
+
+	  .problematic-card {
+		display:flex;
+		gap: 0.9rem;
+		align-items:center;
+		padding: 0.8rem;
+		border-radius: 8px;
+		background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+		border: 1px solid rgba(255,255,255,0.08);
+		box-shadow: 0 6px 14px rgba(7,18,30,0.45);
+
+		img {
+		  width: 56px;
+		  height: 56px;
+		  object-fit: contain;
+		  border-radius: 6px;
+		  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+		  border: 1px solid rgba(255,255,255,0.06);
+		}
+
+		.problematic-info {
+		  flex: 1;
+		  display:flex;
+		  flex-direction:column;
+		  gap: 0.35rem;
+
+		  .name {
+			font-weight:600;
+			color:var(--elements-color);
+			font-size:0.95rem;
+		  }
+
+		  .loss-rate {
+			font-weight:700;
+			color:var(--elements-color);
+			background: linear-gradient(90deg, rgba(248,201,201,0.95), rgba(235,249,200,0.95));
+			padding: 0.3rem 0.5rem;
+			width: 28%;
+			border-radius: 999px;
+			text-align:center;
+			box-shadow: inset 0 -3px 6px rgba(0,0,0,0.08);
+			font-size:0.9rem;
+		  }
+
+		  .appearances {
+			font-size:0.82rem;
+			color: var(--elements-color);
+		  }
+		}
+	  }
+	}
+  }
+
+  // mensajes de carga / error
+  p.error {
+	color: var(--elements-color);
+	background: rgba(255,0,0,0.04);
+	padding: 0.5rem 0.75rem;
+	border-radius: 6px;
+	display:inline-block;
+  }
+}
+

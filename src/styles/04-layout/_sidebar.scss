@@ -57,6 +57,20 @@ aside ul li a svg {
   width: 40px;
   height: 40px;
   flex: 0 0 40px;
+  /* asegurar que el svg herede el color del enlace */
+  color: inherit;
+}
+
+/* Forzar que los trazos y rellenos de los iconos sigan el color del texto */
+aside ul li a svg path,
+aside ul li a svg g,
+aside ul li a svg circle,
+aside ul li a svg rect,
+aside ul li a svg line,
+aside ul li a svg polygon,
+aside ul li a svg polyline {
+  fill: var(--elements-color);
+  stroke: var(--elements-color);
 }
 
 /* Etiqueta: oculta en estado cerrado */

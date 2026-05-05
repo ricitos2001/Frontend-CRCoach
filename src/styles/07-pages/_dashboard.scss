@@ -4,11 +4,13 @@
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding: 28px 48px;
+  /* Aumentamos el padding y hacemos el header más 'panel' glass como en el mockup */
+  padding: 36px 56px;
   background: var(--components-color);
-  border-radius: 0 0 18px 18px;
-  box-shadow: 0 16px 40px rgba(3,39,58,0.6);
+  border-radius: 0 0 22px 22px;
+  box-shadow: 0 22px 56px rgba(3,39,58,0.72), inset 0 1px 0 rgba(255,255,255,0.02);
   position: relative;
+  border: 1px solid rgba(255,255,255,0.04);
 }
 
 .header-user {
@@ -27,8 +29,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--components-color-two);
-  box-shadow: 0 10px 24px rgba(3,39,58,0.35), inset 0 2px 6px rgba(255,255,255,0.02);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  box-shadow: 0 12px 30px rgba(3,39,58,0.45), inset 0 2px 6px rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 .header-avatar img,
@@ -41,10 +44,11 @@
 
 .welcome {
   margin: 0;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--elements-color);
-  letter-spacing: 0.2px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #f6fbff;
+  letter-spacing: -0.4px;
+  text-shadow: 0 8px 22px rgba(0,0,0,0.5);
 }
 
 .username {
@@ -143,12 +147,10 @@
 }
 
 
-// a partir de aqui hay que cambiar el css//
 .dashboard__flex {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 24px 32px;
 }
 
 .dashboard__graphs {
@@ -182,11 +184,11 @@
 
 
 .chart-wrapper {
-  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
   -webkit-backdrop-filter: blur(8px) saturate(120%);
   backdrop-filter: blur(8px) saturate(120%);
   border-radius: 12px;
-  box-shadow: 0 18px 40px rgba(3,39,58,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+  box-shadow: 0 18px 44px rgba(3,39,58,0.66), inset 0 1px 0 rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.06);
   height: 100%;
   position: relative;
@@ -197,19 +199,20 @@
   content: '';
   position: absolute;
   inset: 0;
+  /* Cuadrícula suave sobre la tarjeta para replicar el patrón */
   background-image:
     linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 80px 80px, 80px 80px;
+  background-size: 72px 72px, 72px 72px;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.38;
 }
 
 .chart-body {
   position: relative;
   z-index: 2;
-  padding: 18px 20px 28px 20px;
-  height: calc(100% - 64px);
+  padding: 22px 24px 28px 24px;
+  height: calc(100% - 72px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -340,21 +343,24 @@
 
 
 .dashboard__recent {
-  background: var(--components-color);
-  padding: 22px;
-  border-radius: 10px;
-  box-shadow: 0 14px 30px rgba(3,39,58,0.55);
-  border: 1px solid rgba(0,0,0,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  -webkit-backdrop-filter: blur(6px) saturate(110%);
+  backdrop-filter: blur(6px) saturate(110%);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(3,39,58,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
 }
 
 .dashboard__recent h2,
 .dashboard__graphs h2 {
   display: inline-block;
-  background: var(--elements-color);
-  color: var(--components-color);
+  background: var(--components-color);
+  color: var(--elements-color);
   padding: 10px 18px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: 700;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
 }
 
 .dashboard__recent p {
@@ -364,6 +370,9 @@
 
 .dashboard__recent__content {
   background: var(--elements-color);
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
 }
 
 .dashboard__recent__victory {
@@ -392,8 +401,8 @@
 .dashboard__recent__defeat,
 .dashboard__recent_draw {
   color: var(--components-color);
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 8px;
   margin: 10px 0;
-  box-shadow: 0 8px 18px rgba(3,39,58,0.25);
+  box-shadow: 0 10px 22px rgba(3,39,58,0.28);
 }

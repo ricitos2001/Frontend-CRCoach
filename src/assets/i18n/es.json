@@ -112,8 +112,8 @@
         "REPEAT_PASSWORD_PLACEHOLDER": "Repetir contraseña",
         "PLAYERTAG_LABEL": "Tag del jugador",
         "PLAYERTAG_PLACEHOLDER": "Tag del jugador",
-            "PLAYERTAG_INVALID": "El tag del jugador no existe",
-            "PLAYERTAG_TAKEN": "El tag introducido ya está vinculado a otro usuario",
+        "PLAYERTAG_INVALID": "El tag del jugador no existe",
+        "PLAYERTAG_TAKEN": "El tag introducido ya está vinculado a otro usuario",
         "SUBMIT": "Regístrate",
         "SUBMITTING": "Registrando...",
         "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión",
@@ -296,8 +296,8 @@
         "NOTES": "Notas",
           "MOOD": "Estado de ánimo",
           "ENFOQUE": "Área de enfoque",
-        "START": "Inicio",
-        "END": "Fin"
+        "START": "Fecha de inicio",
+        "END": "Fecha de finalizacion"
       },
       "SAVE": "Guardar",
       "CANCEL": "Cancelar",

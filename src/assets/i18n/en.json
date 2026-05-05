@@ -296,8 +296,8 @@
         "NOTES": "Notes",
         "MOOD": "Mood",
         "ENFOQUE": "Focus area",
-        "START": "Start",
-        "END": "End"
+        "START": "Start date",
+        "END": "End date"
       },
       "SAVE": "Save",
       "CANCEL": "Cancel",

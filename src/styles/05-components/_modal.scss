@@ -119,3 +119,35 @@
 body.modal-open {
   overflow: hidden;
 }
+
+/* Modal form flex tweaks: make date fields a bit wider so labels and inputs
+   for Inicio / Fin have more room. Targets app-form-input elements that
+   expose a `type="date"` attribute (used in templates). */
+.modal__container .flex {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.modal__container .flex app-form-input[type="date"], .modal__container .flex app-form-input[type="number"] {
+  flex: 0 0 48%;
+  min-width: 180px;
+}
+
+
+
+/* If the flex contains a third control (e.g. a small numeric input), allow it to shrink */
+.modal__container .flex app-form-input:not([type="date"]), .modal__container .flex app-form-input:not([type="number"]) {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 640px) {
+  .modal__container .flex {
+    flex-direction: column;
+  }
+  .modal__container .flex app-form-input[type="date"] {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
