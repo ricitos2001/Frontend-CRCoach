@@ -87,6 +87,10 @@ export class DashboardPage implements OnInit {
                   await this.battlesStore.importBattles(tagToLoad);
                   // Ensure battles are reloaded after import completes
                   await this.battlesStore.loadByTag(tagToLoad);
+                  // If the import is long-running on the backend, wait (poll) until battles become available
+                  // before continuing to load snapshots/metrics. This prevents metrics being calculated
+                  // from incomplete battle data (causing incorrect winrate graphs).
+                  await this.ensureBattlesAvailable(tagToLoad);
                 } catch (err) {
                   console.warn('Dashboard: importBattles failed', err);
                 }
@@ -243,6 +247,35 @@ export class DashboardPage implements OnInit {
     if (n === undefined || isNaN(n)) return 0;
     if (n >= 0 && n <= 1) return n * 100;
     return n;
+  }
+
+  /**
+   * Waits until battles are available in the store for the given tag.
+   * This performs repeated calls to loadByTag and polls the store until
+   * at least one battle is present or the timeout expires.
+   * Returns true if battles were found, false on timeout.
+   */
+  private async ensureBattlesAvailable(tag: string, timeoutMs = 60000, intervalMs = 2000): Promise<boolean> {
+    const start = Date.now();
+    try {
+      // Try at least once immediately
+      while (Date.now() - start < timeoutMs) {
+        try {
+          await this.battlesStore.loadByTag(tag);
+        } catch (e) {
+          // ignore transient load errors and retry until timeout
+        }
+
+        const battles = this.battlesStore.battles();
+        if (Array.isArray(battles) && battles.length > 0) return true;
+
+        // Wait a bit before retrying
+        await new Promise((r) => setTimeout(r, intervalMs));
+      }
+    } catch (e) {
+      // swallow unexpected errors and return false to let caller continue
+    }
+    return false;
   }
 
   public displayPercent(metric: any, rateKey: 'winRate' | 'lossRate'): string {
