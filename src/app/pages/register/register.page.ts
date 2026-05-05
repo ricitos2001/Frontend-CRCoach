@@ -10,7 +10,6 @@ import { AsyncValidatorsService } from '../../services/async-validators/async-va
 import { NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
-import { MetricsSignalStore } from '../../signal_stores/metrics.signal.store';
 import { Notification } from '../../interfaces/Notification';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 
@@ -41,7 +40,6 @@ export class RegisterPage {
     private notifications: NotificationsService,
     private translate: TranslateService,
     private battlesStore: BattlesSignalStore,
-    private metricsStore: MetricsSignalStore,
     private profileStore: PlayerProfileSignalStore,
 
   ) {
