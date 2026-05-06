@@ -92,12 +92,6 @@ export const routes: Routes = [
     data: { title: 'User profile', breadcrumb: 'User profile' },
   },
   {
-    path: 'edit-user',
-    canActivate: [authGuard],
-    loadChildren: () => import('./pages/edit-user/edit-user-module').then((m) => m.EditUserModule),
-    data: { title: 'Edit user', breadcrumb: 'Edit user' },
-  },
-  {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found-module').then((m) => m.NotFoundModule),
     data: { title: 'Not found', breadcrumb: 'Not found' },

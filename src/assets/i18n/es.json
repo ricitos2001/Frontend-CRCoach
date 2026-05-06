@@ -338,7 +338,8 @@
       "PLAYER_TAG_LABEL": "Tag del jugador (no editable)",
       "PLAYER_TAG_PLACEHOLDER": "Tag del jugador",
       "SAVE": "Guardar",
-      "SAVING": "Guardando..."
+      "SAVING": "Guardando...",
+      "CANCEL": "Cancelar"
     },
     "PROFILE": {
       "DELETE_MODAL": {

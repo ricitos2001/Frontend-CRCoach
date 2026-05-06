@@ -1,20 +1,25 @@
-import { Component, effect, OnInit } from '@angular/core';
+import { Component, effect, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { UsersSignalStore } from '../../signal_stores/users.signal.store';
-import { UsersService } from '../../services/users/users.service';
-import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
-import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
+import { UsersSignalStore } from '../../../signal_stores/users.signal.store';
+import { UsersService } from '../../../services/users/users.service';
+import { CommonButtonComponent } from '../common-button/common-button.component';
+import { FormInputComponent } from '../form-input/form-input.component';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.page.html',
-  styleUrls: ['../../../styles/styles.css'],
+  styleUrls: ['../../../../styles/styles.css'],
   imports: [ReactiveFormsModule, FormInputComponent, CommonButtonComponent, TranslatePipe],
   standalone: true,
+  inputs: ['closeOnSave'],
+  outputs: ['saved', 'cancel'],
 })
 export class EditUserPage {
+  @Input() closeOnSave = false;
+  @Output() saved = new EventEmitter<void>();
+  @Output() cancel = new EventEmitter<void>();
   editForm: FormGroup;
   submitting = false;
   labels: any = {};
@@ -73,7 +78,12 @@ export class EditUserPage {
     this.usersService.editUser(String(current.id), payload).subscribe({
       next: (res) => {
         this.usersStore.setUser(res);
-        this.router.navigate(['/profile']).then(() => {});
+        // Si se usa dentro de un modal, emitir evento para que el padre cierre el modal
+        if (this.closeOnSave) {
+          this.saved.emit();
+        } else {
+          this.router.navigate(['/profile']).then(() => {});
+        }
       },
       error: (err) => {
         console.error('Error updating user', err);
@@ -83,5 +93,13 @@ export class EditUserPage {
         this.submitting = false;
       },
     });
+  }
+
+  onCancel(): void {
+    if (this.closeOnSave) {
+      this.cancel.emit();
+    } else {
+      this.router.navigate(['/profile']).then(() => {});
+    }
   }
 }

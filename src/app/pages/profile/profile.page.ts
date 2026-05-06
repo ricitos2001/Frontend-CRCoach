@@ -8,19 +8,22 @@ import { CommonButtonComponent } from '../../components/shared/common-button/com
 import { UsersService } from '../../services/users/users.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ModalComponent } from '../../components/shared/modal/modal.component';
+import { EditUserPage } from '../../components/shared/edit-user/edit-user.page';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['../../../styles/styles.css'],
-  imports: [SidebarComponent, CommonButtonComponent, RouterLink, ModalComponent, TranslatePipe],
+  imports: [SidebarComponent, CommonButtonComponent, ModalComponent, EditUserPage, TranslatePipe],
   standalone: true,
 })
 export class ProfilePage implements OnInit {
   private lastLoadedEmail: string | null = null;
   private lastLoadedTag: string | null = null;
   deleteModalOpen = false;
+  editModalOpen = false;
+  private editUserSnapshot: string | null = null;
   constructor(
     public usersStore: UsersSignalStore,
     public profileStore: PlayerProfileSignalStore,
@@ -47,6 +50,20 @@ export class ProfilePage implements OnInit {
         })();
       }
     });
+    // Close edit modal automatically when user object changes after opening edit
+    effect(() => {
+      const u = this.usersStore.user();
+      if (this.editModalOpen && this.editUserSnapshot) {
+        try {
+          if (JSON.stringify(u ?? {}) !== this.editUserSnapshot) {
+            this.closeEditModal();
+            this.editUserSnapshot = null;
+          }
+        } catch (e) {
+          // ignore
+        }
+      }
+    });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
 
@@ -65,6 +82,20 @@ export class ProfilePage implements OnInit {
 
   closeDeleteModal(): void {
     this.deleteModalOpen = false;
+  }
+
+  openEditModal(): void {
+    this.editModalOpen = true;
+    // store snapshot to detect when user is updated by the edit form
+    try {
+      this.editUserSnapshot = JSON.stringify(this.usersStore.user() ?? {});
+    } catch (e) {
+      this.editUserSnapshot = null;
+    }
+  }
+
+  closeEditModal(): void {
+    this.editModalOpen = false;
   }
 
   removeAccount(): void {

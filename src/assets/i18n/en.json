@@ -337,7 +337,8 @@
       "PLAYER_TAG_LABEL": "Player tag (not editable)",
       "PLAYER_TAG_PLACEHOLDER": "Player tag",
       "SAVE": "Save",
-      "SAVING": "Saving..."
+      "SAVING": "Saving...",
+      "CANCEL": "Cancel"
     },
     "PROFILE": {
       "DELETE_MODAL": {

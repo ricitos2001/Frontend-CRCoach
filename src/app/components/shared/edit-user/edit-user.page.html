@@ -1,9 +1,4 @@
-<form class="login-and-register" [formGroup]="editForm" (ngSubmit)="onSubmit($event)" novalidate>
-  <article class="image-box">
-    <h1>{{'PAGES.AUTH.GLOBAL.TITLE' | translate}}</h1>
-    <h2>{{'PAGES.AUTH.GLOBAL.SUBTITLE' | translate}}</h2>
-    <p>{{'PAGES.AUTH.GLOBAL.TEXT' | translate}}</p>
-  </article>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit($event)" novalidate>
   <fieldset class="fieldset">
 	<h1 class="form__legend">{{ 'PAGES.EDIT_USER.LEGEND' | translate }}</h1>
 	<section class="flex">
@@ -39,8 +34,11 @@
 
 	<app-form-input formControlName="playerTag" name="playerTag" [label]="'PAGES.EDIT_USER.PLAYER_TAG_LABEL' | translate" [placeholder]="'PAGES.EDIT_USER.PLAYER_TAG_PLACEHOLDER' | translate" class="glass-input" [disabled]="true"></app-form-input>
 
-	<app-common-button type="submit" [disabled]="editForm.invalid || submitting">
-	  @if (!submitting) { {{ 'PAGES.EDIT_USER.SAVE' | translate }} } @else { {{ 'PAGES.EDIT_USER.SAVING' | translate }} }
-	</app-common-button>
+	<article class="flex">
+	  <app-common-button type="button" (click)="onCancel()">{{ 'PAGES.EDIT_USER.CANCEL' | translate }}</app-common-button>
+	  <app-common-button type="submit" [disabled]="editForm.invalid || submitting">
+		@if (!submitting) { {{ 'PAGES.EDIT_USER.SAVE' | translate }} } @else { {{ 'PAGES.EDIT_USER.SAVING' | translate }} }
+	  </app-common-button>
+	</article>
   </fieldset>
 </form>
