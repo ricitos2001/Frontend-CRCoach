@@ -2574,6 +2574,148 @@ app-form-input .error[title] {
   box-shadow: 0 10px 22px rgba(3, 39, 58, 0.28);
 }
 
+/* Responsive: adaptar layout según ancho de pantalla (mobile-first overrides) */
+/* Tablets / small laptops */
+@media (max-width: 1200px) {
+  .dashboard__header {
+    padding: 28px 36px;
+    gap: 18px;
+  }
+  .header-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  .header-avatar img,
+  .header-avatar svg {
+    width: 68px;
+    height: 68px;
+  }
+  .welcome {
+    font-size: 28px;
+  }
+  .dashboard__header-cards {
+    gap: 12px;
+  }
+  .stat-card {
+    min-width: 120px;
+    height: 60px;
+  }
+}
+/* Mobile: columna única y apilado de tarjetas/gráficas para que coincida con el diseño móvil */
+@media (max-width: 768px) {
+  .dashboard__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 16px;
+    gap: 12px;
+    border-radius: 12px;
+  }
+  .header-user {
+    padding: 0;
+    gap: 12px;
+  }
+  .header-avatar {
+    width: 72px;
+    height: 72px;
+  }
+  .header-avatar img, .header-avatar svg {
+    width: 56px;
+    height: 56px;
+  }
+  .welcome {
+    font-size: 22px;
+    margin: 0;
+  }
+  .username {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  /* Hacemos que las cards del header puedan envolver y centrarse */
+  .dashboard__header-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 0 0 0;
+  }
+  .stat-card {
+    min-width: 100px;
+    height: 52px;
+    padding: 8px 10px;
+  }
+  /* Apilar gráficas en una columna y reducir alturas para mobile */
+  .dashboard__graphs {
+    display: block;
+  }
+  .dashboard__graphs > section {
+    margin-bottom: 16px;
+  }
+  .dashboard__graphs > section:nth-child(1) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .chart-wrapper {
+    height: auto;
+    min-height: 180px;
+  }
+  .chart-wrapper .chart-body {
+    height: auto;
+    padding: 14px;
+  }
+  /* En tarjetas pequeñas, apilar el doughnut y stats verticalmente */
+  .chart-wrapper.small .chart-body {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .winrate-stats {
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+  .streak-top {
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  }
+  .streak-icon {
+    width: 64px;
+    height: 64px;
+  }
+  .streak-number {
+    font-size: 40px;
+  }
+  .dashboard__flex {
+    gap: 18px;
+  }
+  /* Secciones recientes ocupan toda la anchura en mobile */
+  .dashboard__recent {
+    padding: 12px;
+  }
+  .dashboard__recent__content {
+    font-size: 14px;
+  }
+}
+/* Desktop: agrupar secciones recientes en columnas cuando hay espacio */
+@media (min-width: 1024px) {
+  .dashboard__recent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+  /* Restaurar grid de gráficas en anchos grandes */
+  .dashboard__graphs {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 24px;
+  }
+  .chart-wrapper {
+    min-height: 260px;
+  }
+}
 .progress__container {
   display: flex;
   flex-direction: row;
