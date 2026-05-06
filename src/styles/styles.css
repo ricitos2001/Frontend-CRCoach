@@ -2800,12 +2800,17 @@ app-form-input .error[title] {
 }
 
 .progress__graphs h2 {
-  display: inline-block;
+  /* Make the section header behave like a full-width card header
+     so it matches the width of the containing card/section */
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   background: var(--elements-color);
   color: var(--components-color);
   padding: 10px 18px;
   border-radius: 10px;
   font-weight: 700;
+  margin: 0 0 12px 0;
 }
 
 /* Responsive: stack graphs vertically on small screens and make headers
@@ -2857,8 +2862,8 @@ app-form-input .error[title] {
   /* Make embedded graphs responsive where possible */
   .progress__graphs app-graph,
   .progress__graphs canvas {
-    width: 100% !important;
-    height: auto !important;
+    width: 100%;
+    height: auto;
     max-width: 480px;
   }
 }
@@ -3096,13 +3101,17 @@ section .chart-wrapper {
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 section .chart-wrapper h2 {
-  display: inline-block;
+  /* Ensure the h2 header fills the full width of the chart card */
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   background: var(--components-color);
   color: var(--elements-color);
   padding: 10px 18px;
   border-radius: 8px;
   font-weight: 700;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  margin: 0 0 12px 0;
 }
 section .summary-wrapper .summary-grid {
   display: grid;
