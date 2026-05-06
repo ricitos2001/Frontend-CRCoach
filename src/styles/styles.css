@@ -195,6 +195,58 @@ header ul {
   align-items: center;
 }
 
+/* Mobile / hamburger styles */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-box {
+  width: 24px;
+  height: 16px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+  width: 24px;
+  height: 2px;
+  background-color: var(--elements-color);
+  display: block;
+  position: absolute;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.hamburger-inner {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger-inner:before {
+  content: "";
+  top: -8px;
+}
+
+.hamburger-inner:after {
+  content: "";
+  top: 8px;
+}
+
+.nav-links {
+  display: block;
+}
+
+.nav-links ul {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* Open state animation */
 header ul li {
   margin: 0 0.35rem;
   padding: 0 1rem;
@@ -274,24 +326,66 @@ header app-dark-mode-button button {
   border: none;
 }
 
+/* Responsive behaviour: collapse nav into hamburger under 720px */
+@media (max-width: 720px) {
+  header ul {
+    display: none;
+  }
+  .hamburger {
+    display: inline-block;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 80%;
+    max-width: 320px;
+    background: rgba(18, 24, 28, 0.98);
+    box-shadow: -6px 0 24px rgba(0, 0, 0, 0.6);
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 1200;
+    padding: 2.5rem 1rem;
+  }
+  .nav-links.open {
+    transform: translateX(0%);
+  }
+  .nav-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav-links ul li {
+    padding: 0;
+    margin: 0;
+  }
+  .nav-links a {
+    font-size: 1.05rem;
+    display: block;
+  }
+}
 body.has-sidebar main {
   padding: 3rem;
 }
 
-/* Cuando el sidebar está abierto (clase en el body) */
-body.has-sidebar.sidebar-open main,
-body.sidebar-open main {
-  margin-left: var(--sidebar-open-width);
+/* Cuando el sidebar está abierto (solo en escritorio):
+   Evitar que en pantallas pequeñas (responsive) estas reglas reduzcan el ancho
+   del contenido principal. En mobile el sidebar se muestra como panel inferior
+   y no debe influir en el layout horizontal. */
+@media (min-width: 769px) {
+  body.has-sidebar.sidebar-open main,
+  body.sidebar-open main {
+    margin-left: var(--sidebar-open-width);
+  }
+  /* Cuando el sidebar está abierto, reducir la anchura del header para evitar que se corte */
+  header.sidebar-open-header,
+  body.sidebar-open header {
+    margin-left: var(--sidebar-open-width);
+    min-width: 80%;
+    box-sizing: border-box;
+  }
 }
-
-/* Cuando el sidebar está abierto, reducir la anchura del header para evitar que se corte */
-header.sidebar-open-header,
-body.sidebar-open header {
-  margin-left: var(--sidebar-open-width);
-  min-width: 80%;
-  box-sizing: border-box;
-}
-
 footer {
   flex-wrap: wrap;
   color: var(--elements-color);
@@ -1535,6 +1629,127 @@ app-form-input .error[title] {
   fill: var(--elements-color);
 }
 
+/* Responsive tweaks for landing page */
+@media (max-width: 1024px) {
+  .landing {
+    padding: 4.5rem 0 3rem;
+  }
+  .landing h1 {
+    font-size: 2.8rem;
+  }
+  #what-offers h1 {
+    font-size: 2.2rem;
+  }
+  .landing__grid-container-x2 {
+    max-width: 900px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .landing__grid-container-x3 {
+    max-width: 900px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .landing__grid-container-x12 {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .landing__grid-container-x4 article h2 {
+    font-size: 1.1rem;
+  }
+  .landing app-common-button button {
+    min-width: 180px;
+    padding: 0.6rem 1.6rem;
+  }
+}
+@media (max-width: 720px) {
+  .landing {
+    padding: 3rem 0 2rem;
+  }
+  .landing__hero {
+    padding: 0 1rem;
+  }
+  .landing h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.6rem;
+  }
+  .landing p {
+    max-width: 100%;
+    padding: 0 0.6rem;
+  }
+  /* Stack the two-column features into a single column */
+  .landing__grid-container-x2 {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 1.25rem auto;
+  }
+  .landing__grid-container-x2 section {
+    margin: 0.5rem auto;
+  }
+  /* Make 3-column area into 2 columns */
+  .landing__grid-container-x3 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 720px;
+  }
+  .landing__grid-container-x3 article h1 {
+    font-size: 1.6rem;
+  }
+  .landing__grid-container-x12 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .landing app-common-button button {
+    min-width: 140px;
+    padding: 0.55rem 1rem;
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 480px) {
+  .landing {
+    padding: 2rem 0 1.5rem;
+  }
+  .landing h1 {
+    font-size: 1.9rem;
+  }
+  #what-offers h1 {
+    font-size: 1.6rem;
+  }
+  .landing__grid-container-x12 {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0.75rem;
+  }
+  .landing__grid-container-x4 article h2 {
+    font-size: 1rem;
+  }
+  .landing__grid-container-x3 {
+    grid-template-columns: 1fr;
+  }
+  .landing__grid-container-x2 {
+    grid-template-columns: 1fr;
+    margin: 1rem auto;
+  }
+  .landing__grid-container-x2 img {
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+  }
+  .landing__grid-container-x2 p {
+    font-size: 0.88rem;
+  }
+  .landing app-common-button button {
+    min-width: 120px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.92rem;
+  }
+  .landing__number {
+    font-size: 2.2rem;
+  }
+  /* Reduce heavy shadows and borders on mobile for performance/readability */
+  .landing__grid-container-x12,
+  .landing__grid-container-x3 article,
+  .landing__grid-container-x2 section {
+    box-shadow: none;
+    border: none;
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
 .battles-page {
   padding: 20px;
 }
@@ -2504,7 +2719,6 @@ section .summary-wrapper {
 section .summary-wrapper .summary-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
   margin-top: 0.8rem;
@@ -2989,7 +3203,7 @@ section p.error {
 
 .player-profile__card-inner {
   display: flex;
-  gap: 20px;
+  gap: 40px;
   align-items: center;
   justify-content: space-between;
 }

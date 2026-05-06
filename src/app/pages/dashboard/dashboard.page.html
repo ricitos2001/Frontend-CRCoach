@@ -8,7 +8,7 @@
     }
     @if (usersStore.user(); as user) {
       <article class="header-avatar">
-        <img [src]="avatarObjectUrl ?? (user.avatarUrl && user.avatarUrl.startsWith('http') ? user.avatarUrl : null)" alt="{{ 'PAGES.DASHBOARD.AVATAR_ALT' | translate }}">
+        <img [src]="avatarObjectUrl ?? (needsAuth(user.avatarUrl) ? null : resolveUrl(user.avatarUrl))" alt="avatar del usuario">
       </article>
       <article>
         <p class="welcome">{{ 'PAGES.DASHBOARD.WELCOME' | translate}} {{ user.name }} {{ user.surnames }}</p>

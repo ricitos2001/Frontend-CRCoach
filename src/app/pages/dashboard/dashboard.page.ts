@@ -301,11 +301,27 @@ export class DashboardPage implements OnInit {
     }
     if (this.lastAvatarPath === path) return;
     this.lastAvatarPath = path;
+    // Only attempt to fetch protected avatars when we have a token and a valid positive user id.
+    const token = localStorage.getItem('token');
+    const idNumber = Number(user?.id);
+    if (!token) {
+      // If there's no token the request would 401; skip and keep a fallback avatar
+      console.warn('Dashboard: no token found in localStorage, skipping protected avatar load');
+      this.clearAvatarObjectUrl();
+      return;
+    }
+    // Accept any finite numeric id (backend may use negative ids); only skip if id is not a number
+    if (!Number.isFinite(idNumber)) {
+      console.warn('Dashboard: invalid user id, skipping protected avatar load', user?.id);
+      this.clearAvatarObjectUrl();
+      return;
+    }
 
     this.avatarLoading = true;
     try {
-      this.usersService.token = localStorage.getItem('token');
-      this.usersService.getImageProfile(user.id, true).subscribe({
+      // Make sure the service uses the latest token
+      this.usersService.token = token;
+      this.usersService.getImageProfile(idNumber, true).subscribe({
         next: (blob) => {
           try {
             if (this.avatarObjectUrl) {
@@ -325,7 +341,12 @@ export class DashboardPage implements OnInit {
           } catch (e) {}
         },
         error: (err) => {
-          console.error('Dashboard: error loading protected avatar', err);
+          // Provide a clearer diagnostic when a 401 is returned
+          if (err && err.status === 401) {
+            console.warn('Dashboard: protected avatar request returned 401 Unauthorized; token may be missing or expired');
+          } else {
+            console.error('Dashboard: error loading protected avatar', err);
+          }
           this.avatarLoading = false;
           this.avatarObjectUrl = null;
           try {

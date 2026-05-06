@@ -26,6 +26,15 @@ export class HeaderComponent {
   constructor(protected router: Router) {}
   headerContentService = inject(HeaderContentService);
   content$ = this.headerContentService.content$;
+  // Control del menú hamburguesa en landing
+  public menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+  closeMenu() {
+    this.menuOpen = false;
+  }
 
   navigateToFragment(fragment: string, event?: Event) {
     if (event) {

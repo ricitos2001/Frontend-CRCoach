@@ -244,3 +244,64 @@
 .landing svg path {
   fill: var(--elements-color);
 }
+
+/* Responsive tweaks for landing page */
+@media (max-width: 1024px) {
+  .landing { padding: 4.5rem 0 3rem; }
+
+  .landing h1 { font-size: 2.8rem; }
+  #what-offers h1 { font-size: 2.2rem; }
+
+  .landing__grid-container-x2 { max-width: 900px; grid-template-columns: repeat(2,1fr); }
+  .landing__grid-container-x3 { max-width: 900px; grid-template-columns: repeat(2,1fr); }
+
+  .landing__grid-container-x12 { padding: 1rem; gap: 1rem; }
+  .landing__grid-container-x4 article h2 { font-size: 1.1rem; }
+
+  .landing app-common-button button { min-width: 180px; padding: 0.6rem 1.6rem; }
+}
+
+@media (max-width: 720px) {
+  .landing { padding: 3rem 0 2rem; }
+
+  .landing__hero { padding: 0 1rem; }
+  .landing h1 { font-size: 2.4rem; margin-bottom: 0.6rem; }
+  .landing p { max-width: 100%; padding: 0 0.6rem; }
+
+  /* Stack the two-column features into a single column */
+  .landing__grid-container-x2 { grid-template-columns: 1fr; max-width: 640px; margin: 1.25rem auto; }
+  .landing__grid-container-x2 section { margin: 0.5rem auto; }
+
+  /* Make 3-column area into 2 columns */
+  .landing__grid-container-x3 { grid-template-columns: repeat(2,1fr); max-width: 720px; }
+  .landing__grid-container-x3 article h1 { font-size: 1.6rem; }
+
+  .landing__grid-container-x12 { grid-template-columns: repeat(6,1fr); }
+
+  .landing app-common-button button { min-width: 140px; padding: 0.55rem 1rem; font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+  .landing { padding: 2rem 0 1.5rem; }
+  .landing h1 { font-size: 1.9rem; }
+  #what-offers h1 { font-size: 1.6rem; }
+
+  .landing__grid-container-x12 { grid-template-columns: repeat(4,1fr); padding: 0.75rem; }
+  .landing__grid-container-x4 article h2 { font-size: 1rem; }
+
+  .landing__grid-container-x3 { grid-template-columns: 1fr; }
+  .landing__grid-container-x2 { grid-template-columns: 1fr; margin: 1rem auto; }
+
+  .landing__grid-container-x2 img { width: 48px; height: 48px; padding: 8px; }
+  .landing__grid-container-x2 p { font-size: 0.88rem; }
+
+  .landing app-common-button button { min-width: 120px; padding: 0.45rem 0.85rem; font-size: 0.92rem; }
+
+  .landing__number { font-size: 2.2rem; }
+
+  /* Reduce heavy shadows and borders on mobile for performance/readability */
+  .landing__grid-container-x12,
+  .landing__grid-container-x3 article,
+  .landing__grid-container-x2 section { box-shadow: none; border: none; background: rgba(255,255,255,0.03); }
+}
+
