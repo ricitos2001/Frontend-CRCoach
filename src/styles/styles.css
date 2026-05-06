@@ -2327,12 +2327,7 @@ app-form-input .error[title] {
 .dashboard__graphs {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  /* Usar filas fr para que las alturas estén controladas por el grid.
-     Con 2 filas 1fr 1fr, la sección 1 que ocupa ambas filas tendrá el doble
-     de altura que cada una de las otras (por tanto 1 + 1 = 2), asegurando
-     que la primera gráfica tenga la misma altura que la suma de la 2ª y 3ª. */
   grid-template-rows: 1fr 1fr;
-  /* Aseguramos que las filas respondan y estiren al alto disponible */
   grid-auto-rows: 1fr;
   align-items: stretch;
   gap: 24px;
@@ -2800,8 +2795,6 @@ app-form-input .error[title] {
 }
 
 .progress__graphs h2 {
-  /* Make the section header behave like a full-width card header
-     so it matches the width of the containing card/section */
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -2813,58 +2806,151 @@ app-form-input .error[title] {
   margin: 0 0 12px 0;
 }
 
-/* Responsive: stack graphs vertically on small screens and make headers
-   occupy full card width (like the provided mockup). */
+.chart-wrapper {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  border-radius: 12px;
+  box-shadow: 0 18px 44px rgba(3, 39, 58, 0.66), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Cuadrícula suave sobre la tarjeta para replicar el patrón */
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 72px 72px, 72px 72px;
+  pointer-events: none;
+  opacity: 0.38;
+}
+
+.team-data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.opponent-data {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.chart-body {
+  position: relative;
+  z-index: 2;
+  padding: 22px 24px 28px 24px;
+  height: calc(100% - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress__graphs > section:nth-child(1) .chart-body {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progress__graphs > section:nth-child(1) .chart-body app-graph,
+.progress__graphs > section:nth-child(1) .chart-body canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  display: block;
+  z-index: 0;
+}
+
+.chart-wrapper canvas {
+  background: transparent;
+  display: block;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  min-width: 10vh;
+  min-height: 10vh;
+}
+
+.chart-wrapper.small .chart-body {
+  gap: 18px;
+  align-items: center;
+  padding: 12px 16px 18px 16px;
+}
+
 @media (max-width: 768px) {
-  .progress__container {
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-  }
-  .progress__container h1 {
-    font-size: 56px;
-    line-height: 1;
-    margin: 0;
-  }
-  .progress__container app-refresh-button {
-    align-self: flex-end;
-    margin-top: -8px; /* tuck the button towards the title area */
-  }
   .progress__graphs {
     display: block;
   }
   .progress__graphs > section {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
-  .progress__graphs h2 {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    background: var(--elements-color);
-    color: var(--components-color);
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-weight: 700;
-    margin: 0 0 12px 0;
-    text-align: left;
+  .progress__graphs > section:nth-child(1) {
+    grid-column: auto;
+    grid-row: auto;
   }
   .chart-wrapper {
-    width: 100%;
-    min-height: 200px;
+    height: auto;
+    min-height: 180px;
   }
-  .progress__graphs .chart-body {
-    display: flex;
+  .chart-wrapper .chart-body {
+    height: auto;
+    padding: 14px;
+  }
+  .progress__graphs > section:nth-child(1) .chart-wrapper {
+    min-height: 220px;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+  .progress__graphs > section:nth-child(1) .chart-body {
+    padding: 12px;
+    height: auto;
+    min-height: 180px;
+    box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    padding: 18px;
-    min-height: 160px;
   }
-  /* Make embedded graphs responsive where possible */
-  .progress__graphs app-graph,
-  .progress__graphs canvas {
+  .progress__graphs > section:nth-child(1) .chart-body app-graph,
+  .progress__graphs > section:nth-child(1) .chart-body canvas {
+    position: relative;
+    display: block;
     width: 100%;
     height: auto;
-    max-width: 480px;
+    max-height: 360px;
+  }
+  /* En tarjetas pequeñas, apilar el doughnut y stats verticalmente */
+  .chart-wrapper.small .chart-body {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .winrate-stats {
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+  .streak-top {
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  }
+  .streak-icon {
+    width: 64px;
+    height: 64px;
+  }
+  .streak-number {
+    font-size: 40px;
+  }
+  .streak-pill {
+    width: 16px;
   }
 }
 .progress__graphs > section:nth-child(1) {

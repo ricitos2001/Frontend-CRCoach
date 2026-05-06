@@ -159,12 +159,7 @@
 .dashboard__graphs {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  /* Usar filas fr para que las alturas estén controladas por el grid.
-     Con 2 filas 1fr 1fr, la sección 1 que ocupa ambas filas tendrá el doble
-     de altura que cada una de las otras (por tanto 1 + 1 = 2), asegurando
-     que la primera gráfica tenga la misma altura que la suma de la 2ª y 3ª. */
   grid-template-rows: 1fr 1fr;
-  /* Aseguramos que las filas respondan y estiren al alto disponible */
   grid-auto-rows: 1fr;
   align-items: stretch;
   gap: 24px;
