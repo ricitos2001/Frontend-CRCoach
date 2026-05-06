@@ -1,44 +1,46 @@
-<ng-template #headerContent class="profile-header">
-  @if (usersStore.loading() && !usersStore.user()) {
-    <p>{{ 'PAGES.DASHBOARD.LOADING_USER' | translate }}</p>
-  }
-  @if (usersStore.error(); as uErr) {
-    <p class="error">{{ 'PAGES.DASHBOARD.ERROR_USER' | translate:{ err: uErr } }}</p>
-  }
-  @if (usersStore.user(); as user) {
-    <section class="profile-header__user-data">
-      <h1>{{ 'PAGES.PROFILE.HEADER' | translate }}</h1>
-      <section class="profile-header__inner">
-        <section class="profile-header__info">
-          <article class="avatar-wrapper">
-            <!-- Si avatar requiere auth mostramos avatarObjectUrl (blob). Si no, usamos resolveUrl. -->
-            <img [src]="avatarObjectUrl ?? (needsAuth(user.avatarUrl) ? null : resolveUrl(user.avatarUrl))" alt="avatar del usuario">
-            <!-- Botón que aparece al hacer hover para cambiar la imagen -->
-            <app-common-button class="avatar-change" (click)="triggerAvatarInput($event)">{{ 'PAGES.PROFILE.CHANGE_IMAGE_PROFILE' | translate }}</app-common-button>
-            <input type="file" #avatarInput accept="image/*" (change)="onAvatarSelected($event)" hidden>
-          </article>
-          <article class="profile-header__details">
-            <p>{{ 'PAGES.PROFILE.LABELS.NAME_AND_SURNAMES' | translate }}: {{user.name}} {{user.surnames}}</p>
-            <p>{{ 'PAGES.PROFILE.LABELS.USERNAME' | translate }}: {{user.username}}</p>
-            <p>{{ 'PAGES.PROFILE.LABELS.EMAIL' | translate }}: {{user.email}}</p>
+<ng-template #headerContent>
+  <section class="profile-header">
+    @if (usersStore.loading() && !usersStore.user()) {
+      <p>{{ 'PAGES.DASHBOARD.LOADING_USER' | translate }}</p>
+    }
+    @if (usersStore.error(); as uErr) {
+      <p class="error">{{ 'PAGES.DASHBOARD.ERROR_USER' | translate:{ err: uErr } }}</p>
+    }
+    @if (usersStore.user(); as user) {
+      <section class="profile-header__user-data">
+        <h1>{{ 'PAGES.PROFILE.HEADER' | translate }}</h1>
+        <section class="profile-header__inner">
+          <section class="profile-header__info">
+            <article class="avatar-wrapper">
+              <!-- Si avatar requiere auth mostramos avatarObjectUrl (blob). Si no, usamos resolveUrl. -->
+              <img [src]="avatarObjectUrl ?? (needsAuth(user.avatarUrl) ? null : resolveUrl(user.avatarUrl))" alt="avatar del usuario">
+              <!-- Botón que aparece al hacer hover para cambiar la imagen -->
+              <app-common-button class="avatar-change" (click)="triggerAvatarInput($event)">{{ 'PAGES.PROFILE.CHANGE_IMAGE_PROFILE' | translate }}</app-common-button>
+              <input type="file" #avatarInput accept="image/*" (change)="onAvatarSelected($event)" hidden>
+            </article>
+            <article class="profile-header__details">
+              <p>{{ 'PAGES.PROFILE.LABELS.NAME_AND_SURNAMES' | translate }}: {{user.name}} {{user.surnames}}</p>
+              <p>{{ 'PAGES.PROFILE.LABELS.USERNAME' | translate }}: {{user.username}}</p>
+              <p>{{ 'PAGES.PROFILE.LABELS.EMAIL' | translate }}: {{user.email}}</p>
+            </article>
+          </section>
+          <article class="profile-header__actions">
+            <app-common-button (click)="openEditModal()">{{ 'PAGES.PROFILE.EDIT_PROFILE' | translate }}</app-common-button>
+            <app-common-button (click)="openDeleteModal()">{{ 'PAGES.PROFILE.DELETE_ACCOUNT' | translate }}</app-common-button>
           </article>
         </section>
-        <article class="profile-header__actions">
-          <app-common-button (click)="openEditModal()">{{ 'PAGES.PROFILE.EDIT_PROFILE' | translate }}</app-common-button>
-          <app-common-button (click)="openDeleteModal()">{{ 'PAGES.PROFILE.DELETE_ACCOUNT' | translate }}</app-common-button>
-        </article>
       </section>
-    </section>
-    @if (profileStore.loading() && !profileStore.profile()) {
-      <p>{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
+      @if (profileStore.loading() && !profileStore.profile()) {
+        <p>{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
+      }
+      @if (profileStore.error(); as pErr) {
+        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_PROFILE' | translate:{ err: pErr } }}</p>
+      }
+      @if (profileStore.profile(); as profile) {
+        <p class="profile-tag">{{profile.tag}}</p>
+      }
     }
-    @if (profileStore.error(); as pErr) {
-      <p class="error">{{ 'PAGES.DASHBOARD.ERROR_PROFILE' | translate:{ err: pErr } }}</p>
-    }
-    @if (profileStore.profile(); as profile) {
-      <p class="profile-tag">{{profile.tag}}</p>
-    }
-  }
+  </section>
 </ng-template>
     <section class="player-profile">
   <h1>{{ 'PAGES.PROFILE.PLAYER_PROFILE_TITLE' | translate }}</h1>

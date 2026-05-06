@@ -1,5 +1,6 @@
-<ng-template #headerContent class="dashboard__header">
-  <section class="header-user">
+<ng-template #headerContent>
+  <section class="dashboard__header">
+    <section class="header-user">
     @if (usersStore.loading() && !usersStore.user()) {
       <p class="muted">{{ 'PAGES.DASHBOARD.LOADING_USER' | translate }}</p>
     }
@@ -16,22 +17,22 @@
       </article>
     }
   </section>
-
-  <article class="dashboard__header-cards">
-    @if (profileStore.loading() && !profileStore.profile()) {
-      <p class="muted">{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
-    }
-    @if (profileStore.error(); as pErr) {
-      <p class="error">{{ 'PAGES.DASHBOARD.ERROR_PROFILE' | translate:{ err: pErr } }}</p>
-    }
-    @if (profileStore.profile(); as profile) {
-      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.TROPHIES' | translate }}</span><span class="value">{{profile.trophies}}</span></p>
-      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.BEST_TROPHIES' | translate }}</span><span class="value">{{profile.bestTrophies}}</span></p>
-      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.DONATIONS' | translate }}</span><span class="value">{{profile.totalDonations}}</span></p>
-      <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.CURRENT_LEAGUE' | translate }}</span><span class="value">{{JSON.parse(profile.currentPathOfLegendSeasonResult).leagueNumber}}</span></p>
-    }
+    <article class="dashboard__header-cards">
+      @if (profileStore.loading() && !profileStore.profile()) {
+        <p class="muted">{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
+      }
+      @if (profileStore.error(); as pErr) {
+        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_PROFILE' | translate:{ err: pErr } }}</p>
+      }
+      @if (profileStore.profile(); as profile) {
+        <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.TROPHIES' | translate }}</span><span class="value">{{profile.trophies}}</span></p>
+        <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.BEST_TROPHIES' | translate }}</span><span class="value">{{profile.bestTrophies}}</span></p>
+        <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.DONATIONS' | translate }}</span><span class="value">{{profile.totalDonations}}</span></p>
+        <p class="stat-card"><span class="label">{{ 'PAGES.DASHBOARD.CURRENT_LEAGUE' | translate }}</span><span class="value">{{JSON.parse(profile.currentPathOfLegendSeasonResult).leagueNumber}}</span></p>
+      }
+   </article>
     <app-refresh-button></app-refresh-button>
-  </article>
+  </section>
 </ng-template>
 <section class="dashboard__flex">
   <section class="dashboard__graphs">
