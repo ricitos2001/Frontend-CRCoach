@@ -201,18 +201,14 @@
 			display: block;
 			margin: 0 0 6px 0;
 			max-width: 100%;
+      path {
+        fill: var(--elements-color);
+      }
 		}
 
 		.score { font-size: 28px; font-weight: 900; }
 	  }
   }
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-	.battle-card .battle-body { flex-direction: column; }
-	.battle-card .team { width: 100%; }
-	.center { width: 100%; }
   }
 }
 

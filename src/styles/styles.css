@@ -1957,23 +1957,12 @@ app-form-input .error[title] {
   margin: 0 0 6px 0;
   max-width: 100%;
 }
+.battles-page .battle-card .battle-body .center .swords path {
+  fill: var(--elements-color);
+}
 .battles-page .battle-card .battle-body .center .score {
   font-size: 28px;
   font-weight: 900;
-}
-.battles-page {
-  /* Responsive */
-}
-@media (max-width: 900px) {
-  .battles-page .battle-card .battle-body {
-    flex-direction: column;
-  }
-  .battles-page .battle-card .team {
-    width: 100%;
-  }
-  .battles-page .center {
-    width: 100%;
-  }
 }
 
 .dashboard__header {
@@ -3203,7 +3192,7 @@ section p.error {
 
 .player-profile__card-inner {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
 }
