@@ -3107,6 +3107,138 @@ section p.error {
   display: inline-block;
 }
 
+/* Responsive: adaptar la página "Diagnostico de debilidades" a un layout móvil vertical */
+@media (max-width: 768px) {
+  /* Titular más grande y alineado a la izquierda como en el mockup */
+  section > h1 {
+    font-size: 3.6rem;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  /* Controles: apilar y espaciar, botones de ancho completo */
+  section .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    margin-bottom: 12px;
+  }
+  section .controls app-searcher,
+  section .controls app-form-input,
+  section .controls app-common-button,
+  section .controls app-refresh-button {
+    width: 100%;
+  }
+  section .controls app-common-button {
+    max-width: 260px;
+    align-self: flex-start;
+  }
+  /* Resumen: convertir la grilla de 6 en 2 columnas para dispositivo móvil */
+  section .summary-wrapper {
+    padding: 1rem;
+  }
+  section .summary-wrapper .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  section .summary-wrapper .stat-card {
+    min-height: 64px;
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+  }
+  /* chart-small (doughnuts) side-by-side responsive */
+  section .summary-wrapper .chart-small {
+    padding: 0.6rem;
+  }
+  section .summary-wrapper .chart-small app-graph,
+  section .summary-wrapper .chart-small canvas {
+    width: 100%;
+    height: 120px;
+  }
+  /* Bloques principales (gráfica de debilidades) ocuparán ancho completo */
+  section .chart-wrapper {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  section .chart-container {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 220px;
+    padding: 0.75rem;
+  }
+  /* Cartas problemáticas: una columna, tarjetas altas y centradas */
+  section .problematic-cards-wrapper .problematic-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  section .problematic-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    min-height: 180px;
+    justify-content: space-between;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+  }
+  section .problematic-card img {
+    width: 84px;
+    height: 84px;
+    margin: 0.25rem 0;
+  }
+  section .problematic-info {
+    width: 100%;
+  }
+  section .problematic-info .name {
+    font-size: 0.95rem;
+  }
+  /* Make the percentage pill centered inside the problematic card on mobile */
+  section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .loss-rate {
+    display: block;
+    width: 56%;
+    max-width: 180px;
+    margin: 0.6rem auto 0.2rem auto;
+    padding: 0.28rem 0.6rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  /* Barra de progreso simulada dentro del card (si usas un elemento) */
+  section .problematic-card .progress {
+    width: 80%;
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 6px auto 0 auto;
+    box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.06);
+  }
+  /* Ajustes tipográficos y espaciados generales para móvil */
+  section .chart-wrapper h2 {
+    display: block;
+    margin-bottom: 8px;
+  }
+}
+/* Medium / Desktop: mejorar disposición (2 columnas para summary y cards escalables) */
+@media (min-width: 901px) and (max-width: 1400px) {
+  .summary-wrapper .summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .problematic-cards-wrapper .problematic-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .problematic-card {
+    min-height: 160px;
+  }
+}
+@media (min-width: 1401px) {
+  .summary-wrapper .summary-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .problematic-cards-wrapper .problematic-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 .sessions {
   display: flex;
   flex-direction: column;
