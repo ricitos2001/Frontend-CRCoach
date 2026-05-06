@@ -49,8 +49,8 @@
       <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_WEAKNESSES' | translate:{ err: pErr } }}</p>
     }
     @if (analyticsStore.weaknesses()) {
-      <article class="chart-container" style="max-width:900px; margin: 1rem 0; height: 420px;">
-        <app-graph [type]="'bar'" [labels]="weaknessesLabels" [datasets]="weaknessesDatasets" [options]="barChartOptions" [width]="900" [height]="420" [noDataMessage]="( 'PAGES.WEAKNESSES.NO_DATA' | translate )"></app-graph>
+      <article class="chart-container" style="max-width:900px; margin: 1rem auto; height: 420px; display:flex; align-items:center; justify-content:center;">
+        <app-graph [type]="'bar'" [labels]="weaknessesLabels" [datasets]="weaknessesDatasets" [options]="barChartOptions" [noDataMessage]="( 'PAGES.WEAKNESSES.NO_DATA' | translate )"></app-graph>
       </article>
     }
   </section>
@@ -68,11 +68,11 @@
         @for (problematicCard of problematicCardsReport.problematicCards; track problematicCard.cardId) {
           <article class="problematic-card">
             <img src="{{problematicCard.iconUrl}}" alt="{{problematicCard.name}}" />
-            <div class="problematic-info">
+            <section class="problematic-info">
               <p class="name">{{problematicCard.name}}</p>
               <p class="loss-rate">{{problematicCard.playerLossRate.toFixed(2)}}%</p>
               <p class="appearances">{{problematicCard.appearances}} {{ 'PAGES.WEAKNESSES.APPEARANCES' | translate }}</p>
-            </div>
+            </section>
           </article>
         }
       </section>

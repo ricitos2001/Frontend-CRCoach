@@ -93,6 +93,12 @@ section {
 	border-radius: 8px;
 	border: 1px solid rgba(255,255,255,0.04);
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+	/* Center the chart and make it responsive inside the container */
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	/* Ensure inner canvas can take full width/height set by inline styles */
+	> app-graph, > canvas, > * canvas { width: 100%; height: 100%; }
   }
 
   // Sección de cartas problemáticas

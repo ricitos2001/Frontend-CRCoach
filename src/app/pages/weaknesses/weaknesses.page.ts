@@ -263,6 +263,7 @@ export class WeaknessesPage implements OnInit {
   public get barChartOptions(): ChartOptions {
     return {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
       },
