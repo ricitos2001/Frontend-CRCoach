@@ -10,11 +10,13 @@
       <h1>Perfil de usuario</h1>
       <section class="profile-header__inner">
         <section class="profile-header__info">
-          @if (user.avatarUrl === null) {
-            <img src="assets/img/icons/user.svg" alt="avatar del usuario">
-          } @else {
-            <img src="{{user.avatarUrl}}" alt="avatar del usuario">
-          }
+          <article class="avatar-wrapper">
+            <!-- Usamos avatarObjectUrl cuando la imagen requiere Authorization, si no fallback a resolveUrl -->
+            <img [src]="avatarObjectUrl ? avatarObjectUrl : resolveUrl(user.avatarUrl)" alt="avatar del usuario">
+            <!-- Botón que aparece al hacer hover para cambiar la imagen -->
+            <app-common-button class="avatar-change" (click)="triggerAvatarInput($event)">{{ 'PAGES.PROFILE.CHANGE_IMAGE_PROFILE' | translate }}</app-common-button>
+            <input type="file" #avatarInput accept="image/*" (change)="onAvatarSelected($event)" hidden>
+          </article>
           <article class="profile-header__details">
             <p>Nombre y apellidos: {{user.name}} {{user.surnames}}</p>
             <p>Nombre de usuario: {{user.username}}</p>
@@ -54,9 +56,9 @@
         <section class="deck">
           <h2>Mazo de {{profile.name}}</h2>
           <article class="deck__images">
-            @for (playerCard of profile.currentDeck.playerCards; track playerCard.id) {
-              <img src="{{playerCard.iconUrl.medium}}" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}">
-            }
+              @for (playerCard of profile.currentDeck.playerCards; track playerCard.id) {
+                  <img [src]="resolveUrl(playerCard.iconUrl.medium)" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
+                }
           </article>
         </section>
         <article class="player-stats">
@@ -87,7 +89,7 @@
           </article>
           <article class="favorite-card">
             <h3>Carta favorita</h3>
-            <img src="{{profile.currentFavouriteCard.iconUrl.medium}}" alt="{{ 'PAGES.DASHBOARD.AVATAR_ALT' | translate }}">
+            <img [src]="resolveUrl(profile.currentFavouriteCard.iconUrl.medium)" alt="{{ 'PAGES.DASHBOARD.AVATAR_ALT' | translate }}">
             <p>{{profile.currentFavouriteCard.name}}</p>
           </article>
         </section>
@@ -97,10 +99,24 @@
       <h2>Cartas del jugador</h2>
       <article class="player-profile__cards-grid">
         @for (playerCard of profile.playerCards; track playerCard.id) {
-          <img src="{{playerCard.iconUrl.medium}}" alt="{{ 'PAGES.PROFILE.PLAYER_CARD' | translate }}">
+          <!-- Al hacer click en la carta mostramos/ocultamos la caja de detalles -->
+          <img [src]="resolveUrl(playerCard.iconUrl.medium)" alt="{{ 'PAGES.PROFILE.PLAYER_CARD' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
         }
       </article>
     </section>
+    <!-- Caja con los detalles de la carta seleccionada. Se muestra solo si hay selectedCard -->
+    @if (selectedCard) {
+      <section #cardDetail class="card-detail" [ngStyle]="cardDetailStyle" (click)="$event.stopPropagation()">
+        <img [src]="resolveUrl(selectedCard.iconUrl.medium)" alt="{{selectedCard.name}}">
+        <article class="card-detail__info">
+          <h4>{{selectedCard.name}}</h4>
+          <p>Rarity: {{selectedCard.rarity}}</p>
+          <p>Level: {{selectedCard.level}} / {{selectedCard.maxLevel}}</p>
+          <p>Elixir: {{selectedCard.elixirCost}}</p>
+          <p>Count: {{selectedCard.count}}</p>
+        </article>
+      </section>
+    }
   }
   <app-modal [isOpen]="editModalOpen" title="{{ 'PAGES.PROFILE.EDIT_PROFILE' | translate }}" (close)="closeEditModal()">
     <app-edit-user [closeOnSave]="true" (saved)="closeEditModal()" (cancel)="closeEditModal()"></app-edit-user>

@@ -346,13 +346,12 @@
         "MESSAGE": "Are you sure you want to delete your account? This action cannot be undone.",
         "CANCEL": "Cancel",
         "CONFIRM": "Confirm"
-      }
-    ,
+      },
       "EDIT_PROFILE": "Edit profile",
-      "DELETE_ACCOUNT": "Delete account"
-      ,
+      "DELETE_ACCOUNT": "Delete account",
       "CARD_IN_DECK": "Deck card",
-      "PLAYER_CARD": "Player card"
+      "PLAYER_CARD": "Player card",
+      "CHANGE_IMAGE_PROFILE": "Change image profile"
     }
   },
   "USER": {

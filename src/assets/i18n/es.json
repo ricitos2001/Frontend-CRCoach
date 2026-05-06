@@ -347,13 +347,12 @@
         "MESSAGE": "¿Estás seguro de que deseas borrar tu cuenta? Esta acción no se puede deshacer.",
         "CANCEL": "Cancelar",
         "CONFIRM": "Confirmar"
-      }
-    ,
+      },
       "EDIT_PROFILE": "Editar perfil",
-      "DELETE_ACCOUNT": "Borrar cuenta"
-      ,
+      "DELETE_ACCOUNT": "Borrar cuenta",
       "CARD_IN_DECK": "Carta del mazo",
-      "PLAYER_CARD": "Carta del jugador"
+      "PLAYER_CARD": "Carta del jugador",
+      "CHANGE_IMAGE_PROFILE": "Cambiar imagen de perfil"
     }
   },
   "USER": {

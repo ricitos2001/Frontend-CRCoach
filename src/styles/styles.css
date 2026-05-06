@@ -2846,6 +2846,38 @@ section p.error {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
+/* Avatar wrapper: muestra un botón al hacer hover para cambiar la imagen */
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-wrapper img {
+  display: block;
+}
+
+.avatar-change {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease-in-out, transform 0.18s ease-in-out;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--elements-color);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.avatar-wrapper:hover .avatar-change {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1.02);
+}
+
 .profile-header__details p {
   margin: 6px 0;
   opacity: 0.9;
@@ -2978,6 +3010,11 @@ section p.error {
   object-fit: contain;
 }
 
+.deck__images img,
+.player-profile__cards-grid img {
+  cursor: pointer;
+}
+
 .player-stats {
   text-align: center;
   color: var(--elements-color);
@@ -3061,6 +3098,38 @@ section p.error {
   object-fit: contain;
   display: block;
   margin: 0 auto;
+}
+
+/* Caja con detalles de carta */
+.card-detail {
+  position: fixed; /* top/left dinámicos desde cardDetailStyle */
+  background: var(--components-color);
+  color: var(--elements-color);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  z-index: 1200;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 220px;
+}
+
+.card-detail img {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  display: block;
+}
+
+.card-detail__info h4 {
+  margin: 0 0 6px 0;
+  font-size: 1rem;
+}
+
+.card-detail__info p {
+  margin: 2px 0;
+  font-size: 0.9rem;
 }
 
 /* Pequeñas adaptaciones responsivas */
