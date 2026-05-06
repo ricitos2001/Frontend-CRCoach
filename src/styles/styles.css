@@ -2503,7 +2503,7 @@ section .summary-wrapper {
 }
 section .summary-wrapper .summary-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
   align-items: center;
   margin-top: 0.8rem;
@@ -2531,7 +2531,11 @@ section .summary-wrapper .summary-grid .stat-card .value {
   color: var(--elements-color);
 }
 section .summary-wrapper .summary-grid .chart-small {
+  background: rgba(255, 255, 255, 0.035);
   display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;

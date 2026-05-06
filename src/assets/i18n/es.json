@@ -352,7 +352,22 @@
       "DELETE_ACCOUNT": "Borrar cuenta",
       "CARD_IN_DECK": "Carta del mazo",
       "PLAYER_CARD": "Carta del jugador",
-      "CHANGE_IMAGE_PROFILE": "Cambiar imagen de perfil"
+      "CHANGE_IMAGE_PROFILE": "Cambiar imagen de perfil",
+      "HEADER": "Perfil de usuario",
+      "PLAYER_PROFILE_TITLE": "Perfil del jugador",
+      "PLAYER_DATA": "Datos del jugador",
+      "DECK_OF": "Mazo de {{name}}",
+      "FAVORITE_CARD": "Carta favorita",
+      "CARDS_TITLE": "Cartas del jugador",
+      "LABELS": {
+        "NAME_AND_SURNAMES": "Nombre y apellidos",
+        "USERNAME": "Nombre de usuario",
+        "EMAIL": "Correo electrónico"
+      },
+      "CARD_RARITY": "Rareza",
+      "CARD_LEVEL": "Nivel",
+      "CARD_ELIXIR": "Elixir",
+      "CARD_COUNT": "Cantidad"
     }
   },
   "USER": {

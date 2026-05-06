@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef } from '@angular/core';
+import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
@@ -13,6 +13,9 @@ import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
+import { UsersService } from '../../services/users/users.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { environment } from '../../../enviroments/enviroment';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,6 +50,9 @@ export class DashboardPage implements OnInit {
     public snapshotsStore: SnapshotsSignalStore,
     private destroyRef: DestroyRef,
     private translate: TranslateService,
+    private usersService: UsersService,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef,
   ) {
     // Initialize chart options and messages synchronously so bindings
     // have stable values during the first change-detection cycle.
@@ -127,6 +133,13 @@ export class DashboardPage implements OnInit {
           }
         })();
       }
+    });
+
+    // React to user changes to load avatar if needed
+    effect(() => {
+      const u = this.usersStore.user();
+      if (u) this.loadUserAvatar(u as any);
+      else this.clearAvatarObjectUrl();
     });
 
     // Keep recentBattles in sync with the store, but avoid triggering loads here
@@ -220,6 +233,26 @@ export class DashboardPage implements OnInit {
     });
   }
   @ViewChild('headerContent', { static: true }) headerContent!: TemplateRef<any>;
+  @ViewChild('avatarInput') avatarInputRef!: ElementRef<HTMLInputElement>;
+
+  // Avatar handling (similar to profile.page)
+  private lastAvatarPath: string | null = null;
+  avatarObjectUrl: string | null = null;
+  avatarLoading = false;
+
+  // Resolver URLs de imágenes: si la URL es absoluta la dejamos, si es relativa la prefijamos con apiUrl
+  public resolveUrl(url?: string | null, fallback: string = 'assets/img/icons/user.svg'): string {
+    if (!url || url === 'null') return fallback;
+    if (/^https?:\/\//i.test(url)) return url;
+    const cleaned = url.replace(/^\/+/, '');
+    return `${environment.apiUrl}/${cleaned}`;
+  }
+
+  // Indica si la URL es relativa (probablemente protegida y requiere Authorization)
+  public needsAuth(url?: string | null): boolean {
+    if (!url) return false;
+    return !/^https?:\/\//i.test(url);
+  }
 
   // Datos para componentes reutilizables
   public trophiesLabels: string[] = [];
@@ -246,6 +279,94 @@ export class DashboardPage implements OnInit {
     this.destroyRef.onDestroy(() => {});
   }
 
+  private clearAvatarObjectUrl(): void {
+    if (this.avatarObjectUrl) {
+      try {
+        URL.revokeObjectURL(this.avatarObjectUrl);
+      } catch (e) {}
+      this.avatarObjectUrl = null;
+    }
+    this.lastAvatarPath = null;
+  }
+
+  private loadUserAvatar(user: any): void {
+    const path = user?.avatarUrl ?? null;
+    if (!path) {
+      this.clearAvatarObjectUrl();
+      return;
+    }
+    if (/^https?:\/\//i.test(path)) {
+      this.clearAvatarObjectUrl();
+      return;
+    }
+    if (this.lastAvatarPath === path) return;
+    this.lastAvatarPath = path;
+
+    this.avatarLoading = true;
+    try {
+      this.usersService.token = localStorage.getItem('token');
+      this.usersService.getImageProfile(user.id, true).subscribe({
+        next: (blob) => {
+          try {
+            if (this.avatarObjectUrl) {
+              try {
+                URL.revokeObjectURL(this.avatarObjectUrl);
+              } catch (e) {}
+            }
+          } catch (e) {}
+          try {
+            this.avatarObjectUrl = URL.createObjectURL(blob);
+          } catch (e) {
+            this.avatarObjectUrl = null;
+          }
+          this.avatarLoading = false;
+          try {
+            this.cdr.detectChanges();
+          } catch (e) {}
+        },
+        error: (err) => {
+          console.error('Dashboard: error loading protected avatar', err);
+          this.avatarLoading = false;
+          this.avatarObjectUrl = null;
+          try {
+            this.cdr.detectChanges();
+          } catch (e) {}
+        },
+      });
+    } catch (e) {
+      console.error('Dashboard: error requesting avatar', e);
+      this.avatarLoading = false;
+    }
+  }
+
+  // Trigger file input to select a new avatar (and upload)
+  triggerAvatarInput(event: MouseEvent): void {
+    event.stopPropagation();
+    try {
+      this.avatarInputRef?.nativeElement?.click();
+    } catch (e) {}
+  }
+
+  onAvatarSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input || !input.files || input.files.length === 0) return;
+    const file = input.files[0];
+    const user = this.usersStore.user();
+    if (!user) return;
+    const form = new FormData();
+    form.append('file', file);
+    this.usersService.postImageProfile(user.id, form).subscribe({
+      next: () => {
+        const email = localStorage.getItem('email');
+        if (email) this.usersStore.loadByEmail(email);
+      },
+      error: (err) => {
+        console.error('Dashboard: error uploading avatar', err);
+      },
+    });
+    input.value = '';
+  }
+
   private asNumber(v: any): number | undefined {
     if (v === null || v === undefined) return undefined;
     if (typeof v === 'number' && Number.isFinite(v)) return v;
@@ -265,7 +386,11 @@ export class DashboardPage implements OnInit {
    * at least one battle is present or the timeout expires.
    * Returns true if battles were found, false on timeout.
    */
-  private async ensureBattlesAvailable(tag: string, timeoutMs = 60000, intervalMs = 2000): Promise<boolean> {
+  private async ensureBattlesAvailable(
+    tag: string,
+    timeoutMs = 60000,
+    intervalMs = 2000,
+  ): Promise<boolean> {
     const start = Date.now();
     try {
       // Try at least once immediately

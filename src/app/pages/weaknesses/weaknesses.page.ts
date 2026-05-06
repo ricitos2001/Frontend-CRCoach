@@ -116,6 +116,30 @@ export class WeaknessesPage implements OnInit {
     return Number.isFinite(n) ? n : undefined;
   }
 
+  // Normaliza valores que pueden venir como fracción (0..1) o ya en porcentaje (0..100)
+  private normalizePercent(n?: number): number {
+    if (n === undefined || isNaN(n)) return 0;
+    if (n >= 0 && n <= 1) return n * 100;
+    return n;
+  }
+
+  // Formatea cualquier valor posible (number, string, objeto con propiedades comunes)
+  // devolviendo una cadena con el porcentaje con 'decimals' decimales (sin el sufijo '%').
+  public formatPercentValue(v: any, decimals = 2): string {
+    if (v === null || v === undefined) return (0).toFixed(decimals);
+
+    // Si es objeto, intentar extraer propiedades comunes usadas por el backend
+    if (typeof v === 'object') {
+      v = v.value ?? v.percentage ?? v.last25Battles ?? v.last7Days ?? v;
+    }
+
+    const n = Number(v);
+    if (!Number.isFinite(n)) return (0).toFixed(decimals);
+
+    const percent = this.normalizePercent(n);
+    return (percent ?? 0).toFixed(decimals);
+  }
+
   // Period filter applied from app-searcher (format yyyy-mm-dd - yyyy-mm-dd or dd/mm/yyyy - dd/mm/yyyy)
   onPeriodFilter(range: { from: string; to: string } | null) {
     if (!this.tag) return;
@@ -220,6 +244,22 @@ export class WeaknessesPage implements OnInit {
   public summaryWinData7: number[] = [0, 100];
   public summaryWinBackground: string[] = ['#EBF9C8', '#F8C9C9'];
 
+  // Opciones para los pequeños doughnuts de resumen: ocultar el recuadro de la leyenda
+  public smallDoughnutOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          // eliminar el cuadro de color junto al texto de la leyenda
+          boxWidth: 0,
+          // un poco de padding para separar texto del borde
+          padding: 8,
+        },
+      },
+    },
+  } as ChartOptions;
   public get barChartOptions(): ChartOptions {
     return {
       responsive: true,

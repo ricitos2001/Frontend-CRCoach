@@ -7,20 +7,20 @@
   }
   @if (usersStore.user(); as user) {
     <section class="profile-header__user-data">
-      <h1>Perfil de usuario</h1>
+      <h1>{{ 'PAGES.PROFILE.HEADER' | translate }}</h1>
       <section class="profile-header__inner">
         <section class="profile-header__info">
           <article class="avatar-wrapper">
-            <!-- Usamos avatarObjectUrl cuando la imagen requiere Authorization, si no fallback a resolveUrl -->
-            <img [src]="avatarObjectUrl ? avatarObjectUrl : resolveUrl(user.avatarUrl)" alt="avatar del usuario">
+            <!-- Si avatar requiere auth mostramos avatarObjectUrl (blob). Si no, usamos resolveUrl. -->
+            <img [src]="avatarObjectUrl ?? (needsAuth(user.avatarUrl) ? null : resolveUrl(user.avatarUrl))" alt="avatar del usuario">
             <!-- Botón que aparece al hacer hover para cambiar la imagen -->
             <app-common-button class="avatar-change" (click)="triggerAvatarInput($event)">{{ 'PAGES.PROFILE.CHANGE_IMAGE_PROFILE' | translate }}</app-common-button>
             <input type="file" #avatarInput accept="image/*" (change)="onAvatarSelected($event)" hidden>
           </article>
           <article class="profile-header__details">
-            <p>Nombre y apellidos: {{user.name}} {{user.surnames}}</p>
-            <p>Nombre de usuario: {{user.username}}</p>
-            <p>Correo electrónico: {{user.email}}</p>
+            <p>{{ 'PAGES.PROFILE.LABELS.NAME_AND_SURNAMES' | translate }}: {{user.name}} {{user.surnames}}</p>
+            <p>{{ 'PAGES.PROFILE.LABELS.USERNAME' | translate }}: {{user.username}}</p>
+            <p>{{ 'PAGES.PROFILE.LABELS.EMAIL' | translate }}: {{user.email}}</p>
           </article>
         </section>
         <article class="profile-header__actions">
@@ -40,8 +40,8 @@
     }
   }
 </ng-template>
-<section class="player-profile">
-  <h1>Perfil del jugador</h1>
+    <section class="player-profile">
+  <h1>{{ 'PAGES.PROFILE.PLAYER_PROFILE_TITLE' | translate }}</h1>
   @if (profileStore.loading() && !profileStore.profile()) {
     <p>{{ 'PAGES.DASHBOARD.LOADING_PROFILE' | translate }}</p>
   }
@@ -50,11 +50,11 @@
   }
   @if (profileStore.profile(); as profile) {
 
-    <section class="player-profile__card card--stats">
-      <h2>Datos del jugador</h2>
+      <section class="player-profile__card card--stats">
+      <h2>{{ 'PAGES.PROFILE.PLAYER_DATA' | translate }}</h2>
       <section class="player-profile__card-inner">
-        <section class="deck">
-          <h2>Mazo de {{profile.name}}</h2>
+          <section class="deck">
+          <h2>{{ 'PAGES.PROFILE.DECK_OF' | translate:{ name: profile.name } }}</h2>
           <article class="deck__images">
               @for (playerCard of profile.currentDeck.playerCards; track playerCard.id) {
                   <img [src]="resolveUrl(playerCard.iconUrl.medium)" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
@@ -83,12 +83,12 @@
           </svg>
           <p>{{profile.battleCount}}</p>
         </article>
-        <section class="player-profile__extras">
+          <section class="player-profile__extras">
           <article class="trophies">
             <p>{{profile.trophies}}/{{profile.bestTrophies}}</p>
           </article>
           <article class="favorite-card">
-            <h3>Carta favorita</h3>
+            <h3>{{ 'PAGES.PROFILE.FAVORITE_CARD' | translate }}</h3>
             <img [src]="resolveUrl(profile.currentFavouriteCard.iconUrl.medium)" alt="{{ 'PAGES.DASHBOARD.AVATAR_ALT' | translate }}">
             <p>{{profile.currentFavouriteCard.name}}</p>
           </article>
@@ -96,7 +96,7 @@
       </section>
     </section>
     <section class="player-profile__cards">
-      <h2>Cartas del jugador</h2>
+      <h2>{{ 'PAGES.PROFILE.CARDS_TITLE' | translate }}</h2>
       <article class="player-profile__cards-grid">
         @for (playerCard of profile.playerCards; track playerCard.id) {
           <!-- Al hacer click en la carta mostramos/ocultamos la caja de detalles -->
@@ -108,13 +108,13 @@
     @if (selectedCard) {
       <section #cardDetail class="card-detail" [ngStyle]="cardDetailStyle" (click)="$event.stopPropagation()">
         <img [src]="resolveUrl(selectedCard.iconUrl.medium)" alt="{{selectedCard.name}}">
-        <article class="card-detail__info">
-          <h4>{{selectedCard.name}}</h4>
-          <p>Rarity: {{selectedCard.rarity}}</p>
-          <p>Level: {{selectedCard.level}} / {{selectedCard.maxLevel}}</p>
-          <p>Elixir: {{selectedCard.elixirCost}}</p>
-          <p>Count: {{selectedCard.count}}</p>
-        </article>
+          <article class="card-detail__info">
+           <h4>{{selectedCard.name}}</h4>
+           <p>{{ 'PAGES.PROFILE.CARD_RARITY' | translate }}: {{selectedCard.rarity}}</p>
+           <p>{{ 'PAGES.PROFILE.CARD_LEVEL' | translate }}: {{selectedCard.level}} / {{selectedCard.maxLevel}}</p>
+           <p>{{ 'PAGES.PROFILE.CARD_ELIXIR' | translate }}: {{selectedCard.elixirCost}}</p>
+           <p>{{ 'PAGES.PROFILE.CARD_COUNT' | translate }}: {{selectedCard.count}}</p>
+         </article>
       </section>
     }
   }

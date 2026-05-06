@@ -351,7 +351,22 @@
       "DELETE_ACCOUNT": "Delete account",
       "CARD_IN_DECK": "Deck card",
       "PLAYER_CARD": "Player card",
-      "CHANGE_IMAGE_PROFILE": "Change image profile"
+      "CHANGE_IMAGE_PROFILE": "Change image profile",
+      "HEADER": "User profile",
+      "PLAYER_PROFILE_TITLE": "Player profile",
+      "PLAYER_DATA": "Player data",
+      "DECK_OF": "Deck of {{name}}",
+      "FAVORITE_CARD": "Favorite card",
+      "CARDS_TITLE": "Player cards",
+      "LABELS": {
+        "NAME_AND_SURNAMES": "Name and surnames",
+        "USERNAME": "Username",
+        "EMAIL": "Email"
+      },
+      "CARD_RARITY": "Rarity",
+      "CARD_LEVEL": "Level",
+      "CARD_ELIXIR": "Elixir",
+      "CARD_COUNT": "Count"
     }
   },
   "USER": {

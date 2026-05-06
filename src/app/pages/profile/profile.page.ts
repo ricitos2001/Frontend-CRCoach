@@ -120,6 +120,13 @@ export class ProfilePage implements OnInit, OnDestroy {
     return `${environment.apiUrl}/${cleaned}`;
   }
 
+  // Indica si la URL es relativa y por tanto probablemente protegida (requiere Authorization)
+  needsAuth(url?: string | null): boolean {
+    if (!url) return false;
+    // consideramos relativa si no empieza por http(s)
+    return !/^https?:\/\//i.test(url);
+  }
+
   // Handle selected file and upload
   onAvatarSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
