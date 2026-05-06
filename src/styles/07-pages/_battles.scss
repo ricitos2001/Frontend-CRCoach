@@ -143,13 +143,14 @@
 			grid-template-columns: repeat(4, 1fr);
 			gap: 8px;
 
-			.card {
-			  width: 128px; /* más compacto */
-			  height: 128px;
-			  object-fit: contain;
-			  display: block;
-			  margin: 0 auto;
-			}
+				/* los elementos en markup son <img>, no .card -> aplicar tamaño a img */
+				img {
+				  width: 128px; /* más compacto */
+				  height: 128px;
+				  object-fit: contain;
+				  display: block;
+				  margin: 0 auto;
+				}
 		  }
 		}
 	  }
@@ -209,6 +210,133 @@
 		.score { font-size: 28px; font-weight: 900; }
 	  }
   }
+  }
+}
+
+/* Responsive: móvil / pantallas pequeñas */
+@media (max-width: 768px) {
+  .battles-page {
+	padding: 12px;
+
+	.battle-card {
+	  margin-bottom: 18px;
+
+	  .battle-header {
+		padding: 6px 8px;
+
+		.result-pill,
+		.trophy-pill {
+		  padding: 6px 10px;
+		  font-size: 12px;
+		  border-radius: 10px;
+		}
+	  }
+
+	  .battle-body {
+		flex-direction: column;
+		gap: 10px;
+		margin: 8px;
+		align-items: stretch;
+
+		.team {
+		  width: 100%;
+
+			  /* Móvil: hacer la cabecera del equipo centrada y simétrica */
+			  .team-top {
+				display: flex;
+				flex-direction: column; /* avatar arriba, texto abajo */
+				align-items: center;
+				gap: 6px;
+
+				.avatar {
+				  width: 64px; /* caja del escudo más grande */
+				  height: 64px;
+				  border-radius: 12px;
+				  display: flex;
+				  align-items: center;
+				  justify-content: center;
+				  padding: 6px; /* espacio interno para el icono */
+				}
+
+				.team-info {
+				  flex: 0 0 auto;
+				  text-align: center;
+				  .player-name { font-size: 15px; margin: 0; line-height: 1; }
+				  .player-clan { font-size: 12px; margin: 0; opacity: 0.9; }
+				}
+
+				.team-trophy {
+				  margin-top: 4px;
+				  font-weight: 800;
+				  text-align: center;
+				}
+			  }
+
+		  .deck {
+			padding: 8px;
+
+			.deck-header { font-size: 12px; padding: 4px 8px; }
+
+			.cards {
+			  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+			  gap: 10px;
+			  justify-items: center;
+
+			  img { width: 72px; height: 72px; }
+			}
+		  }
+		}
+
+		.center {
+		  width: auto;
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+
+		  .swords { width: 48px; height: 48px; }
+		  .score { font-size: 20px; font-weight: 800; }
+		}
+
+		/* adaptar team-right para que se muestre como el izquierdo en móvil y sea simétrico */
+		.team.team-right {
+		  width: 100%; /* forzar ancho completo en móvil */
+
+		  /* Hacer que la cabecera del equipo derecho sea igual que la izquierda (column, centrada) */
+		  .team-top.right {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 6px;
+
+			.avatar {
+			  width: 64px;
+			  height: 64px;
+			  border-radius: 12px;
+			  display: flex;
+			  align-items: center;
+			  justify-content: center;
+			  padding: 6px;
+			}
+
+			.team-info {
+			  text-align: center;
+			  .player-name { font-size: 15px; margin: 0; line-height: 1; }
+			  .player-clan { font-size: 12px; margin: 0; opacity: 0.9; }
+			}
+
+			.team-trophy {
+			  margin-top: 4px;
+			  font-weight: 800;
+			  text-align: center;
+			}
+		  }
+
+		  /* asegurar que el deck del oponente también quede centrado y con ancho limitado */
+		  .deck { max-width: 360px; margin: 0 auto 8px auto; width: 100%; }
+		}
+	  }
+	}
   }
 }
 
