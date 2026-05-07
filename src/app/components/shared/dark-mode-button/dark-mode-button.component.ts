@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ThemeService } from '../../../services/theme/theme.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ThemeService } from '../../../services/theme/theme.service';
 })
 export class DarkModeButtonComponent {
   toogled = false;
+  @Input() tabindex?: number;
 
   constructor(private darkMode: ThemeService) {
     this.darkMode.isDark$.subscribe((v) => (this.toogled = v));

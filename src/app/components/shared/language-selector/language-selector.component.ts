@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LanguageService } from '../../../services/language/language.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -10,6 +10,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   standalone: true,
 })
 export class LanguageSelectorComponent implements OnInit {
+  // Allow parent components to control focusability (tabindex)
+  @Input() tabindex?: number;
   constructor(
     private languageService: LanguageService,
     private translate: TranslateService,

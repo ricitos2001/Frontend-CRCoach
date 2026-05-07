@@ -13,8 +13,10 @@ RUN npm ci --legacy-peer-deps --silent
 COPY . .
 
 # Construimos la aplicación usando el script build:prod (ejecuta inyección de preloads)
-# RUN npm run build:prod -- --configuration production
 RUN npm run build
+
+# Minificamos el CSS generado con clean-css-cli para reducir el tamaño de los archivos y mejorar el rendimiento
+RUN npx cleancss -o dist/Frontend-CRCoach/browser/styles.min.css dist/Frontend-CRCoach/browser/styles.css
 
 # Etapa de producción - nginx
 FROM nginx:stable-alpine

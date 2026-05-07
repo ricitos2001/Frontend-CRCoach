@@ -12,4 +12,5 @@ export class CommonButtonComponent {
   @Input() disabled: boolean = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() routerLink?: string | any[];
+  @Input() tabindex?: number;
 }

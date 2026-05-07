@@ -18,14 +18,18 @@
         </span>
       </button>
 
-      <nav class="nav-links" [class.open]="menuOpen" [attr.aria-hidden]="!menuOpen">
+      <!-- When nav is closed on small screens it is translated off-screen but remains in the DOM.
+           To avoid focusable descendants inside an aria-hidden container we add the inert attribute
+           and set tabindex=-1 on interactive elements when menuOpen is false. This prevents keyboard
+           focus and satisfies accessibility audits. -->
+      <nav class="nav-links" [class.open]="menuOpen" [attr.aria-hidden]="!menuOpen" [attr.inert]="!menuOpen ? '' : null">
         <ul>
-          <li><a href="/landing#start" (click)="navigateToFragment('start', $event); closeMenu()">{{ 'COMPONENTS.LAYOUT.HEADER.START' | translate }}</a></li>
-          <li><a href="/landing#what-offers" (click)="navigateToFragment('what-offers', $event); closeMenu()">{{ 'COMPONENTS.LAYOUT.HEADER.WHAT_OFFERS' | translate }}</a></li>
-          <li><a href="/landing#contact" (click)="navigateToFragment('contact', $event); closeMenu()">{{ 'COMPONENTS.LAYOUT.HEADER.CONTACT' | translate }}</a></li>
-          <li><app-common-button routerLink="/register" (click)="closeMenu()">{{ 'COMPONENTS.SHARED.GET_STARTED' | translate }}</app-common-button></li>
-          <li><app-language-selector></app-language-selector></li>
-          <li><app-dark-mode-button></app-dark-mode-button></li>
+          <li><a href="/landing#start" (click)="navigateToFragment('start', $event); closeMenu()" [attr.tabindex]="menuOpen ? 0 : -1">{{ 'COMPONENTS.LAYOUT.HEADER.START' | translate }}</a></li>
+          <li><a href="/landing#what-offers" (click)="navigateToFragment('what-offers', $event); closeMenu()" [attr.tabindex]="menuOpen ? 0 : -1">{{ 'COMPONENTS.LAYOUT.HEADER.WHAT_OFFERS' | translate }}</a></li>
+          <li><a href="/landing#contact" (click)="navigateToFragment('contact', $event); closeMenu()" [attr.tabindex]="menuOpen ? 0 : -1">{{ 'COMPONENTS.LAYOUT.HEADER.CONTACT' | translate }}</a></li>
+          <li><app-common-button routerLink="/register" (click)="closeMenu()" [tabindex]="menuOpen ? 0 : -1">{{ 'COMPONENTS.SHARED.GET_STARTED' | translate }}</app-common-button></li>
+          <li><app-language-selector [tabindex]="menuOpen ? 0 : -1"></app-language-selector></li>
+          <li><app-dark-mode-button [tabindex]="menuOpen ? 0 : -1"></app-dark-mode-button></li>
         </ul>
       </nav>
     </header>
