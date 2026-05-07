@@ -439,6 +439,16 @@ footer .logo {
   width: 6rem;
 }
 
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 4rem;
+  }
+}
 aside {
   background: var(--components-color);
 }
@@ -3599,20 +3609,25 @@ section p.error {
   flex-wrap: nowrap;
   min-height: 32px;
   overflow: hidden;
+  /* allow the pills row to shrink inside flex parents */
+  min-width: 0;
 }
 
 .pill {
-  display: inline-block;
   background: var(--elements-color);
   color: var(--components-color);
   font-weight: 700;
-  white-space: nowrap;
+  white-space: wrap;
   padding: 8px 12px;
   border-radius: 999px;
   box-shadow: 0 6px 12px rgba(8, 32, 48, 0.14);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  /* default: don't grow to push the action buttons; keep compact */
-  flex: 0 0 auto;
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pill.small {
@@ -3624,7 +3639,8 @@ section p.error {
 
 .pill.long {
   height: 30px;
-  min-width: 220px; /* longer bars like mock */
+  /* let long pills adjust to their text but keep a comfortable padding */
+  min-width: 0;
   padding: 0 16px;
   border-radius: 999px;
   display: inline-flex;
@@ -3632,6 +3648,10 @@ section p.error {
   justify-content: center;
   font-weight: 600;
   font-size: 0.9rem;
+  flex: 0 1 auto;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__title {
