@@ -115,15 +115,15 @@
 }
 
 .profile-header__actions app-common-button:first-child button {
-  background: #f2ddc8; /* beige similar a la referencia */
-  color: #12364a; /* texto oscuro */
+  background: var(--color-warning-1);
+  color: var(--components-color);
   box-shadow: 0 6px 14px rgba(0,0,0,0.25);
   border: 1px solid rgba(0,0,0,0.06);
 }
 
 .profile-header__actions app-common-button:last-child button {
-  background: #f6c9c9; /* rosa suave */
-  color: #12364a;
+  background: var(--color-error-1);
+  color: var(--components-color);
   box-shadow: 0 6px 14px rgba(0,0,0,0.25);
   border: 1px solid rgba(0,0,0,0.06);
 }
@@ -133,8 +133,8 @@
   right: 0;
   top: 0;
   transform: translate(0, -12%);
-  background: #ffffff;
-  color: #0b3045;
+  background: var(--elements-color);
+  color: var(--components-color);
   padding: 10px 20px;
   border-radius: 4px 0 0 4px;
   font-weight: 700;
@@ -323,7 +323,8 @@
 
 /* Pequeñas adaptaciones responsivas */
 @media (max-width: 900px) {
-  .player-profile__card-inner { flex-direction: column; align-items: stretch; }
+  /* En pantallas intermedias apilamos el contenido de la card y lo centramos */
+  .player-profile__card-inner { flex-direction: column; align-items: center; justify-content: center; }
   .deck { min-width: 100%; }
   .player-profile__cards-grid { grid-template-columns: repeat(4, 1fr); }
 }
@@ -339,6 +340,8 @@
     padding: 22px 18px;
     gap: 12px;
   }
+  /* Asegurar orden lógico: user-data primero, luego el tag, luego las acciones */
+  .profile-header__user-data { order: 1; }
   .profile-header__user-data {
     grid-column: auto;
     grid-row: auto;
@@ -384,6 +387,35 @@
     box-sizing: border-box;
   }
   .profile-tag { display: inline-block; margin-top: 8px; align-self: center; }
+
+  /* En móvil el tag debe entrar en el flujo entre datos y acciones.
+     Quitamos el posicionamiento absoluto y usamos order para colocarlo. */
+  .profile-tag {
+    position: static;
+    transform: none;
+    right: auto;
+    top: auto;
+    order: 2;
+    display: block;
+    margin: 8px 0;
+    align-self: center;
+    z-index: auto;
+    border-radius: 4px;
+  }
+
+  .profile-header__actions { order: 3; width: 100%; }
+
+  /* Alineación de elementos dentro de la primera card en móvil: hacer que cada
+     columna ocupe toda la anchura y se centre su contenido */
+  .player-profile__card-inner > * {
+    width: 100%;
+    max-width: 520px;
+    box-sizing: border-box;
+  }
+
+  .player-profile__extras {
+    align-items: center; /* antes: flex-end */
+  }
 }
 
 
