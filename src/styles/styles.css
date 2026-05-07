@@ -1730,7 +1730,7 @@ app-form-input .error[title] {
     padding: 0.6rem 1.6rem;
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .landing {
     padding: 3rem 0 2rem;
   }
@@ -1756,14 +1756,11 @@ app-form-input .error[title] {
   }
   /* Make 3-column area into 2 columns */
   .landing__grid-container-x3 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     max-width: 720px;
   }
   .landing__grid-container-x3 article h1 {
     font-size: 1.6rem;
-  }
-  .landing__grid-container-x12 {
-    grid-template-columns: repeat(6, 1fr);
   }
   .landing app-common-button button {
     min-width: 140px;
