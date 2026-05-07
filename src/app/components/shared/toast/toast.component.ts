@@ -30,4 +30,8 @@ export class ToastComponent {
   dismiss(id: string) {
     this.toastService.dismiss(id);
   }
+
+  trackById(_index: number, item: ToastMessage) {
+    return item.id;
+  }
 }
