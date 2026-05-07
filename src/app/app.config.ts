@@ -7,6 +7,7 @@ import {
   inject,
 } from '@angular/core';
 import { ThemeService } from './services/theme/theme.service';
+import { LanguageService } from './services/language/language.service';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { registerLocaleData } from '@angular/common';
@@ -17,7 +18,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TRANSLATE_HTTP_LOADER_CONFIG, TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LanguageService } from './services/language/language.service';
 
 registerLocaleData(localeEs);
 
@@ -34,9 +34,13 @@ export const appConfig: ApplicationConfig = {
       provide: TRANSLATE_HTTP_LOADER_CONFIG,
       useValue: { prefix: '/assets/i18n/', suffix: '.json' },
     },
+    // LanguageService initialization removed from app initializer to defer
+    // loading of translation files until they're actually needed.
+    // Inicializar idioma en el arranque para evitar que la app se renderice
+    // sin traducciones. Se esperan las traducciones antes de continuar.
     provideAppInitializer(() => {
-      const ls = inject(LanguageService);
-      return ls.init();
+      const language = inject(LanguageService);
+      return language.init();
     }),
     // Inicializar tema en el arranque de la app (reemplaza APP_INITIALIZER)
     provideAppInitializer(() => {
