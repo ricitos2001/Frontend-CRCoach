@@ -23,7 +23,35 @@ import { DarkModeButtonComponent } from '../../shared/dark-mode-button/dark-mode
   standalone: true,
 })
 export class HeaderComponent {
-  constructor(protected router: Router) {}
+  // media query listener used to detect mobile layout
+  private mq?: MediaQueryList;
+  public isMobile = false;
+
+  constructor(protected router: Router) {
+    // initialize mobile flag and subscribe to changes
+    try {
+      this.mq = window.matchMedia('(max-width: 720px)');
+      this.isMobile = this.mq.matches;
+      // update on changes
+      const listener = (e: MediaQueryListEvent) => {
+        this.isMobile = e.matches;
+        // ensure menu is closed when switching to desktop
+        if (!this.isMobile) {
+          this.menuOpen = false;
+        }
+      };
+      // support both modern and older browsers
+      if ((this.mq as any).addEventListener) {
+        (this.mq as any).addEventListener('change', listener);
+      } else if ((this.mq as any).addListener) {
+        // deprecated but supported in some environments
+        (this.mq as any).addListener(listener);
+      }
+    } catch (e) {
+      // matchMedia might not be available in some test environments
+      this.isMobile = false;
+    }
+  }
   headerContentService = inject(HeaderContentService);
   content$ = this.headerContentService.content$;
   // Control del menú hamburguesa en landing
