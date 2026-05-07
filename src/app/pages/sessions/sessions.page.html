@@ -24,16 +24,16 @@
     @if (sessionsStore.sessionsPage(); as sessionsPage) {
       <section class="sessions">
         @for (s of pageToArray(sessionsPage); track s.id) {
-          <section class="card">
+          <section class="card" [class.expanded]="expandedSessionId === s.id">
             <section class="card__header">
               <section class="card__pills">
                 <article class="pills-row">
                   <span class="pill small">{{s.title}}</span>
-                  <span class="pill small">{{ s.startTime | date:'short' }} - {{ s.endTime | date:'short' }}</span>
+                  <span class="pill small hiden-pill">{{ s.startTime | date:'short' }} - {{ s.endTime | date:'short' }}</span>
                   @if(!expandedSessionId) {
-                    <span class="pill long">{{s.enfoque}}</span>
-                    <span class="pill long">{{s.mood}}</span>
-                    <span class="pill long">{{s.notes}}</span>
+                    <span class="pill long hiden-pill">{{s.enfoque}}</span>
+                    <span class="pill long hiden-pill">{{s.mood}}</span>
+                    <span class="pill long hiden-pill">{{s.notes}}</span>
                   }
                 </article>
               </section>

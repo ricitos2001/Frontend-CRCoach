@@ -175,10 +175,3 @@
 
 /* slightly smaller summary text to match mock */
 .session-summary { font-size: 0.85rem; opacity: 0.95; }
-
-/* small screens adjustments */
-@media (max-width: 768px) {
-  .pills-row { flex-wrap: wrap; gap: 0.5rem; }
-  .pill.long { min-width: 100px; }
-}
-
