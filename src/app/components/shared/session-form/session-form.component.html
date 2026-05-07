@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-  <div class="fieldset">
+  <section class="fieldset">
     <h1 class="form__legend">@if(session) { {{ 'PAGES.SESSIONS.EDIT_TITLE' | translate }} } @else { {{ 'PAGES.SESSIONS.CREATE_TITLE' | translate }} }</h1>
 
     <app-form-input class="glass-input" name="title" label="{{ 'PAGES.SESSIONS.LABEL.TITLE' | translate }}" formControlName="title"></app-form-input>
@@ -20,6 +20,6 @@
       <app-common-button type="submit" [disabled]="form.invalid || loading">{{ 'PAGES.SESSIONS.SAVE' | translate }}</app-common-button>
       <app-common-button type="button" (click)="onCancel()">{{ 'PAGES.SESSIONS.CANCEL' | translate }}</app-common-button>
     </article>
-  </div>
+  </section>
 </form>
 
