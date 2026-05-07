@@ -3185,7 +3185,7 @@ progress.goal__progress-bar::-moz-progress-bar {
 }
 
 /* Responsive tweaks */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   /* single column list */
   .goals {
     grid-template-columns: 1fr;
