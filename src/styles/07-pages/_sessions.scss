@@ -40,6 +40,8 @@
 
 .card__pills {
   flex: 1 1 auto;
+  /* allow pills container to shrink properly so action buttons stay visible */
+  min-width: 0;
 }
 
 .pills-row {
@@ -61,6 +63,8 @@
   border-radius: 999px;
   box-shadow: 0 6px 12px rgba(8,32,48,0.14);
   border: 1px solid rgba(0,0,0,0.06);
+  /* default: don't grow to push the action buttons; keep compact */
+  flex: 0 0 auto;
 }
 
 .pill.small {
@@ -87,6 +91,12 @@
   margin: 0;
   font-size: 0.95rem;
   display: none; /* title is not visible in the image mockup */
+}
+
+/* keep the action buttons fixed and visible (they must not be hidden) */
+.card__header .flex {
+  flex: 0 0 auto;
+  z-index: 2; /* stay above pills when pills overflow */
 }
 
 .flex {
@@ -175,3 +185,119 @@
 
 /* slightly smaller summary text to match mock */
 .session-summary { font-size: 0.85rem; opacity: 0.95; }
+
+/* Responsive adjustments for mobile similar to 'Diario de sesiones.png'
+   - No changes to desktop appearance (default styles remain)
+   - .hiden-pill elements will hide progressively on smaller viewports
+     using breakpoints and smooth transitions.
+*/
+
+.hiden-pill {
+  /* animation helpers so hiding feels smooth */
+  transition: opacity 160ms ease, width 160ms ease, max-width 160ms ease, padding 160ms ease, margin 160ms ease;
+  will-change: opacity, width, max-width, padding, margin;
+}
+
+/* Mobile layout: stack cards full width and reduce paddings */
+@media (max-width: 720px) {
+  .sessions { gap: 0.85rem; }
+
+  .card {
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin: 0 8px; /* give breathing room at mobile sides */
+  }
+
+  .card__header { gap: 0.65rem; }
+
+  .card__pills { flex: 1 1 auto; }
+
+  .pills-row { min-height: 40px; gap: 0.5rem; }
+
+  /* first step: hide the long bars (they take more width) */
+  .pill.long.hiden-pill {
+    opacity: 0;
+    width: 0;
+    max-width: 0;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  /* make action buttons a bit smaller on small screens */
+  .card__header .flex app-common-button button{
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Narrow phones: hide any other pills marked as hiden-pill */
+@media (max-width: 520px) {
+  .sessions { gap: 0.75rem; }
+
+  .card {
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin: 0 12px;
+  }
+
+  /* collapse any pill explicitly marked as hidden (both small and long) */
+  .pill.hiden-pill {
+    opacity: 0;
+    width: 0;
+    max-width: 0;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  /* make the visible title pill take remaining space */
+  .pills-row .pill.small:first-child {
+    min-width: 0;
+    flex: 1 1 auto;
+    display: inline-flex;
+    justify-content: flex-start;
+  }
+
+  /* when expanded, details should be full width and legible */
+  .session-details {
+    padding: 0.5rem 0;
+  }
+
+  .expanded-fields .field .value {
+    min-height: 48px;
+    padding: 12px 12px;
+  }
+
+  /* slightly reduce icon svg max size so layout doesn't wrap */
+  .card__header .flex app-common-button svg {
+    max-width:36px;
+    max-height:36px;
+  }
+}
+
+/* Extra narrow devices: ensure cards behave as vertical blocks and centered */
+@media (max-width: 380px) {
+  .card {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .pills-row { gap: 0.5rem; }
+
+  /* As a last resort hide even the second small pill if present */
+  .pill.small.hiden-pill {
+    opacity: 0;
+    max-width: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
