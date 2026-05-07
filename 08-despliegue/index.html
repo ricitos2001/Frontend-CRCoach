@@ -526,48 +526,7 @@
 
   <h1>08 despliegue</h1>
 
-<p>Guía de despliegue (Frontend)</p>
-<p>Este documento explica cómo construir y desplegar el frontend de CRCoach (Angular) tanto en desarrollo como en producción usando Docker.</p>
-<p>Requisitos
-- Node.js 24 (solo para desarrollo si trabajas con <code>ng serve</code>)
-- Docker y Docker Compose (para despliegue con la imagen nginx)</p>
-<p>Desarrollo local (opcional)
-1. Instala dependencias e inicia el servidor de desarrollo:</p>
-<pre><code class="language-bash">cd Frontend-CRCoach
-npm ci
-npm run start
-# Abrir http://localhost:4200
-</code></pre>
-<p>Construcción de producción
-1. Generar el bundle de producción:</p>
-<pre><code class="language-bash">cd Frontend-CRCoach
-npm ci
-npm run build
-</code></pre>
-<ol>
-<li>El resultado se encuentra en <code>dist/Frontend-CRCoach/browser/</code> (según Dockerfile). El Dockerfile del proyecto ya copia esta carpeta y usa Nginx para servir la SPA.</li>
-</ol>
-<p>Despliegue con Docker (imagen preparada)
-1. Construir la imagen localmente:</p>
-<pre><code class="language-bash">docker build --file Frontend-CRCoach/Dockerfile -t frontend-crcoach:latest Frontend-CRCoach
-</code></pre>
-<ol>
-<li>Ejecutar la imagen:</li>
-</ol>
-<pre><code class="language-bash">docker run --rm -p 80:80 frontend-crcoach:latest
-# Abrir http://localhost
-</code></pre>
-<p>Despliegue integrado (recomendado)
-Usar el docker-compose unificado en la raíz para levantar frontend + backend + db:</p>
-<pre><code class="language-bash"># Desde la raíz del repo
-docker compose up --build -d
-</code></pre>
-<p>Verificación
-- <code>curl -I http://localhost/</code> debe devolver 200
-- <code>curl -I http://localhost/api/actuator/health</code> debe devolver 200 si el backend expone actuator y el proxy está correctamente configurado</p>
-<p>Notas y recomendaciones
-- El <code>nginx.conf</code> del frontend incluye un bloque <code>location /api/</code> para enrutar peticiones al backend (host <code>app</code> en Docker). Asegúrate de levantar los servicios en la misma red de Docker.
-- Para producción usar HTTPS (Let's Encrypt/Traefik) y no exponer el backend directamente al exterior.</p>
+
 
 
 
