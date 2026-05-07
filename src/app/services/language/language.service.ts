@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, lastValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
@@ -11,9 +11,7 @@ export class LanguageService {
   private current = new BehaviorSubject<string>(this.getStoredOrDefault());
   public languageChanges$ = this.current.asObservable();
 
-  constructor(private translate: TranslateService) {
-    this.init();
-  }
+  constructor(private translate: TranslateService) {}
 
   private staticStored(): string | null {
     return localStorage.getItem('locale');
@@ -34,7 +32,12 @@ export class LanguageService {
     return this.supported.includes(code) ? code : 'en';
   }
 
-  init() {
+  /**
+   * Inicializa el idioma de la aplicación.
+   * Devuelve una promesa que se resuelve cuando las traducciones para el
+   * idioma seleccionado han sido cargadas (útil para APP_INITIALIZER).
+   */
+  async init(): Promise<void> {
     const stored = this.staticStored();
     let lang: string | null;
 
@@ -56,7 +59,20 @@ export class LanguageService {
       lang = 'en';
     }
 
-    this.translate.use(lang);
+    // Esperar a que las traducciones se descarguen antes de continuar
+    try {
+      await lastValueFrom(this.translate.use(lang));
+    } catch (e) {
+      // Si falla la carga del idioma solicitado, forzamos 'en' como fallback
+      try {
+        await lastValueFrom(this.translate.use('en'));
+        lang = 'en';
+      } catch (_) {
+        // Si también falla el fallback, dejamos que la app siga de todos modos
+        // pero no bloqueamos eternamente.
+      }
+    }
+
     this.current.next(lang);
     localStorage.setItem('locale', lang);
     document.documentElement.lang = lang;
