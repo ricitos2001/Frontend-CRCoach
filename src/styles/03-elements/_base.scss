@@ -50,7 +50,6 @@ footer .icon-letters {
 }
 
 .controls > *:not(app-searcher):not(.search) {
-  /* let buttons and selects keep their content size and not steal remaining space */
   flex: 0 0 auto;
 }
 

@@ -92,4 +92,39 @@ export class AuthService {
     this.usersStore.clear();
     this.analyticsStore.clear();
   }
+
+  /**
+   * Devuelve el token actual (si existe) desde localStorage.
+   */
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  /**
+   * Intenta parsear el payload de un JWT y devolverlo como objeto.
+   * Retorna null si no es un JWT válido o si ocurre cualquier error.
+   */
+  getTokenPayload(): any | null {
+    const token = this.getToken();
+    if (!token || token === 'null') return null;
+    const parts = token.split('.');
+    if (parts.length < 3) return null;
+    try {
+      const payloadJson = atob(parts[1]);
+      return JSON.parse(payloadJson);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
+   * Comprueba si el token almacenado es válido estructuralmente y no está expirado.
+   * No realiza modificaciones en el almacenamiento; sólo devuelve true/false.
+   */
+  isTokenValid(): boolean {
+    const payload = this.getTokenPayload();
+    if (!payload) return false;
+    if (payload.exp && Date.now() / 1000 > payload.exp) return false;
+    return true;
+  }
 }
