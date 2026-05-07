@@ -1,4 +1,3 @@
-
 Guía de despliegue (Frontend)
 
 Este documento explica cómo construir y desplegar el frontend de CRCoach (Angular) tanto en desarrollo como en producción usando Docker.
