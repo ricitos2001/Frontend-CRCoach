@@ -1,4 +1,5 @@
 <section class="toast-container" aria-live="polite">
+
   @for (t of toasts(); track t.id) {
     <section class="toast" [attr.data-type]="t.type">
       <article class="toast-body">
@@ -6,6 +7,5 @@
         <button class="toast-close" (click)="dismiss(t.id)" aria-label="Cerrar">×</button>
       </article>
     </section>
-
   }
 </section>
