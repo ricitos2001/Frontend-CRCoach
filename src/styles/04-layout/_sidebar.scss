@@ -126,19 +126,11 @@ aside app-language-selector {
 }
 
 aside app-language-selector .language-selector {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 36px;
-  cursor: pointer;
-  font-weight: 600;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
-  border: 0.12rem solid rgba(255,255,255,0.06);
-  border-radius: 6px;
-  padding: 0.25rem 1.2rem 0.25rem 0.6rem;
-  display: inline-flex;
-  align-items: center;
 }
 
 aside app-language-selector .language-selector option {

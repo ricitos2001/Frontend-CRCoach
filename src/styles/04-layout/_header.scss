@@ -57,18 +57,11 @@ header ul li {
 }
 
 header app-common-button button {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   color: var(--elements-color);
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.45rem 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
   background: var(--components-color);
-  border: 0.125rem solid var(--elements-color);
-  border-radius: 6px;
-  cursor: pointer;
-  min-height: 2.2rem;
-  line-height: 1.2;
 }
 
 header app-common-button button:hover, header app-language-selector .language-selector:hover {
@@ -89,19 +82,11 @@ header ul li a:hover {
 }
 
 header app-language-selector .language-selector {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 2.2rem;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
-  border: 0.125rem solid var(--elements-color);
-  border-radius: 6px;
-  padding: 0.35rem 2.2rem 0.35rem 0.6rem;
-  position: relative;
 }
 
 header app-language-selector .language-selector option {

@@ -1,4 +1,9 @@
-main .common-button {
+/* Estilos reutilizables para botones comunes
+   Se aplican tanto a la clase .common-button como a cualquier
+   componente que exponga un botón interno (app-common-button button).
+*/
+.common-button,
+app-common-button button {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
@@ -6,6 +11,7 @@ main .common-button {
   background: var(--components-color);
 }
 
-main .common-button svg path, {
+.common-button svg path,
+app-common-button button svg path {
   stroke: var(--elements-color);
 }

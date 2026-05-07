@@ -268,18 +268,11 @@ header ul li {
 }
 
 header app-common-button button {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   color: var(--elements-color);
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.45rem 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
   background: var(--components-color);
-  border: 0.125rem solid var(--elements-color);
-  border-radius: 6px;
-  cursor: pointer;
-  min-height: 2.2rem;
-  line-height: 1.2;
 }
 
 header app-common-button button:hover, header app-language-selector .language-selector:hover {
@@ -300,19 +293,11 @@ header ul li a:hover {
 }
 
 header app-language-selector .language-selector {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 2.2rem;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
-  border: 0.125rem solid var(--elements-color);
-  border-radius: 6px;
-  padding: 0.35rem 2.2rem 0.35rem 0.6rem;
-  position: relative;
 }
 
 header app-language-selector .language-selector option {
@@ -592,19 +577,11 @@ aside app-language-selector {
 }
 
 aside app-language-selector .language-selector {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: 36px;
-  cursor: pointer;
-  font-weight: 600;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
-  border: 0.12rem solid rgba(255, 255, 255, 0.06);
-  border-radius: 6px;
-  padding: 0.25rem 1.2rem 0.25rem 0.6rem;
-  display: inline-flex;
-  align-items: center;
 }
 
 aside app-language-selector .language-selector option {
@@ -723,7 +700,8 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   flex-wrap: nowrap;
 }
 
-.select select {
+.select select,
+app-language-selector .language-selector {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
@@ -821,7 +799,12 @@ main .refresh-button svg path {
     transform: rotate(360deg);
   }
 }
-main .common-button {
+/* Estilos reutilizables para botones comunes
+   Se aplican tanto a la clase .common-button como a cualquier
+   componente que exponga un botón interno (app-common-button button).
+*/
+.common-button,
+app-common-button button {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
@@ -829,7 +812,8 @@ main .common-button {
   background: var(--components-color);
 }
 
-main .common-button svg path {
+.common-button svg path,
+app-common-button button svg path {
   stroke: var(--elements-color);
 }
 
