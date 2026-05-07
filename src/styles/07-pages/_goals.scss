@@ -160,13 +160,6 @@ progress.goal__progress-bar::-moz-progress-bar{
   /* single column list */
   .goals { grid-template-columns: 1fr; }
 
-  /* Controls stack and stretch */
-  .controls { flex-direction: column; align-items: stretch; gap: 12px; }
-  .controls app-searcher,
-  .controls app-form-input,
-  .controls app-common-button,
-  .controls app-refresh-button { width: 100%; max-width: none; }
-
   /* Card layout: stack internal bits and center */
   .goal__container { flex-direction: column; align-items: center; }
   .goal h3 { margin-bottom: 8px; }
@@ -178,30 +171,6 @@ progress.goal__progress-bar::-moz-progress-bar{
 
 /* Narrow mobile layout (match mockup) */
 @media (max-width: 480px) {
-  /* Controls: put search + select side-by-side, buttons stacked centered */
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .controls app-searcher,
-  .controls app-form-input {
-    display: inline-flex;
-    width: calc(50% - 8px);
-    max-width: 220px;
-    box-sizing: border-box;
-  }
-
-  .controls app-common-button,
-  .controls app-refresh-button {
-    width: 72%;
-    max-width: 320px;
-    align-self: center;
-  }
-
   /* Make cards narrower and centered like the mock */
   .goals { gap: 26px; padding-left: 12px; padding-right: 12px; }
   .goal { max-width: 360px; margin-left: auto; margin-right: auto; }

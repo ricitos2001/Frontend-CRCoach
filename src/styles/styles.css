@@ -1762,6 +1762,9 @@ app-form-input .error[title] {
   .landing__grid-container-x3 article h1 {
     font-size: 1.6rem;
   }
+  .landing__grid-container-x12 {
+    grid-template-columns: repeat(6, 1fr);
+  }
   .landing app-common-button button {
     min-width: 140px;
     padding: 0.55rem 1rem;
@@ -3200,19 +3203,6 @@ progress.goal__progress-bar::-moz-progress-bar {
   .goals {
     grid-template-columns: 1fr;
   }
-  /* Controls stack and stretch */
-  .controls {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-  .controls app-searcher,
-  .controls app-form-input,
-  .controls app-common-button,
-  .controls app-refresh-button {
-    width: 100%;
-    max-width: none;
-  }
   /* Card layout: stack internal bits and center */
   .goal__container {
     flex-direction: column;
@@ -3236,27 +3226,6 @@ progress.goal__progress-bar::-moz-progress-bar {
 }
 /* Narrow mobile layout (match mockup) */
 @media (max-width: 480px) {
-  /* Controls: put search + select side-by-side, buttons stacked centered */
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-  }
-  .controls app-searcher,
-  .controls app-form-input {
-    display: inline-flex;
-    width: calc(50% - 8px);
-    max-width: 220px;
-    box-sizing: border-box;
-  }
-  .controls app-common-button,
-  .controls app-refresh-button {
-    width: 72%;
-    max-width: 320px;
-    align-self: center;
-  }
   /* Make cards narrower and centered like the mock */
   .goals {
     gap: 26px;
@@ -3440,24 +3409,6 @@ section p.error {
     font-size: 3.6rem;
     text-align: left;
     margin-bottom: 1rem;
-  }
-  /* Controles: apilar y espaciar, botones de ancho completo */
-  section .controls {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
-    margin-bottom: 12px;
-  }
-  section .controls app-searcher,
-  section .controls app-form-input,
-  section .controls app-common-button,
-  section .controls app-refresh-button {
-    width: 100%;
-  }
-  section .controls app-common-button {
-    max-width: 260px;
-    align-self: flex-start;
   }
   section .summary-wrapper .summary-grid {
     grid-template-columns: repeat(2, 1fr);

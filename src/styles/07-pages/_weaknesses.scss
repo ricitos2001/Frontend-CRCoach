@@ -182,25 +182,6 @@ section {
 	margin-bottom: 1rem;
   }
 
-  /* Controles: apilar y espaciar, botones de ancho completo */
-  section .controls {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	align-items: stretch;
-	margin-bottom: 12px;
-  }
-  section .controls app-searcher,
-  section .controls app-form-input,
-  section .controls app-common-button,
-  section .controls app-refresh-button {
-	width: 100%;
-  }
-  section .controls app-common-button {
-	max-width: 260px;
-	align-self: flex-start;
-  }
-
   section .summary-wrapper .summary-grid {
 	grid-template-columns: repeat(2, 1fr);
 	gap: 0.75rem;
