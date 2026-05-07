@@ -2282,7 +2282,6 @@ app-form-input .error[title] {
   justify-content: center;
   background: var(--elements-color);
   border-radius: 12px;
-  box-shadow: 0 10px 26px rgba(3, 39, 58, 0.36);
   flex: 0 0 auto;
 }
 
@@ -2358,7 +2357,6 @@ app-form-input .error[title] {
   -webkit-backdrop-filter: blur(8px) saturate(120%);
   backdrop-filter: blur(8px) saturate(120%);
   border-radius: 12px;
-  box-shadow: 0 18px 44px rgba(3, 39, 58, 0.66), inset 0 1px 0 rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   height: 100%;
   position: relative;
@@ -2580,7 +2578,6 @@ app-form-input .error[title] {
   -webkit-backdrop-filter: blur(6px) saturate(110%);
   backdrop-filter: blur(6px) saturate(110%);
   border-radius: 12px;
-  box-shadow: 0 16px 36px rgba(3, 39, 58, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
@@ -2870,7 +2867,6 @@ app-form-input .error[title] {
   -webkit-backdrop-filter: blur(8px) saturate(120%);
   backdrop-filter: blur(8px) saturate(120%);
   border-radius: 12px;
-  box-shadow: 0 18px 44px rgba(3, 39, 58, 0.66), inset 0 1px 0 rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   height: 100%;
   position: relative;
@@ -3310,7 +3306,6 @@ section .chart-wrapper {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012));
   border-radius: 12px;
   margin-bottom: 1.6rem;
-  box-shadow: 0 10px 30px rgba(11, 32, 54, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 section .chart-wrapper h2 {
