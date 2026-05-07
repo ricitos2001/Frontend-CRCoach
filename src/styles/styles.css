@@ -700,8 +700,7 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   flex-wrap: nowrap;
 }
 
-.select select,
-app-language-selector .language-selector {
+.select select {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
@@ -799,12 +798,7 @@ main .refresh-button svg path {
     transform: rotate(360deg);
   }
 }
-/* Estilos reutilizables para botones comunes
-   Se aplican tanto a la clase .common-button como a cualquier
-   componente que exponga un botón interno (app-common-button button).
-*/
-.common-button,
-app-common-button button {
+main .common-button {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
@@ -812,8 +806,7 @@ app-common-button button {
   background: var(--components-color);
 }
 
-.common-button svg path,
-app-common-button button svg path {
+main .common-button svg path {
   stroke: var(--elements-color);
 }
 
@@ -2610,6 +2603,89 @@ app-form-input .error[title] {
   color: var(--components-color);
 }
 
+/* Estilos para que cada línea "recent" se vea como en la maqueta Recent.png
+   - p.dashboard__recent__content se muestra en una fila con el título en negrita
+     a la izquierda y el resto de metadatos alineados a la derecha.
+   - Truncado con ellipsis cuando el contenido es demasiado largo.
+   - Las entradas de victory/defeat/draw convierten el texto en un elemento flexible
+     y colocan el icono SVG a la derecha. */
+.dashboard__recent article {
+  padding: 8px 12px 16px 12px;
+}
+
+.dashboard__recent__content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin: 0.25rem 0;
+  color: var(--components-color);
+  background: transparent; /* el contenedor ya define el fondo */
+  border-radius: 8px;
+  box-sizing: border-box;
+  min-width: 0; /* permitir truncado en hijos flex */
+}
+
+.dashboard__recent__content strong {
+  font-weight: 800;
+  color: var(--elements-color);
+  font-size: 14px;
+  margin-right: auto; /* empuja el resto del texto hacia la derecha */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.dashboard__recent__content {
+  font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Entradas con resultado: texto a la izquierda, icono a la derecha */
+.dashboard__recent__victory .team-data,
+.dashboard__recent__victory .opponent-data,
+.dashboard__recent__defeat .team-data,
+.dashboard__recent__defeat .opponent-data,
+.dashboard__recent__draw .team-data,
+.dashboard__recent__draw .opponent-data {
+  flex: 1 1 auto;
+  min-width: 0; /* necesario para que overflow funcione en flex children */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.dashboard__recent__victory svg,
+.dashboard__recent__defeat svg,
+.dashboard__recent__draw svg {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  margin-left: 12px;
+  display: block;
+}
+
+/* Estilos responsive: permitir que el texto ocupe dos líneas en pantallas pequeñas */
+@media (max-width: 768px) {
+  .dashboard__recent__content,
+  .dashboard__recent__victory .team-data,
+  .dashboard__recent__victory .opponent-data,
+  .dashboard__recent__defeat .team-data,
+  .dashboard__recent__defeat .opponent-data,
+  .dashboard__recent__draw .team-data,
+  .dashboard__recent__draw .opponent-data {
+    white-space: normal;
+    overflow: visible;
+  }
+  .dashboard__recent__content strong {
+    margin-right: 8px;
+  }
+}
 .dashboard__recent__content {
   background: var(--elements-color);
   padding: 12px 14px;

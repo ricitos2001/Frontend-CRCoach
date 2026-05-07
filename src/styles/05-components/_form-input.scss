@@ -5,9 +5,7 @@
 }
 
 
-.select select,
-/* aplicar los mismos estilos al selector de idioma (componentes personalizados) */
-app-language-selector .language-selector {
+.select select {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
