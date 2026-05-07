@@ -38,3 +38,19 @@ footer .icon-letters {
   gap: 24px;
   margin:12px 0;
 }
+
+.controls {
+  align-items: center;
+}
+
+.controls > app-searcher,
+.controls > .search {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.controls > *:not(app-searcher):not(.search) {
+  /* let buttons and selects keep their content size and not steal remaining space */
+  flex: 0 0 auto;
+}
+

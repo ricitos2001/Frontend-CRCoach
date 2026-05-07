@@ -175,6 +175,21 @@ footer .icon-letters {
   margin: 12px 0;
 }
 
+.controls {
+  align-items: center;
+}
+
+.controls > app-searcher,
+.controls > .search {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.controls > *:not(app-searcher):not(.search) {
+  /* let buttons and selects keep their content size and not steal remaining space */
+  flex: 0 0 auto;
+}
+
 header {
   border-radius: 0 0 8px 8px;
 }
@@ -720,10 +735,13 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .search input {
-  padding: 1rem;
+  flex: 1 1 auto;
+  min-width: 0;
   border: none;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
