@@ -2530,9 +2530,10 @@ app-form-input .error[title] {
   border-radius: 999px;
   display: flex;
   gap: 8px;
+  min-width: 10vh;
   align-items: center;
   justify-content: center; /* centrar las pills horizontalmente */
-  flex-wrap: wrap; /* permitir que las pills se ajusten en pantallas pequeñas */
+  flex-wrap: nowrap; /* permitir que las pills se ajusten en pantallas pequeñas */
   box-shadow: 0 8px 18px rgba(3, 39, 58, 0.25);
 }
 
@@ -2545,7 +2546,9 @@ app-form-input .error[title] {
 .streak-pill {
   display: inline-block;
   width: 36px;
+  min-width: 8px;
   height: 16px;
+  min-height: 8px;
   border-radius: 12px;
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08) inset;
 }
@@ -3727,7 +3730,7 @@ section p.error {
 }
 
 /* small screens adjustments */
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .pills-row {
     flex-wrap: wrap;
     gap: 0.5rem;
