@@ -25,7 +25,13 @@
         "LINK2": "Acuerdo con los TOS",
         "LINK3": "Aviso legal",
         "LINK4": "Política de privacidad",
-        "LINK5": "Información sobre las cookies"
+        "LINK5": "Información sobre las cookies",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.DISCORD": "Únete a mi servidor de Discord",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.INSTAGRAM": "Sígueme en Instagram",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.TWITTER": "Sígueme en Twitter",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.GITHUB": "Descubre otros proyectos en mi perfil de github",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.LINKEDIN": "Contacta conmigo en LinkedIn",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.KOFI": "Invítame a un café en Ko-fi"
       }
     },
     "SHARED": {

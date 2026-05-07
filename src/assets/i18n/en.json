@@ -25,7 +25,13 @@
         "LINK2": "TOS agreement",
         "LINK3": "Legal notice",
         "LINK4": "Privacy policy",
-        "LINK5": "Cookie information"
+        "LINK5": "Cookie information",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.DISCORD": "Join my Discord server",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.INSTAGRAM": "Follow me on Instagram",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.TWITTER": "Follow me on Twitter",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.GITHUB": "Discover other projects on my github profile",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.LINKEDIN": "Contact me on LinkedIn",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.KOFI": "Buy me a coffee on Ko-fi"
       }
     },
     "SHARED": {
