@@ -3,7 +3,7 @@
   @for (t of toasts(); track t.id) {
     <section class="toast" [attr.data-type]="t.type">
       <article class="toast-body">
-        <h3 class="toast-message">{{ t.message | translate }}</h3>
+        <p class="toast-message">{{ t.message | translate }}</p>
         <button class="toast-close" (click)="dismiss(t.id)" aria-label="Cerrar">×</button>
       </article>
     </section>
