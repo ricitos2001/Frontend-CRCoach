@@ -107,13 +107,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - run: mvn -B verify
+
+      - name: Build with Maven (run tests)
+        run: mvn -B verify
 ```
 
 **¿Qué hace?**
@@ -140,13 +145,22 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '24.13.0'
-      - run: npm install
-      - run: npm update
-      - run: npm audit fix
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update dependencies
+        run: npm update
+
+      - name: Fix vulnerabilities
+        run: npm audit fix
 ```
 
 ### 8.2.3. Workflow de CodeQL (Backend y Frontend)
@@ -346,21 +360,43 @@ render logs --service backend-crcoach
 
 El `Dockerfile` del frontend ya está optimizado:
 
+**Archivo real:** `Frontend-CRCoach/Dockerfile`
+
 ```dockerfile
 # Etapa de compilación
 FROM node:24-alpine AS builder
+
 WORKDIR /app
+
+# Copiamos solo package.json y package-lock.json primero para usar cache de Docker
 COPY package.json package-lock.json ./
+
+# Instalamos dependencias
 RUN npm ci --legacy-peer-deps --silent
+
+# Copiamos el resto de la aplicación
 COPY . .
+
+# Construimos la aplicación usando el script build:prod (ejecuta inyección de preloads)
 RUN npm run build
 
-# Etapa de producción
+# Etapa de producción - nginx
 FROM nginx:stable-alpine
+
+# Eliminamos contenido por defecto
 RUN rm -rf /usr/share/nginx/html/*
+
+# Copiamos los archivos compilados desde el builder
+# Angular genera los ficheros estáticos en dist/<projectName>/browser; copiamos su contenido al root de nginx
 COPY --from=builder /app/dist/Frontend-CRCoach/browser/ /usr/share/nginx/html/
+
+# Copiamos la configuración de nginx para fallback en SPA
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Puerto expuesto
 EXPOSE 80
+
+# Ejecutar nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
@@ -735,9 +771,26 @@ https://backend-crcoach.onrender.com/swagger-ui/index.html
 
 ### Backend: Dockerfile multi-etapa
 
+**Archivo real:** `Backend-CRCoach/Dockerfile`
+
 ```dockerfile
 FROM maven:3.9.6-eclipse-temurin-21 AS builder
 WORKDIR /usr/src/app
+
+ARG NODE_ENV
+ARG PORT
+
+ENV PGHOST=""
+ENV PGPORT=""
+ENV PGDATABASE=""
+ENV PGUSER=""
+ENV PGPASSWORD=""
+ENV SPRING_MAIL_USERNAME=""
+ENV SPRING_MAIL_PASSWORD=""
+ENV APP_FRONTEND_BASE_URL=""
+
+ENV PORT=8080
+
 COPY pom.xml .
 COPY src ./src
 RUN mvn -B -DskipTests package
@@ -745,6 +798,7 @@ RUN mvn -B -DskipTests package
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=builder /usr/src/app/target/Backend-CRCoach-0.0.1-SNAPSHOT.jar app.jar
+
 ENV PORT=8080
 EXPOSE 8080
 ENTRYPOINT ["java","-Xms256m","-Xmx512m","-XX:+UseG1GC","-jar","/app/app.jar"]
@@ -752,20 +806,151 @@ ENTRYPOINT ["java","-Xms256m","-Xmx512m","-XX:+UseG1GC","-jar","/app/app.jar"]
 
 ### Frontend: Dockerfile multi-etapa
 
+**Archivo real:** `Frontend-CRCoach/Dockerfile`
+
 ```dockerfile
+# Etapa de compilación
 FROM node:24-alpine AS builder
+
 WORKDIR /app
+
+# Copiamos solo package.json y package-lock.json primero para usar cache de Docker
 COPY package.json package-lock.json ./
+
+# Instalamos dependencias
 RUN npm ci --legacy-peer-deps --silent
+
+# Copiamos el resto de la aplicación
 COPY . .
+
+# Construimos la aplicación usando el script build:prod (ejecuta inyección de preloads)
 RUN npm run build
 
+# Etapa de producción - nginx
 FROM nginx:stable-alpine
+
+# Eliminamos contenido por defecto
 RUN rm -rf /usr/share/nginx/html/*
+
+# Copiamos los archivos compilados desde el builder
+# Angular genera los ficheros estáticos en dist/<projectName>/browser; copiamos su contenido al root de nginx
 COPY --from=builder /app/dist/Frontend-CRCoach/browser/ /usr/share/nginx/html/
+
+# Copiamos la configuración de nginx para fallback en SPA
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Puerto expuesto
 EXPOSE 80
+
+# Ejecutar nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]
+```
+
+### docker-compose del backend
+
+**Archivo real:** `Backend-CRCoach/docker-compose.yml`
+
+```yaml
+version: "3.9"
+
+services:
+  postgres:
+    env_file:
+      - .env
+    container_name: crcoach-postgres
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+    ports:
+      - "${PGPORT}:5432"
+    volumes:
+      - crcoach_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PGUSER} -d ${PGDATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ricitosdeoro2001/backend-crcoach:latest
+    restart: unless-stopped
+    ports:
+      - "${PORT}:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}?sslmode=require"
+      SPRING_DATASOURCE_USERNAME: ${PGUSER}
+      SPRING_DATASOURCE_PASSWORD: ${PGPASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      SERVER_PORT: 8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./uploads:/app/uploads
+
+volumes:
+  crcoach_db_data: {}
+```
+
+### docker-compose del frontend
+
+**Archivo real:** `Frontend-CRCoach/docker-compose.yml`
+
+```yaml
+version: "3.8"
+
+services:
+  Frontend-CRCoach:
+    container_name: frontend-crcoach
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ricitosdeoro2001/frontend-crcoach:latest
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/index.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - crcoach_net
+
+  dev:
+    image: node:24-alpine
+    profiles: ["dev"]
+    working_dir: /app
+    command: sh -c "npm ci && npm run start -- --host 0.0.0.0"
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./:/app:cached
+      - crcoach_node_modules:/app/node_modules
+    networks:
+      - crcoach_net
+
+volumes:
+  crcoach_node_modules:
+    driver: local
+
+networks:
+  crcoach_net:
+    driver: bridge
 ```
 
 ## 8.7. URL de la aplicación en producción
