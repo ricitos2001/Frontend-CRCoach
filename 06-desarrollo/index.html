@@ -25,7 +25,7 @@
     
     
       
-        <title>06 desarrollo - CRCoach Documentation</title>
+        <title>6. Desarrollo del proyecto - CRCoach Documentation</title>
       
     
     
@@ -65,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#6-desarrollo-del-proyecto" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              06 desarrollo
+              6. Desarrollo del proyecto
             
           </span>
         </div>
@@ -227,7 +232,7 @@
   <span class="md-ellipsis">
     
   
-    01 introduccion
+    1. Introducción, objetivos y antecedentes
   
 
     
@@ -254,7 +259,7 @@
   <span class="md-ellipsis">
     
   
-    02 descripcion
+    2. Descripción del proyecto
   
 
     
@@ -281,7 +286,7 @@
   <span class="md-ellipsis">
     
   
-    03 instalacion
+    3. Instalación y preparación del entorno
   
 
     
@@ -308,7 +313,7 @@
   <span class="md-ellipsis">
     
   
-    04 guia estilos
+    4. Guía de estilos y prototipado
   
 
     
@@ -335,7 +340,7 @@
   <span class="md-ellipsis">
     
   
-    05 diseño
+    5. Diseño del proyecto
   
 
     
@@ -361,6 +366,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Desarrollo del proyecto
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -369,7 +394,7 @@
   <span class="md-ellipsis">
     
   
-    06 desarrollo
+    6. Desarrollo del proyecto
   
 
     
@@ -378,6 +403,446 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-secuencia-de-desarrollo-seguida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Secuencia de desarrollo seguida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1. Secuencia de desarrollo seguida">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fase-1-diseno-y-planificacion-semanas-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 1: Diseño y planificación (Semanas 1-2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-2-desarrollo-del-backend-semanas-3-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 2: Desarrollo del backend (Semanas 3-7)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-3-desarrollo-del-frontend-semanas-8-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 3: Desarrollo del frontend (Semanas 8-12)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-4-testing-y-despliegue-semanas-13-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 4: Testing y despliegue (Semanas 13-14)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-5-documentacion-y-entrega-semanas-15-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 5: Documentación y entrega (Semanas 15-16)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-dificultades-encontradas-y-como-se-superaron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Dificultades encontradas y cómo se superaron
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2. Dificultades encontradas y cómo se superaron">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#d1-limite-de-25-batallas-de-la-api-de-supercell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D1: Límite de 25 batallas de la API de Supercell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d2-rate-limiting-de-la-api-de-supercell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D2: Rate limiting de la API de Supercell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d3-clasificacion-precisa-de-arquetipos-de-mazos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3: Clasificación precisa de arquetipos de mazos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d4-token-jwt-regenerado-en-cada-reinicio-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D4: Token JWT regenerado en cada reinicio del servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d5-cors-y-peticiones-entre-dominios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D5: CORS y peticiones entre dominios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d6-gestion-del-estado-global-en-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D6: Gestión del estado global en el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-decisiones-tecnicas-clave-y-su-justificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Decisiones técnicas clave y su justificación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3. Decisiones técnicas clave y su justificación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#d31-angular-standalone-vs-ngmodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.1: Angular standalone vs. NgModules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d32-signal-stores-vs-ngrx-tradicional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.2: Signal Stores vs. NgRx tradicional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d33-webclient-vs-resttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.3: WebClient vs. RestTemplate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d34-postgresql-vs-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.4: PostgreSQL vs. MongoDB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d35-itcss-bem-vs-css-modules-vs-tailwind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.5: ITCSS + BEM vs. CSS Modules vs. Tailwind
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d36-docker-multi-etapa-para-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.6: Docker multi-etapa para el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d37-autenticacion-jwt-sin-estado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.7: Autenticación JWT sin estado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64-herramientas-de-control-de-versiones-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Herramientas de control de versiones utilizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.4. Herramientas de control de versiones utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-y-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git y GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-projects-kanban" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Projects (Kanban)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65-fragmentos-de-codigo-relevantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Fragmentos de código relevantes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.5. Fragmentos de código relevantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-clasificador-de-arquetipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Clasificador de arquetipos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-signal-store-para-batallas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Signal Store para batallas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-servicio-de-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Servicio de autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-configuracion-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Configuración de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-estructura-itcss-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Estructura ITCSS - Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-servicio-de-analisis-de-debilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Servicio de análisis de debilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-dependencias-y-librerias-externas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Dependencias y librerías externas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6. Dependencias y librerías externas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend (Angular)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (Spring Boot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -397,7 +862,7 @@
   <span class="md-ellipsis">
     
   
-    07 pruebas
+    7. Pruebas del proyecto
   
 
     
@@ -424,7 +889,7 @@
   <span class="md-ellipsis">
     
   
-    08 despliegue
+    8. Despliegue del proyecto
   
 
     
@@ -451,7 +916,7 @@
   <span class="md-ellipsis">
     
   
-    09 manual usuario
+    9. Manual de usuario
   
 
     
@@ -478,7 +943,7 @@
   <span class="md-ellipsis">
     
   
-    10 conclusiones
+    10. Conclusiones
   
 
     
@@ -508,6 +973,437 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-secuencia-de-desarrollo-seguida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Secuencia de desarrollo seguida
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1. Secuencia de desarrollo seguida">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fase-1-diseno-y-planificacion-semanas-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 1: Diseño y planificación (Semanas 1-2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-2-desarrollo-del-backend-semanas-3-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 2: Desarrollo del backend (Semanas 3-7)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-3-desarrollo-del-frontend-semanas-8-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 3: Desarrollo del frontend (Semanas 8-12)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-4-testing-y-despliegue-semanas-13-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 4: Testing y despliegue (Semanas 13-14)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fase-5-documentacion-y-entrega-semanas-15-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fase 5: Documentación y entrega (Semanas 15-16)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-dificultades-encontradas-y-como-se-superaron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Dificultades encontradas y cómo se superaron
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2. Dificultades encontradas y cómo se superaron">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#d1-limite-de-25-batallas-de-la-api-de-supercell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D1: Límite de 25 batallas de la API de Supercell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d2-rate-limiting-de-la-api-de-supercell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D2: Rate limiting de la API de Supercell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d3-clasificacion-precisa-de-arquetipos-de-mazos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3: Clasificación precisa de arquetipos de mazos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d4-token-jwt-regenerado-en-cada-reinicio-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D4: Token JWT regenerado en cada reinicio del servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d5-cors-y-peticiones-entre-dominios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D5: CORS y peticiones entre dominios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d6-gestion-del-estado-global-en-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D6: Gestión del estado global en el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-decisiones-tecnicas-clave-y-su-justificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Decisiones técnicas clave y su justificación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3. Decisiones técnicas clave y su justificación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#d31-angular-standalone-vs-ngmodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.1: Angular standalone vs. NgModules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d32-signal-stores-vs-ngrx-tradicional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.2: Signal Stores vs. NgRx tradicional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d33-webclient-vs-resttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.3: WebClient vs. RestTemplate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d34-postgresql-vs-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.4: PostgreSQL vs. MongoDB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d35-itcss-bem-vs-css-modules-vs-tailwind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.5: ITCSS + BEM vs. CSS Modules vs. Tailwind
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d36-docker-multi-etapa-para-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.6: Docker multi-etapa para el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d37-autenticacion-jwt-sin-estado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D3.7: Autenticación JWT sin estado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64-herramientas-de-control-de-versiones-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Herramientas de control de versiones utilizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.4. Herramientas de control de versiones utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-y-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git y GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-projects-kanban" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Projects (Kanban)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65-fragmentos-de-codigo-relevantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Fragmentos de código relevantes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.5. Fragmentos de código relevantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-clasificador-de-arquetipos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Clasificador de arquetipos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-signal-store-para-batallas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Signal Store para batallas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-servicio-de-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Servicio de autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-configuracion-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Configuración de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-estructura-itcss-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Estructura ITCSS - Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-servicio-de-analisis-de-debilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Servicio de análisis de debilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-dependencias-y-librerias-externas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Dependencias y librerías externas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6. Dependencias y librerías externas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend (Angular)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (Spring Boot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -524,9 +1420,786 @@
 
 
 
-  <h1>06 desarrollo</h1>
+<h1 id="6-desarrollo-del-proyecto">6. Desarrollo del proyecto</h1>
+<h2 id="61-secuencia-de-desarrollo-seguida">6.1. Secuencia de desarrollo seguida</h2>
+<p>El desarrollo se organizó siguiendo la metodología SCRUM simplificada con sprints de 2 semanas, priorizando siempre las funcionalidades del MVP antes que las opcionales.</p>
+<h3 id="fase-1-diseno-y-planificacion-semanas-1-2">Fase 1: Diseño y planificación (Semanas 1-2)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Semana</th>
+<th style="text-align: left;">Tareas realizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">S1</td>
+<td style="text-align: left;">Diseño del modelo de datos (diagrama E-R). Configuración del repositorio GitHub. Estructura inicial de proyectos (Angular + Spring Boot).</td>
+</tr>
+<tr>
+<td style="text-align: left;">S2</td>
+<td style="text-align: left;">Diseño de mockups en Figma. Configuración de GitHub Projects con backlog inicial. Instalación y configuración de herramientas (Docker, dependencias).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entregables:</strong>
+- Diagrama E-R validado.
+- Mockups de todas las vistas principales.
+- Repositorio con estructura de proyecto.
+- Tablero GitHub Projects configurado.</p>
+<h3 id="fase-2-desarrollo-del-backend-semanas-3-7">Fase 2: Desarrollo del backend (Semanas 3-7)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Semana</th>
+<th style="text-align: left;">Tareas realizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">S3</td>
+<td style="text-align: left;">Creación de entidades JPA. Configuración de la conexión a PostgreSQL. Implementación del modelo de datos completo (30+ entidades).</td>
+</tr>
+<tr>
+<td style="text-align: left;">S4</td>
+<td style="text-align: left;">Implementación del sistema de autenticación: Spring Security, JWT, registro, login, cierre de sesión. Configuración de CORS.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S5</td>
+<td style="text-align: left;">Integración con API de Supercell: WebClient, cliente HTTP con reintentos. CRUD de usuario y vinculación de Player Tag.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S6</td>
+<td style="text-align: left;">Polling automático con <code>@Scheduled</code>. Procesamiento y clasificación de batallas. Algoritmo de clasificación de arquetipos.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S7</td>
+<td style="text-align: left;">Sistema de objetivos (CRUD + evaluación automática). Diario de sesiones. Snapshots y evolución temporal. Documentación Swagger.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entregables:</strong>
+- API REST completa con 26 controladores.
+- Sistema de autenticación JWT funcional.
+- Polling automático cada 5 minutos.
+- Documentación OpenAPI generada automáticamente.</p>
+<h3 id="fase-3-desarrollo-del-frontend-semanas-8-12">Fase 3: Desarrollo del frontend (Semanas 8-12)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Semana</th>
+<th style="text-align: left;">Tareas realizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">S8</td>
+<td style="text-align: left;">Estructura del proyecto Angular con lazy loading. Implementación de layout (header, footer, sidebar, main). Configuración de estilos ITCSS.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S9</td>
+<td style="text-align: left;">Sistema de autenticación en frontend (login, registro, guards, interceptor). Landing page. Dashboard principal.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S10</td>
+<td style="text-align: left;">Historial de batallas con filtros y paginación. Diagnóstico de debilidades con gráficas Chart.js.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S11</td>
+<td style="text-align: left;">Sistema de objetivos (CRUD visual con barra de progreso). Diario de sesiones con timeline.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S12</td>
+<td style="text-align: left;">Gráfica de evolución (snapshots). Panel de usuario. Tema oscuro. Internacionalización (es/en). Pulido de estilos.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entregables:</strong>
+- 16 páginas funcionales con lazy loading.
+- Dashboard interactivo con indicadores en tiempo real.
+- Diagnóstico de debilidades con gráficas.
+- Sistema de objetivos y diario de sesiones.
+- Internacionalización completo (español e inglés).</p>
+<h3 id="fase-4-testing-y-despliegue-semanas-13-14">Fase 4: Testing y despliegue (Semanas 13-14)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Semana</th>
+<th style="text-align: left;">Tareas realizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">S13</td>
+<td style="text-align: left;">Pruebas funcionales manuales de todos los flujos. Corrección de bugs. Tests unitarios con Vitest.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S14</td>
+<td style="text-align: left;">Configuración de Docker y Docker Compose. Despliegue en producción (Render, Neon, Vercel). Testing en producción.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entregables:</strong>
+- Aplicación completamente dockerizada.
+- Frontend desplegado en Render/Vercel.
+- Backend desplegado en Render.
+- Base de datos en Neon.</p>
+<h3 id="fase-5-documentacion-y-entrega-semanas-15-16">Fase 5: Documentación y entrega (Semanas 15-16)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Semana</th>
+<th style="text-align: left;">Tareas realizadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">S15</td>
+<td style="text-align: left;">Documentación completa del proyecto. Manual de usuario.</td>
+</tr>
+<tr>
+<td style="text-align: left;">S16</td>
+<td style="text-align: left;">Preparación de la defensa. Presentación y demo.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="62-dificultades-encontradas-y-como-se-superaron">6.2. Dificultades encontradas y cómo se superaron</h2>
+<h3 id="d1-limite-de-25-batallas-de-la-api-de-supercell">D1: Límite de 25 batallas de la API de Supercell</h3>
+<p><strong>Problema:</strong>
+La API oficial de Clash Royale solo devuelve las últimas 25 batallas del jugador. Esto significa que si no se almacenan periódicamente, los datos históricos se pierden para siempre.</p>
+<p><strong>Solución:</strong>
+Se implementó un sistema de <strong>polling automático</strong> con <code>@Scheduled</code> que cada 5 minutos consulta la API y persiste los datos en la base de datos local. Esto permite acumular un historial ilimitado.</p>
+<pre><code class="language-java">// Backend-CRCoach/src/main/java/org/example/backendcrcoach/config/AsyncConfig.java
+@Configuration
+@EnableAsync
+public class AsyncConfig {
 
+    @Bean(name = &quot;taskExecutor&quot;)
+    public Executor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(20);
+        executor.setQueueCapacity(50);
+        executor.setThreadNamePrefix(&quot;Async-&quot;);
+        executor.initialize();
+        return executor;
+    }
+}
+</code></pre>
+<pre><code class="language-properties"># Configuración de polling
+scheduling.global.fixedDelayMs=300000  # 5 minutos
+scheduling.global.initialDelayMs=10000  # 10 segundos de retardo inicial
+</code></pre>
+<h3 id="d2-rate-limiting-de-la-api-de-supercell">D2: Rate limiting de la API de Supercell</h3>
+<p><strong>Problema:</strong>
+La API de Supercell tiene límites de peticiones por IP. Si se superan, devuelve error 429 (Too Many Requests).</p>
+<p><strong>Solución:</strong>
+Se implementó un sistema de <strong>reintentos con backoff exponencial</strong> y jitter en el cliente HTTP:</p>
+<pre><code class="language-java">// Backend-CRCoach/src/main/java/org/example/backendcrcoach/config/WebClientHelper.java
+public &lt;T&gt; Mono&lt;T&gt; doGet(String url, Class&lt;T&gt; responseType) {
+    return webClient.get()
+        .uri(url)
+        .header(&quot;Authorization&quot;, &quot;Bearer &quot; + apiKey)
+        .retrieve()
+        .onStatus(
+            status -&gt; status == HttpStatus.TOO_MANY_REQUESTS,
+            response -&gt; Mono.error(new RuntimeException(&quot;Rate limited&quot;))
+        )
+        .bodyToMono(responseType)
+        .retryWhen(Retry.backoff(3, Duration.ofSeconds(5))
+            .jitter(0.5)
+            .maxBackoff(Duration.ofSeconds(30)));
+}
+</code></pre>
+<p>Además, se implementó una <strong>caché en memoria</strong> para reducir las llamadas a la API cuando los datos no han cambiado.</p>
+<h3 id="d3-clasificacion-precisa-de-arquetipos-de-mazos">D3: Clasificación precisa de arquetipos de mazos</h3>
+<p><strong>Problema:</strong>
+Clasificar automáticamente el arquetipo del mazo rival (Beatdown, Control, Cycle, Siege, etc.) basándose solo en las cartas es complejo. No existe una API que proporcione esta información.</p>
+<p><strong>Solución:</strong>
+Se desarrolló un <strong>clasificador de arquetipos</strong> basado en reglas que analiza:</p>
+<ol>
+<li><strong>Cartas características</strong> del mazo (presencia de cartas definitorias como Golem, X-Bow, Hog Rider).</li>
+<li><strong>Coste de elixir medio</strong>: Los mazos Beatdown suelen tener coste alto (&gt;4.0), mientras que los Cycle son bajos (&lt;3.0).</li>
+<li><strong>Combinaciones conocidas</strong>: Detección de sinergias clásicas (LavaLoon, LumberLoon, etc.).</li>
+</ol>
+<pre><code class="language-java">// Backend-CRCoach/src/main/java/org/example/backendcrcoach/analytics/ArchetypeClassifier.java
+public Archetype classify(List&lt;String&gt; cardNames, double elixirAverage) {
+    // 1. Detectar arquetipos por carta clave
+    if (hasSignatureCard(cardNames, &quot;X-Bow&quot;, &quot;Mortar&quot;)) return Archetype.SIEGE;
+    if (hasSignatureCard(cardNames, &quot;Golem&quot;, &quot;Lava Hound&quot;)) return Archetype.BEATDOWN;
+    if (hasSignatureCard(cardNames, &quot;Mega Knight&quot;, &quot;P.E.K.K.A&quot;)) return Archetype.CONTROL;
+    if (hasSignatureCard(cardNames, &quot;Hog Rider&quot;) &amp;&amp; elixirAverage &lt; 3.5) return Archetype.CYCLE;
+    if (hasSignatureCard(cardNames, &quot;Goblin Barrel&quot;, &quot;Princess&quot;)) return Archetype.LOGBAIT;
 
+    // 2. Fallback por coste de elixir
+    if (elixirAverage &gt; 4.0) return Archetype.BEATDOWN;
+    if (elixirAverage &lt; 3.0) return Archetype.CYCLE;
+
+    return Archetype.UNKNOWN;
+}
+</code></pre>
+<h3 id="d4-token-jwt-regenerado-en-cada-reinicio-del-servidor">D4: Token JWT regenerado en cada reinicio del servidor</h3>
+<p><strong>Problema:</strong>
+El <code>JwtUtil</code> generaba una clave secreta aleatoria en cada inicio de la aplicación (<code>Keys.secretKeyFor(SignatureAlgorithm.HS256)</code>), lo que invalidaba todos los tokens existentes al reiniciar el servidor.</p>
+<p><strong>Solución:</strong>
+Se documentó esta limitación como una decisión de diseño (no almacenar secretos en el código) y se configuró la posibilidad de inyectar una clave fija mediante variable de entorno para producción:</p>
+<pre><code class="language-java">// Si se define JWT_SECRET en entorno, se usa esa clave; si no, se genera una aleatoria
+</code></pre>
+<p>Para producción en Render (que puede reiniciar la aplicación), se recomienda configurar <code>JWT_SECRET</code> como variable de entorno para mantener la sesión de los usuarios.</p>
+<h3 id="d5-cors-y-peticiones-entre-dominios">D5: CORS y peticiones entre dominios</h3>
+<p><strong>Problema:</strong>
+El frontend y el backend están desplegados en dominios diferentes (Render, Vercel), lo que requiere configuración CORS adecuada.</p>
+<p><strong>Solución:</strong>
+Se configuró CORS en Spring Security para permitir los orígenes específicos:</p>
+<pre><code class="language-java">// SecurityConfig.java
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList(
+        &quot;http://localhost:4200&quot;,
+        &quot;http://localhost:5173&quot;,
+        &quot;https://frontend-crcoach.onrender.com&quot;
+    ));
+    configuration.setAllowedMethods(Arrays.asList(&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;, &quot;OPTIONS&quot;));
+    configuration.setAllowedHeaders(Arrays.asList(&quot;*&quot;));
+    configuration.setAllowCredentials(true);
+    // ...
+}
+</code></pre>
+<h3 id="d6-gestion-del-estado-global-en-el-frontend">D6: Gestión del estado global en el frontend</h3>
+<p><strong>Problema:</strong>
+Múltiples componentes necesitan acceder y modificar los mismos datos (ej: lista de batallas, perfil del usuario). Sin una gestión centralizada, los datos se vuelven inconsistentes.</p>
+<p><strong>Solución:</strong>
+Se implementaron <strong>NgRx Signal Stores</strong> para cada dominio de la aplicación:</p>
+<pre><code class="language-typescript">// battles.signal.store.ts
+export const BattlesStore = signalStore(
+  { providedIn: 'root' },
+  withState({ battles: [], loading: false, error: null }),
+  withComputed(({ battles }) =&gt; ({
+    totalCount: computed(() =&gt; battles().length),
+    winrate: computed(() =&gt; {
+      const wins = battles().filter(b =&gt; b.isWin).length;
+      return battles().length &gt; 0 ? (wins / battles().length) * 100 : 0;
+    })
+  })),
+  withMethods((store, battlesService = inject(BattlesService)) =&gt; ({
+    async loadBattles(userId: number) {
+      patchState(store, { loading: true });
+      const battles = await battlesService.getByUser(userId);
+      patchState(store, { battles, loading: false });
+    }
+  }))
+);
+</code></pre>
+<h2 id="63-decisiones-tecnicas-clave-y-su-justificacion">6.3. Decisiones técnicas clave y su justificación</h2>
+<h3 id="d31-angular-standalone-vs-ngmodules">D3.1: Angular standalone vs. NgModules</h3>
+<p><strong>Decisión:</strong> Usar componentes standalone en lugar del enfoque tradicional con NgModules.</p>
+<p><strong>Justificación:</strong>
+- Angular 21+ recomienda el enfoque standalone como predeterminado.
+- Elimina la necesidad de módulos intermedios.
+- Simplifica el lazy loading.
+- Mejora el tree-shaking y el rendimiento.
+- El proyecto se genera con <code>ng new --standalone</code>.</p>
+<h3 id="d32-signal-stores-vs-ngrx-tradicional">D3.2: Signal Stores vs. NgRx tradicional</h3>
+<p><strong>Decisión:</strong> Usar Signal Stores (NgRx Signals) en lugar del NgRx tradicional (Store + Effects + Reducers).</p>
+<p><strong>Justificación:</strong>
+- Menos boilerplate que NgRx tradicional.
+- Integración nativa con Angular Signals para detección de cambios eficiente.
+- Suficiente para el alcance del proyecto (no necesita efectos complejos).
+- Más fácil de entender para un desarrollador que aprende el framework.</p>
+<h3 id="d33-webclient-vs-resttemplate">D3.3: WebClient vs. RestTemplate</h3>
+<p><strong>Decisión:</strong> Usar WebClient (reactivo) en lugar de RestTemplate (bloqueante).</p>
+<p><strong>Justificación:</strong>
+- WebClient es la alternativa recomendada a partir de Spring Boot 3.x (RestTemplate está en modo mantenimiento).
+- Mejor rendimiento con operaciones I/O-bound (llamadas a API externa).
+- Soporte nativo para reintentos y backoff.
+- Programación reactiva con Mono/Flux.</p>
+<h3 id="d34-postgresql-vs-mongodb">D3.4: PostgreSQL vs. MongoDB</h3>
+<p><strong>Decisión:</strong> Usar PostgreSQL (relacional) en lugar de MongoDB (NoSQL).</p>
+<p><strong>Justificación:</strong>
+- El modelo de datos tiene relaciones claras y bien definidas (Usuario -&gt; Perfil -&gt; Batallas).
+- Necesidad de consultas complejas (winrate por arquetipo, cartas problemáticas).
+- Integridad referencial mediante claves foráneas.
+- El stack JPA/Hibernate está optimizado para bases de datos relacionales.</p>
+<h3 id="d35-itcss-bem-vs-css-modules-vs-tailwind">D3.5: ITCSS + BEM vs. CSS Modules vs. Tailwind</h3>
+<p><strong>Decisión:</strong> Usar ITCSS + BEM con SCSS.</p>
+<p><strong>Justificación:</strong>
+- Es el enfoque exigido por el módulo DIW.
+- Proporciona una arquitectura escalable para proyectos grandes.
+- SCSS permite variables, mixins y funciones.
+- BEM proporciona una nomenclatura predecible y evita colisiones.
+- Separación clara entre capas (settings, tools, generic, elements, layout, components, pages).</p>
+<h3 id="d36-docker-multi-etapa-para-el-frontend">D3.6: Docker multi-etapa para el frontend</h3>
+<p><strong>Decisión:</strong> Usar Dockerfile multi-etapa (build con Node 24 + producción con Nginx).</p>
+<p><strong>Justificación:</strong>
+- Reduce el tamaño de la imagen final (~20MB vs ~500MB con Node).
+- Nginx es un servidor web mucho más eficiente que el servidor de desarrollo de Angular.
+- Permite configurar cabeceras de caché, compresión gzip y SPA fallback.
+- Separación clara entre compilación y ejecución.</p>
+<h3 id="d37-autenticacion-jwt-sin-estado">D3.7: Autenticación JWT sin estado</h3>
+<p><strong>Decisión:</strong> Usar JWT sin estado en lugar de sesiones con estado.</p>
+<p><strong>Justificación:</strong>
+- Escalabilidad horizontal (cualquier instancia puede verificar el token sin compartir sesión).
+- Sin necesidad de Redis o base de datos de sesiones.
+- El token contiene la información del usuario (email, rol, ID).
+- Stateless sessions en Spring Security.</p>
+<h2 id="64-herramientas-de-control-de-versiones-utilizadas">6.4. Herramientas de control de versiones utilizadas</h2>
+<h3 id="git-y-github">Git y GitHub</h3>
+<ul>
+<li><strong>Repositorio</strong>: Proyecto dividido en dos repositorios (Frontend-CRCoach y Backend-CRCoach).</li>
+<li><strong>Estrategia de ramas</strong>:</li>
+<li><code>master</code> — Rama principal de producción.</li>
+<li><code>feature/&lt;nombre&gt;</code> — Ramas para funcionalidades específicas.</li>
+<li><code>dependabot/*</code> — Ramas automáticas de Dependabot para actualizaciones.</li>
+<li><strong>Convención de commits</strong>: Formato <code>tipo: descripción</code>:</li>
+<li><code>feat:</code> — Nueva funcionalidad.</li>
+<li><code>fix:</code> — Corrección de bug.</li>
+<li><code>docs:</code> — Documentación.</li>
+<li><code>refactor:</code> — Refactorización.</li>
+<li><code>test:</code> — Pruebas.</li>
+<li><code>chore:</code> — Tareas de mantenimiento.</li>
+</ul>
+<h3 id="github-projects-kanban">GitHub Projects (Kanban)</h3>
+<p>El tablero se organiza con los siguientes campos:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Columna</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Backlog</td>
+<td style="text-align: left;">Tareas del product backlog</td>
+</tr>
+<tr>
+<td style="text-align: left;">To Do</td>
+<td style="text-align: left;">Tareas seleccionadas para el sprint actual</td>
+</tr>
+<tr>
+<td style="text-align: left;">In Progress</td>
+<td style="text-align: left;">Tareas en desarrollo activo</td>
+</tr>
+<tr>
+<td style="text-align: left;">Done</td>
+<td style="text-align: left;">Tareas completadas y verificadas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="github-actions">GitHub Actions</h3>
+<p>Se configuraron los siguientes workflows:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Workflow</th>
+<th style="text-align: left;">Disparador</th>
+<th style="text-align: left;">Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">CI Pipeline</td>
+<td style="text-align: left;">Push a master</td>
+<td style="text-align: left;">Build del proyecto y ejecución de tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">CodeQL</td>
+<td style="text-align: left;">Push/PR a master, semanal</td>
+<td style="text-align: left;">Análisis de seguridad del código</td>
+</tr>
+<tr>
+<td style="text-align: left;">Qodana</td>
+<td style="text-align: left;">Push/PR a master</td>
+<td style="text-align: left;">Análisis de calidad de código</td>
+</tr>
+<tr>
+<td style="text-align: left;">Deploy Docs</td>
+<td style="text-align: left;">Push a master</td>
+<td style="text-align: left;">Publica documentación MkDocs en GitHub Pages</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dependabot</td>
+<td style="text-align: left;">Diario (npm) / Semanal (Docker)</td>
+<td style="text-align: left;">Actualización automática de dependencias</td>
+</tr>
+</tbody>
+</table>
+<h2 id="65-fragmentos-de-codigo-relevantes">6.5. Fragmentos de código relevantes</h2>
+<h3 id="backend-clasificador-de-arquetipos">Backend: Clasificador de arquetipos</h3>
+<pre><code class="language-java">// ArchetypeClassifier.java
+// Clasifica el mazo rival en un arquetipo basándose en cartas características y coste de elixir
+public Archetype classify(List&lt;String&gt; cardNames, double elixirAverage) {
+    // Mapa de cartas clave por arquetipo
+    Map&lt;Archetype, List&lt;String&gt;&gt; signatureCards = Map.of(
+        Archetype.SIEGE, List.of(&quot;X-Bow&quot;, &quot;Mortar&quot;),
+        Archetype.BEATDOWN, List.of(&quot;Golem&quot;, &quot;Lava Hound&quot;, &quot;Giant&quot;, &quot;Elixir Golem&quot;),
+        Archetype.CONTROL, List.of(&quot;P.E.K.K.A&quot;, &quot;Mega Knight&quot;, &quot;Mini P.E.K.K.A&quot;),
+        Archetype.CYCLE, List.of(&quot;Hog Rider&quot;, &quot;Royal Hogs&quot;),
+        Archetype.LOGBAIT, List.of(&quot;Goblin Barrel&quot;, &quot;Princess&quot;, &quot;Goblin Gang&quot;)
+    );
+
+    // Buscar coincidencias de cartas características
+    for (Map.Entry&lt;Archetype, List&lt;String&gt;&gt; entry : signatureCards.entrySet()) {
+        for (String card : entry.getValue()) {
+            if (cardNames.contains(card)) {
+                return entry.getKey();
+            }
+        }
+    }
+
+    // Fallback por coste de elixir
+    if (elixirAverage &gt; 4.0) return Archetype.BEATDOWN;
+    if (elixirAverage &lt; 3.0) return Archetype.CYCLE;
+
+    return Archetype.UNKNOWN;
+}
+</code></pre>
+<h3 id="frontend-signal-store-para-batallas">Frontend: Signal Store para batallas</h3>
+<pre><code class="language-typescript">// battles.signal.store.ts
+import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import { computed, inject } from '@angular/core';
+import { BattlesService } from '../services/battles/battles.service';
+
+interface BattlesState {
+  battles: Battle[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: BattlesState = {
+  battles: [],
+  loading: false,
+  error: null,
+};
+
+export const BattlesStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withComputed(({ battles }) =&gt; ({
+    totalCount: computed(() =&gt; battles().length),
+    winrate: computed(() =&gt; {
+      const wins = battles().filter(b =&gt; b.isWin).length;
+      return battles().length &gt; 0 ? (wins / battles().length) * 100 : 0;
+    }),
+    currentStreak: computed(() =&gt; {
+      let streak = 0;
+      for (const b of battles()) {
+        if (b.isWin) streak++;
+        else break;
+      }
+      return streak;
+    }),
+  })),
+  withMethods((store, battlesService = inject(BattlesService)) =&gt; ({
+    async loadBattles(userId: number) {
+      patchState(store, { loading: true, error: null });
+      try {
+        const battles = await battlesService.getByUser(userId).toPromise();
+        patchState(store, { battles, loading: false });
+      } catch (err) {
+        patchState(store, { error: 'Error al cargar batallas', loading: false });
+      }
+    },
+  }))
+);
+</code></pre>
+<h3 id="frontend-servicio-de-autenticacion">Frontend: Servicio de autenticación</h3>
+<pre><code class="language-typescript">// auth.service.ts
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private toastService = inject(ToastService);
+
+  private loggedInSubject = new BehaviorSubject&lt;boolean&gt;(this.hasToken());
+  loggedIn$ = this.loggedInSubject.asObservable();
+
+  login(data: FormGroup | any): Observable&lt;AuthResponse&gt; {
+    return this.http.post&lt;AuthResponse&gt;(
+      `${environment.apiUrl}/api/v1/auth/authenticate`, data
+    );
+  }
+
+  register(data: FormGroup | any): Observable&lt;AuthResponse&gt; {
+    return this.http.post&lt;AuthResponse&gt;(
+      `${environment.apiUrl}/api/v1/auth/register`, data
+    );
+  }
+
+  saveToken(token: string): void {
+    localStorage.setItem('token', token);
+    this.loggedInSubject.next(true);
+  }
+
+  logout(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.http.post(`${environment.apiUrl}/api/v1/auth/logout`, {})
+        .subscribe({ finalize: () =&gt; this.removeUserData() });
+    } else {
+      this.removeUserData();
+    }
+  }
+
+  isTokenValid(): boolean {
+    const payload = this.getTokenPayload();
+    if (!payload || !payload.exp) return false;
+    return Date.now() &lt; payload.exp * 1000;
+  }
+
+  private getTokenPayload(): any | null {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    try {
+      const base64 = token.split('.')[1];
+      return JSON.parse(atob(base64));
+    } catch {
+      return null;
+    }
+  }
+}
+</code></pre>
+<h3 id="backend-configuracion-de-seguridad">Backend: Configuración de seguridad</h3>
+<pre><code class="language-java">// SecurityConfig.java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(AbstractHttpConfigurer::disable)
+            .cors(cors -&gt; cors.configurationSource(corsConfigurationSource()))
+            .sessionManagement(session -&gt;
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -&gt; auth
+                .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
+                .anyRequest().authenticated()
+            )
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+    private static final String[] PUBLIC_ENDPOINTS = {
+        &quot;/api/v1/auth/**&quot;,
+        &quot;/api/v1/users/email-exists/**&quot;,
+        &quot;/api/v1/users/username-exists/**&quot;,
+        &quot;/api/v1/player_profiles/exists-in-api/**&quot;,
+        &quot;/api/v1/player_profiles/exists-in-local/**&quot;,
+        &quot;/v3/api-docs/**&quot;,
+        &quot;/swagger-ui/**&quot;,
+        &quot;/swagger-ui.html&quot;
+    };
+}
+</code></pre>
+<h3 id="frontend-estructura-itcss-variables">Frontend: Estructura ITCSS - Variables</h3>
+<pre><code class="language-scss">// src/styles/00-settings/_variables.scss
+
+// Colores primarios
+$primary-50: #E3F2FD;
+$primary-100: #BBDEFB;
+$primary-200: #90CAF9;
+$primary-300: #64B5F6;
+$primary-400: #42A5F5;
+$primary-500: #1565C0;
+
+// Colores de estado
+$success: #4CAF50;
+$error: #F44336;
+$warning: #FF9800;
+$info: #2196F3;
+
+// Tipografía
+$font-regular: 'ClashRoyaleRegularFont', sans-serif;
+$font-bold: 'ClashRoyaleBoldFont', sans-serif;
+
+// Espaciados
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+
+// Breakpoints
+$bp-sm: 40rem;
+$bp-md: 48rem;
+$bp-lg: 64rem;
+$bp-xl: 80rem;
+
+// Sombras
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+</code></pre>
+<h3 id="backend-servicio-de-analisis-de-debilidades">Backend: Servicio de análisis de debilidades</h3>
+<pre><code class="language-java">// AnalyticsService.java
+@Service
+public class AnalyticsService {
+
+    public WeaknessReportDto analyzeWeaknesses(Long profileId) {
+        List&lt;Battles&gt; allBattles = battlesRepository.findByProfileId(profileId);
+
+        // Agrupar por arquetipo y calcular winrate
+        Map&lt;String, List&lt;Battles&gt;&gt; byArchetype = allBattles.stream()
+            .collect(Collectors.groupingBy(b -&gt; b.getDeck().getArchetype()));
+
+        List&lt;ArchetypeStatDto&gt; archetypeStats = byArchetype.entrySet().stream()
+            .map(entry -&gt; {
+                long total = entry.getValue().size();
+                long wins = entry.getValue().stream().filter(Battles::getIsWin).count();
+                return new ArchetypeStatDto(entry.getKey(), wins, total,
+                    total &gt; 0 ? (wins * 100.0 / total) : 0);
+            })
+            .sorted(Comparator.comparing(ArchetypeStatDto::getWinrate))
+            .collect(Collectors.toList());
+
+        // Identificar cartas problemáticas
+        List&lt;ProblematicCardDto&gt; problematicCards = findProblematicCards(allBattles);
+
+        return new WeaknessReportDto(profileId, allBattles.size(),
+            archetypeStats, problematicCards);
+    }
+}
+</code></pre>
+<h2 id="66-dependencias-y-librerias-externas">6.6. Dependencias y librerías externas</h2>
+<h3 id="frontend-angular">Frontend (Angular)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Librería</th>
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">@angular/core</td>
+<td style="text-align: left;">21.2</td>
+<td style="text-align: left;">Framework principal</td>
+</tr>
+<tr>
+<td style="text-align: left;">@angular/material</td>
+<td style="text-align: left;">21.2</td>
+<td style="text-align: left;">Componentes de interfaz (CDK)</td>
+</tr>
+<tr>
+<td style="text-align: left;">@ngx-translate/core</td>
+<td style="text-align: left;">17.0</td>
+<td style="text-align: left;">Internacionalización</td>
+</tr>
+<tr>
+<td style="text-align: left;">chart.js</td>
+<td style="text-align: left;">4.5</td>
+<td style="text-align: left;">Gráficas interactivas</td>
+</tr>
+<tr>
+<td style="text-align: left;">ng2-charts</td>
+<td style="text-align: left;">10.0</td>
+<td style="text-align: left;">Wrapper para Chart.js en Angular</td>
+</tr>
+<tr>
+<td style="text-align: left;">gsap</td>
+<td style="text-align: left;">3.14</td>
+<td style="text-align: left;">Animaciones avanzadas</td>
+</tr>
+<tr>
+<td style="text-align: left;">lenis</td>
+<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">Scroll suave</td>
+</tr>
+<tr>
+<td style="text-align: left;">swiper</td>
+<td style="text-align: left;">12.1</td>
+<td style="text-align: left;">Carruseles y sliders</td>
+</tr>
+<tr>
+<td style="text-align: left;">rxjs</td>
+<td style="text-align: left;">7.8</td>
+<td style="text-align: left;">Programación reactiva</td>
+</tr>
+<tr>
+<td style="text-align: left;">vitest</td>
+<td style="text-align: left;">4.0</td>
+<td style="text-align: left;">Test runner</td>
+</tr>
+<tr>
+<td style="text-align: left;">jsdom</td>
+<td style="text-align: left;">28.0</td>
+<td style="text-align: left;">Entorno DOM para tests</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backend-spring-boot">Backend (Spring Boot)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Librería</th>
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">spring-boot-starter-web</td>
+<td style="text-align: left;">4.0</td>
+<td style="text-align: left;">API REST</td>
+</tr>
+<tr>
+<td style="text-align: left;">spring-boot-starter-data-jpa</td>
+<td style="text-align: left;">4.0</td>
+<td style="text-align: left;">Persistencia JPA/Hibernate</td>
+</tr>
+<tr>
+<td style="text-align: left;">spring-boot-starter-security</td>
+<td style="text-align: left;">4.0</td>
+<td style="text-align: left;">Seguridad y autenticación</td>
+</tr>
+<tr>
+<td style="text-align: left;">spring-boot-starter-mail</td>
+<td style="text-align: left;">4.0</td>
+<td style="text-align: left;">Envío de emails</td>
+</tr>
+<tr>
+<td style="text-align: left;">spring-boot-starter-webflux</td>
+<td style="text-align: left;">4.0</td>
+<td style="text-align: left;">WebClient reactivo</td>
+</tr>
+<tr>
+<td style="text-align: left;">springdoc-openapi</td>
+<td style="text-align: left;">3.0</td>
+<td style="text-align: left;">Documentación OpenAPI</td>
+</tr>
+<tr>
+<td style="text-align: left;">jjwt (io.jsonwebtoken)</td>
+<td style="text-align: left;">0.11.5</td>
+<td style="text-align: left;">Generación y validación JWT</td>
+</tr>
+<tr>
+<td style="text-align: left;">lombok</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Reducción de código boilerplate</td>
+</tr>
+<tr>
+<td style="text-align: left;">postgresql</td>
+<td style="text-align: left;">42.x</td>
+<td style="text-align: left;">Driver PostgreSQL</td>
+</tr>
+<tr>
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Base de datos en memoria para tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">thymeleaf</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Plantillas de email</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -25,7 +25,7 @@
     
     
       
-        <title>05 diseño - CRCoach Documentation</title>
+        <title>5. Diseño del proyecto - CRCoach Documentation</title>
       
     
     
@@ -65,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#5-diseno-del-proyecto" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              05 diseño
+              5. Diseño del proyecto
             
           </span>
         </div>
@@ -227,7 +232,7 @@
   <span class="md-ellipsis">
     
   
-    01 introduccion
+    1. Introducción, objetivos y antecedentes
   
 
     
@@ -254,7 +259,7 @@
   <span class="md-ellipsis">
     
   
-    02 descripcion
+    2. Descripción del proyecto
   
 
     
@@ -281,7 +286,7 @@
   <span class="md-ellipsis">
     
   
-    03 instalacion
+    3. Instalación y preparación del entorno
   
 
     
@@ -308,7 +313,7 @@
   <span class="md-ellipsis">
     
   
-    04 guia estilos
+    4. Guía de estilos y prototipado
   
 
     
@@ -334,6 +339,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Diseño del proyecto
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -342,7 +367,7 @@
   <span class="md-ellipsis">
     
   
-    05 diseño
+    5. Diseño del proyecto
   
 
     
@@ -351,6 +376,341 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-diagrama-entidad-relacion-de-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Diagrama entidad-relación de la base de datos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1. Diagrama entidad-relación de la base de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modelo-de-datos-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo de datos completo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-de-tablas-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descripción de tablas principales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultas-complejas-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consultas complejas implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-diagrama-de-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Diagrama de casos de uso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-diagramas-de-flujo-de-los-procesos-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Diagramas de flujo de los procesos principales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3. Diagramas de flujo de los procesos principales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-sincronizacion-de-batallas-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de sincronización de batallas (polling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-diagnostico-de-debilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de diagnóstico de debilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-arquitectura-de-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Arquitectura de la aplicación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.4. Arquitectura de la aplicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-general-cliente-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura general (cliente-servidor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-del-frontend-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura del frontend (Angular)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-del-backend-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura del backend (Spring Boot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-diseno-de-la-api-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. Diseño de la API REST
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5. Diseño de la API REST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-publicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints públicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-protegidos-requieren-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints protegidos (requieren autenticación)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints protegidos (requieren autenticación)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfil-de-jugador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perfil de jugador
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batallas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batallas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snapshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sesiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-respuesta-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Códigos de respuesta HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-respuestas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplos de respuestas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -370,7 +730,7 @@
   <span class="md-ellipsis">
     
   
-    06 desarrollo
+    6. Desarrollo del proyecto
   
 
     
@@ -397,7 +757,7 @@
   <span class="md-ellipsis">
     
   
-    07 pruebas
+    7. Pruebas del proyecto
   
 
     
@@ -424,7 +784,7 @@
   <span class="md-ellipsis">
     
   
-    08 despliegue
+    8. Despliegue del proyecto
   
 
     
@@ -451,7 +811,7 @@
   <span class="md-ellipsis">
     
   
-    09 manual usuario
+    9. Manual de usuario
   
 
     
@@ -478,7 +838,7 @@
   <span class="md-ellipsis">
     
   
-    10 conclusiones
+    10. Conclusiones
   
 
     
@@ -508,6 +868,332 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-diagrama-entidad-relacion-de-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Diagrama entidad-relación de la base de datos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1. Diagrama entidad-relación de la base de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modelo-de-datos-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo de datos completo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descripcion-de-tablas-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descripción de tablas principales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consultas-complejas-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consultas complejas implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-diagrama-de-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Diagrama de casos de uso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-diagramas-de-flujo-de-los-procesos-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Diagramas de flujo de los procesos principales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3. Diagramas de flujo de los procesos principales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-sincronizacion-de-batallas-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de sincronización de batallas (polling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flujo-de-diagnostico-de-debilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flujo de diagnóstico de debilidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-arquitectura-de-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Arquitectura de la aplicación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.4. Arquitectura de la aplicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-general-cliente-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura general (cliente-servidor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-del-frontend-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura del frontend (Angular)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-del-backend-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura del backend (Spring Boot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-diseno-de-la-api-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. Diseño de la API REST
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5. Diseño de la API REST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-publicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints públicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-protegidos-requieren-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints protegidos (requieren autenticación)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints protegidos (requieren autenticación)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfil-de-jugador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perfil de jugador
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batallas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batallas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snapshots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sesiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sesiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analisis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Análisis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-respuesta-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Códigos de respuesta HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-respuestas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplos de respuestas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -524,9 +1210,888 @@
 
 
 
-  <h1>05 diseño</h1>
+<h1 id="5-diseno-del-proyecto">5. Diseño del proyecto</h1>
+<h2 id="51-diagrama-entidad-relacion-de-la-base-de-datos">5.1. Diagrama entidad-relación de la base de datos</h2>
+<h3 id="modelo-de-datos-completo">Modelo de datos completo</h3>
+<p>El siguiente diagrama muestra las entidades principales del sistema y sus relaciones:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                      MODELO ENTIDAD-RELACIÓN                     │
+│                        CRCoach Database                          │
+└─────────────────────────────────────────────────────────────────┘
 
+┌─────────────┐       ┌──────────────────┐       ┌──────────────────┐
+│    User     │ 1───N │  PlayerProfile   │ 1───N │    Snapshot      │
+│─────────────│       │──────────────────│       │──────────────────│
+│ id (PK)     │       │ id (PK)          │       │ id (PK)          │
+│ email       │       │ user_id (FK)     │       │ profile_id (FK)  │
+│ username    │       │ player_tag       │       │ trophies         │
+│ password    │       │ name             │       │ best_trophies    │
+│ role        │       │ trophies         │       │ wins             │
+│ created_at  │       │ best_trophies    │       │ losses           │
+│ updated_at  │       │ wins             │       │ draws            │
+│ enabled     │       │ losses           │       │ battle_count     │
+│             │       │ draws            │       │ timestamp        │
+└─────────────┘       │ battle_count     │       └──────────────────┘
+       │              │ arena            │
+       │              │ clan_id (FK)     │
+       │              │ created_at       │
+       │              └────────┬─────────┘
+       │                       │
+       │              ┌────────┴─────────┐
+       │              │     Clan         │
+       │              │──────────────────│
+       │              │ id (PK)          │
+       │              │ name             │
+       │              │ tag              │
+       │              │ badge_id         │
+       │              └──────────────────┘
+       │
+       │ 1
+       │
+       ├───────────────────────────────────────────────┐
+       │                                               │
+       ▼                                               ▼
+┌─────────────┐                               ┌──────────────────┐
+│    Goal     │                               │     Session      │
+│─────────────│                               │──────────────────│
+│ id (PK)     │                               │ id (PK)          │
+│ user_id (FK)│                               │ user_id (FK)     │
+│ title       │                               │ title            │
+│ description │                               │ notes            │
+│ type        │                               │ mood             │
+│ target_value│                               │ start_time       │
+│ current_value│                              │ end_time         │
+│ deadline    │                               │ battle_count     │
+│ status      │                               │ created_at       │
+│ created_at  │                               └──────────────────┘
+│ updated_at  │
+└─────────────┘
 
+┌─────────────────────────────────────────────────────────────────┐
+│                        BATTLE SYSTEM                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────┐     ┌──────────┐     ┌─────────────────────────┐  │
+│  │ Battle   │ N─1 │ Battles  │ 1─N │       Deck              │  │
+│  │──────────│     │──────────│     │─────────────────────────│  │
+│  │ id (PK)  │     │ id (PK)  │     │ id (PK)                 │  │
+│  │ type     │     │ battle_id│     │ name                    │  │
+│  │ timestamp│     │ (FK)     │     │ elixir_average          │  │
+│  │          │     │ deck_id  │     │ cards (JSON)            │  │
+│  └──────────┘     │ (FK)     │     │ archetype               │  │
+│                   │ is_team  │     └─────────────────────────┘  │
+│                   │ is_win   │                                   │
+│                   │ crowns   │                                   │
+│                   │ trophy_chg│                                  │
+│                   │ team_crowns│                                 │
+│                   │ opponent   │                                 │
+│                   │ (JSON)   │                                   │
+│                   └──────────┘                                   │
+│                                                                  │
+│  ┌──────────┐     ┌──────────┐     ┌─────────────────────────┐  │
+│  │ GameMode │     │ Arena    │     │       Card              │  │
+│  │──────────│     │──────────│     │─────────────────────────│  │
+│  │ id (PK)  │     │ id (PK)  │     │ id (PK)                 │  │
+│  │ name     │     │ name     │     │ name                    │  │
+│  │          │     │ arena_id │     │ max_level               │  │
+│  └──────────┘     │ icon_url │     │ icon_url                │  │
+│                   └──────────┘     │ elixir_cost             │  │
+│                                    │ rarity                  │  │
+│                                    └─────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                    ANALYTICS SYSTEM                              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌────────────────┐ │
+│  │  WeaknessReport  │  │ ProblematicCard  │  │  ArchetypeStat │ │
+│  │──────────────────│  │──────────────────│  │────────────────│ │
+│  │ id (PK)          │  │ id (PK)          │  │ id (PK)        │ │
+│  │ profile_id (FK)  │  │ report_id (FK)   │  │ profile_id(FK) │ │
+│  │ total_battles    │  │ card_name        │  │ archetype_name │ │
+│  │ generated_at     │  │ losses           │  │ battles_played │ │
+│  └──────────────────┘  │ total_battles    │  │ wins           │ │
+│                        │ winrate          │  │ losses         │ │
+│                        └──────────────────┘  │ winrate        │ │
+│                                               └────────────────┘ │
+│                                                                  │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌────────────────┐ │
+│  │  WinRate         │  │  Metric          │  │  MostAdvanced  │ │
+│  │──────────────────│  │──────────────────│  │────────────────│ │
+│  │ id (PK)          │  │ id (PK)          │  │ id (PK)        │ │
+│  │ profile_id (FK)  │  │ profile_id (FK)  │  │ profile_id(FK) │ │
+│  │ total_battles    │  │ metric_type      │  │ card_name      │ │
+│  │ total_wins       │  │ value            │  │ level          │ │
+│  │ total_losses     │  │ timestamp        │  │ usage_count    │ │
+│  │ winrate          │  └──────────────────┘  │ winrate        │ │
+│  └──────────────────┘                        └────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="descripcion-de-tablas-principales">Descripción de tablas principales</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Entidad</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Relaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>User</strong></td>
+<td style="text-align: left;">Usuario registrado en la plataforma</td>
+<td style="text-align: left;">1:N con PlayerProfile, Goal, Session</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PlayerProfile</strong></td>
+<td style="text-align: left;">Perfil del jugador de Clash Royale vinculado</td>
+<td style="text-align: left;">N:1 con User, 1:N con Snapshot, Battle</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Battle</strong></td>
+<td style="text-align: left;">Cabecera de una partida individual</td>
+<td style="text-align: left;">1:N con Battles (desglose por jugador)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Battles</strong></td>
+<td style="text-align: left;">Participación de un jugador en una batalla</td>
+<td style="text-align: left;">N:1 con Battle, N:1 con Deck</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Deck</strong></td>
+<td style="text-align: left;">Mazo utilizado en una batalla (7 cartas + 1 soporte)</td>
+<td style="text-align: left;">1:N con Battles</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Card</strong></td>
+<td style="text-align: left;">Catálogo de cartas del juego</td>
+<td style="text-align: left;">N:M con Deck (a través de PlayerCard)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PlayerCard</strong></td>
+<td style="text-align: left;">Nivel de una carta para un jugador específico</td>
+<td style="text-align: left;">N:1 con PlayerProfile, N:1 con Card</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Snapshot</strong></td>
+<td style="text-align: left;">Estado del perfil en un momento dado</td>
+<td style="text-align: left;">N:1 con PlayerProfile</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Goal</strong></td>
+<td style="text-align: left;">Objetivo de mejora del jugador</td>
+<td style="text-align: left;">N:1 con User</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Session</strong></td>
+<td style="text-align: left;">Sesión de juego registrada por el usuario</td>
+<td style="text-align: left;">N:1 con User</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>WeaknessReport</strong></td>
+<td style="text-align: left;">Reporte de debilidades generado automáticamente</td>
+<td style="text-align: left;">1:N con ProblematicCard, N:1 con PlayerProfile</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ArchetypeStat</strong></td>
+<td style="text-align: left;">Estadísticas por arquetipo rival</td>
+<td style="text-align: left;">N:1 con PlayerProfile</td>
+</tr>
+</tbody>
+</table>
+<h3 id="consultas-complejas-implementadas">Consultas complejas implementadas</h3>
+<p><strong>Clasificación de arquetipo por cartas del mazo rival:</strong></p>
+<pre><code class="language-sql">-- Lógica Java en ArchetypeClassifier.java
+// Clasifica el arquetipo basándose en cartas características:
+// SIEGE: X-Bow, Mortar, Princess
+// BEATDOWN: Golem, Lava Hound, Giant
+// CYCLE: Hog Rider, Ice Spirit, Log
+// CONTROL: Pekka, Mega Knight, Mini Pekka
+// BAIT: Goblin Barrel, Princess, Goblin Gang
+</code></pre>
+<p><strong>Cálculo de winrate por arquetipo:</strong></p>
+<pre><code class="language-java">// En AnalyticsService.java
+public double calculateWinrateByArchetype(String archetype, Long profileId) {
+    // Cuenta victorias y total de batallas contra ese arquetipo
+}
+</code></pre>
+<h2 id="52-diagrama-de-casos-de-uso">5.2. Diagrama de casos de uso</h2>
+<pre><code>┌────────────────────────────────────────────────────────────────────┐
+│                        CRCoach Platform                            │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│  ┌──────────────────────┐          ┌───────────────────────────┐  │
+│  │     Visitante         │          │       Usuario             │  │
+│  └──────────┬───────────┘          └─────────────┬─────────────┘  │
+│             │                                     │                │
+│  ┌──────────┴───────────┐              ┌──────────┴───────────┐  │
+│  │ • Registrarse        │              │ • Ver dashboard      │  │
+│  │ • Iniciar sesión     │              │ • Gestionar perfil   │  │
+│  │ • Recuperar          │              │ • Ver batallas       │  │
+│  │   contraseña         │              │ • Analizar           │  │
+│  └──────────────────────┘              │   debilidades        │  │
+│                                        │ • CRUD objetivos     │  │
+│  ┌──────────────────────┐              │ • CRUD sesiones      │  │
+│  │    Sistema (actor)    │              │ • Ver evolución      │  │
+│  │ ───────────────────  │              │ • Sincronizar datos  │  │
+│  │ • Polling automático  │              │ • Cambiar idioma     │  │
+│  │ • Evaluar objetivos   │              │ • Tema oscuro        │  │
+│  │ • Clasificar          │              │ • Eliminar cuenta    │  │
+│  │   arquetipos          │              └──────────────────────┘  │
+│  │ • Generar snapshots   │                                        │
+│  └──────────────────────┘                                         │
+└────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2 id="53-diagramas-de-flujo-de-los-procesos-principales">5.3. Diagramas de flujo de los procesos principales</h2>
+<h3 id="flujo-de-autenticacion">Flujo de autenticación</h3>
+<pre><code>Visitante                    Frontend                      Backend                    API Supercell
+    │                           │                             │                            │
+    │   Rellena formulario      │                             │                            │
+    │   registro                │                             │                            │
+    │──────────────────────────&gt;│                             │                            │
+    │                           │  POST /api/v1/auth/register │                            │
+    │                           │────────────────────────────&gt;│                            │
+    │                           │                             │  Validar datos             │
+    │                           │                             │  Hash contraseña (BCrypt)  │
+    │                           │                             │  Crear usuario             │
+    │                           │                             │  Generar JWT               │
+    │                           │  { token, user }            │                            │
+    │                           │&lt;────────────────────────────│                            │
+    │  Redirigir a dashboard    │                             │                            │
+    │&lt;──────────────────────────│                             │                            │
+</code></pre>
+<h3 id="flujo-de-sincronizacion-de-batallas-polling">Flujo de sincronización de batallas (polling)</h3>
+<pre><code>Backend (Scheduler)            Backend (Service)            API Supercell             Base de Datos
+    │                               │                            │                         │
+    │  @Scheduled cada 5 min        │                            │                         │
+    │──────────────────────────────&gt;│                            │                         │
+    │                               │ GET /players/{tag}         │                         │
+    │                               │───────────────────────────&gt;│                         │
+    │                               │  { perfil completo }       │                         │
+    │                               │&lt;───────────────────────────│                         │
+    │                               │                            │                         │
+    │                               │ GET /players/{tag}/        │                         │
+    │                               │    battlelog                │                         │
+    │                               │───────────────────────────&gt;│                         │
+    │                               │  [últimas 25 batallas]    │                         │
+    │                               │&lt;───────────────────────────│                         │
+    │                               │                            │                         │
+    │                               │  Clasificar arquetipos     │                         │
+    │                               │  Detectar cartas           │                         │
+    │                               │  problemáticas             │                         │
+    │                               │                            │                         │
+    │                               │  Guardar batallas          │                         │
+    │                               │───────────────────────────────────────────────────&gt;│
+    │                               │                            │                         │
+    │                               │  Crear snapshot            │                         │
+    │                               │───────────────────────────────────────────────────&gt;│
+    │                               │                            │                         │
+    │                               │  Evaluar objetivos         │                         │
+    │                               │  activos                   │                         │
+    │                               │───────────────────────────────────────────────────&gt;│
+</code></pre>
+<h3 id="flujo-de-diagnostico-de-debilidades">Flujo de diagnóstico de debilidades</h3>
+<pre><code>Usuario               Frontend                    Backend                    API Supercell
+    │                     │                           │                            │
+    │  Navega a            │                           │                            │
+    │  &quot;Debilidades&quot;       │                           │                            │
+    │─────────────────────&gt;│                           │                            │
+    │                      │ GET /api/v1/analytics/    │                            │
+    │                      │    weaknesses/{profileId} │                            │
+    │                      │──────────────────────────&gt;│                            │
+    │                      │                           │  Consultar batallas       │
+    │                      │                           │  almacenadas              │
+    │                      │                           │  ──────────────────────&gt;  │
+    │                      │                           │  [datos históricos]       │
+    │                      │                           │&lt;──────────────────────    │
+    │                      │                           │                           │
+    │                      │                           │  Agrupar por arquetipo   │
+    │                      │                           │  Calcular winrates       │
+    │                      │                           │  Identificar cartas      │
+    │                      │                           │  problemáticas           │
+    │                      │                           │                           │
+    │                      │  { WeaknessReportDTO }   │                           │
+    │                      │&lt;──────────────────────────│                           │
+    │  Renderizar          │                           │                           │
+    │  gráficas y tabla    │                           │                           │
+    │&lt;─────────────────────│                           │                           │
+</code></pre>
+<h2 id="54-arquitectura-de-la-aplicacion">5.4. Arquitectura de la aplicación</h2>
+<h3 id="arquitectura-general-cliente-servidor">Arquitectura general (cliente-servidor)</h3>
+<pre><code>┌──────────────────────────────────────────────────────────────────────────┐
+│                         CRCoach ARQUITECTURA                              │
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│   🌐 Navegador Web                                                      │
+│   ┌──────────────────────────────────────────┐                          │
+│   │         Frontend (Angular 21 SPA)         │                          │
+│   │                                          │                          │
+│   │  ┌─────────┐  ┌──────────┐  ┌─────────┐ │                          │
+│   │  │ Pages    │  │ Services │  │ Signal  │ │                          │
+│   │  │ (16)    │  │ (17)     │  │ Stores  │ │                          │
+│   │  ├─────────┤  ├──────────┤  ├─────────┤ │     HTTP/HTTPS            │
+│   │  │Components│  │ Auth     │  │ Battle  │ │◄───────────────────      │
+│   │  │ (16)    │  │ Battles  │  │ Goals   │ │         │                │
+│   │  │         │  │ Goals    │  │ Metric  │ │         │                │
+│   │  │ Guards  │  │ Sessions │  │ Session │ │         │                │
+│   │  │ Routes  │  │ Users    │  │ Users   │ │         │                │
+│   │  └─────────┘  └──────────┘  └─────────┘ │         │                │
+│   └──────────────────────────────────────────┘         │                │
+│                                                         │                │
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│   🖥️ Servidor de Aplicaciones (Spring Boot 4.0)                        │
+│   ┌─────────────────────────────────────────────────────────┐           │
+│   │                Backend API REST                          │           │
+│   │                                                          │           │
+│   │  ┌────────────┐  ┌────────────┐  ┌──────────────────┐   │           │
+│   │  │ Controllers │  │  Services  │  │  Security        │   │           │
+│   │  │ (26)       │  │  (28)      │  │  JWT + CORS      │   │           │
+│   │  ├────────────┤  ├────────────┤  ├──────────────────┤   │           │
+│   │  │ REST       │  │ Analytics  │  │  AuthController  │   │           │
+│   │  │ endpoints  │  │ Battles    │  │  JwtUtil         │   │           │
+│   │  │ /api/v1/   │  │ Goals      │  │  JwtFilter       │   │           │
+│   │  └────────────┘  │ Sync       │  │  SecurityConfig  │   │           │
+│   │                   │ Email      │  └──────────────────┘   │           │
+│   │                   └────────────┘                         │           │
+│   │                                                          │           │
+│   │  ┌────────────┐  ┌──────────────────────────┐            │           │
+│   │  │  Mappers   │  │  JPA Repositories (28)   │            │           │
+│   │  └────────────┘  └───────────┬──────────────┘            │           │
+│   └──────────────────────────────┼───────────────────────────┘           │
+│                                  │                                       │
+│   ┌──────────────────────────────┼───────────────────────────┐           │
+│   │           Docker             │              PostgreSQL   │           │
+│   │                              ▼                           │           │
+│   │  ┌──────────────────┐  ┌──────────┐                     │           │
+│   │  │  app (Spring     │  │ postgres │                     │           │
+│   │  │  Boot + Java 21) │  │ (15)     │                     │           │
+│   │  │  puerto: 8080    │  │ puerto:  │                     │           │
+│   │  └──────────────────┘  │ 5432     │                     │           │
+│   │                        └──────────┘                     │           │
+│   └──────────────────────────────────────────────────────────┘           │
+│                                                                          │
+│                          API Supercell                                   │
+│                   https://api.clashroyale.com/v1                         │
+│                          │                                               │
+│                   ┌──────┴──────┐                                        │
+│                   │ GET /players│                                        │
+│                   │ GET /battle │                                        │
+│                   │   log       │                                        │
+│                   │ GET /cards  │                                        │
+│                   └────────────┘                                        │
+└──────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="arquitectura-del-frontend-angular">Arquitectura del frontend (Angular)</h3>
+<pre><code>Frontend-CRCoach/
+├── src/
+│   ├── app/
+│   │   ├── app.ts                    # Componente raíz
+│   │   ├── app.config.ts             # Configuración global (providers)
+│   │   ├── app.routes.ts             # Definición de rutas
+│   │   │
+│   │   ├── components/               # Componentes reutilizables
+│   │   │   ├── layout/               # Layout principal
+│   │   │   │   ├── header/           # Cabecera responsive
+│   │   │   │   ├── footer/           # Pie de página
+│   │   │   │   ├── main/             # Contenedor principal
+│   │   │   │   └── sidebar/          # Navegación lateral
+│   │   │   └── shared/               # Componentes compartidos
+│   │   │       ├── common-button/    # Botón reutilizable
+│   │   │       ├── form-input/       # Input con validación
+│   │   │       ├── modal/            # Ventana modal
+│   │   │       ├── toast/            # Notificaciones
+│   │   │       ├── pagination/       # Paginación
+│   │   │       ├── graph/            # Contenedor de gráficas
+│   │   │       └── ...               # Más componentes
+│   │   │
+│   │   ├── pages/                    # Páginas (lazy-loaded)
+│   │   │   ├── landing/              # Página de aterrizaje
+│   │   │   ├── login/                # Inicio de sesión
+│   │   │   ├── register/             # Registro
+│   │   │   ├── dashboard/            # Panel principal
+│   │   │   ├── battles/              # Historial de batallas
+│   │   │   ├── weaknesses/           # Diagnóstico
+│   │   │   ├── goals/                # Objetivos
+│   │   │   ├── sessions/             # Diario
+│   │   │   ├── progress/             # Evolución
+│   │   │   ├── profile/              # Perfil de usuario
+│   │   │   └── not-found/            # 404
+│   │   │
+│   │   ├── services/                 # Servicios (inyección de dependencias)
+│   │   │   ├── auth.service.ts       # Autenticación
+│   │   │   ├── battles.service.ts    # Batallas API
+│   │   │   ├── goals.service.ts      # Objetivos API
+│   │   │   ├── sessions.service.ts   # Sesiones API
+│   │   │   ├── users.service.ts      # Usuarios API
+│   │   │   ├── theme.service.ts      # Tema claro/oscuro
+│   │   │   ├── language.service.ts   # Internacionalización
+│   │   │   ├── toast.service.ts      # Notificaciones
+│   │   │   └── ...
+│   │   │
+│   │   ├── signal_stores/            # NgRx Signal Stores
+│   │   │   ├── battles.signal.store.ts
+│   │   │   ├── goals.signal.store.ts
+│   │   │   ├── sessions.signal.store.ts
+│   │   │   ├── users.signal.store.ts
+│   │   │   └── ...
+│   │   │
+│   │   ├── guards/                   # Route guards
+│   │   │   └── auth/
+│   │   │       └── auth-guard.ts     # Protege rutas privadas
+│   │   │
+│   │   ├── interceptors/             # HTTP interceptors
+│   │   │   └── auth.interceptor.ts   # Añade JWT a peticiones
+│   │   │
+│   │   ├── interfaces/               # Tipos TypeScript
+│   │   │   ├── Battle.ts
+│   │   │   ├── Goal.ts
+│   │   │   ├── User.ts
+│   │   │   └── ...
+│   │   │
+│   │   └── validators/               # Validadores personalizados
+│   │       ├── password-strength.validator.ts
+│   │       └── password-match.validator.ts
+│   │
+│   ├── styles/                       # Arquitectura ITCSS
+│   ├── assets/                       # Recursos estáticos
+│   └── enviroments/                  # Configuración por entorno
+</code></pre>
+<h3 id="arquitectura-del-backend-spring-boot">Arquitectura del backend (Spring Boot)</h3>
+<pre><code>Backend-CRCoach/
+├── src/main/java/org/example/backendcrcoach/
+│   ├── BackendCrCoachApplication.java     # Punto de entrada
+│   │
+│   ├── config/                            # Configuración global
+│   │   ├── AsyncConfig.java               # Pool de hilos para tareas async
+│   │   ├── OpenApiConfig.java             # Configuración Swagger/OpenAPI
+│   │   ├── WebClientConfig.java           # Cliente HTTP reactivo
+│   │   └── WebClientHelper.java           # Helper con reintentos automáticos
+│   │
+│   ├── security/                          # Seguridad y autenticación
+│   │   ├── SecurityConfig.java            # Configuración Spring Security
+│   │   ├── AuthenticationSuccessListener.java  # Email al iniciar sesión
+│   │   ├── controller/
+│   │   │   └── AuthController.java        # /api/v1/auth/*
+│   │   ├── dto/                           # DTOs de autenticación
+│   │   ├── jwt/
+│   │   │   ├── JwtUtil.java              # Generación/validación JWT
+│   │   │   └── JwtRequestFilter.java     # Filtro de peticiones
+│   │   └── user/
+│   │       ├── CustomUserDetails.java
+│   │       └── CustomUserDetailsService.java
+│   │
+│   ├── domain/                            # Capa de dominio
+│   │   ├── entities/                      # Entidades JPA (30+)
+│   │   ├── dto/                           # DTOs de entrada/salida
+│   │   └── enums/                         # Enumeraciones (Role, GoalStatus)
+│   │
+│   ├── repositories/                      # Capa de persistencia (28 repos)
+│   │
+│   ├── mappers/                           # Mapeadores entidad ↔ DTO
+│   │
+│   ├── services/                          # Capa de negocio (28 servicios)
+│   │   ├── AnalyticsService.java          # Motor de análisis
+│   │   ├── BattleService.java             # Gestión de batallas
+│   │   ├── GoalService.java               # Gestión de objetivos
+│   │   ├── SessionService.java            # Diario de sesiones
+│   │   ├── EmailService.java              # Envío de emails
+│   │   └── ...
+│   │
+│   ├── analytics/                         # Motor de análisis
+│   │   ├── AnalyticsController.java
+│   │   ├── AnalyticsService.java
+│   │   ├── ArchetypeClassifier.java       # Clasificador de arquetipos
+│   │   └── dto/                           # DTOs del módulo de análisis
+│   │
+│   └── web/                               # Capa web (controllers REST)
+│       ├── controllers/                   # 26 controladores REST
+│       ├── exceptions/                    # Manejadores de excepciones
+│       └── filters/
+│           └── RequestRedirectFilter.java # Redirección de navegadores
+</code></pre>
+<h2 id="55-diseno-de-la-api-rest">5.5. Diseño de la API REST</h2>
+<h3 id="base-url">Base URL</h3>
+<pre><code>Producción: https://backend-crcoach.onrender.com/api/v1
+Local:      http://localhost:8080/api/v1
+</code></pre>
+<h3 id="autenticacion">Autenticación</h3>
+<p>Todas las peticiones a rutas protegidas requieren un header:</p>
+<pre><code>Authorization: Bearer &lt;jwt_token&gt;
+</code></pre>
+<h3 id="endpoints-publicos">Endpoints públicos</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Ruta</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/auth/authenticate</code></td>
+<td style="text-align: left;">Iniciar sesión</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/auth/register</code></td>
+<td style="text-align: left;">Registrar nuevo usuario</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/auth/logout</code></td>
+<td style="text-align: left;">Cerrar sesión</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/auth/password/forgot</code></td>
+<td style="text-align: left;">Solicitar recuperación de contraseña</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/auth/password/reset</code></td>
+<td style="text-align: left;">Restablecer contraseña</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/users/email-exists/{email}</code></td>
+<td style="text-align: left;">Verificar si el email existe</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/users/username-exists/{username}</code></td>
+<td style="text-align: left;">Verificar si el username existe</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/player_profiles/exists-in-api/{tag}</code></td>
+<td style="text-align: left;">Verificar si el tag existe en API Supercell</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/player_profiles/exists-in-local/{tag}</code></td>
+<td style="text-align: left;">Verificar si el tag existe en BD local</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/cards</code></td>
+<td style="text-align: left;">Obtener catálogo de cartas</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/v3/api-docs</code></td>
+<td style="text-align: left;">Documentación OpenAPI</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/swagger-ui/index.html</code></td>
+<td style="text-align: left;">Swagger UI</td>
+</tr>
+</tbody>
+</table>
+<h3 id="endpoints-protegidos-requieren-autenticacion">Endpoints protegidos (requieren autenticación)</h3>
+<h4 id="perfil-de-jugador">Perfil de jugador</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Ruta</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/player_profiles/{id}</code></td>
+<td style="text-align: left;">Obtener perfil por ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/player_profiles/by-user/{userId}</code></td>
+<td style="text-align: left;">Obtener perfil por usuario</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/player_profiles</code></td>
+<td style="text-align: left;">Crear perfil (vincular tag)</td>
+</tr>
+<tr>
+<td style="text-align: left;">PUT</td>
+<td style="text-align: left;"><code>/player_profiles/{id}</code></td>
+<td style="text-align: left;">Actualizar perfil</td>
+</tr>
+<tr>
+<td style="text-align: left;">DELETE</td>
+<td style="text-align: left;"><code>/player_profiles/{id}</code></td>
+<td style="text-align: left;">Eliminar perfil</td>
+</tr>
+</tbody>
+</table>
+<h4 id="batallas">Batallas</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Ruta</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/battles</code></td>
+<td style="text-align: left;">Listar batallas (con filtros)</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/battles/{id}</code></td>
+<td style="text-align: left;">Obtener batalla por ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/battles/by-user/{userId}</code></td>
+<td style="text-align: left;">Batallas por usuario</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/battles/sync/{profileId}</code></td>
+<td style="text-align: left;">Forzar sincronización manual</td>
+</tr>
+</tbody>
+</table>
+<h4 id="snapshots">Snapshots</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Ruta</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/snapshots/by-user/{userId}</code></td>
+<td style="text-align: left;">Obtener snapshots para gráfica</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/snapshots/latest/{profileId}</code></td>
+<td style="text-align: left;">Último snapshot</td>
+</tr>
+</tbody>
+</table>
+<h4 id="objetivos">Objetivos</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Ruta</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/goals/by-user/{userId}</code></td>
+<td style="text-align: left;">Listar objetivos del usuario</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/goals</code></td>
+<td style="text-align: left;">Crear objetivo</td>
+</tr>
+<tr>
+<td style="text-align: left;">PUT</td>
+<td style="text-align: left;"><code>/goals/{id}</code></td>
+<td style="text-align: left;">Actualizar objetivo</td>
+</tr>
+<tr>
+<td style="text-align: left;">DELETE</td>
+<td style="text-align: left;"><code>/goals/{id}</code></td>
+<td style="text-align: left;">Eliminar objetivo</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/goals/{id}/progress</code></td>
+<td style="text-align: left;">Evaluar progreso del objetivo</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sesiones">Sesiones</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Ruta</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/sessions/by-user/{userId}</code></td>
+<td style="text-align: left;">Listar sesiones del usuario</td>
+</tr>
+<tr>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;"><code>/sessions</code></td>
+<td style="text-align: left;">Crear sesión</td>
+</tr>
+<tr>
+<td style="text-align: left;">PUT</td>
+<td style="text-align: left;"><code>/sessions/{id}</code></td>
+<td style="text-align: left;">Actualizar sesión</td>
+</tr>
+<tr>
+<td style="text-align: left;">DELETE</td>
+<td style="text-align: left;"><code>/sessions/{id}</code></td>
+<td style="text-align: left;">Eliminar sesión</td>
+</tr>
+</tbody>
+</table>
+<h4 id="analisis">Análisis</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Ruta</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/analytics/weaknesses/{profileId}</code></td>
+<td style="text-align: left;">Reporte de debilidades</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/analytics/winrate/{profileId}</code></td>
+<td style="text-align: left;">Winrate global</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/analytics/archetypes/{profileId}</code></td>
+<td style="text-align: left;">Winrate por arquetipo</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/analytics/problematic-cards/{profileId}</code></td>
+<td style="text-align: left;">Cartas problemáticas</td>
+</tr>
+<tr>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;"><code>/analytics/summary/{profileId}</code></td>
+<td style="text-align: left;">Resumen del jugador</td>
+</tr>
+</tbody>
+</table>
+<h3 id="codigos-de-respuesta-http">Códigos de respuesta HTTP</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: left;">Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">Petición exitosa (GET, PUT)</td>
+</tr>
+<tr>
+<td style="text-align: left;">201</td>
+<td style="text-align: left;">Created</td>
+<td style="text-align: left;">Recurso creado (POST)</td>
+</tr>
+<tr>
+<td style="text-align: left;">204</td>
+<td style="text-align: left;">No Content</td>
+<td style="text-align: left;">Recurso eliminado (DELETE)</td>
+</tr>
+<tr>
+<td style="text-align: left;">400</td>
+<td style="text-align: left;">Bad Request</td>
+<td style="text-align: left;">Datos de entrada inválidos</td>
+</tr>
+<tr>
+<td style="text-align: left;">401</td>
+<td style="text-align: left;">Unauthorized</td>
+<td style="text-align: left;">Token JWT ausente o inválido</td>
+</tr>
+<tr>
+<td style="text-align: left;">403</td>
+<td style="text-align: left;">Forbidden</td>
+<td style="text-align: left;">Sin permisos para el recurso</td>
+</tr>
+<tr>
+<td style="text-align: left;">404</td>
+<td style="text-align: left;">Not Found</td>
+<td style="text-align: left;">Recurso no encontrado</td>
+</tr>
+<tr>
+<td style="text-align: left;">409</td>
+<td style="text-align: left;">Conflict</td>
+<td style="text-align: left;">Recurso duplicado</td>
+</tr>
+<tr>
+<td style="text-align: left;">422</td>
+<td style="text-align: left;">Unprocessable Entity</td>
+<td style="text-align: left;">Datos semánticamente inválidos</td>
+</tr>
+<tr>
+<td style="text-align: left;">429</td>
+<td style="text-align: left;">Too Many Requests</td>
+<td style="text-align: left;">Límite de API superado</td>
+</tr>
+<tr>
+<td style="text-align: left;">500</td>
+<td style="text-align: left;">Internal Server Error</td>
+<td style="text-align: left;">Error interno del servidor</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplos-de-respuestas">Ejemplos de respuestas</h3>
+<p><strong>Respuesta exitosa (200):</strong></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;email&quot;: &quot;jugador@example.com&quot;,
+  &quot;username&quot;: &quot;MegaJugador&quot;,
+  &quot;role&quot;: &quot;USER&quot;,
+  &quot;createdAt&quot;: &quot;2026-01-15T10:30:00Z&quot;
+}
+</code></pre>
+<p><strong>Respuesta con error (400):</strong></p>
+<pre><code class="language-json">{
+  &quot;error&quot;: &quot;Validation Error&quot;,
+  &quot;message&quot;: &quot;El email no tiene un formato válido&quot;,
+  &quot;status&quot;: 400,
+  &quot;timestamp&quot;: &quot;2026-03-16T12:00:00Z&quot;
+}
+</code></pre>
+<p><strong>Respuesta de análisis (diagnóstico de debilidades):</strong></p>
+<pre><code class="language-json">{
+  &quot;profileId&quot;: 1,
+  &quot;totalBattles&quot;: 150,
+  &quot;winrate&quot;: 57.3,
+  &quot;archetypeStats&quot;: [
+    { &quot;archetype&quot;: &quot;BEATDOWN&quot;, &quot;winrate&quot;: 30.0, &quot;battles&quot;: 40 },
+    { &quot;archetype&quot;: &quot;CYCLE&quot;, &quot;winrate&quot;: 65.0, &quot;battles&quot;: 60 },
+    { &quot;archetype&quot;: &quot;CONTROL&quot;, &quot;winrate&quot;: 50.0, &quot;battles&quot;: 30 }
+  ],
+  &quot;problematicCards&quot;: [
+    { &quot;cardName&quot;: &quot;Mega Knight&quot;, &quot;winrate&quot;: 28.0, &quot;totalBattles&quot;: 25 },
+    { &quot;cardName&quot;: &quot;Hog Rider&quot;, &quot;winrate&quot;: 35.0, &quot;totalBattles&quot;: 20 }
+  ],
+  &quot;generatedAt&quot;: &quot;2026-03-16T12:00:00Z&quot;
+}
+</code></pre>
 
 
 

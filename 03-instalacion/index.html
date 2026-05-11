@@ -25,7 +25,7 @@
     
     
       
-        <title>03 instalacion - CRCoach Documentation</title>
+        <title>3. Instalación y preparación del entorno - CRCoach Documentation</title>
       
     
     
@@ -65,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#3-instalacion-y-preparacion-del-entorno" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              03 instalacion
+              3. Instalación y preparación del entorno
             
           </span>
         </div>
@@ -227,7 +232,7 @@
   <span class="md-ellipsis">
     
   
-    01 introduccion
+    1. Introducción, objetivos y antecedentes
   
 
     
@@ -254,7 +259,7 @@
   <span class="md-ellipsis">
     
   
-    02 descripcion
+    2. Descripción del proyecto
   
 
     
@@ -280,6 +285,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Instalación y preparación del entorno
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -288,7 +313,7 @@
   <span class="md-ellipsis">
     
   
-    03 instalacion
+    3. Instalación y preparación del entorno
   
 
     
@@ -297,6 +322,424 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-requisitos-previos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Requisitos previos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1. Requisitos previos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-necesario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Software necesario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-instalaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar instalaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clave-de-api-de-clash-royale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clave de API de Clash Royale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuenta-de-brevo-para-envio-de-emails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuenta de Brevo (para envío de emails)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-clonar-el-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Clonar el repositorio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-configuracion-del-backend-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Configuración del backend (Spring Boot)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3. Configuración del backend (Spring Boot)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1. Variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-ejecucion-con-maven-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2. Ejecución con Maven (desarrollo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-ejecucion-con-docker-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.3. Ejecución con Docker (recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#334-verificar-que-el-backend-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.4. Verificar que el backend funciona
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-configuracion-del-frontend-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Configuración del frontend (Angular)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4. Configuración del frontend (Angular)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.1. Variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#342-ejecucion-con-angular-cli-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.2. Ejecución con Angular CLI (desarrollo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#343-ejecucion-con-docker-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.3. Ejecución con Docker (recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#344-construir-para-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.4. Construir para producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-configuracion-de-docker-compose-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Configuración de Docker Compose completa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5. Configuración de Docker Compose completa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (docker-compose.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend (docker-compose.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-verificacion-de-la-instalacion-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Verificación de la instalación completa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6. Verificación de la instalación completa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-arrancar-el-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Arrancar el backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-verificar-el-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Verificar el backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-verificar-logs-del-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Verificar logs del backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-arrancar-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4: Arrancar el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-verificar-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5: Verificar el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6-acceder-a-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 6: Acceder a la aplicación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-solucion-de-problemas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Solución de problemas comunes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7. Solución de problemas comunes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-port-is-already-allocated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: port is already allocated
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-cannot-connect-to-the-docker-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: Cannot connect to the Docker daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-postgresql-connection-refused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: PostgreSQL connection refused
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-clash-royale-api-returns-403" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: Clash Royale API returns 403
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-npm-err-durante-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: npm ERR! durante la instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-maven-build-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: Maven build fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -316,7 +759,7 @@
   <span class="md-ellipsis">
     
   
-    04 guia estilos
+    4. Guía de estilos y prototipado
   
 
     
@@ -343,7 +786,7 @@
   <span class="md-ellipsis">
     
   
-    05 diseño
+    5. Diseño del proyecto
   
 
     
@@ -370,7 +813,7 @@
   <span class="md-ellipsis">
     
   
-    06 desarrollo
+    6. Desarrollo del proyecto
   
 
     
@@ -397,7 +840,7 @@
   <span class="md-ellipsis">
     
   
-    07 pruebas
+    7. Pruebas del proyecto
   
 
     
@@ -424,7 +867,7 @@
   <span class="md-ellipsis">
     
   
-    08 despliegue
+    8. Despliegue del proyecto
   
 
     
@@ -451,7 +894,7 @@
   <span class="md-ellipsis">
     
   
-    09 manual usuario
+    9. Manual de usuario
   
 
     
@@ -478,7 +921,7 @@
   <span class="md-ellipsis">
     
   
-    10 conclusiones
+    10. Conclusiones
   
 
     
@@ -508,6 +951,415 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-requisitos-previos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Requisitos previos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1. Requisitos previos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-necesario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Software necesario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-instalaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificar instalaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clave-de-api-de-clash-royale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clave de API de Clash Royale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuenta-de-brevo-para-envio-de-emails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cuenta de Brevo (para envío de emails)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-clonar-el-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Clonar el repositorio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-configuracion-del-backend-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Configuración del backend (Spring Boot)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3. Configuración del backend (Spring Boot)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1. Variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-ejecucion-con-maven-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2. Ejecución con Maven (desarrollo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-ejecucion-con-docker-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.3. Ejecución con Docker (recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#334-verificar-que-el-backend-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.4. Verificar que el backend funciona
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-configuracion-del-frontend-angular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Configuración del frontend (Angular)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4. Configuración del frontend (Angular)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.1. Variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#342-ejecucion-con-angular-cli-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.2. Ejecución con Angular CLI (desarrollo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#343-ejecucion-con-docker-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.3. Ejecución con Docker (recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#344-construir-para-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.4. Construir para producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-configuracion-de-docker-compose-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Configuración de Docker Compose completa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5. Configuración de Docker Compose completa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (docker-compose.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend (docker-compose.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-verificacion-de-la-instalacion-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Verificación de la instalación completa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6. Verificación de la instalación completa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-arrancar-el-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Arrancar el backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-verificar-el-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Verificar el backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-verificar-logs-del-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Verificar logs del backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-arrancar-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4: Arrancar el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-verificar-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5: Verificar el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6-acceder-a-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 6: Acceder a la aplicación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-solucion-de-problemas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Solución de problemas comunes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7. Solución de problemas comunes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-port-is-already-allocated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: port is already allocated
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-cannot-connect-to-the-docker-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: Cannot connect to the Docker daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-postgresql-connection-refused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: PostgreSQL connection refused
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-clash-royale-api-returns-403" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: Clash Royale API returns 403
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-npm-err-durante-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: npm ERR! durante la instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-maven-build-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: Maven build fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -524,9 +1376,421 @@
 
 
 
-  <h1>03 instalacion</h1>
+<h1 id="3-instalacion-y-preparacion-del-entorno">3. Instalación y preparación del entorno</h1>
+<h2 id="31-requisitos-previos">3.1. Requisitos previos</h2>
+<h3 id="software-necesario">Software necesario</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Herramienta</th>
+<th style="text-align: left;">Versión mínima</th>
+<th style="text-align: left;">Descarga</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Node.js</td>
+<td style="text-align: left;">24.x</td>
+<td style="text-align: left;"><a href="https://nodejs.org/">https://nodejs.org/</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">npm</td>
+<td style="text-align: left;">11.x</td>
+<td style="text-align: left;">Incluido con Node.js</td>
+</tr>
+<tr>
+<td style="text-align: left;">Java JDK</td>
+<td style="text-align: left;">21 (Temurin)</td>
+<td style="text-align: left;"><a href="https://adoptium.net/">https://adoptium.net/</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Maven</td>
+<td style="text-align: left;">3.9.x</td>
+<td style="text-align: left;"><a href="https://maven.apache.org/">https://maven.apache.org/</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Docker</td>
+<td style="text-align: left;">24.x</td>
+<td style="text-align: left;"><a href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Docker Compose</td>
+<td style="text-align: left;">2.x</td>
+<td style="text-align: left;">Incluido con Docker Desktop</td>
+</tr>
+<tr>
+<td style="text-align: left;">Git</td>
+<td style="text-align: left;">2.x</td>
+<td style="text-align: left;"><a href="https://git-scm.com/">https://git-scm.com/</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="verificar-instalaciones">Verificar instalaciones</h3>
+<pre><code class="language-bash">node --version    # v24.x
+npm --version     # 11.x
+java --version    # 21.x (Temurin)
+mvn --version     # 3.9.x
+docker --version  # 24.x
+docker compose version  # 2.x
+git --version     # 2.x
+</code></pre>
+<h3 id="clave-de-api-de-clash-royale">Clave de API de Clash Royale</h3>
+<p>Para que la aplicación funcione correctamente, necesitas una clave de API de Supercell:</p>
+<ol>
+<li>Regístrate en <a href="https://developer.clashroyale.com/">https://developer.clashroyale.com/</a></li>
+<li>Crea una nueva aplicación y solicita una clave de API.</li>
+<li><strong>Importante</strong>: Añade la IP de tu servidor a la lista blanca (whitelist) de la clave.</li>
+<li>Copia la clave generada (formato JWT).</li>
+</ol>
+<blockquote>
+<p><strong>Nota</strong>: Si ejecutas localmente con Docker, la IP que debes añadir es la IP pública de tu máquina o <code>0.0.0.0/0</code> si es para desarrollo.</p>
+</blockquote>
+<h3 id="cuenta-de-brevo-para-envio-de-emails">Cuenta de Brevo (para envío de emails)</h3>
+<p>Para la funcionalidad de recuperación de contraseña y notificaciones por email:</p>
+<ol>
+<li>Regístrate en <a href="https://app.brevo.com/">https://app.brevo.com/</a></li>
+<li>Ve a "SMTP &amp; API" y genera una clave SMTP.</li>
+<li>Copia la clave SMTP y la API key.</li>
+</ol>
+<h2 id="32-clonar-el-repositorio">3.2. Clonar el repositorio</h2>
+<pre><code class="language-bash">git clone https://github.com/ricitos2001/Backend-CRCoach.git
+git clone https://github.com/ricitos2001/Frontend-CRCoach.git
+</code></pre>
+<p>O si prefieres clonar ambos desde un repositorio principal:</p>
+<pre><code class="language-bash">git clone https://github.com/ricitos2001/CRCoach.git
+cd CRCoach
+</code></pre>
+<h2 id="33-configuracion-del-backend-spring-boot">3.3. Configuración del backend (Spring Boot)</h2>
+<h3 id="331-variables-de-entorno">3.3.1. Variables de entorno</h3>
+<p>Crea un archivo <code>.env</code> en la raíz de <code>Backend-CRCoach/</code> con el siguiente contenido:</p>
+<pre><code class="language-bash"># ─────────────────────────────────────────────────────
+# Backend-CRCoach - Variables de Entorno
+# ─────────────────────────────────────────────────────
 
+# --- Base de datos (PostgreSQL) ---
+# Para desarrollo local con Docker:
+PGHOST=localhost
+PGPORT=5432
+PGDATABASE=crcoach_db
+PGUSER=crcoach_user
+PGPASSWORD=crcoach_pass
 
+# Para producción con Neon (comentar las locales):
+# PGHOST=ep-tu-proyecto-pooler.c-X.eu-central-1.aws.neon.tech
+# PGPORT=5432
+# PGDATABASE=CRCoach_DB
+# PGUSER=neondb_owner
+# PGPASSWORD=tu_password_neon
+
+# --- Servidor ---
+PORT=8080
+NODE_ENV=development
+
+# --- Email (Brevo SMTP) ---
+SPRING_HOST=smtp-relay.brevo.com
+SPRING_MAIL_USERNAME=tu_usuario_brevo
+SPRING_MAIL_PASSWORD=tu_clave_smtp_brevo
+BREVO_API_KEY=tu_api_key_brevo
+BREVO_SENDER_EMAIL=tu_email@dominio.com
+BREVO_SENDER_NAME=CRCoach
+
+# --- Clash Royale API ---
+CLASH_ROYALE_API_KEY=tu_clave_api_supercell
+CLASH_ROYALE_API_URL=https://api.clashroyale.com/v1
+
+# --- Frontend URL (para CORS) ---
+# Desarrollo local:
+APP_FRONTEND_BASE_URL=http://localhost:4200
+
+# Producción:
+# APP_FRONTEND_BASE_URL=https://frontend-crcoach.onrender.com
+</code></pre>
+<h3 id="332-ejecucion-con-maven-desarrollo">3.3.2. Ejecución con Maven (desarrollo)</h3>
+<pre><code class="language-bash">cd Backend-CRCoach
+
+# Compilar el proyecto
+./mvnw clean compile
+
+# Ejecutar tests
+./mvnw test
+
+# Ejecutar la aplicación
+./mvnw spring-boot:run
+</code></pre>
+<p>La aplicación arrancará en <code>http://localhost:8080</code>.</p>
+<h3 id="333-ejecucion-con-docker-recomendado">3.3.3. Ejecución con Docker (recomendado)</h3>
+<pre><code class="language-bash">cd Backend-CRCoach
+
+# Construir y arrancar todos los servicios
+docker compose up -d
+
+# Verificar que los servicios están funcionando
+docker compose ps
+
+# Ver logs
+docker compose logs -f app
+docker compose logs -f postgres
+
+# Detener los servicios
+docker compose down
+
+# Detener y eliminar volúmenes
+docker compose down -v
+</code></pre>
+<h3 id="334-verificar-que-el-backend-funciona">3.3.4. Verificar que el backend funciona</h3>
+<pre><code class="language-bash"># Health check básico
+curl http://localhost:8080/
+
+# Swagger UI
+# Abrir en navegador: http://localhost:8080/swagger-ui/index.html
+
+# Verificar que la base de datos responde
+docker compose exec postgres pg_isready -U crcoach_user -d crcoach_db
+
+# Probar un endpoint público
+curl -X POST http://localhost:8080/api/v1/auth/authenticate \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;email&quot;:&quot;test@test.com&quot;,&quot;password&quot;:&quot;test123&quot;}'
+</code></pre>
+<h2 id="34-configuracion-del-frontend-angular">3.4. Configuración del frontend (Angular)</h2>
+<h3 id="341-variables-de-entorno">3.4.1. Variables de entorno</h3>
+<p>El frontend tiene un archivo de entorno en <code>src/enviroments/enviroment.ts</code>:</p>
+<pre><code class="language-typescript">export const environment = {
+  production: false,
+  apiUrl: 'https://backend-crcoach.onrender.com',  // URL del backend
+};
+</code></pre>
+<p>Para desarrollo local, cambia la URL del backend:</p>
+<pre><code class="language-typescript">export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080',
+};
+</code></pre>
+<h3 id="342-ejecucion-con-angular-cli-desarrollo">3.4.2. Ejecución con Angular CLI (desarrollo)</h3>
+<pre><code class="language-bash">cd Frontend-CRCoach
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en modo desarrollo
+npm start
+# o
+ng serve
+</code></pre>
+<p>La aplicación arrancará en <code>http://localhost:4200</code>.</p>
+<h3 id="343-ejecucion-con-docker-recomendado">3.4.3. Ejecución con Docker (recomendado)</h3>
+<pre><code class="language-bash">cd Frontend-CRCoach
+
+# Construir y arrancar el servicio de producción
+docker compose up -d Frontend-CRCoach
+
+# O para desarrollo con hot-reload:
+docker compose --profile dev up -d dev
+
+# Verificar
+docker compose ps
+
+# Ver logs
+docker compose logs -f Frontend-CRCoach
+
+# Detener
+docker compose down
+</code></pre>
+<h3 id="344-construir-para-produccion">3.4.4. Construir para producción</h3>
+<pre><code class="language-bash">cd Frontend-CRCoach
+
+# Construir la aplicación
+npm run build
+# o
+ng build
+
+# El output se genera en dist/Frontend-CRCoach/browser/
+</code></pre>
+<h2 id="35-configuracion-de-docker-compose-completa">3.5. Configuración de Docker Compose completa</h2>
+<h3 id="backend-docker-composeyml">Backend (<code>docker-compose.yml</code>)</h3>
+<pre><code class="language-yaml">version: &quot;3.9&quot;
+
+services:
+  postgres:
+    env_file:
+      - .env
+    container_name: crcoach-postgres
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+    ports:
+      - &quot;${PGPORT}:5432&quot;
+    volumes:
+      - crcoach_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -U ${PGUSER} -d ${PGDATABASE}&quot;]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ricitosdeoro2001/backend-crcoach:latest
+    restart: unless-stopped
+    ports:
+      - &quot;${PORT}:8080&quot;
+    environment:
+      SPRING_DATASOURCE_URL: &quot;jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}?sslmode=require&quot;
+      SPRING_DATASOURCE_USERNAME: ${PGUSER}
+      SPRING_DATASOURCE_PASSWORD: ${PGPASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: &quot;update&quot;
+      SERVER_PORT: 8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./uploads:/app/uploads
+
+volumes:
+  crcoach_db_data: {}
+</code></pre>
+<h3 id="frontend-docker-composeyml">Frontend (<code>docker-compose.yml</code>)</h3>
+<pre><code class="language-yaml">version: &quot;3.8&quot;
+
+services:
+  Frontend-CRCoach:
+    container_name: frontend-crcoach
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ricitosdeoro2001/frontend-crcoach:latest
+    ports:
+      - &quot;80:80&quot;
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: [&quot;CMD&quot;, &quot;curl&quot;, &quot;-f&quot;, &quot;http://localhost/index.html&quot;]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - crcoach_net
+
+  dev:
+    image: node:24-alpine
+    profiles: [&quot;dev&quot;]
+    working_dir: /app
+    command: sh -c &quot;npm ci &amp;&amp; npm run start -- --host 0.0.0.0&quot;
+    ports:
+      - &quot;4200:4200&quot;
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./:/app:cached
+      - crcoach_node_modules:/app/node_modules
+    networks:
+      - crcoach_net
+
+volumes:
+  crcoach_node_modules:
+    driver: local
+
+networks:
+  crcoach_net:
+    driver: bridge
+</code></pre>
+<h2 id="36-verificacion-de-la-instalacion-completa">3.6. Verificación de la instalación completa</h2>
+<h3 id="paso-1-arrancar-el-backend">Paso 1: Arrancar el backend</h3>
+<pre><code class="language-bash">cd Backend-CRCoach
+docker compose up -d
+</code></pre>
+<p>Salida esperada:</p>
+<pre><code>[+] Running 3/3
+ ✔ Network backend-crcoach_default     Created
+ ✔ Volume &quot;backend-crcoach_crcoach_db_data&quot;  Created
+ ✔ Container crcoach-postgres          Started
+ ✔ Container backend-crcoach-app-1     Started
+</code></pre>
+<h3 id="paso-2-verificar-el-backend">Paso 2: Verificar el backend</h3>
+<pre><code class="language-bash">docker compose ps
+</code></pre>
+<p>Salida esperada:</p>
+<pre><code>NAME                IMAGE                                    COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+backend-crcoach-app-1  ricitosdeoro2001/backend-crcoach:latest  &quot;java -Xms256m -Xmx5…&quot;   app        10 seconds ago   Up 9 seconds              0.0.0.0:8080-&gt;8080/tcp
+crcoach-postgres     postgres:15-alpine                      &quot;docker-entrypoint.s…&quot;   postgres   10 seconds ago   Up 10 seconds (healthy)   0.0.0.0:5432-&gt;5432/tcp
+</code></pre>
+<h3 id="paso-3-verificar-logs-del-backend">Paso 3: Verificar logs del backend</h3>
+<pre><code class="language-bash">docker compose logs app
+</code></pre>
+<p>Salida esperada:</p>
+<pre><code>app-1  | 2026-03-16T10:30:00.123Z  INFO 1 --- [           main] o.e.b.BackendCrCoachApplication         : Started BackendCrCoachApplication in 12.345 seconds
+app-1  | 2026-03-16T10:30:00.456Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080
+</code></pre>
+<h3 id="paso-4-arrancar-el-frontend">Paso 4: Arrancar el frontend</h3>
+<pre><code class="language-bash">cd Frontend-CRCoach
+docker compose up -d Frontend-CRCoach
+</code></pre>
+<p>Salida esperada:</p>
+<pre><code>[+] Running 2/2
+ ✔ Network frontend-crcoach_crcoach_net  Created
+ ✔ Container frontend-crcoach           Started
+</code></pre>
+<h3 id="paso-5-verificar-el-frontend">Paso 5: Verificar el frontend</h3>
+<pre><code class="language-bash">docker compose ps
+</code></pre>
+<p>Salida esperada:</p>
+<pre><code>NAME                IMAGE                                    COMMAND                  SERVICE             CREATED          STATUS                    PORTS
+frontend-crcoach    ricitosdeoro2001/frontend-crcoach:latest  &quot;/docker-entrypoint.…&quot;   Frontend-CRCoach    5 seconds ago    Up 4 seconds (healthy)    0.0.0.0:80-&gt;80/tcp
+</code></pre>
+<h3 id="paso-6-acceder-a-la-aplicacion">Paso 6: Acceder a la aplicación</h3>
+<ul>
+<li><strong>Frontend</strong>: <a href="http://localhost">http://localhost</a> (puerto 80)</li>
+<li><strong>Backend API</strong>: <a href="http://localhost:8080">http://localhost:8080</a></li>
+<li><strong>Swagger UI</strong>: <a href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html</a></li>
+</ul>
+<h2 id="37-solucion-de-problemas-comunes">3.7. Solución de problemas comunes</h2>
+<h3 id="error-port-is-already-allocated">Error: <code>port is already allocated</code></h3>
+<pre><code class="language-bash"># El puerto 80 o 8080 ya está en uso. Detén el servicio que lo ocupa:
+sudo lsof -i :80
+sudo lsof -i :8080
+
+# O cambia los puertos en docker-compose.yml
+</code></pre>
+<h3 id="error-cannot-connect-to-the-docker-daemon">Error: <code>Cannot connect to the Docker daemon</code></h3>
+<pre><code class="language-bash"># Asegúrate de que Docker está en ejecución:
+sudo systemctl start docker
+# O en macOS/Windows: abre Docker Desktop
+</code></pre>
+<h3 id="error-postgresql-connection-refused">Error: <code>PostgreSQL connection refused</code></h3>
+<pre><code class="language-bash"># Verifica que PostgreSQL está funcionando:
+docker compose logs postgres
+
+# Si no arranca, comprueba las variables de entorno en .env
+# Asegúrate de que PGHOST apunta a &quot;localhost&quot; para desarrollo local
+</code></pre>
+<h3 id="error-clash-royale-api-returns-403">Error: <code>Clash Royale API returns 403</code></h3>
+<pre><code class="language-bash"># La IP de tu servidor no está en la whitelist de la API key.
+# Accede a https://developer.clashroyale.com/ y añade tu IP.
+# Para desarrollo local, puedes usar 0.0.0.0/0 (no recomendado en producción).
+</code></pre>
+<h3 id="error-npm-err-durante-la-instalacion">Error: <code>npm ERR!</code> durante la instalación</h3>
+<pre><code class="language-bash"># Limpia la caché y reinstala:
+cd Frontend-CRCoach
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+</code></pre>
+<h3 id="error-maven-build-fails">Error: <code>Maven build fails</code></h3>
+<pre><code class="language-bash"># Limpia y reconstruye:
+cd Backend-CRCoach
+./mvnw clean
+./mvnw compile -U  # -U fuerza actualización de dependencias
+</code></pre>
 
 
 

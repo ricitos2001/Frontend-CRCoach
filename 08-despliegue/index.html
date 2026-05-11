@@ -25,7 +25,7 @@
     
     
       
-        <title>08 despliegue - CRCoach Documentation</title>
+        <title>8. Despliegue del proyecto - CRCoach Documentation</title>
       
     
     
@@ -65,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#8-despliegue-del-proyecto" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              08 despliegue
+              8. Despliegue del proyecto
             
           </span>
         </div>
@@ -227,7 +232,7 @@
   <span class="md-ellipsis">
     
   
-    01 introduccion
+    1. Introducción, objetivos y antecedentes
   
 
     
@@ -254,7 +259,7 @@
   <span class="md-ellipsis">
     
   
-    02 descripcion
+    2. Descripción del proyecto
   
 
     
@@ -281,7 +286,7 @@
   <span class="md-ellipsis">
     
   
-    03 instalacion
+    3. Instalación y preparación del entorno
   
 
     
@@ -308,7 +313,7 @@
   <span class="md-ellipsis">
     
   
-    04 guia estilos
+    4. Guía de estilos y prototipado
   
 
     
@@ -335,7 +340,7 @@
   <span class="md-ellipsis">
     
   
-    05 diseño
+    5. Diseño del proyecto
   
 
     
@@ -362,7 +367,7 @@
   <span class="md-ellipsis">
     
   
-    06 desarrollo
+    6. Desarrollo del proyecto
   
 
     
@@ -389,7 +394,7 @@
   <span class="md-ellipsis">
     
   
-    07 pruebas
+    7. Pruebas del proyecto
   
 
     
@@ -415,6 +420,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Despliegue del proyecto
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -423,7 +448,7 @@
   <span class="md-ellipsis">
     
   
-    08 despliegue
+    8. Despliegue del proyecto
   
 
     
@@ -432,6 +457,1257 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-entorno-de-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Entorno de despliegue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1. Entorno de despliegue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura de producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servicios-utilizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Servicios utilizados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#justificacion-de-la-eleccion-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Justificación de la elección de servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-configuracion-de-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Configuración de CI/CD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2. Configuración de CI/CD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#821-workflow-de-ci-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.1. Workflow de CI (Backend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#822-workflow-de-ci-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.2. Workflow de CI (Frontend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#823-workflow-de-codeql-backend-y-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.3. Workflow de CodeQL (Backend y Frontend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#824-workflow-de-qodana-calidad-de-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.4. Workflow de Qodana (Calidad de código)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#825-workflow-de-despliegue-de-documentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.5. Workflow de despliegue de documentación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-proceso-de-despliegue-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Proceso de despliegue paso a paso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3. Proceso de despliegue paso a paso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831-preparacion-de-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.1. Preparación de variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#832-despliegue-del-backend-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.2. Despliegue del backend en Render
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3.2. Despliegue del backend en Render">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-crear-el-servicio-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Crear el servicio en Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-verificar-el-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Verificar el despliegue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-configurar-logs-y-monitoreo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Configurar logs y monitoreo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#833-despliegue-del-frontend-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.3. Despliegue del frontend en Render
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3.3. Despliegue del frontend en Render">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-configurar-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Configurar Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-crear-el-servicio-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Crear el servicio en Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-verificar-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Verificar el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#834-despliegue-con-docker-compose-produccion-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.4. Despliegue con Docker Compose (producción local)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#835-configuracion-de-nginx-servidor-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.5. Configuración de Nginx (servidor web)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#836-configuracion-de-la-base-de-datos-en-neon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.6. Configuración de la base de datos en Neon
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-verificacion-del-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Verificación del despliegue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4. Verificación del despliegue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#841-verificacion-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1. Verificación de red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#842-verificacion-de-la-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.2. Verificación de la API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#843-verificacion-del-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.3. Verificación del frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#844-verificacion-de-la-comunicacion-frontend-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.4. Verificación de la comunicación frontend-backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#845-prueba-de-rendimiento-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.5. Prueba de rendimiento básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#846-verificacion-del-polling-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.6. Verificación del polling automático
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#847-verificacion-de-la-documentacion-swagger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.7. Verificación de la documentación Swagger
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5. Variables de entorno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.5. Variables de entorno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86-dockerizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6. Dockerización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.6. Dockerización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-dockerfile-multi-etapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Dockerfile multi-etapa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-dockerfile-multi-etapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Dockerfile multi-etapa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-del-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker-compose del backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-del-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker-compose del frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#87-url-de-la-aplicacion-en-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7. URL de la aplicación en producción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#88-solucion-de-problemas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8. Solución de problemas comunes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.8. Solución de problemas comunes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-el-backend-no-arranca-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: El backend no arranca en Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-error-429-de-la-api-de-supercell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: Error 429 de la API de Supercell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-cors-bloqueando-peticiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: CORS bloqueando peticiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-la-spa-del-frontend-muestra-pagina-en-blanco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: La SPA del frontend muestra página en blanco
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-error-de-conexion-a-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: Error de conexión a la base de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-los-tests-fallan-en-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: Los tests fallan en CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#89-referencia-de-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9. Referencia de comandos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9. Referencia de comandos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#891-comandos-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.1. Comandos de Docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.1. Comandos de Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-up-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose up -d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose ps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose down
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose exec
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#892-comandos-de-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.2. Comandos de curl
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.2. Comandos de curl">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl-url-peticion-get-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl [URL] — Petición GET básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-i-url-solo-cabeceras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -I [URL] — Solo cabeceras
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-x-post-url-peticion-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -X POST [URL] — Petición POST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-s-modo-silencioso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -s — Modo silencioso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-l-seguir-redirecciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -L — Seguir redirecciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-h-accept-encoding-gzip-comprobar-compresion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -H "Accept-Encoding: gzip" — Comprobar compresión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-x-options-verificar-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -X OPTIONS — Verificar CORS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#893-comandos-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.3. Comandos de red
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.3. Comandos de red">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nslookup-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nslookup [dominio]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ping [dominio]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nc-zv-host-puerto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nc -zv [host] [puerto]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#894-comandos-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.4. Comandos de Git
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.4. Comandos de Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-clone-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git clone [URL]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#895-comandos-de-copia-y-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.5. Comandos de copia y enlaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.5. Comandos de copia y enlaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cp-origen-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cp [origen] [destino]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chmod-x-archivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chmod +x [archivo]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#896-redirecciones-y-tuberias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.6. Redirecciones y tuberías
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#897-comandos-de-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.7. Comandos de Maven
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.7. Comandos de Maven">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mvn-b-verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mvn -B verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#898-comandos-de-npm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.8. Comandos de npm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.8. Comandos de npm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#npm-install-npm-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm install / npm ci
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-run-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm run build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#899-comandos-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.9. Comandos de sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.9. Comandos de sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-loop-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for loop (Shell)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        time [comando]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#810-uso-avanzado-de-docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10. Uso avanzado de Docker build
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.10. Uso avanzado de Docker build">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8101-sintaxis-completa-de-docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.1. Sintaxis completa de docker build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8102-ejemplos-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.2. Ejemplos prácticos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.10.2. Ejemplos prácticos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-basico-con-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build básico con tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-dockerfile-especifico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con Dockerfile específico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-sin-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build sin caché
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-argumentos-de-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con argumentos de build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-hasta-una-etapa-especifica-multi-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build hasta una etapa específica (multi-stage)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-para-plataforma-especifica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build para plataforma específica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-progreso-detallado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con progreso detallado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-multi-arquitectura-buildx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build multi-arquitectura (buildx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8103-optimizacion-de-builds-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.3. Optimización de builds de Docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.10.3. Optimización de builds de Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-de-capas-y-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia de capas y caché
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-stage-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-stage building
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-dockerignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de .dockerignore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-secrets-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con secrets (seguridad)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8104-publicacion-de-imagenes-en-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.4. Publicación de imágenes en Docker Hub
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#811-mantenimiento-y-monitoreo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.11. Mantenimiento y monitoreo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.11. Mantenimiento y monitoreo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tareas-periodicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tareas periódicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alertas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alertas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -451,7 +1727,7 @@
   <span class="md-ellipsis">
     
   
-    09 manual usuario
+    9. Manual de usuario
   
 
     
@@ -478,7 +1754,7 @@
   <span class="md-ellipsis">
     
   
-    10 conclusiones
+    10. Conclusiones
   
 
     
@@ -508,6 +1784,1248 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-entorno-de-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Entorno de despliegue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1. Entorno de despliegue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-de-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura de producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servicios-utilizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Servicios utilizados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#justificacion-de-la-eleccion-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Justificación de la elección de servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-configuracion-de-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Configuración de CI/CD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2. Configuración de CI/CD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#821-workflow-de-ci-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.1. Workflow de CI (Backend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#822-workflow-de-ci-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.2. Workflow de CI (Frontend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#823-workflow-de-codeql-backend-y-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.3. Workflow de CodeQL (Backend y Frontend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#824-workflow-de-qodana-calidad-de-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.4. Workflow de Qodana (Calidad de código)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#825-workflow-de-despliegue-de-documentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.5. Workflow de despliegue de documentación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-proceso-de-despliegue-paso-a-paso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Proceso de despliegue paso a paso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3. Proceso de despliegue paso a paso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831-preparacion-de-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.1. Preparación de variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#832-despliegue-del-backend-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.2. Despliegue del backend en Render
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3.2. Despliegue del backend en Render">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-crear-el-servicio-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Crear el servicio en Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-verificar-el-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Verificar el despliegue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-configurar-logs-y-monitoreo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Configurar logs y monitoreo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#833-despliegue-del-frontend-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.3. Despliegue del frontend en Render
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3.3. Despliegue del frontend en Render">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-configurar-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Configurar Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-crear-el-servicio-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Crear el servicio en Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-verificar-el-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Verificar el frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#834-despliegue-con-docker-compose-produccion-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.4. Despliegue con Docker Compose (producción local)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#835-configuracion-de-nginx-servidor-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.5. Configuración de Nginx (servidor web)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#836-configuracion-de-la-base-de-datos-en-neon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.6. Configuración de la base de datos en Neon
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-verificacion-del-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Verificación del despliegue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4. Verificación del despliegue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#841-verificacion-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1. Verificación de red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#842-verificacion-de-la-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.2. Verificación de la API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#843-verificacion-del-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.3. Verificación del frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#844-verificacion-de-la-comunicacion-frontend-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.4. Verificación de la comunicación frontend-backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#845-prueba-de-rendimiento-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.5. Prueba de rendimiento básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#846-verificacion-del-polling-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.6. Verificación del polling automático
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#847-verificacion-de-la-documentacion-swagger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.7. Verificación de la documentación Swagger
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5. Variables de entorno
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.5. Variables de entorno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86-dockerizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6. Dockerización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.6. Dockerización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-dockerfile-multi-etapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend: Dockerfile multi-etapa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-dockerfile-multi-etapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend: Dockerfile multi-etapa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-del-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker-compose del backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-del-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker-compose del frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#87-url-de-la-aplicacion-en-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7. URL de la aplicación en producción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#88-solucion-de-problemas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8. Solución de problemas comunes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.8. Solución de problemas comunes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-el-backend-no-arranca-en-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: El backend no arranca en Render
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-error-429-de-la-api-de-supercell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: Error 429 de la API de Supercell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-cors-bloqueando-peticiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: CORS bloqueando peticiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-la-spa-del-frontend-muestra-pagina-en-blanco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: La SPA del frontend muestra página en blanco
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-error-de-conexion-a-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: Error de conexión a la base de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-los-tests-fallan-en-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: Los tests fallan en CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#89-referencia-de-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9. Referencia de comandos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9. Referencia de comandos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#891-comandos-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.1. Comandos de Docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.1. Comandos de Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-up-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose up -d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose ps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose down
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker compose exec
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#892-comandos-de-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.2. Comandos de curl
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.2. Comandos de curl">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#curl-url-peticion-get-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl [URL] — Petición GET básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-i-url-solo-cabeceras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -I [URL] — Solo cabeceras
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-x-post-url-peticion-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -X POST [URL] — Petición POST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-s-modo-silencioso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -s — Modo silencioso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-l-seguir-redirecciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -L — Seguir redirecciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-h-accept-encoding-gzip-comprobar-compresion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -H "Accept-Encoding: gzip" — Comprobar compresión
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-x-options-verificar-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl -X OPTIONS — Verificar CORS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#893-comandos-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.3. Comandos de red
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.3. Comandos de red">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nslookup-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nslookup [dominio]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ping [dominio]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nc-zv-host-puerto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nc -zv [host] [puerto]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#894-comandos-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.4. Comandos de Git
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.4. Comandos de Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-clone-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git clone [URL]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#895-comandos-de-copia-y-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.5. Comandos de copia y enlaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.5. Comandos de copia y enlaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cp-origen-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cp [origen] [destino]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chmod-x-archivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chmod +x [archivo]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#896-redirecciones-y-tuberias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.6. Redirecciones y tuberías
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#897-comandos-de-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.7. Comandos de Maven
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.7. Comandos de Maven">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mvn-b-verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mvn -B verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#898-comandos-de-npm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.8. Comandos de npm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.8. Comandos de npm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#npm-install-npm-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm install / npm ci
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-run-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm run build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#899-comandos-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9.9. Comandos de sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.9.9. Comandos de sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-loop-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for loop (Shell)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-comando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        time [comando]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#810-uso-avanzado-de-docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10. Uso avanzado de Docker build
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.10. Uso avanzado de Docker build">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8101-sintaxis-completa-de-docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.1. Sintaxis completa de docker build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8102-ejemplos-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.2. Ejemplos prácticos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.10.2. Ejemplos prácticos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-basico-con-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build básico con tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-dockerfile-especifico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con Dockerfile específico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-sin-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build sin caché
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-argumentos-de-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con argumentos de build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-hasta-una-etapa-especifica-multi-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build hasta una etapa específica (multi-stage)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-para-plataforma-especifica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build para plataforma específica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-progreso-detallado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con progreso detallado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-multi-arquitectura-buildx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build multi-arquitectura (buildx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8103-optimizacion-de-builds-de-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.3. Optimización de builds de Docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.10.3. Optimización de builds de Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-de-capas-y-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia de capas y caché
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-stage-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-stage building
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-dockerignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de .dockerignore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-con-secrets-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build con secrets (seguridad)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8104-publicacion-de-imagenes-en-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10.4. Publicación de imágenes en Docker Hub
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#811-mantenimiento-y-monitoreo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.11. Mantenimiento y monitoreo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.11. Mantenimiento y monitoreo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tareas-periodicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tareas periódicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alertas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alertas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -524,9 +3042,2050 @@
 
 
 
-  <h1>08 despliegue</h1>
+<h1 id="8-despliegue-del-proyecto">8. Despliegue del proyecto</h1>
+<h2 id="81-entorno-de-despliegue">8.1. Entorno de despliegue</h2>
+<h3 id="arquitectura-de-produccion">Arquitectura de producción</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
+│                       ARQUITECTURA DE DESPLIEGUE                        │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│   🌐 Usuario                                                            │
+│       │                                                                 │
+│       ▼                                                                 │
+│   ┌──────────────────────────────────────────────────────┐              │
+│   │          Frontend (Render.com)                        │              │
+│   │          https://frontend-crcoach.onrender.com        │              │
+│   │                                                       │              │
+│   │   ┌──────────────────────────────────────────────┐   │              │
+│   │   │  Nginx (reverse proxy + static files)        │   │              │
+│   │   │  ├─ Sirve SPA Angular (dist/)                │   │              │
+│   │   │  └─ Proxy pass /api/ → https://backend-...   │   │              │
+│   │   └──────────────────────────────────────────────┘   │              │
+│   └──────────────────┬───────────────────────────────────┘              │
+│                      │ HTTP/HTTPS                                      │
+│                      ▼                                                  │
+│   ┌──────────────────────────────────────────────────────┐              │
+│   │          Backend (Render.com)                         │              │
+│   │          https://backend-crcoach.onrender.com         │              │
+│   │                                                       │              │
+│   │   ┌──────────────────────────────────────────────┐   │              │
+│   │   │  Spring Boot 4.0 + Java 21                   │   │              │
+│   │   │  ├─ API REST en /api/v1/*                    │   │              │
+│   │   │  ├─ Swagger UI en /swagger-ui/*              │   │              │
+│   │   │  ├─ Polling @Scheduled cada 5min             │   │              │
+│   │   │  └─ JWT Auth + Spring Security               │   │              │
+│   │   └──────────────────────────────────────────────┘   │              │
+│   └──────────────────┬───────────────────────────────────┘              │
+│                      │ SSL/TLS                                         │
+│                      ▼                                                  │
+│   ┌──────────────────────────────────────────────────────┐              │
+│   │          Base de Datos (Neon.tech)                    │              │
+│   │          PostgreSQL 15 Serverless                     │              │
+│   │                                                       │              │
+│   │   ┌──────────────────────────────────────────────┐   │              │
+│   │   │  Conexión: jdbc:postgresql://ep-...neon.tech  │   │              │
+│   │   │  ├─ Tablas: User, Battle, Goal, Session,...   │   │              │
+│   │   │  └─ Pool: HikariCP con sslmode=require        │   │              │
+│   │   └──────────────────────────────────────────────┘   │              │
+│   └──────────────────────────────────────────────────────┘              │
+│                                                                         │
+│   🌐 API Externa                                                       │
+│       https://api.clashroyale.com/v1                                    │
+│       (Supercell - Clash Royale API)                                    │
+│                                                                         │
+│   📧 Email (Brevo SMTP)                                                │
+│       smtp-relay.brevo.com:587                                          │
+│       (Recuperación de contraseña, notificaciones)                      │
+│                                                                         │
+│   📦 CI/CD (GitHub Actions)                                            │
+│       ├─ CI Pipeline: build + test en push a master                    │
+│       ├─ CodeQL: análisis de seguridad                                 │
+│       ├─ Qodana: calidad de código                                    │
+│       └─ Deploy Docs: publica documentación en GitHub Pages            │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="servicios-utilizados">Servicios utilizados</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Servicio</th>
+<th style="text-align: left;">Propósito</th>
+<th style="text-align: left;">Plan</th>
+<th style="text-align: left;">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Render</strong></td>
+<td style="text-align: left;">Hosting del backend (Spring Boot)</td>
+<td style="text-align: left;">Free (512MB RAM, 0.1 CPU)</td>
+<td style="text-align: left;"><a href="https://backend-crcoach.onrender.com">https://backend-crcoach.onrender.com</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Render</strong> (o Vercel)</td>
+<td style="text-align: left;">Hosting del frontend (Angular)</td>
+<td style="text-align: left;">Free</td>
+<td style="text-align: left;"><a href="https://frontend-crcoach.onrender.com">https://frontend-crcoach.onrender.com</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Neon</strong></td>
+<td style="text-align: left;">Base de datos PostgreSQL 15</td>
+<td style="text-align: left;">Free (512MB, 1 proyecto)</td>
+<td style="text-align: left;">Conexión SSL/TLS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Brevo</strong></td>
+<td style="text-align: left;">Envío de emails transaccionales</td>
+<td style="text-align: left;">Free (300 emails/día)</td>
+<td style="text-align: left;">smtp-relay.brevo.com</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Supercell</strong></td>
+<td style="text-align: left;">API de Clash Royale</td>
+<td style="text-align: left;">Free (con API key)</td>
+<td style="text-align: left;"><a href="https://developer.clashroyale.com">https://developer.clashroyale.com</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Docker Hub</strong></td>
+<td style="text-align: left;">Registro de imágenes Docker</td>
+<td style="text-align: left;">Free</td>
+<td style="text-align: left;"><a href="https://hub.docker.com/r/ricitosdeoro2001/frontend-crcoach">ricitosdeoro2001/frontend-crcoach</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GitHub</strong></td>
+<td style="text-align: left;">Repositorio y GitHub Actions</td>
+<td style="text-align: left;">Free</td>
+<td style="text-align: left;"><a href="https://github.com/ricitos2001">github.com/ricitos2001</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GitHub Pages</strong></td>
+<td style="text-align: left;">Documentación MkDocs</td>
+<td style="text-align: left;">Free</td>
+<td style="text-align: left;">Disponible en gh-pages</td>
+</tr>
+</tbody>
+</table>
+<h3 id="justificacion-de-la-eleccion-de-servicios">Justificación de la elección de servicios</h3>
+<ul>
+<li><strong>Render</strong>: Servicio cloud gratuito que soporta Spring Boot nativamente. Ofrece despliegue directo desde GitHub con builds automáticos. El tier gratuito es suficiente para un proyecto de TFG con低 tráfico.</li>
+<li><strong>Neon</strong>: PostgreSQL serverless con tier gratuito generoso (512MB). Ofrece conexión SSL/TLS obligatoria, lo que garantiza seguridad en las comunicaciones. Permite "sleep" automático cuando no se usa para ahorrar recursos.</li>
+<li><strong>Brevo</strong>: Servicio SMTP gratuito con límite de 300 emails/día, más que suficiente para recuperación de contraseña y notificaciones.</li>
+<li><strong>Docker Hub</strong>: Registro público de imágenes Docker para compartir y desplegar contenedores.</li>
+</ul>
+<h2 id="82-configuracion-de-cicd">8.2. Configuración de CI/CD</h2>
+<h3 id="821-workflow-de-ci-backend">8.2.1. Workflow de CI (Backend)</h3>
+<p><strong>Archivo:</strong> <code>Backend-CRCoach/.github/workflows/workflow.yml</code></p>
+<pre><code class="language-yaml">name: CI Pipeline
 
+on:
+  push:
+    branches: [ &quot;master&quot; ]
+  workflow_dispatch:
 
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Build with Maven (run tests)
+        run: mvn -B verify
+</code></pre>
+<p><strong>¿Qué hace?</strong>
+1. Se activa con cada push a la rama <code>master</code>.
+2. Configura Java 21 (Temurin).
+3. Ejecuta <code>mvn verify</code> que compila, ejecuta tests y verifica el proyecto.</p>
+<h3 id="822-workflow-de-ci-frontend">8.2.2. Workflow de CI (Frontend)</h3>
+<p><strong>Archivo:</strong> <code>Frontend-CRCoach/.github/workflows/workflow.yml</code></p>
+<pre><code class="language-yaml">name: CI Pipeline
+
+on:
+  push:
+    branches: [ &quot;master&quot; ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24.13.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update dependencies
+        run: npm update
+
+      - name: Fix vulnerabilities
+        run: npm audit fix
+</code></pre>
+<h3 id="823-workflow-de-codeql-backend-y-frontend">8.2.3. Workflow de CodeQL (Backend y Frontend)</h3>
+<p>Análisis de seguridad automático:</p>
+<pre><code class="language-yaml">name: &quot;CodeQL Advanced&quot;
+
+on:
+  push:
+    branches: [ &quot;master&quot; ]
+  pull_request:
+    branches: [ &quot;master&quot; ]
+  schedule:
+    - cron: '35 19 * * 3'  # Semanal (miércoles)
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - language: actions
+            build-mode: none
+          - language: javascript-typescript  # Frontend
+            build-mode: none
+          - language: java-kotlin             # Backend
+            build-mode: none
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v4
+      - uses: github/codeql-action/analyze@v4
+</code></pre>
+<h3 id="824-workflow-de-qodana-calidad-de-codigo">8.2.4. Workflow de Qodana (Calidad de código)</h3>
+<pre><code class="language-yaml">name: Qodana
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/*'
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@v2025.3
+        with:
+          pr-mode: false
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_1525054692 }}
+          QODANA_ENDPOINT: 'https://qodana.cloud'
+</code></pre>
+<h3 id="825-workflow-de-despliegue-de-documentacion">8.2.5. Workflow de despliegue de documentación</h3>
+<pre><code class="language-yaml">name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ &quot;master&quot; ]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip install mkdocs
+      - run: pip install mkdocs-material
+      - run: mkdocs build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+</code></pre>
+<h2 id="83-proceso-de-despliegue-paso-a-paso">8.3. Proceso de despliegue paso a paso</h2>
+<h3 id="831-preparacion-de-variables-de-entorno">8.3.1. Preparación de variables de entorno</h3>
+<p>Antes de desplegar, asegúrate de tener todas las variables de entorno configuradas:</p>
+<p><strong>Backend (<code>Backend-CRCoach/.env</code>):</strong></p>
+<pre><code class="language-bash"># --- Base de datos (Neon) ---
+PGHOST=ep-tu-proyecto-pooler.c-3.eu-central-1.aws.neon.tech
+PGPORT=5432
+PGDATABASE=CRCoach_DB
+PGUSER=neondb_owner
+PGPASSWORD=tu_password_neon
+
+# --- Servidor ---
+PORT=8080
+
+# --- Email (Brevo) ---
+SPRING_HOST=smtp-relay.brevo.com
+SPRING_MAIL_USERNAME=tu_usuario_brevo
+SPRING_MAIL_PASSWORD=tu_password_smtp
+BREVO_API_KEY=tu_api_key
+BREVO_SENDER_EMAIL=tu_email
+BREVO_SENDER_NAME=CRCoach
+
+# --- Clash Royale API ---
+CLASH_ROYALE_API_KEY=tu_clave_api
+CLASH_ROYALE_API_URL=https://api.clashroyale.com/v1
+
+# --- Frontend URL ---
+APP_FRONTEND_BASE_URL=https://frontend-crcoach.onrender.com
+</code></pre>
+<p><strong>Frontend (<code>Frontend-CRCoach/src/enviroments/enviroment.ts</code>):</strong></p>
+<pre><code class="language-typescript">export const environment = {
+  production: false,
+  apiUrl: 'https://backend-crcoach.onrender.com',
+};
+</code></pre>
+<blockquote>
+<p><strong>Importante</strong>: Cambiar <code>production: false</code> por <code>production: true</code> cuando se construya para producción. Angular aplica optimizaciones adicionales en modo producción.</p>
+</blockquote>
+<h3 id="832-despliegue-del-backend-en-render">8.3.2. Despliegue del backend en Render</h3>
+<h4 id="paso-1-crear-el-servicio-en-render">Paso 1: Crear el servicio en Render</h4>
+<ol>
+<li>Inicia sesión en <a href="https://dashboard.render.com/">Render Dashboard</a>.</li>
+<li>Haz clic en <strong>"New +"</strong> → <strong>"Web Service"</strong>.</li>
+<li>Conecta tu repositorio de GitHub (<code>Backend-CRCoach</code>).</li>
+<li>Configura el servicio:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;"><code>backend-crcoach</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Region</td>
+<td style="text-align: left;"><code>Frankfurt (EU)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Branch</td>
+<td style="text-align: left;"><code>master</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Runtime</td>
+<td style="text-align: left;"><code>Docker</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Build Command</td>
+<td style="text-align: left;"><em>(usar Dockerfile automáticamente)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Start Command</td>
+<td style="text-align: left;"><em>(usar Dockerfile automáticamente)</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Instance Type</td>
+<td style="text-align: left;"><code>Free</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Añade las variables de entorno (las del <code>.env</code>).</li>
+<li>Haz clic en <strong>"Create Web Service"</strong>.</li>
+</ol>
+<h4 id="paso-2-verificar-el-despliegue">Paso 2: Verificar el despliegue</h4>
+<pre><code class="language-bash"># Esperar a que el build termine (5-10 minutos)
+# Verificar que el servicio responde
+curl https://backend-crcoach.onrender.com/
+# Respuesta esperada: Redirección a documentación o 200 OK
+
+# Verificar Swagger UI
+# Abrir en navegador: https://backend-crcoach.onrender.com/swagger-ui/index.html
+
+# Verificar un endpoint público
+curl https://backend-crcoach.onrender.com/api/v1/cards
+# Respuesta esperada: Lista de cartas en JSON
+
+# Probar autenticación
+curl -X POST https://backend-crcoach.onrender.com/api/v1/auth/authenticate \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;email&quot;:&quot;test@test.com&quot;,&quot;password&quot;:&quot;Test1234!&quot;}'
+# Respuesta esperada: { &quot;token&quot;: &quot;eyJ...&quot; }
+</code></pre>
+<h4 id="paso-3-configurar-logs-y-monitoreo">Paso 3: Configurar logs y monitoreo</h4>
+<p>Render proporciona logs en tiempo real desde el dashboard. Puedes ver:</p>
+<ul>
+<li><strong>Logs de build</strong>: Para depurar errores de compilación.</li>
+<li><strong>Logs de runtime</strong>: Para ver peticiones, errores y actividad del scheduler.</li>
+<li><strong>Métricas</strong>: Uso de CPU, memoria y red.</li>
+</ul>
+<p><strong>Comando para ver logs desde terminal (Render CLI):</strong></p>
+<pre><code class="language-bash"># Instalar Render CLI (opcional)
+curl -o render https://render.com/install &amp;&amp; chmod +x render
+
+# Ver logs en tiempo real
+render logs --service backend-crcoach
+</code></pre>
+<h3 id="833-despliegue-del-frontend-en-render">8.3.3. Despliegue del frontend en Render</h3>
+<h4 id="paso-1-configurar-dockerfile">Paso 1: Configurar Dockerfile</h4>
+<p>El <code>Dockerfile</code> del frontend ya está optimizado:</p>
+<p><strong>Archivo real:</strong> <code>Frontend-CRCoach/Dockerfile</code></p>
+<pre><code class="language-dockerfile"># Etapa de compilación
+FROM node:24-alpine AS builder
+
+WORKDIR /app
+
+# Copiamos solo package.json y package-lock.json primero para usar cache de Docker
+COPY package.json package-lock.json ./
+
+# Instalamos dependencias
+RUN npm ci --legacy-peer-deps --silent
+
+# Copiamos el resto de la aplicación
+COPY . .
+
+# Construimos la aplicación usando el script build:prod (ejecuta inyección de preloads)
+RUN npm run build
+
+# Etapa de producción - nginx
+FROM nginx:stable-alpine
+
+# Eliminamos contenido por defecto
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copiamos los archivos compilados desde el builder
+# Angular genera los ficheros estáticos en dist/&lt;projectName&gt;/browser; copiamos su contenido al root de nginx
+COPY --from=builder /app/dist/Frontend-CRCoach/browser/ /usr/share/nginx/html/
+
+# Copiamos la configuración de nginx para fallback en SPA
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Puerto expuesto
+EXPOSE 80
+
+# Ejecutar nginx en primer plano
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre>
+<h4 id="paso-2-crear-el-servicio-en-render">Paso 2: Crear el servicio en Render</h4>
+<ol>
+<li>En Render Dashboard, haz clic en <strong>"New +"</strong> → <strong>"Web Service"</strong>.</li>
+<li>Conecta el repositorio <code>Frontend-CRCoach</code>.</li>
+<li>Configura:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;"><code>frontend-crcoach</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Region</td>
+<td style="text-align: left;"><code>Frankfurt (EU)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Branch</td>
+<td style="text-align: left;"><code>master</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Runtime</td>
+<td style="text-align: left;"><code>Docker</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Instance Type</td>
+<td style="text-align: left;"><code>Free</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Haz clic en <strong>"Create Web Service"</strong>.</li>
+</ol>
+<h4 id="paso-3-verificar-el-frontend">Paso 3: Verificar el frontend</h4>
+<pre><code class="language-bash"># Verificar que la aplicación carga
+curl -L https://frontend-crcoach.onrender.com/
+# Respuesta esperada: HTML del index.html de la SPA
+
+# Verificar cabeceras HTTP
+curl -I https://frontend-crcoach.onrender.com/
+# Respuesta esperada: 200 OK con cabeceras de caché
+</code></pre>
+<h3 id="834-despliegue-con-docker-compose-produccion-local">8.3.4. Despliegue con Docker Compose (producción local)</h3>
+<p>Si quieres desplegar toda la aplicación localmente con Docker Compose:</p>
+<pre><code class="language-bash"># 1. Clonar ambos repositorios
+git clone https://github.com/ricitos2001/Backend-CRCoach.git
+git clone https://github.com/ricitos2001/Frontend-CRCoach.git
+
+# 2. Configurar variables de entorno del backend
+cd Backend-CRCoach
+cp .env.example .env
+# Editar .env con tus credenciales reales
+
+# 3. Arrancar el backend con Docker Compose
+docker compose up -d
+</code></pre>
+<p><img alt="docker-compose-up-in-backend" src="../assets/docker-compose-up-in-backend.png" />
+<em>Figura 8.1: Arranque del backend con Docker Compose</em></p>
+<pre><code class="language-bash"># 4. Verificar que los servicios están funcionando
+docker compose ps
+</code></pre>
+<p><img alt="docker-ps" src="../assets/docker-ps.png" />
+<em>Figura 8.2: Estado de los contenedores del backend</em></p>
+<pre><code class="language-bash"># 5. Verificar logs del backend
+docker compose logs app
+</code></pre>
+<p><img alt="backend-logs" src="../assets/backend-app-logs.png" />
+<em>Figura 8.3: Logs de arranque del backend</em></p>
+<pre><code class="language-bash"># 6. Verificar que PostgreSQL está listo
+docker compose logs postgres
+</code></pre>
+<p><img alt="backend-postgres-logs" src="../assets/backend-postgres-logs.png" />
+<em>Figura 8.4: Logs de PostgreSQL</em></p>
+<pre><code class="language-bash"># 7. Health check
+curl -I http://localhost:8080/
+</code></pre>
+<p><img alt="health-checks" src="../assets/health-checks.png" />
+<em>Figura 8.5: Health check del backend</em></p>
+<pre><code class="language-bash"># 8. Arrancar el frontend
+cd ../Frontend-CRCoach
+docker compose up -d Frontend-CRCoach
+</code></pre>
+<p><img alt="docker-compose-up-in-frontend" src="../assets/docker-compose-up-in-frontend.png" />
+<em>Figura 8.6: Arranque del frontend con Docker Compose</em></p>
+<pre><code class="language-bash"># 9. Verificar frontend
+curl -I http://localhost/index.html
+</code></pre>
+<p><img alt="frontend-running" src="assets/frontend-running.png" />
+<em>Figura 8.7: Verificación del frontend funcionando</em></p>
+<pre><code class="language-bash"># 10. Ver logs del frontend
+docker compose logs -f Frontend-CRCoach
+</code></pre>
+<p><img alt="frontend-logs" src="../assets/frontend-logs.png" />
+<em>Figura 8.8: Logs de Nginx sirviendo el frontend</em></p>
+<h3 id="835-configuracion-de-nginx-servidor-web">8.3.5. Configuración de Nginx (servidor web)</h3>
+<p><strong>Frontend (<code>nginx.conf</code>):</strong></p>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Compresión gzip
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript
+               text/xml application/xml application/xml+rss text/javascript;
+    gzip_min_length 1000;
+
+    # HTML - NO cache
+    location = /index.html {
+        add_header Cache-Control &quot;no-cache, no-store, must-revalidate&quot;;
+        add_header Pragma &quot;no-cache&quot;;
+        add_header Expires &quot;0&quot;;
+    }
+
+    # SPA fallback - todas las rutas al index.html
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # JS y CSS - caché de 1 año (fingerprint por hash)
+    location ~* \.(js|css)$ {
+        expires 1y;
+        add_header Cache-Control &quot;public, max-age=31536000, immutable&quot;;
+    }
+
+    # Imágenes - caché de 6 meses
+    location ~* \.(png|jpg|jpeg|gif|svg|webp|ico)$ {
+        expires 6M;
+        add_header Cache-Control &quot;public, max-age=15552000&quot;;
+    }
+
+    # Fuentes - caché de 1 año + CORS
+    location ~* \.(woff|woff2|ttf|otf|eot)$ {
+        expires 1y;
+        add_header Cache-Control &quot;public, max-age=31536000, immutable&quot;;
+        add_header Access-Control-Allow-Origin &quot;*&quot;;
+        try_files $uri =404;
+    }
+}
+</code></pre>
+<p><strong>Backend (<code>nginx.conf</code>) - para cuando se usa Nginx como proxy inverso:</strong></p>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Compresión gzip
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript
+               text/xml application/xml application/xml+rss text/javascript;
+    gzip_min_length 1000;
+
+    # Proxy para API
+    location /api/ {
+        proxy_pass http://app:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        add_header Cache-Control &quot;no-store&quot;;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 60s;
+    }
+}
+</code></pre>
+<p><img alt="frontend-nginx-config" src="../assets/frontend-nginx-config.png" />
+<em>Figura 8.9: Configuración de Nginx del frontend</em></p>
+<p><img alt="backend-nginx-config" src="../assets/backend-nginx-config.png" />
+<em>Figura 8.10: Configuración de Nginx del backend</em></p>
+<h3 id="836-configuracion-de-la-base-de-datos-en-neon">8.3.6. Configuración de la base de datos en Neon</h3>
+<pre><code class="language-sql">-- La base de datos se crea automáticamente con el plan gratuito de Neon
+-- Las tablas se crean automáticamente con ddl-auto=update de Hibernate
+
+-- Verificar tablas creadas:
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public'
+ORDER BY table_name;
+</code></pre>
+<p><img alt="pg-admin-tables" src="../assets/pg-admin-tables.png" />
+<em>Figura 8.11: Tablas creadas en PostgreSQL</em></p>
+<h2 id="84-verificacion-del-despliegue">8.4. Verificación del despliegue</h2>
+<h3 id="841-verificacion-de-red">8.4.1. Verificación de red</h3>
+<pre><code class="language-bash"># 1. Verificar resolución DNS
+nslookup backend-crcoach.onrender.com
+nslookup frontend-crcoach.onrender.com
+
+# 2. Verificar conectividad
+ping backend-crcoach.onrender.com
+ping frontend-crcoach.onrender.com
+
+# 3. Verificar puertos abiertos
+nc -zv backend-crcoach.onrender.com 443
+nc -zv frontend-crcoach.onrender.com 443
+</code></pre>
+<h3 id="842-verificacion-de-la-api">8.4.2. Verificación de la API</h3>
+<pre><code class="language-bash"># 1. Health check básico
+curl -s -o /dev/null -w &quot;%{http_code}&quot; https://backend-crcoach.onrender.com/
+# Esperado: 200
+
+# 2. Verificar Swagger
+curl -s https://backend-crcoach.onrender.com/v3/api-docs | jq '.info.title'
+# Esperado: &quot;Backend-CRCoach&quot;
+
+# 3. Probar registro de usuario
+curl -s -X POST https://backend-crcoach.onrender.com/api/v1/auth/register \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;email&quot;: &quot;demo@crcoach.com&quot;,
+    &quot;username&quot;: &quot;demo&quot;,
+    &quot;password&quot;: &quot;Demo1234!&quot;
+  }' | jq '.'
+# Esperado: { &quot;token&quot;: &quot;eyJ...&quot;, &quot;user&quot;: {...} }
+
+# 4. Probar login
+curl -s -X POST https://backend-crcoach.onrender.com/api/v1/auth/authenticate \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;email&quot;: &quot;demo@crcoach.com&quot;,
+    &quot;password&quot;: &quot;Demo1234!&quot;
+  }' | jq '.token'
+# Esperado: Token JWT
+
+# 5. Obtener catálogo de cartas (público)
+curl -s https://backend-crcoach.onrender.com/api/v1/cards | jq '. | length'
+# Esperado: Número de cartas (aprox. 110+)
+</code></pre>
+<h3 id="843-verificacion-del-frontend">8.4.3. Verificación del frontend</h3>
+<pre><code class="language-bash"># 1. Verificar que la SPA carga
+curl -s https://frontend-crcoach.onrender.com/ | grep &quot;&lt;title&gt;&quot;
+# Esperado: &quot;&lt;title&gt;Coach Royale&lt;/title&gt;&quot;
+
+# 2. Verificar cabeceras de caché
+curl -I https://frontend-crcoach.onrender.com/index.html
+# Esperado: Cache-Control: no-cache, no-store, must-revalidate
+
+curl -I https://frontend-crcoach.onrender.com/main.js 2&gt;/dev/null || \
+curl -I https://frontend-crcoach.onrender.com/polyfills.js 2&gt;/dev/null
+# Esperado: Cache-Control: public, max-age=31536000, immutable
+
+# 3. Verificar compresión gzip
+curl -H &quot;Accept-Encoding: gzip&quot; \
+  -o /dev/null -w &quot;%{size_download}&quot; \
+  https://frontend-crcoach.onrender.com/
+# Esperado: Tamaño comprimido (menor que sin comprimir)
+</code></pre>
+<h3 id="844-verificacion-de-la-comunicacion-frontend-backend">8.4.4. Verificación de la comunicación frontend-backend</h3>
+<pre><code class="language-bash"># 1. Desde el frontend, verificar que puede llamar al backend
+# Abrir en navegador: https://frontend-crcoach.onrender.com/
+# Abrir DevTools (F12) → Network
+# Verificar que las peticiones a https://backend-crcoach.onrender.com/api/v1/ son exitosas
+
+# 2. Verificar CORS
+curl -s -X OPTIONS https://backend-crcoach.onrender.com/api/v1/cards \
+  -H &quot;Origin: https://frontend-crcoach.onrender.com&quot; \
+  -H &quot;Access-Control-Request-Method: GET&quot; \
+  -I
+# Esperado: Access-Control-Allow-Origin: https://frontend-crcoach.onrender.com
+</code></pre>
+<h3 id="845-prueba-de-rendimiento-basica">8.4.5. Prueba de rendimiento básica</h3>
+<pre><code class="language-bash"># Prueba de carga con 50 peticiones concurrentes
+for i in {1..50}; do
+  curl -s -o /dev/null -w &quot;Petición $i: %{http_code} - %{time_total}s\n&quot; \
+    https://backend-crcoach.onrender.com/api/v1/cards &amp;
+done
+wait
+
+# Medir tiempo de respuesta promedio
+time for i in {1..10}; do
+  curl -s -o /dev/null https://backend-crcoach.onrender.com/api/v1/cards
+done
+</code></pre>
+<h3 id="846-verificacion-del-polling-automatico">8.4.6. Verificación del polling automático</h3>
+<pre><code class="language-bash"># 1. Verificar que el scheduler está activo
+# Revisar los logs del backend en Render Dashboard
+# Buscar líneas como:
+# &quot;Iniciando sincronización para perfil 1&quot;
+# &quot;Sincronización completada: 3 nuevas batallas&quot;
+
+# 2. Verificar que se crean snapshots
+curl -s https://backend-crcoach.onrender.com/api/v1/snapshots/by-user/1 \
+  -H &quot;Authorization: Bearer $TOKEN&quot; | jq '. | length'
+# Esperado: Número de snapshots &gt; 0 si ha pasado tiempo suficiente
+</code></pre>
+<h3 id="847-verificacion-de-la-documentacion-swagger">8.4.7. Verificación de la documentación Swagger</h3>
+<p><img alt="swagger-ui" src="assets/swagger-ui.png" />
+<em>Figura 8.12: Documentación Swagger de la API</em></p>
+<p>La documentación Swagger está disponible en:</p>
+<pre><code>https://backend-crcoach.onrender.com/swagger-ui/index.html
+</code></pre>
+<h2 id="85-variables-de-entorno">8.5. Variables de entorno</h2>
+<h3 id="backend">Backend</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Obligatoria</th>
+<th style="text-align: left;">Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>PGHOST</code></td>
+<td style="text-align: left;">Host de PostgreSQL</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>ep-proyecto-pooler.c-3.eu-central-1.aws.neon.tech</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PGPORT</code></td>
+<td style="text-align: left;">Puerto de PostgreSQL</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>5432</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PGDATABASE</code></td>
+<td style="text-align: left;">Nombre de la base de datos</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>CRCoach_DB</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PGUSER</code></td>
+<td style="text-align: left;">Usuario de la base de datos</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>neondb_owner</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PGPASSWORD</code></td>
+<td style="text-align: left;">Contraseña de la base de datos</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>npg_abc123...</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>PORT</code></td>
+<td style="text-align: left;">Puerto del servidor</td>
+<td style="text-align: left;">No (default: 8080)</td>
+<td style="text-align: left;"><code>8080</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CLASH_ROYALE_API_KEY</code></td>
+<td style="text-align: left;">API Key de Supercell</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>eyJ0eXAi...</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>CLASH_ROYALE_API_URL</code></td>
+<td style="text-align: left;">URL base de la API</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><code>https://api.clashroyale.com/v1</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SPRING_HOST</code></td>
+<td style="text-align: left;">Servidor SMTP</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>smtp-relay.brevo.com</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SPRING_MAIL_USERNAME</code></td>
+<td style="text-align: left;">Usuario SMTP</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>usuario@smtp-brevo.com</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>SPRING_MAIL_PASSWORD</code></td>
+<td style="text-align: left;">Contraseña SMTP</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>xsmtpsib-...</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>BREVO_API_KEY</code></td>
+<td style="text-align: left;">API Key de Brevo</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>xkeysib-...</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>BREVO_SENDER_EMAIL</code></td>
+<td style="text-align: left;">Email remitente</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>crcoach@dominio.com</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>BREVO_SENDER_NAME</code></td>
+<td style="text-align: left;">Nombre del remitente</td>
+<td style="text-align: left;">No (default: CRCoach)</td>
+<td style="text-align: left;"><code>CRCoach</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>APP_FRONTEND_BASE_URL</code></td>
+<td style="text-align: left;">URL del frontend (CORS)</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>https://frontend-crcoach.onrender.com</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend">Frontend</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Obligatoria</th>
+<th style="text-align: left;">Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>apiUrl</code></td>
+<td style="text-align: left;">URL base del backend</td>
+<td style="text-align: left;">Sí</td>
+<td style="text-align: left;"><code>https://backend-crcoach.onrender.com</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="86-dockerizacion">8.6. Dockerización</h2>
+<h3 id="backend-dockerfile-multi-etapa">Backend: Dockerfile multi-etapa</h3>
+<p><strong>Archivo real:</strong> <code>Backend-CRCoach/Dockerfile</code></p>
+<pre><code class="language-dockerfile">FROM maven:3.9.6-eclipse-temurin-21 AS builder
+WORKDIR /usr/src/app
+
+ARG NODE_ENV
+ARG PORT
+
+ENV PGHOST=&quot;&quot;
+ENV PGPORT=&quot;&quot;
+ENV PGDATABASE=&quot;&quot;
+ENV PGUSER=&quot;&quot;
+ENV PGPASSWORD=&quot;&quot;
+ENV SPRING_MAIL_USERNAME=&quot;&quot;
+ENV SPRING_MAIL_PASSWORD=&quot;&quot;
+ENV APP_FRONTEND_BASE_URL=&quot;&quot;
+
+ENV PORT=8080
+
+COPY pom.xml .
+COPY src ./src
+RUN mvn -B -DskipTests package
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=builder /usr/src/app/target/Backend-CRCoach-0.0.1-SNAPSHOT.jar app.jar
+
+ENV PORT=8080
+EXPOSE 8080
+ENTRYPOINT [&quot;java&quot;,&quot;-Xms256m&quot;,&quot;-Xmx512m&quot;,&quot;-XX:+UseG1GC&quot;,&quot;-jar&quot;,&quot;/app/app.jar&quot;]
+</code></pre>
+<h3 id="frontend-dockerfile-multi-etapa">Frontend: Dockerfile multi-etapa</h3>
+<p><strong>Archivo real:</strong> <code>Frontend-CRCoach/Dockerfile</code></p>
+<pre><code class="language-dockerfile"># Etapa de compilación
+FROM node:24-alpine AS builder
+
+WORKDIR /app
+
+# Copiamos solo package.json y package-lock.json primero para usar cache de Docker
+COPY package.json package-lock.json ./
+
+# Instalamos dependencias
+RUN npm ci --legacy-peer-deps --silent
+
+# Copiamos el resto de la aplicación
+COPY . .
+
+# Construimos la aplicación usando el script build:prod (ejecuta inyección de preloads)
+RUN npm run build
+
+# Etapa de producción - nginx
+FROM nginx:stable-alpine
+
+# Eliminamos contenido por defecto
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copiamos los archivos compilados desde el builder
+# Angular genera los ficheros estáticos en dist/&lt;projectName&gt;/browser; copiamos su contenido al root de nginx
+COPY --from=builder /app/dist/Frontend-CRCoach/browser/ /usr/share/nginx/html/
+
+# Copiamos la configuración de nginx para fallback en SPA
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Puerto expuesto
+EXPOSE 80
+
+# Ejecutar nginx en primer plano
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre>
+<h3 id="docker-compose-del-backend">docker-compose del backend</h3>
+<p><strong>Archivo real:</strong> <code>Backend-CRCoach/docker-compose.yml</code></p>
+<pre><code class="language-yaml">version: &quot;3.9&quot;
+
+services:
+  postgres:
+    env_file:
+      - .env
+    container_name: crcoach-postgres
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+    ports:
+      - &quot;${PGPORT}:5432&quot;
+    volumes:
+      - crcoach_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -U ${PGUSER} -d ${PGDATABASE}&quot;]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ricitosdeoro2001/backend-crcoach:latest
+    restart: unless-stopped
+    ports:
+      - &quot;${PORT}:8080&quot;
+    environment:
+      SPRING_DATASOURCE_URL: &quot;jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}?sslmode=require&quot;
+      SPRING_DATASOURCE_USERNAME: ${PGUSER}
+      SPRING_DATASOURCE_PASSWORD: ${PGPASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: &quot;update&quot;
+      SERVER_PORT: 8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./uploads:/app/uploads
+
+volumes:
+  crcoach_db_data: {}
+</code></pre>
+<h3 id="docker-compose-del-frontend">docker-compose del frontend</h3>
+<p><strong>Archivo real:</strong> <code>Frontend-CRCoach/docker-compose.yml</code></p>
+<pre><code class="language-yaml">version: &quot;3.8&quot;
+
+services:
+  Frontend-CRCoach:
+    container_name: frontend-crcoach
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ricitosdeoro2001/frontend-crcoach:latest
+    ports:
+      - &quot;80:80&quot;
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: [&quot;CMD&quot;, &quot;curl&quot;, &quot;-f&quot;, &quot;http://localhost/index.html&quot;]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - crcoach_net
+
+  dev:
+    image: node:24-alpine
+    profiles: [&quot;dev&quot;]
+    working_dir: /app
+    command: sh -c &quot;npm ci &amp;&amp; npm run start -- --host 0.0.0.0&quot;
+    ports:
+      - &quot;4200:4200&quot;
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./:/app:cached
+      - crcoach_node_modules:/app/node_modules
+    networks:
+      - crcoach_net
+
+volumes:
+  crcoach_node_modules:
+    driver: local
+
+networks:
+  crcoach_net:
+    driver: bridge
+</code></pre>
+<h2 id="87-url-de-la-aplicacion-en-produccion">8.7. URL de la aplicación en producción</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Recurso</th>
+<th style="text-align: left;">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Frontend (aplicación)</strong></td>
+<td style="text-align: left;"><a href="https://frontend-crcoach.onrender.com">https://frontend-crcoach.onrender.com</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Backend (API)</strong></td>
+<td style="text-align: left;"><a href="https://backend-crcoach.onrender.com">https://backend-crcoach.onrender.com</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Swagger UI</strong></td>
+<td style="text-align: left;"><a href="https://backend-crcoach.onrender.com/swagger-ui/index.html">https://backend-crcoach.onrender.com/swagger-ui/index.html</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Documentación</strong></td>
+<td style="text-align: left;">GitHub Pages (rama gh-pages)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="88-solucion-de-problemas-comunes">8.8. Solución de problemas comunes</h2>
+<h3 id="problema-el-backend-no-arranca-en-render">Problema: El backend no arranca en Render</h3>
+<pre><code>Causa posible: Variables de entorno incorrectas o incompletas.
+Solución:
+  1. Verificar que todas las variables están configuradas en Render Dashboard.
+  2. Revisar los logs de build para identificar errores de compilación.
+  3. Asegurar que la API Key de Supercell tiene la IP de Render en whitelist.
+</code></pre>
+<h3 id="problema-error-429-de-la-api-de-supercell">Problema: Error 429 de la API de Supercell</h3>
+<pre><code>Causa posible: Demasiadas peticiones a la API en poco tiempo.
+Solución:
+  1. Verificar los logs: &quot;Rate limited&quot; aparece en los logs del backend.
+  2. El sistema reintenta automáticamente con backoff exponencial.
+  3. Si persiste, aumentar el intervalo de polling en application.properties.
+</code></pre>
+<h3 id="problema-cors-bloqueando-peticiones">Problema: CORS bloqueando peticiones</h3>
+<pre><code>Causa posible: La URL del frontend no está en los orígenes permitidos.
+Solución:
+  1. Verificar que APP_FRONTEND_BASE_URL tiene el valor correcto.
+  2. En SecurityConfig.java, asegurar que la URL está en allowedOrigins.
+</code></pre>
+<h3 id="problema-la-spa-del-frontend-muestra-pagina-en-blanco">Problema: La SPA del frontend muestra página en blanco</h3>
+<pre><code>Causa posible: Error en las rutas de Angular o en el fallback de Nginx.
+Solución:
+  1. Verificar que nginx.conf tiene try_files $uri $uri/ /index.html;
+  2. Revisar la consola del navegador para errores de JavaScript.
+  3. Verificar que environment.apiUrl apunta al backend correcto.
+</code></pre>
+<h3 id="problema-error-de-conexion-a-la-base-de-datos">Problema: Error de conexión a la base de datos</h3>
+<pre><code>Causa posible: Credenciales incorrectas o IP no permitida.
+Solución:
+  1. Verificar las variables PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD.
+  2. En Neon, verificar que la IP de Render está permitida en la configuración de red.
+  3. Asegurar que la URL JDBC tiene sslmode=require.
+</code></pre>
+<h3 id="problema-los-tests-fallan-en-ci">Problema: Los tests fallan en CI</h3>
+<pre><code>Causa posible: Dependencias desactualizadas o configuración incorrecta.
+Solución:
+  1. Ejecutar tests localmente: ./mvnw test o npm test.
+  2. Verificar que las versiones de las dependencias son compatibles.
+  3. Revisar los logs de GitHub Actions para identificar el error específico.
+</code></pre>
+<h2 id="89-referencia-de-comandos">8.9. Referencia de comandos</h2>
+<p>Esta sección explica en detalle cada comando utilizado en este documento, desglosando sus partes y parámetros.</p>
+<h3 id="891-comandos-de-docker">8.9.1. Comandos de Docker</h3>
+<h4 id="docker-compose-up-d"><code>docker compose up -d</code></h4>
+<pre><code class="language-bash">docker compose up -d
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>docker</code></td>
+<td style="text-align: left;">Binario principal de Docker</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>compose</code></td>
+<td style="text-align: left;">Subcomando para orquestación multi-contenedor</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>up</code></td>
+<td style="text-align: left;">Crea y arranca los contenedores definidos en <code>docker-compose.yml</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-d</code></td>
+<td style="text-align: left;">Modo <em>detached</em>: ejecuta los contenedores en segundo plano, liberando la terminal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Lee el archivo <code>docker-compose.yml</code>, construye las imágenes si es necesario, crea las redes y volúmenes definidos, y arranca todos los servicios en segundo plano.</p>
+<p><strong>Uso con servicios específicos:</strong></p>
+<pre><code class="language-bash">docker compose up -d Frontend-CRCoach    # Arranca solo un servicio concreto
+docker compose up -d --profile dev       # Arranca servicios de un perfil concreto
+</code></pre>
+<h4 id="docker-compose-ps"><code>docker compose ps</code></h4>
+<pre><code class="language-bash">docker compose ps
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>ps</code></td>
+<td style="text-align: left;"><em>Process Status</em>: muestra el estado de los contenedores</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Lista todos los contenedores gestionados por el archivo <code>docker-compose.yml</code>, mostrando:
+- <code>NAME</code>: Nombre del contenedor.
+- <code>IMAGE</code>: Imagen Docker que está usando.
+- <code>COMMAND</code>: Comando que se ejecuta al arrancar.
+- <code>SERVICE</code>: Servicio al que pertenece en el compose.
+- <code>STATUS</code>: Estado actual (Up, Exited, Paused, Healthy).
+- <code>PORTS</code>: Mapeo de puertos (host:contenedor).</p>
+<p><strong>Salida de ejemplo:</strong></p>
+<pre><code>NAME                IMAGE                                    COMMAND                  SERVICE    STATUS          PORTS
+frontend-crcoach    ricitosdeoro2001/frontend-crcoach:latest  &quot;/docker-entrypoint.…&quot;   app        Up 2 min        0.0.0.0:80-&gt;80/tcp
+</code></pre>
+<h4 id="docker-compose-logs"><code>docker compose logs</code></h4>
+<pre><code class="language-bash">docker compose logs app
+docker compose logs -f app
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>logs</code></td>
+<td style="text-align: left;">Muestra la salida de logs del contenedor</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-f</code></td>
+<td style="text-align: left;">Modo <em>follow</em>: mantiene la conexión abierta mostrando logs en tiempo real (equivalente a <code>tail -f</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>app</code></td>
+<td style="text-align: left;">Nombre del servicio del que ver los logs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Recupera y muestra la salida stdout/stderr del contenedor. Es la herramienta principal para depurar problemas en contenedores.</p>
+<p><strong>Variantes útiles:</strong></p>
+<pre><code class="language-bash">docker compose logs --tail=100 app      # Últimas 100 líneas
+docker compose logs --since=5m app      # Logs de los últimos 5 minutos
+docker compose logs -t app              # Añade timestamp a cada línea
+</code></pre>
+<h4 id="docker-compose-down"><code>docker compose down</code></h4>
+<pre><code class="language-bash">docker compose down
+docker compose down -v
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>down</code></td>
+<td style="text-align: left;">Detiene y elimina contenedores, redes y, opcionalmente, volúmenes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-v</code></td>
+<td style="text-align: left;">Elimina también los volúmenes (incluyendo datos persistentes)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Detiene los contenedores en ejecución, los elimina, y limpia las redes creadas por <code>up</code>. Sin <code>-v</code> los volúmenes persisten. Con <code>-v</code> se borran también los datos (útil para empezar desde cero).</p>
+<h4 id="docker-compose-exec"><code>docker compose exec</code></h4>
+<pre><code class="language-bash">docker compose exec postgres pg_isready -U crcoach_user -d crcoach_db
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>exec</code></td>
+<td style="text-align: left;">Ejecuta un comando dentro de un contenedor en ejecución</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>postgres</code></td>
+<td style="text-align: left;">Nombre del servicio (contenedor objetivo)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pg_isready</code></td>
+<td style="text-align: left;">Comando a ejecutar dentro del contenedor</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-U crcoach_user</code></td>
+<td style="text-align: left;">Usuario de PostgreSQL</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-d crcoach_db</code></td>
+<td style="text-align: left;">Base de datos a comprobar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Ejecuta un comando arbitrario dentro de un contenedor que ya está en ejecución. Útil para depuración, inspección y administración.</p>
+<p><strong>Otros ejemplos:</strong></p>
+<pre><code class="language-bash">docker compose exec postgres psql -U crcoach_user -d crcoach_db  # Abre consola SQL
+docker compose exec app sh                                        # Abre shell dentro del contenedor
+</code></pre>
+<h3 id="892-comandos-de-curl">8.9.2. Comandos de curl</h3>
+<h4 id="curl-url-peticion-get-basica"><code>curl [URL]</code> — Petición GET básica</h4>
+<pre><code class="language-bash">curl https://backend-crcoach.onrender.com/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>curl</code></td>
+<td style="text-align: left;"><em>Client URL</em>: herramienta para transferir datos con sintaxis URL</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>https://...</code></td>
+<td style="text-align: left;">URL destino de la petición</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Realiza una petición HTTP GET a la URL especificada y muestra el cuerpo de la respuesta por stdout. Es la herramienta estándar para probar APIs desde terminal.</p>
+<h4 id="curl-i-url-solo-cabeceras"><code>curl -I [URL]</code> — Solo cabeceras</h4>
+<pre><code class="language-bash">curl -I https://frontend-crcoach.onrender.com/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-I</code></td>
+<td style="text-align: left;"><em>Headers only</em>: realiza una petición HEAD, mostrando solo las cabeceras de respuesta</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Útil para verificar cabeceras HTTP sin descargar el cuerpo de la respuesta. Permite comprobar <code>Cache-Control</code>, <code>Content-Type</code>, <code>Status</code>, <code>CORS</code>, etc.</p>
+<p><strong>Salida de ejemplo:</strong></p>
+<pre><code>HTTP/2 200
+content-type: text/html
+cache-control: no-cache, no-store, must-revalidate
+</code></pre>
+<h4 id="curl-x-post-url-peticion-post"><code>curl -X POST [URL]</code> — Petición POST</h4>
+<pre><code class="language-bash">curl -X POST https://backend-crcoach.onrender.com/api/v1/auth/authenticate \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;email&quot;:&quot;test@test.com&quot;,&quot;password&quot;:&quot;Test1234!&quot;}'
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-X POST</code></td>
+<td style="text-align: left;">Especifica el método HTTP (GET, POST, PUT, DELETE, OPTIONS...)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-H "Content-Type: application/json"</code></td>
+<td style="text-align: left;">Añade una cabecera HTTP personalizada (indica que enviamos JSON)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-d '{"email":...}'</code></td>
+<td style="text-align: left;"><em>data</em>: cuerpo de la petición (los datos que se envían al servidor)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>\</code></td>
+<td style="text-align: left;">Barra invertida: permite continuar el comando en la siguiente línea (mejora legibilidad)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Envía una petición POST con cuerpo JSON al servidor. Es la forma estándar de probar endpoints que crean recursos o autentican usuarios.</p>
+<h4 id="curl-s-modo-silencioso"><code>curl -s</code> — Modo silencioso</h4>
+<pre><code class="language-bash">curl -s -o /dev/null -w &quot;%{http_code}&quot; https://backend-crcoach.onrender.com/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-s</code></td>
+<td style="text-align: left;"><em>Silent</em>: suprime la barra de progreso y mensajes de error</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-o /dev/null</code></td>
+<td style="text-align: left;"><em>Output</em>: descarta el cuerpo de la respuesta (no lo muestra)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-w "%{http_code}"</code></td>
+<td style="text-align: left;"><em>Write out</em>: imprime solo el código de estado HTTP (200, 404, 500...)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Realiza una petición y muestra <strong>solo el código HTTP</strong> (sin el body). Ideal para health checks y pruebas automatizadas donde solo interesa saber si el servidor responde correctamente.</p>
+<h4 id="curl-l-seguir-redirecciones"><code>curl -L</code> — Seguir redirecciones</h4>
+<pre><code class="language-bash">curl -L https://frontend-crcoach.onrender.com/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-L</code></td>
+<td style="text-align: left;"><em>Location</em>: sigue automáticamente las redirecciones HTTP (302, 301)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Si el servidor responde con una redirección (código 3xx), curl sigue automáticamente la nueva ubicación hasta llegar al destino final.</p>
+<h4 id="curl-h-accept-encoding-gzip-comprobar-compresion"><code>curl -H "Accept-Encoding: gzip"</code> — Comprobar compresión</h4>
+<pre><code class="language-bash">curl -H &quot;Accept-Encoding: gzip&quot; -o /dev/null -w &quot;%{size_download}&quot; https://frontend-crcoach.onrender.com/
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-H "Accept-Encoding: gzip"</code></td>
+<td style="text-align: left;">Indica al servidor que aceptamos contenido comprimido con gzip</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>%{size_download}</code></td>
+<td style="text-align: left;">Variable que muestra el tamaño en bytes del contenido descargado</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Comprueba si el servidor aplica compresión gzip. Si el tamaño descargado es menor que el tamaño real del contenido, la compresión está activa.</p>
+<h4 id="curl-x-options-verificar-cors"><code>curl -X OPTIONS</code> — Verificar CORS</h4>
+<pre><code class="language-bash">curl -s -X OPTIONS https://backend-crcoach.onrender.com/api/v1/cards \
+  -H &quot;Origin: https://frontend-crcoach.onrender.com&quot; \
+  -H &quot;Access-Control-Request-Method: GET&quot; \
+  -I
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-X OPTIONS</code></td>
+<td style="text-align: left;">Método HTTP utilizado en peticiones pre-flight de CORS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-H "Origin: ..."</code></td>
+<td style="text-align: left;">Simula que la petición viene desde ese origen</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-H "Access-Control-Request-Method: GET"</code></td>
+<td style="text-align: left;">Indica qué método HTTP se quiere usar tras el pre-flight</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Envía una petición pre-flight CORS para verificar si el servidor permite peticiones desde un origen específico. La respuesta debe incluir <code>Access-Control-Allow-Origin</code>.</p>
+<h3 id="893-comandos-de-red">8.9.3. Comandos de red</h3>
+<h4 id="nslookup-dominio"><code>nslookup [dominio]</code></h4>
+<pre><code class="language-bash">nslookup backend-crcoach.onrender.com
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>nslookup</code></td>
+<td style="text-align: left;"><em>Name Server Lookup</em>: consulta el DNS para resolver un nombre de dominio a IP</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Muestra la dirección IP asociada a un nombre de dominio y el servidor DNS que resolvió la consulta. Útil para verificar que el DNS está configurado correctamente.</p>
+<p><strong>Salida de ejemplo:</strong></p>
+<pre><code>Server:   8.8.8.8
+Address:  8.8.8.8#53
+
+Non-authoritative answer:
+Name: backend-crcoach.onrender.com
+Address: 216.24.57.1
+</code></pre>
+<h4 id="ping-dominio"><code>ping [dominio]</code></h4>
+<pre><code class="language-bash">ping backend-crcoach.onrender.com
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>ping</code></td>
+<td style="text-align: left;">Envía paquetes ICMP Echo Request para verificar conectividad de red</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Comprueba si un host es reachable en la red midiendo el tiempo de ida y vuelta de los paquetes (RTT). Un ping exitoso confirma conectividad básica.</p>
+<p><strong>Salida de ejemplo:</strong></p>
+<pre><code>PING backend-crcoach.onrender.com (216.24.57.1): 56 data bytes
+64 bytes from 216.24.57.1: icmp_seq=0 ttl=53 time=12.345 ms
+</code></pre>
+<h4 id="nc-zv-host-puerto"><code>nc -zv [host] [puerto]</code></h4>
+<pre><code class="language-bash">nc -zv backend-crcoach.onrender.com 443
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>nc</code></td>
+<td style="text-align: left;"><em>Netcat</em>: herramienta de red versátil para leer/escribir datos en conexiones de red</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-z</code></td>
+<td style="text-align: left;"><em>Zero I/O</em>: modo escaneo, no envía datos solo comprueba si el puerto está abierto</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-v</code></td>
+<td style="text-align: left;"><em>Verbose</em>: muestra información detallada de la conexión</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Comprueba si un puerto específico está abierto en un host remoto. Más fiable que ping porque verifica la disponibilidad del servicio en el puerto concreto, no solo la conectividad ICMP.</p>
+<h3 id="894-comandos-de-git">8.9.4. Comandos de Git</h3>
+<h4 id="git-clone-url"><code>git clone [URL]</code></h4>
+<pre><code class="language-bash">git clone https://github.com/ricitos2001/Backend-CRCoach.git
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>git</code></td>
+<td style="text-align: left;">Sistema de control de versiones distribuido</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>clone</code></td>
+<td style="text-align: left;">Crea una copia local completa de un repositorio remoto</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>https://...</code></td>
+<td style="text-align: left;">URL del repositorio a clonar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Descarga el repositorio completo (incluyendo todo el historial de commits y ramas) y crea un directorio local con el código fuente.</p>
+<h3 id="895-comandos-de-copia-y-enlaces">8.9.5. Comandos de copia y enlaces</h3>
+<h4 id="cp-origen-destino"><code>cp [origen] [destino]</code></h4>
+<pre><code class="language-bash">cp .env.example .env
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>cp</code></td>
+<td style="text-align: left;"><em>Copy</em>: copia archivos y directorios</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Crea una copia del archivo <code>.env.example</code> con nombre <code>.env</code>. Es el paso estándar para crear el archivo de variables de entorno a partir de la plantilla.</p>
+<h4 id="chmod-x-archivo"><code>chmod +x [archivo]</code></h4>
+<pre><code class="language-bash">chmod +x render
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>chmod</code></td>
+<td style="text-align: left;"><em>Change Mode</em>: cambia los permisos de un archivo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>+x</code></td>
+<td style="text-align: left;">Añade permiso de ejecución (<em>execute</em>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Convierte un archivo en ejecutable. Sin este paso, no se podría ejecutar el binario de Render CLI descargado.</p>
+<h3 id="896-redirecciones-y-tuberias">8.9.6. Redirecciones y tuberías</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Símbolo</th>
+<th style="text-align: left;">Nombre</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>&gt; archivo</code></td>
+<td style="text-align: left;">Redirección de salida</td>
+<td style="text-align: left;">Escribe la salida de un comando en un archivo (sobrescribe)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&gt;&gt; archivo</code></td>
+<td style="text-align: left;">Redirección de append</td>
+<td style="text-align: left;">Añade la salida al final de un archivo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>\|</code></td>
+<td style="text-align: left;">Pipe (tubería)</td>
+<td style="text-align: left;">Conecta la salida de un comando con la entrada del siguiente</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>2&gt;/dev/null</code></td>
+<td style="text-align: left;">Redirección de error</td>
+<td style="text-align: left;">Descarta los mensajes de error (los envía al "agujero negro")</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&amp;</code></td>
+<td style="text-align: left;">Background</td>
+<td style="text-align: left;">Ejecuta un comando en segundo plano</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&amp;&amp;</code></td>
+<td style="text-align: left;">AND lógico</td>
+<td style="text-align: left;">Ejecuta el segundo comando solo si el primero tuvo éxito</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>\</code></td>
+<td style="text-align: left;">Continuación</td>
+<td style="text-align: left;">Permite escribir un comando en varias líneas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>$()</code></td>
+<td style="text-align: left;">Sustitución</td>
+<td style="text-align: left;">Ejecuta el comando interno y usa su salida como argumento</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>$(...)</code></td>
+<td style="text-align: left;">Sustitución moderna</td>
+<td style="text-align: left;">Igual que <code>$()</code> pero anidable</td>
+</tr>
+</tbody>
+</table>
+<h3 id="897-comandos-de-maven">8.9.7. Comandos de Maven</h3>
+<h4 id="mvn-b-verify"><code>mvn -B verify</code></h4>
+<pre><code class="language-bash">mvn -B verify
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>mvn</code></td>
+<td style="text-align: left;"><em>Maven</em>: herramienta de construcción y gestión de proyectos Java</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-B</code></td>
+<td style="text-align: left;"><em>Batch mode</em>: modo no interactivo (sin barras de progreso), ideal para CI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>verify</code></td>
+<td style="text-align: left;">Fase de Maven: compila, ejecuta tests y verifica que el proyecto es válido</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Ejecuta el ciclo de vida completo de Maven hasta la fase <code>verify</code>, que incluye: compilación, ejecución de tests unitarios y de integración, y validación del empaquetado. Es el comando estándar para CI.</p>
+<h3 id="898-comandos-de-npm">8.9.8. Comandos de npm</h3>
+<h4 id="npm-install-npm-ci"><code>npm install / npm ci</code></h4>
+<pre><code class="language-bash">npm install
+npm ci --legacy-peer-deps --silent
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>npm</code></td>
+<td style="text-align: left;"><em>Node Package Manager</em>: gestor de paquetes de Node.js</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>install</code></td>
+<td style="text-align: left;">Instala dependencias leyendo <code>package.json</code> y <code>package-lock.json</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ci</code></td>
+<td style="text-align: left;"><em>Clean Install</em>: instalación limpia usando solo <code>package-lock.json</code> (más rápido y reproducible)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--legacy-peer-deps</code></td>
+<td style="text-align: left;">Usa algoritmo antiguo de resolución de dependencias (evita conflictos)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--silent</code></td>
+<td style="text-align: left;">Suprime la salida innecesaria</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Descarga e instala todas las dependencias del proyecto Node.js. <code>npm ci</code> se usa en producción/Docker porque es más rápido y determinista que <code>npm install</code>.</p>
+<h4 id="npm-run-build"><code>npm run build</code></h4>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>npm run build</code></td>
+<td style="text-align: left;">Ejecuta el script <code>build</code> definido en <code>package.json</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: En Angular, compila la aplicación para producción generando los archivos estáticos en <code>dist/</code>. Incluye optimizaciones como minificación, tree-shaking y hashing de archivos.</p>
+<h3 id="899-comandos-de-sistema">8.9.9. Comandos de sistema</h3>
+<h4 id="for-loop-shell"><code>for</code> loop (Shell)</h4>
+<pre><code class="language-bash">for i in {1..50}; do
+  curl -s -o /dev/null -w &quot;Petición $i: %{http_code} - %{time_total}s\n&quot; \
+    https://backend-crcoach.onrender.com/api/v1/cards &amp;
+done
+wait
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>for i in {1..50}</code></td>
+<td style="text-align: left;">Bucle que itera 50 veces (i=1, i=2, ..., i=50)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>; do ... ; done</code></td>
+<td style="text-align: left;">Cuerpo del bucle</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>$i</code></td>
+<td style="text-align: left;">Variable que contiene el número de iteración actual</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&amp;</code></td>
+<td style="text-align: left;">Ejecuta cada curl en segundo plano (paralelo)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>wait</code></td>
+<td style="text-align: left;">Espera a que todos los procesos en background terminen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Lanza 50 peticiones curl concurrentes para simular una prueba de carga básica. Mide el código de estado y tiempo de cada petición.</p>
+<h4 id="time-comando"><code>time [comando]</code></h4>
+<pre><code class="language-bash">time for i in {1..10}; do
+  curl -s -o /dev/null https://backend-crcoach.onrender.com/api/v1/cards
+done
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>time</code></td>
+<td style="text-align: left;">Mide el tiempo real de ejecución de un comando</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Qué hace</strong>: Ejecuta el comando y muestra tres métricas de tiempo:
+- <code>real</code>: tiempo total transcurrido (wall clock).
+- <code>user</code>: tiempo de CPU en modo usuario.
+- <code>sys</code>: tiempo de CPU en modo kernel.</p>
+<h2 id="810-uso-avanzado-de-docker-build">8.10. Uso avanzado de Docker build</h2>
+<h3 id="8101-sintaxis-completa-de-docker-build">8.10.1. Sintaxis completa de <code>docker build</code></h3>
+<pre><code class="language-bash">docker build [opciones] -t nombre:tag [ruta_del_contexto]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parámetro</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>-t nombre:tag</code></td>
+<td style="text-align: left;"><em>Tag</em>: nombre y versión de la imagen (ej: <code>frontend-crcoach:latest</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-f archivo</code></td>
+<td style="text-align: left;"><em>File</em>: especifica un Dockerfile con nombre diferente (ej: <code>Dockerfile.prod</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--build-arg CLAVE=valor</code></td>
+<td style="text-align: left;">Pasa variables de construcción al Dockerfile</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--no-cache</code></td>
+<td style="text-align: left;">Fuerza reconstrucción sin usar caché de capas</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--platform linux/amd64</code></td>
+<td style="text-align: left;">Especifica la plataforma destino (útil para multi-arquitectura)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--target etapa</code></td>
+<td style="text-align: left;">Construye solo hasta una etapa concreta del multi-stage</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--progress plain</code></td>
+<td style="text-align: left;">Muestra el progreso en texto plano (útil para CI)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--secret id=...</code></td>
+<td style="text-align: left;">Pasa secretos de forma segura sin que queden en la imagen</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--ssh default</code></td>
+<td style="text-align: left;">Permite usar agentes SSH durante el build</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--output type=local,dest=./out</code></td>
+<td style="text-align: left;">Exporta archivos del build al host</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>.</code></td>
+<td style="text-align: left;">Contexto de build (directorio actual que se envía al daemon de Docker)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8102-ejemplos-practicos">8.10.2. Ejemplos prácticos</h3>
+<h4 id="build-basico-con-tag">Build básico con tag</h4>
+<pre><code class="language-bash">docker build -t frontend-crcoach:latest .
+</code></pre>
+<p><strong>Explicación</strong>: Construye la imagen usando el <code>Dockerfile</code> del directorio actual, le asigna el nombre <code>frontend-crcoach</code> con tag <code>latest</code>. Es el comando más básico y común.</p>
+<h4 id="build-con-dockerfile-especifico">Build con Dockerfile específico</h4>
+<pre><code class="language-bash">docker build -f Dockerfile.prod -t backend-crcoach:production .
+</code></pre>
+<p><strong>Explicación</strong>: Usa un archivo <code>Dockerfile.prod</code> en lugar del <code>Dockerfile</code> por defecto. Útil cuando tienes múltiples configuraciones de build (desarrollo, producción, testing).</p>
+<h4 id="build-sin-cache">Build sin caché</h4>
+<pre><code class="language-bash">docker build --no-cache -t frontend-crcoach:latest .
+</code></pre>
+<p><strong>Explicación</strong>: Fuerza la reconstrucción completa de todas las capas ignorando la caché de Docker. Útil cuando se sospecha que la caché está usando código obsoleto o cuando se quiere garantizar una build limpia (por ejemplo, después de actualizar dependencias de seguridad).</p>
+<h4 id="build-con-argumentos-de-build">Build con argumentos de build</h4>
+<pre><code class="language-bash">docker build \
+  --build-arg NODE_ENV=production \
+  --build-arg API_URL=https://backend-crcoach.onrender.com \
+  -t frontend-crcoach:latest .
+</code></pre>
+<p><strong>Explicación</strong>: Pasa variables de entorno al Dockerfile mediante <code>ARG</code>. Dentro del Dockerfile se usan con <code>ARG NODE_ENV</code> y <code>$NODE_ENV</code>. Útil para parametrizar la construcción sin modificar el Dockerfile.</p>
+<h4 id="build-hasta-una-etapa-especifica-multi-stage">Build hasta una etapa específica (multi-stage)</h4>
+<pre><code class="language-bash">docker build --target builder -t frontend-crcoach:builder .
+</code></pre>
+<p><strong>Explicación</strong>: En un Dockerfile multi-stage, <code>--target</code> detiene la construcción en la etapa indicada. En el ejemplo, construye solo la etapa <code>builder</code> (donde está Node.js) sin llegar a la etapa final de Nginx. Esto es útil para:
+- <strong>Depuración</strong>: Obtener una imagen con herramientas de desarrollo para inspeccionar el build.
+- <strong>CI/CD</strong>: Ejecutar tests dentro del contenedor de build antes de generar la imagen final.
+- <strong>Desarrollo</strong>: Iterar rápidamente sin esperar a la etapa de producción.</p>
+<h4 id="build-para-plataforma-especifica">Build para plataforma específica</h4>
+<pre><code class="language-bash">docker build --platform linux/amd64 -t backend-crcoach:latest .
+</code></pre>
+<p><strong>Explicación</strong>: Construye la imagen para una plataforma concreta (por ejemplo, <code>linux/amd64</code> en lugar de <code>linux/arm64</code>). Esencial cuando:
+- Desarrollas en un Mac con Apple Silicon (ARM) pero despliegas en servidores x86_64 (AMD).
+- Usas servicios cloud que solo soportan arquitecturas específicas.
+- Necesitas compatibilidad cruzada.</p>
+<h4 id="build-con-progreso-detallado">Build con progreso detallado</h4>
+<pre><code class="language-bash">docker build --progress plain -t frontend-crcoach:latest . 2&gt;&amp;1
+</code></pre>
+<p><strong>Explicación</strong>: Muestra la salida completa del build sin barras de progreso interactivas. Cada paso del Dockerfile se muestra con su salida detallada. Ideal para logs de CI/CD (GitHub Actions, Jenkins, GitLab CI) donde no hay terminal interactiva.</p>
+<h4 id="build-multi-arquitectura-buildx">Build multi-arquitectura (buildx)</h4>
+<pre><code class="language-bash"># Crear un builder multi-arquitectura (solo una vez)
+docker buildx create --name multiarch --driver docker-container --use
+
+# Build para múltiples plataformas simultáneamente
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t ricitosdeoro2001/frontend-crcoach:latest \
+  --push .
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parte</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>buildx</code></td>
+<td style="text-align: left;">Extensión de Docker para builds avanzados (multi-plataforma)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--platform linux/amd64,linux/arm64</code></td>
+<td style="text-align: left;">Construye para ambas arquitecturas simultáneamente</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--push</code></td>
+<td style="text-align: left;">Sube las imágenes directamente al registry (Docker Hub)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explicación</strong>: <code>docker buildx</code> es una extensión que permite builds multi-arquitectura. Construye imágenes para <code>amd64</code> (servidores x86) y <code>arm64</code> (Apple Silicon, Raspberry Pi, servidores ARM como AWS Graviton) en un solo comando. Docker Hub muestra automáticamente la imagen correcta según la arquitectura del cliente.</p>
+<h3 id="8103-optimizacion-de-builds-de-docker">8.10.3. Optimización de builds de Docker</h3>
+<h4 id="estrategia-de-capas-y-cache">Estrategia de capas y caché</h4>
+<p>Docker construye las imágenes por capas (<em>layers</em>). Cada instrucción en el Dockerfile crea una capa que se cachea. Para maximizar la reutilización de la caché:</p>
+<pre><code class="language-dockerfile"># ❌ MAL: la caché se invalida al cambiar cualquier archivo del proyecto
+COPY . .
+RUN npm install
+
+# ✅ BIEN: primero copiar solo package.json, instalar, luego copiar el resto
+COPY package.json package-lock.json ./
+RUN npm ci --legacy-peer-deps --silent    # Esta capa solo se reconstruye si cambian las dependencias
+COPY . .                                   # Esta capa se reconstruye al cambiar código fuente
+</code></pre>
+<p><strong>Explicación</strong>: Separando la copia de <code>package.json</code> de la del resto del código, Docker puede cachear la instalación de dependencias (<code>npm ci</code>) y solo re-ejecutarla cuando cambie <code>package.json</code>. Esto reduce drásticamente el tiempo de build en iteraciones de desarrollo (de minutos a segundos).</p>
+<h4 id="multi-stage-building">Multi-stage building</h4>
+<pre><code class="language-dockerfile"># Stage 1: Build (pesado, con herramientas de compilación)
+FROM node:24-alpine AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --legacy-peer-deps --silent
+COPY . .
+RUN npm run build                  # Genera dist/ (archivos estáticos)
+
+# Stage 2: Production (ligero, solo runtime)
+FROM nginx:stable-alpine           # Imagen mucho más pequeña (solo 20MB vs 500MB de Node)
+COPY --from=builder /app/dist/Frontend-CRCoach/browser/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre>
+<p><strong>Explicación</strong>: Multi-stage usa dos imágenes base diferentes:
+1. <strong>Stage builder</strong>: Usa <code>node:24-alpine</code> (~300MB) con todas las herramientas de compilación.
+2. <strong>Stage producción</strong>: Usa <code>nginx:stable-alpine</code> (~20MB) solo con lo necesario para servir archivos estáticos.</p>
+<p>La imagen final solo contiene lo que se copia desde la etapa builder (<code>dist/</code> y <code>nginx.conf</code>), sin incluir Node.js, npm, dependencias de desarrollo ni código fuente. <strong>Resultado: imagen de 20MB en lugar de 500MB</strong>.</p>
+<h4 id="uso-de-dockerignore">Uso de <code>.dockerignore</code></h4>
+<pre><code class="language-dockerfile"># .dockerignore - excluir archivos innecesarios del contexto de build
+node_modules
+.git
+.gitignore
+*.md
+.env
+.env.example
+dist/
+.git/
+.github/
+.vscode/
+.idea/
+</code></pre>
+<p><strong>Explicación</strong>: El archivo <code>.dockerignore</code> funciona como <code>.gitignore</code> pero para Docker. Excluye archivos y directorios del contexto de build (lo que se envía al daemon de Docker). Beneficios:
+- <strong>Velocidad</strong>: El contexto de build es más pequeño, se transfiere más rápido.
+- <strong>Seguridad</strong>: No se envían secretos (<code>.env</code>) ni archivos sensibles al daemon.
+- <strong>Caché</strong>: Menos cambios en el contexto = más capas cacheadas.
+- <strong>Tamaño</strong>: La imagen final no contiene archivos innecesarios (como <code>node_modules</code> que se regenera).</p>
+<h4 id="build-con-secrets-seguridad">Build con secrets (seguridad)</h4>
+<pre><code class="language-dockerfile"># Dockerfile
+# Usar --secret para pasar tokens sin que queden en la imagen
+RUN --mount=type=secret,id=npm_token \
+    NPM_TOKEN=$(cat /run/secrets/npm_token) \
+    npm install --registry=https://private-registry.com
+</code></pre>
+<pre><code class="language-bash"># Build
+docker build --secret id=npm_token,src=./npm_token.txt -t app:latest .
+</code></pre>
+<p><strong>Explicación</strong>: El flag <code>--secret</code> permite pasar información sensible (tokens, claves API) durante el build sin que queden almacenadas en las capas de la imagen. El secreto está disponible en <code>/run/secrets/&lt;id&gt;</code> solo durante la ejecución de la instrucción <code>RUN</code> con <code>--mount=type=secret</code>. Tras completarse, el secreto no persiste en la imagen final. Esto es <strong>fundamental para seguridad</strong>: sin <code>--secret</code>, un token usado en <code>RUN</code> quedaría visible en el historial de capas de la imagen.</p>
+<h3 id="8104-publicacion-de-imagenes-en-docker-hub">8.10.4. Publicación de imágenes en Docker Hub</h3>
+<pre><code class="language-bash"># 1. Iniciar sesión en Docker Hub
+docker login -u ricitosdeoro2001
+
+# 2. Construir la imagen
+docker build -t ricitosdeoro2001/frontend-crcoach:latest .
+
+# 3. Publicar la imagen
+docker push ricitosdeoro2001/frontend-crcoach:latest
+
+# 4. Publicar con múltiples tags
+docker tag ricitosdeoro2001/frontend-crcoach:latest ricitosdeoro2001/frontend-crcoach:1.0.0
+docker push ricitosdeoro2001/frontend-crcoach:1.0.0
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Comando</th>
+<th style="text-align: left;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>docker login</code></td>
+<td style="text-align: left;">Autentica el cliente Docker con Docker Hub</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>docker push</code></td>
+<td style="text-align: left;">Sube la imagen local al registry remoto (Docker Hub)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>docker tag</code></td>
+<td style="text-align: left;">Crea un alias (tag) adicional para la misma imagen</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explicación</strong>: Publicar imágenes en Docker Hub permite:
+- <strong>Compartir</strong>: Otros desarrolladores pueden descargar la imagen con <code>docker pull</code>.
+- <strong>Despliegue</strong>: Servicios como Render pueden descargar la imagen automáticamente.
+- <strong>Versionado</strong>: Usar tags como <code>latest</code>, <code>1.0.0</code>, <code>v2.1.0</code> para identificar versiones.
+- <strong>CI/CD</strong>: GitHub Actions puede construir y publicar imágenes automáticamente.</p>
+<h2 id="811-mantenimiento-y-monitoreo">8.11. Mantenimiento y monitoreo</h2>
+<h3 id="tareas-periodicas">Tareas periódicas</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Frecuencia</th>
+<th style="text-align: left;">Tarea</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Diaria</td>
+<td style="text-align: left;">Revisar logs</td>
+<td style="text-align: left;">Verificar que el polling funciona correctamente</td>
+</tr>
+<tr>
+<td style="text-align: left;">Semanal</td>
+<td style="text-align: left;">Verificar uso de BD</td>
+<td style="text-align: left;">Comprobar que no se supera el límite de Neon (512MB)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Semanal</td>
+<td style="text-align: left;">Dependabot</td>
+<td style="text-align: left;">Revisar y aplicar PRs de actualización de dependencias</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mensual</td>
+<td style="text-align: left;">Renovar API keys</td>
+<td style="text-align: left;">Verificar que las claves de Supercell y Brevo siguen activas</td>
+</tr>
+<tr>
+<td style="text-align: left;">Trimestral</td>
+<td style="text-align: left;">Revisar costes</td>
+<td style="text-align: left;">Verificar que no se han generado costes inesperados</td>
+</tr>
+</tbody>
+</table>
+<h3 id="alertas">Alertas</h3>
+<ul>
+<li>Render envía notificaciones por email si el servicio se cae.</li>
+<li>GitHub Actions notifica si un workflow falla.</li>
+<li>Dependabot crea PRs automáticos para vulnerabilidades de seguridad.</li>
+</ul>
 
 
 
