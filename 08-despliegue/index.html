@@ -4193,8 +4193,6 @@ services:
     ports:
       - &quot;80:80&quot;
     restart: unless-stopped
-    env_file:
-      - .env
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     healthcheck:
