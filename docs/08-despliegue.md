@@ -123,7 +123,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-
+docs: Remove duplicate section header in README
       - name: Run tests
         run: mvn -B verify
 
@@ -160,7 +160,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_IMAGE }}
+          images: ${{ env.DOCKER_IMAGE_BACKEND }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix={{branch}}-,format=short
@@ -255,7 +255,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_IMAGE }}
+          images: ${{ env.DOCKER_IMAGE_FRONTEND }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix={{branch}}-,format=short
