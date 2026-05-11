@@ -1,7 +1,8 @@
-<label for="lang-select" class="language-selector__languages" [attr.aria-label]="'COMPONENTS.SHARED.LANGUAGE' | translate">
-  <img [src]="getFlagPath(currentLang)" [alt]="'COMPONENTS.SHARED.LANGUAGE' | translate" class="language-selector__flag" srcset="{{getFlagPath(currentLang)}} 16w, {{getFlagPath(currentLang)}} 32w"/>
+<!--label for="lang-select" class="language-selector__languages">{{languageLabel | translate}}</label-->
+<label for="lang-select" class="language-selector__languages">
+  <img [src]="getFlagPath(currentLang)" [alt]="languageLabel | translate" class="language-selector__flag" srcset="{{getFlagPath(currentLang)}} 16w, {{getFlagPath(currentLang)}} 32w"/>
 </label>
-<select id="lang-select" (change)="setLanguage($any($event.target).value)" class="language-selector" [attr.aria-label]="'COMPONENTS.SHARED.LANGUAGE' | translate" [attr.tabindex]="tabindex">
+<select id="lang-select" (change)="setLanguage($any($event.target).value)" class="language-selector" [attr.tabindex]="tabindex">
   @for (l of languages; track l.code) {
     <option [value]="l.code" [selected]="l.code === currentLang" class="language-selector__languages">{{l.label}}</option>
   }

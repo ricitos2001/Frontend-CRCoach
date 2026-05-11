@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { ThemeService } from '../../../services/theme/theme.service';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dark-mode-button',
-  imports: [TranslateModule],
+  imports: [],
   templateUrl: './dark-mode-button.component.html',
   styleUrl: '../../../../styles/styles.css',
 })
