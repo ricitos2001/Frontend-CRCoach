@@ -10,13 +10,14 @@
         "PROGRESS": "Progreso del jugador",
         "PROFILE": "Perfil de usuario"
       },
-      "HEADER": {
-        "START": "Inicio",
-        "WHAT_OFFERS": "Que ofrecemos",
-        "CONTACT": "Contacto",
-        "GET_STARTED": "Empecemos",
-        "GO_HOME": "Volver al inicio"
-      },
+       "HEADER": {
+         "TITLE": "Encabezado de navegación",
+         "START": "Inicio",
+         "WHAT_OFFERS": "Que ofrecemos",
+         "CONTACT": "Contacto",
+         "GET_STARTED": "Empecemos",
+         "GO_HOME": "Volver al inicio"
+       },
       "FOOTER": {
         "TITLE1": "Información legal",
         "TITLE2": "Ayuda",
@@ -36,6 +37,7 @@
     },
     "SHARED": {
       "LANGUAGE": "Idioma",
+      "THEME": "Cambiar tema",
       "GET_STARTED": "Empecemos",
       "LOGOUT": "Cerrar sesión"
     }

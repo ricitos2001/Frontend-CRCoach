@@ -6,6 +6,14 @@ header svg {
   margin: 0 1rem;
 }
 
+/* Logo link styles */
+header .logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* Tamaño específico para el logo (la corona) en el header */
 header .logo {
   width: 4rem;

@@ -10,13 +10,14 @@
         "PROGRESS": "Player progress",
         "PROFILE": "User profile"
       },
-      "HEADER": {
-        "START": "Home",
-        "WHAT_OFFERS": "What we offer",
-        "CONTACT": "Contact",
-        "GET_STARTED": "Get started",
-        "GO_HOME": "Go home"
-      },
+       "HEADER": {
+         "TITLE": "Navigation header",
+         "START": "Home",
+         "WHAT_OFFERS": "What we offer",
+         "CONTACT": "Contact",
+         "GET_STARTED": "Get started",
+         "GO_HOME": "Go home"
+       },
       "FOOTER": {
         "TITLE1": "Legal information",
         "TITLE2": "Help",
@@ -36,6 +37,7 @@
     },
     "SHARED": {
       "LANGUAGE": "Language",
+      "THEME": "Change theme",
       "GET_STARTED": "Get Started",
       "LOGOUT": "Log out"
     }
