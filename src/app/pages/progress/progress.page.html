@@ -7,12 +7,14 @@
     <section class="progress__graphs">
       <section class="chart-wrapper">
         <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
+        <p class="chart-desc">Your trophy progression over time.</p>
         <article class="chart-body trophies-card">
           <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
         </article>
       </section>
       <section class="chart-wrapper small">
         <h2>{{ 'PAGES.DASHBOARD.WINRATE_TITLE' | translate }}</h2>
+        <p class="chart-desc">Your win and loss rates.</p>
         @if (metricsStore.loading() && !metricsStore.metric()) {
           <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
         }
@@ -31,6 +33,7 @@
       </section>
       <section class="chart-wrapper small">
         <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
+        <p class="chart-desc">Your current win streak.</p>
         @if (metricsStore.metric(); as metric) {
           <section class="chart-body streak-card">
             <section class="streak-top">
@@ -52,12 +55,14 @@
       </section>
       <section class="chart-wrapper">
         <h2>{{'PAGES.PROGRESS.DONATIONS' | translate }}</h2>
+        <p class="chart-desc">Your donations over time.</p>
         <article class="chart-body">
           <app-graph [type]="'bar'" [labels]="donationsLabels" [datasets]="donationsDatasets" [options]="donationsOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
         </article>
       </section>
       <section class="chart-wrapper">
         <h2>{{ 'PAGES.PROGRESS.BATTLES_COMPARISON' | translate }}</h2>
+        <p class="chart-desc">Comparison of your battles performance.</p>
         <article class="chart-body">
           <app-graph [type]="'bar'" [labels]="battlesCompLabels" [datasets]="battlesCompDatasets" [options]="battlesCompOptions" [width]="600" [height]="300" [noDataMessage]="'No hay datos'"></app-graph>
         </article>
