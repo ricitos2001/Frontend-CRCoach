@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GoalFormComponent } from './goal-form.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('GoalFormComponent', () => {
   let component: GoalFormComponent;
@@ -8,7 +10,8 @@ describe('GoalFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GoalFormComponent],
+      imports: [GoalFormComponent, TranslateModule.forRoot(), HttpClientTestingModule],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GoalFormComponent);

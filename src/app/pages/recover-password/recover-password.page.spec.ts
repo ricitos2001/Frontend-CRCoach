@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RecoverPasswordPage } from './recover-password.page';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RecoverPasswordPage', () => {
   let component: RecoverPasswordPage;
@@ -8,7 +10,8 @@ describe('RecoverPasswordPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RecoverPasswordPage],
+      imports: [RecoverPasswordPage, TranslateModule.forRoot(), HttpClientTestingModule],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RecoverPasswordPage);
