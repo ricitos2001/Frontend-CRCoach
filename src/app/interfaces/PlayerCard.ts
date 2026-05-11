@@ -7,6 +7,7 @@ export interface PlayerCard {
   name: string;
   level: number;
   maxLevel: number;
+  evolutionLevel: number;
   maxEvolutionLevel: number;
   rarity: string;
   count: string;

@@ -90,7 +90,17 @@
               <p class="archetype">{{battle.team.playerDeck.archetype}}</p>
               <article class="cards">
                 @for (card of battle.team.playerDeck.playerCards; track card.id) {
-                  <img src="{{card.iconUrl.medium}}" alt="{{card.name}}"/>
+                  @switch (card.evolutionLevel) {
+                    @case (null) {
+                      <img src="{{card.iconUrl.medium}}" alt="{{card.name}}"/>
+                    }
+                    @case (1) {
+                      <img src="{{card.iconUrl.evolutionMedium}}" alt="{{card.name}}"/>
+                    }
+                    @case (2) {
+                      <img src="{{card.iconUrl.heroMedium}}" alt="{{card.name}}"/>
+                    }
+                  }
                 }
               </article>
             </section>
@@ -151,7 +161,17 @@
               <p class="archetype">{{battle.opponent.playerDeck.archetype}}</p>
               <article class="cards">
                 @for (card of battle.opponent.playerDeck.playerCards; track card.id) {
-                  <img src="{{card.iconUrl.medium}}" alt="{{card.name}}"/>
+                  @switch (card.evolutionLevel) {
+                    @case (null) {
+                      <img src="{{card.iconUrl.medium}}" alt="{{card.name}}"/>
+                    }
+                    @case (1) {
+                      <img src="{{card.iconUrl.evolutionMedium}}" alt="{{card.name}}"/>
+                    }
+                    @case (2) {
+                      <img src="{{card.iconUrl.heroMedium}}" alt="{{card.name}}"/>
+                    }
+                  }
                 }
               </article>
             </section>
