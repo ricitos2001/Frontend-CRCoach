@@ -1677,8 +1677,14 @@ app-form-input .error[title] {
 
 .landing__grid-container-x2 section article {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
+}
+
+.landing__grid-container-x2 section article p {
+  flex: 1 1 100%;
+  margin-top: 0;
 }
 
 .landing__grid-container-x2 img {
