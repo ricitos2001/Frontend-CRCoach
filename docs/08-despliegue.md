@@ -58,10 +58,11 @@
 │       (Recuperación de contraseña, notificaciones)                      │
 │                                                                         │
 │   📦 CI/CD (GitHub Actions)                                            │
-│       ├─ CI Pipeline: build + test en push a master                    │
-│       ├─ CodeQL: análisis de seguridad                                 │
+│       ├─ CI Pipeline: test + build en push/PR a master                │
+│       ├─ CD Pipeline: build y push Docker image a Docker Hub          │
+│       ├─ CodeQL: análisis de seguridad                                │
 │       ├─ Qodana: calidad de código                                    │
-│       └─ Deploy Docs: publica documentación en GitHub Pages            │
+│       └─ Deploy Docs: publica documentación en GitHub Pages           │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -98,33 +99,88 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
   contents: write
 
+env:
+  DOCKER_IMAGE: ricitosdeoro2001/backend-crcoach
+
 jobs:
   test:
+    name: CI - Test & Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup JDK
+      - name: Setup JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
 
-      - name: Build with Maven (run tests)
+      - name: Run tests
         run: mvn -B verify
+
+      - name: Package JAR (skip tests)
+        run: mvn -B -DskipTests package
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-jar
+          path: target/Backend-CRCoach-*.jar
+          retention-days: 7
+
+  docker:
+    name: CD - Build & Push Docker Image
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker meta (tags & labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.DOCKER_IMAGE }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix={{branch}}-,format=short
+            type=ref,event=branch
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
 ```
 
 **¿Qué hace?**
-1. Se activa con cada push a la rama `master`.
-2. Configura Java 21 (Temurin).
-3. Ejecuta `mvn verify` que compila, ejecuta tests y verifica el proyecto.
+- **CI (Job `test`):** Se activa con cada push o PR a `master`. Compila, ejecuta tests con `mvn verify`, empaqueta el JAR y lo sube como artifact.
+- **CD (Job `docker`):** Solo en push a `master`, después de que los tests pasen. Construye y sube la imagen Docker a Docker Hub con tags `latest`, `master-<sha>`, etc. Si no hay secrets de Docker configurados, los pasos de login y push se saltan sin fallar.
 
 ### 8.2.2. Workflow de CI/CD (Frontend)
 
@@ -136,38 +192,89 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
   contents: write
 
+env:
+  DOCKER_IMAGE: ricitosdeoro2001/frontend-crcoach
+
 jobs:
   test:
+    name: CI - Test & Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '24.13.0'
+          node-version: '24'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Update dependencies
-        run: npm update
+      - name: Run tests
+        run: npx ng test --watch=false
 
-      - name: verify dependencies and vulnerabilities
-        run: npm audit
+      - name: Build Angular app
+        run: npx ng build --configuration production
 
-      - name: Fix vulnerabilities
-        run: npm audit fix
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
 
-      - name: run tests
-        run: npm test
+  docker:
+    name: CD - Build & Push Docker Image
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker meta (tags & labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.DOCKER_IMAGE }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix={{branch}}-,format=short
+            type=ref,event=branch
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 ```
+
+**¿Qué hace?**
+- **CI (Job `test`):** Se activa con cada push o PR a `master`. Instala dependencias con `npm ci`, ejecuta tests con Vitest (`ng test`), construye la app Angular en producción y sube el build como artifact.
+- **CD (Job `docker`):** Solo en push a `master`, después de que los tests pasen. Construye y sube la imagen Docker a Docker Hub. Si no hay secrets de Docker configurados, los pasos de login y push se saltan sin fallar.
 
 ### 8.2.3. Workflow de CodeQL (Backend y Frontend)
 
@@ -255,7 +362,40 @@ jobs:
           publish_dir: ./site
 ```
 
-## 8.3. Proceso de despliegue paso a paso
+### 8.2.6. Configuración de secrets y variables en GitHub
+
+Para que el CD funcione (build y push de imágenes Docker a Docker Hub), es necesario configurar los siguientes **secrets** en GitHub:
+
+| Secret | Descripción | Ejemplo |
+|:-------|:------------|:--------|
+| `DOCKER_USERNAME` | Nombre de usuario de Docker Hub | `ricitosdeoro2001` |
+| `DOCKER_PASSWORD` | Token de acceso de Docker Hub (no la contraseña) | `dckr_pat_abc123...` |
+
+**Pasos para configurarlos:**
+
+1. Ir a **Settings → Secrets and variables → Actions** en el repositorio de GitHub.
+2. En la pestaña **Secrets**, hacer clic en **"New repository secret"**.
+3. Añadir cada secret con su nombre exacto y valor correspondiente.
+
+**Para generar el token de Docker Hub:**
+
+1. Ir a [hub.docker.com/settings/security](https://hub.docker.com/settings/security).
+2. Hacer clic en **"New Access Token"**.
+3. Asignar un nombre (ej. `github-actions`) y seleccionar permisos **Read & Write**.
+4. Copiar el token generado (solo se muestra una vez) y usarlo como valor de `DOCKER_PASSWORD`.
+
+**Variables de GitHub (opcional):**
+
+Si se desea personalizar el nombre de la imagen Docker sin modificar el workflow, se pueden definir **Variables** (no secrets):
+
+| Variable | Descripción | Ejemplo |
+|:---------|:------------|:--------|
+| `DOCKER_IMAGE_BACKEND` | Nombre completo de la imagen del backend | `ricitosdeoro2001/backend-crcoach` |
+| `DOCKER_IMAGE_FRONTEND` | Nombre completo de la imagen del frontend | `ricitosdeoro2001/frontend-crcoach` |
+
+Se configuran en **Settings → Secrets and variables → Actions → Variables** (pestaña "Variables").
+
+> **Nota:** Si no se configuran los secrets de Docker, el pipeline de CI se ejecutará igualmente (tests + build). Solo los pasos de login y push a Docker Hub se omitirán automáticamente, sin causar error en el workflow.
 
 ### 8.3.1. Preparación de variables de entorno
 
