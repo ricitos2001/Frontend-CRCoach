@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'ClashRoyaleRegularFont';
-  src: url('/assets/fonts/Clash_Regular.woff2') format('woff2');
+  src:
+    url('/assets/fonts/Clash_Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -8,7 +9,8 @@
 
 @font-face {
   font-family: 'ClashRoyaleBoldFont';
-  src: url('/assets/fonts/Clash_Bold.woff2') format('woff2');
+  src:
+    url('/assets/fonts/Clash_Bold.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
