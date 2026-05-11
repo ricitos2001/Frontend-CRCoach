@@ -88,12 +88,12 @@
 
 ## 8.2. Configuración de CI/CD
 
-### 8.2.1. Workflow de CI (Backend)
+### 8.2.1. Workflow de CI/CD (Backend)
 
 **Archivo:** `Backend-CRCoach/.github/workflows/workflow.yml`
 
 ```yaml
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -126,12 +126,12 @@ jobs:
 2. Configura Java 21 (Temurin).
 3. Ejecuta `mvn verify` que compila, ejecuta tests y verifica el proyecto.
 
-### 8.2.2. Workflow de CI (Frontend)
+### 8.2.2. Workflow de CI/CD (Frontend)
 
 **Archivo:** `Frontend-CRCoach/.github/workflows/workflow.yml`
 
 ```yaml
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -159,8 +159,14 @@ jobs:
       - name: Update dependencies
         run: npm update
 
+      - name: verify dependencies and vulnerabilities
+        run: npm audit
+
       - name: Fix vulnerabilities
         run: npm audit fix
+
+      - name: run tests
+        run: npm test
 ```
 
 ### 8.2.3. Workflow de CodeQL (Backend y Frontend)
