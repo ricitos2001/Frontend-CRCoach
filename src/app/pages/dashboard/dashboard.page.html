@@ -38,14 +38,12 @@
   <section class="dashboard__graphs">
     <section class="chart-wrapper">
       <h2>{{ 'PAGES.DASHBOARD.TROPHIES_TITLE' | translate }}</h2>
-      <p class="chart-desc">Your trophy progression over time.</p>
       <article class="chart-body trophy-card">
         <app-graph [type]="'line'" [labels]="trophiesLabels" [datasets]="trophiesDatasets" [options]="trophiesOptions" [width]="400" [height]="200" [noDataMessage]="trophiesNoDataMessage"></app-graph>
       </article>
     </section>
     <section class="chart-wrapper small">
       <h2>{{ 'PAGES.DASHBOARD.WINRATE_TITLE' | translate }}</h2>
-      <p class="chart-desc">Your win and loss rates.</p>
       @if (metricsStore.loading() && !metricsStore.metric()) {
         <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
       }
@@ -64,7 +62,6 @@
     </section>
     <section class="chart-wrapper small">
       <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
-      <p class="chart-desc">Your current win streak.</p>
       @if (metricsStore.metric(); as metric) {
         <section class="chart-body streak-card">
           <section class="streak-top">

@@ -56,7 +56,7 @@
       <h2>{{ 'PAGES.PROFILE.PLAYER_DATA' | translate }}</h2>
       <section class="player-profile__card-inner">
           <section class="deck">
-          <h3>{{ 'PAGES.PROFILE.DECK_OF' | translate:{ name: profile.name } }}</h3>
+          <h2>{{ 'PAGES.PROFILE.DECK_OF' | translate:{ name: profile.name } }}</h2>
           <article class="deck__images">
               @for (playerCard of profile.currentDeck.playerCards; track playerCard.id) {
                   @switch (playerCard.evolutionLevel) {
