@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -26,5 +26,11 @@ jobs:
       - name: Update dependencies
         run: npm update
 
+      - name: verify dependencies and vulnerabilities
+        run: npm audit
+
       - name: Fix vulnerabilities
         run: npm audit fix
+
+      - name: run tests
+        run: npm test
