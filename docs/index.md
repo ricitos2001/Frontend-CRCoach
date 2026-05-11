@@ -14,5 +14,3 @@ Por favor haz clic en cualquiera de las entradas para abrir esa página.
 - [08 - Despliegue](08-despliegue.md)
 - [09 - Manual de usuario](09-manual-usuario.md)
 - [10 - Conclusiones](10-conclusiones.md)
-
-## Enlaces
