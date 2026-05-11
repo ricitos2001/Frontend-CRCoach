@@ -59,7 +59,17 @@
           <h2>{{ 'PAGES.PROFILE.DECK_OF' | translate:{ name: profile.name } }}</h2>
           <article class="deck__images">
               @for (playerCard of profile.currentDeck.playerCards; track playerCard.id) {
-                  <img [src]="resolveUrl(playerCard.iconUrl.medium)" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
+                  @switch (playerCard.evolutionLevel) {
+                    @case (null) {
+                      <img [src]="playerCard.iconUrl.medium" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
+                    }
+                    @case (1) {
+                      <img [src]="playerCard.iconUrl.evolutionMedium" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
+                    }
+                    @case (2) {
+                      <img [src]="playerCard.iconUrl.heroMedium" alt="{{ 'PAGES.PROFILE.CARD_IN_DECK' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
+                    }
+                  }
                 }
           </article>
         </section>
@@ -102,11 +112,10 @@
       <article class="player-profile__cards-grid">
         @for (playerCard of profile.playerCards; track playerCard.id) {
           <!-- Al hacer click en la carta mostramos/ocultamos la caja de detalles -->
-          <img [src]="resolveUrl(playerCard.iconUrl.medium)" alt="{{ 'PAGES.PROFILE.PLAYER_CARD' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
+          <img [src]="playerCard.iconUrl.medium" alt="{{ 'PAGES.PROFILE.PLAYER_CARD' | translate }}" (click)="toggleCardDetails(playerCard, $event)">
         }
       </article>
     </section>
-    <!-- Caja con los detalles de la carta seleccionada. Se muestra solo si hay selectedCard -->
     @if (selectedCard) {
       <section #cardDetail class="card-detail" [ngStyle]="cardDetailStyle" (click)="$event.stopPropagation()">
         <img [src]="resolveUrl(selectedCard.iconUrl.medium)" alt="{{selectedCard.name}}">
