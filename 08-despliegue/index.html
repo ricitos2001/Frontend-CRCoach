@@ -536,10 +536,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#821-workflow-de-ci-backend" class="md-nav__link">
+  <a href="#821-workflow-de-cicd-backend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.2.1. Workflow de CI (Backend)
+        8.2.1. Workflow de CI/CD (Backend)
       
     </span>
   </a>
@@ -547,10 +547,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#822-workflow-de-ci-frontend" class="md-nav__link">
+  <a href="#822-workflow-de-cicd-frontend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.2.2. Workflow de CI (Frontend)
+        8.2.2. Workflow de CI/CD (Frontend)
       
     </span>
   </a>
@@ -1856,10 +1856,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#821-workflow-de-ci-backend" class="md-nav__link">
+  <a href="#821-workflow-de-cicd-backend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.2.1. Workflow de CI (Backend)
+        8.2.1. Workflow de CI/CD (Backend)
       
     </span>
   </a>
@@ -1867,10 +1867,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#822-workflow-de-ci-frontend" class="md-nav__link">
+  <a href="#822-workflow-de-cicd-frontend" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.2.2. Workflow de CI (Frontend)
+        8.2.2. Workflow de CI/CD (Frontend)
       
     </span>
   </a>
@@ -3174,9 +3174,9 @@
 <li><strong>Docker Hub</strong>: Registro público de imágenes Docker para compartir y desplegar contenedores.</li>
 </ul>
 <h2 id="82-configuracion-de-cicd">8.2. Configuración de CI/CD</h2>
-<h3 id="821-workflow-de-ci-backend">8.2.1. Workflow de CI (Backend)</h3>
+<h3 id="821-workflow-de-cicd-backend">8.2.1. Workflow de CI/CD (Backend)</h3>
 <p><strong>Archivo:</strong> <code>Backend-CRCoach/.github/workflows/workflow.yml</code></p>
-<pre><code class="language-yaml">name: CI Pipeline
+<pre><code class="language-yaml">name: CI/CD Pipeline
 
 on:
   push:
@@ -3207,9 +3207,9 @@ jobs:
 1. Se activa con cada push a la rama <code>master</code>.
 2. Configura Java 21 (Temurin).
 3. Ejecuta <code>mvn verify</code> que compila, ejecuta tests y verifica el proyecto.</p>
-<h3 id="822-workflow-de-ci-frontend">8.2.2. Workflow de CI (Frontend)</h3>
+<h3 id="822-workflow-de-cicd-frontend">8.2.2. Workflow de CI/CD (Frontend)</h3>
 <p><strong>Archivo:</strong> <code>Frontend-CRCoach/.github/workflows/workflow.yml</code></p>
-<pre><code class="language-yaml">name: CI Pipeline
+<pre><code class="language-yaml">name: CI/CD Pipeline
 
 on:
   push:
@@ -3237,8 +3237,14 @@ jobs:
       - name: Update dependencies
         run: npm update
 
+      - name: verify dependencies and vulnerabilities
+        run: npm audit
+
       - name: Fix vulnerabilities
         run: npm audit fix
+
+      - name: run tests
+        run: npm test
 </code></pre>
 <h3 id="823-workflow-de-codeql-backend-y-frontend">8.2.3. Workflow de CodeQL (Backend y Frontend)</h3>
 <p>Análisis de seguridad automático:</p>
