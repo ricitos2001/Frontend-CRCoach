@@ -118,8 +118,16 @@
     </section>
     @if (selectedCard) {
       <section #cardDetail class="card-detail" [ngStyle]="cardDetailStyle" (click)="$event.stopPropagation()">
-        <img [src]="resolveUrl(selectedCard.iconUrl.medium)" alt="{{selectedCard.name}}">
-          <article class="card-detail__info">
+        @if (selectedCard.maxEvolutionLevel === 0 || selectedCard.maxEvolutionLevel === 1 || selectedCard.maxEvolutionLevel === 2 || selectedCard.maxEvolutionLevel === 3) {
+          <img [src]="selectedCard.iconUrl.medium" alt="{{selectedCard.name}}">
+        }
+        @if (selectedCard.maxEvolutionLevel === 1 || selectedCard.maxEvolutionLevel === 3) {
+          <img [src]="selectedCard.iconUrl.evolutionMedium" alt="{{selectedCard.name}} evo">
+        }
+        @if (selectedCard.maxEvolutionLevel === 2 || selectedCard.maxEvolutionLevel === 3) {
+          <img [src]="selectedCard.iconUrl.heroMedium" alt="{{selectedCard.name}} hero">
+        }
+        <article class="card-detail__info">
            <h4>{{selectedCard.name}}</h4>
            <p>{{ 'PAGES.PROFILE.CARD_RARITY' | translate }}: {{selectedCard.rarity}}</p>
            <p>{{ 'PAGES.PROFILE.CARD_LEVEL' | translate }}: {{selectedCard.level}} / {{selectedCard.maxLevel}}</p>

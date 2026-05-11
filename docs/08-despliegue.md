@@ -1063,8 +1063,6 @@ services:
     ports:
       - "80:80"
     restart: unless-stopped
-    env_file:
-      - .env
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     healthcheck:
