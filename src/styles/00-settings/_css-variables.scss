@@ -143,9 +143,9 @@
   --tray-gap: #{$tray-gap};
 
   /* Sidebar layout variables (usadas por main y sidebar) */
-  --sidebar-closed-width: 88px;
-  --sidebar-open-width: 320px;
-  --sidebar-toggle-width: 44px;
+  --sidebar-closed-width: 5.5rem;
+  --sidebar-open-width: 20rem;
+  --sidebar-toggle-width: 2.75rem;
 
   --first-background-color: var(--color-primary-5);
   --second-background-color: var(--color-primary-4);

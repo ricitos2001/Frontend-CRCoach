@@ -1,18 +1,18 @@
 .profile-header{
   /* Header principal: fondo destacado, título grande y acciones a la derecha
      Ajustes de anchura: usar el mismo padding horizontal que el header global
-     para que la anchura visual coincida (padding: 36px 56px en el header). */
-  padding: 36px 56px; /* igual que header (36px arriba/abajo, 56px izquierda/derecha) */
+     para que la anchura visual coincida (padding: 2.25rem 3.5rem en el header). */
+  padding: 2.25rem 3.5rem; /* igual que header (2.25rem arriba/abajo, 3.5rem izquierda/derecha) */
   background: var(--components-color);
   color: var(--elements-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 1.25rem;
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 0 0 8px 8px; /* ajustar radio para asemejarse al header global */
+  border-radius: 0 0 0.5rem 0.5rem; /* ajustar radio para asemejarse al header global */
 }
 
 .profile-header__user-data {
@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 0.75rem;
   width: 100%;
 }
 
@@ -32,29 +32,29 @@
 }
 
 .profile-header__user-data h1 {
-  margin: 0 0 12px 0;
-  font-size: 56px;
+  margin: 0 0 0.75rem 0;
+  font-size: 3.5rem;
   line-height: 1;
   font-family: var(--font-secondary), sans-serif;
   font-weight: 700;
   color: var(--elements-color);
-  text-shadow: 0 2px 0 rgba(0,0,0,0.25);
+  text-shadow: 0 0.125rem 0 rgba(0,0,0,0.25);
 }
 
 .profile-header__info {
   display: flex;
-  gap: 18px;
+  gap: 1.125rem;
   align-items: center;
 }
 
 .profile-header__info img {
-  width: 120px;
-  height: 120px;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 50%;
   object-fit: cover;
   background: rgba(255,255,255,0.04);
-  border: 8px solid rgba(255,255,255,0.06);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  border: 0.5rem solid rgba(255,255,255,0.06);
+  box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.45);
 }
 
 /* Avatar wrapper: muestra un botón al hacer hover para cambiar la imagen */
@@ -71,8 +71,8 @@
   background: rgba(0,0,0,0.6);
   color: var(--elements-color);
   border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.375rem;
   font-weight: 700;
 }
 .avatar-wrapper:hover .avatar-change {
@@ -82,7 +82,7 @@
 }
 
 .profile-header__details p {
-  margin: 6px 0;
+  margin: 0.375rem 0;
   opacity: 0.95;
   font-size: 1.05rem;
 }
@@ -94,7 +94,7 @@
 .profile-header__actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: flex-end;
   justify-content: center;
 }
@@ -104,10 +104,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 180px; /* aumentar anchura para destacar */
-  height: 52px; /* mayor altura como en la imagen */
-  padding: 0 20px;
-  border-radius: 10px;
+  min-width: 11.25rem; /* aumentar anchura para destacar */
+  height: 3.25rem; /* mayor altura como en la imagen */
+  padding: 0 1.25rem;
+  border-radius: 0.625rem;
   border: none;
   box-sizing: border-box;
   font-weight: 700;
@@ -117,15 +117,15 @@
 .profile-header__actions app-common-button:first-child button {
   background: var(--color-warning-1);
   color: var(--components-color);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 0.375rem 0.875rem rgba(0,0,0,0.25);
+  border: 0.0625rem solid rgba(0,0,0,0.06);
 }
 
 .profile-header__actions app-common-button:last-child button {
   background: var(--color-error-1);
   color: var(--components-color);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 0.375rem 0.875rem rgba(0,0,0,0.25);
+  border: 0.0625rem solid rgba(0,0,0,0.06);
 }
 
 .profile-tag {
@@ -135,35 +135,35 @@
   transform: translate(0, -12%);
   background: var(--elements-color);
   color: var(--components-color);
-  padding: 10px 20px;
-  border-radius: 4px 0 0 4px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.25rem 0 0 0.25rem;
   font-weight: 700;
   font-size: 1rem;
   border: none;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  box-shadow: 0 0.375rem 1.125rem rgba(0,0,0,0.18);
 }
 
 .player-profile {
-  padding: 28px 36px 80px;
+  padding: 1.75rem 2.25rem 5rem;
   background-color: transparent;
 }
 
 .player-profile > h1 {
   color: var(--elements-color);
-  margin: 18px 0 14px;
-  font-size: 28px;
+  margin: 1.125rem 0 0.875rem;
+  font-size: 1.75rem;
 }
 
 .player-profile__card,
 .player-profile__cards {
   /* Frosted glass cards */
   background: rgba(255,255,255,0.04);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 10px;
-  box-shadow: 0 12px 20px rgba(4,26,34,0.25);
-  margin-bottom: 26px;
+  -webkit-backdrop-filter: blur(0.375rem);
+  backdrop-filter: blur(0.375rem);
+  border: 0.0625rem solid rgba(255,255,255,0.08);
+  border-radius: 0.625rem;
+  box-shadow: 0 0.75rem 1.25rem rgba(4,26,34,0.25);
+  margin-bottom: 1.625rem;
 }
 
 .player-profile__card h2,
@@ -171,18 +171,18 @@
   display: block;
   box-sizing: border-box;
   width: 100%;
-  margin: 0 0 12px 0;
+  margin: 0 0 0.75rem 0;
   background: var(--components-color);
   color: var(--elements-color);
-  padding: 10px 18px;
-  border-radius: 8px 8px 0 0;
+  padding: 0.625rem 1.125rem;
+  border-radius: 0.5rem 0.5rem 0 0;
   font-weight: 700;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+  box-shadow: 0 0.5rem 1.125rem rgba(0,0,0,0.45);
 }
 
 .player-profile__card-inner {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
   padding: 2rem;
   align-items: center;
   justify-content: space-between;
@@ -190,10 +190,10 @@
 
 .deck {
   background: var(--elements-color);
-  padding: 14px;
-  border-radius: 8px;
-  min-width: 320px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  padding: 0.875rem;
+  border-radius: 0.5rem;
+  min-width: 20rem;
+  box-shadow: 0 0.375rem 0.875rem rgba(0,0,0,0.15);
   margin-top: 0.8rem;
   text-align: center;
 }
@@ -202,19 +202,19 @@
   background: none;
   box-shadow: none;
   color: var(--components-color);
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .deck__images {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .deck__images img {
-  width: 128px;
-  height: 128px;
+  width: 8rem;
+  height: 8rem;
   object-fit: contain;
 }
 
@@ -230,8 +230,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  min-width: 160px;
+  gap: 0.375rem;
+  min-width: 10rem;
 }
 
 .player-stats svg path{
@@ -239,12 +239,12 @@
 }
 
 .player-stats svg { background: transparent; }
-.player-stats p { font-size: 28px; margin: 0; font-weight: 700; }
+.player-stats p { font-size: 1.75rem; margin: 0; font-weight: 700; }
 
 .player-profile__extras {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 1.125rem;
   align-items: flex-end; /* alinear a la derecha para que quede junto al contenido principal */
   justify-content: flex-start;
 }
@@ -252,14 +252,14 @@
 /* Hacer que trophies y favorite-card tengan la misma anchura */
 .player-profile__extras .trophies,
 .player-profile__extras .favorite-card {
-  width: 140px;
+  width: 8.75rem;
   box-sizing: border-box;
 }
 
 .trophies {
   background: var(--elements-color);
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
   color: var(--components-color);
   font-weight: 700;
   display: flex;
@@ -270,8 +270,8 @@
 .favorite-card {
   background: var(--elements-color);
   color: var(--components-color);
-  padding: 12px;
-  border-radius: 8px;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -280,23 +280,23 @@
 }
 
 .favorite-card img {
-  width: 96px;
+  width: 6rem;
   height: auto;
   object-fit: contain;
   display: block;
-  margin: 6px auto 0; /* centrar la imagen dentro del contenedor */
+  margin: 0.375rem auto 0; /* centrar la imagen dentro del contenedor */
 }
 
 .player-profile__cards-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 18px;
-  padding: 18px 8px;
+  gap: 1.125rem;
+  padding: 1.125rem 0.5rem;
 }
 
 .player-profile__cards-grid img {
-  width: 128px;
-  height: 128px;
+  width: 8rem;
+  height: 8rem;
   object-fit: contain;
   display: block;
   margin: 0 auto;
@@ -307,38 +307,38 @@
   position: fixed; /* top/left dinámicos desde cardDetailStyle */
   background: var(--components-color);
   color: var(--elements-color);
-  border-radius: 10px;
-  padding: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  border-radius: 0.625rem;
+  padding: 0.75rem;
+  box-shadow: 0 0.75rem 1.875rem rgba(0,0,0,0.45);
   z-index: 1200;
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: center;
-  min-width: 220px;
+  min-width: 13.75rem;
 }
 
-.card-detail img { width: 84px; height: 84px; object-fit: contain; display:block }
-.card-detail__info h4 { margin: 0 0 6px 0; font-size: 1rem; }
-.card-detail__info p { margin: 2px 0; font-size: 0.9rem; }
+.card-detail img { width: 5.25rem; height: 5.25rem; object-fit: contain; display:block }
+.card-detail__info h4 { margin: 0 0 0.375rem 0; font-size: 1rem; }
+.card-detail__info p { margin: 0.125rem 0; font-size: 0.9rem; }
 
 /* Pequeñas adaptaciones responsivas */
-@media (max-width: 900px) {
+@media (max-width: 56.25rem) {
   /* En pantallas intermedias apilamos el contenido de la card y lo centramos */
   .player-profile__card-inner { flex-direction: column; align-items: center; justify-content: center; }
   .deck { min-width: 100%; }
   .player-profile__cards-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-@media (max-width: 768px) {
-  .player-profile__cards-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .profile-header__actions { flex-direction: column; width: 100%; align-items: center; gap: 10px; }
+@media (max-width: 48rem) {
+  .player-profile__cards-grid { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .profile-header__actions { flex-direction: column; width: 100%; align-items: center; gap: 0.625rem; }
   .profile-header {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 22px 18px;
-    gap: 12px;
+    padding: 1.375rem 1.125rem;
+    gap: 0.75rem;
   }
   /* Asegurar orden lógico: user-data primero, luego el tag, luego las acciones */
   .profile-header__user-data { order: 1; }
@@ -349,10 +349,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
   }
   .profile-header__user-data h1 {
-    font-size: 44px;
+    font-size: 2.75rem;
     line-height: 1.02;
     margin: 0;
     text-align: center;
@@ -361,32 +361,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
     width: 100%;
   }
   .profile-header__info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
     align-items: center;
   }
   .profile-header__info img {
-    width: 110px;
-    height: 110px;
+    width: 6.875rem;
+    height: 6.875rem;
     border-radius: 50%;
-    border-width: 6px;
+    border-width: 0.375rem;
   }
   .avatar-wrapper { display: block; }
-  .avatar-change { font-size: 0.85rem; padding: 8px 12px; }
-  .profile-header__details p { margin: 4px 0; }
+  .avatar-change { font-size: 0.85rem; padding: 0.5rem 0.75rem; }
+  .profile-header__details p { margin: 0.25rem 0; }
   /* Botones del header a ancho completo (o casi) en móvil */
   .profile-header__actions app-common-button button {
     min-width: 100%;
-    max-width: 420px;
-    width: calc(100% - 24px);
+    max-width: 26.25rem;
+    width: calc(100% - 1.5rem);
     box-sizing: border-box;
   }
-  .profile-tag { display: inline-block; margin-top: 8px; align-self: center; }
+  .profile-tag { display: inline-block; margin-top: 0.5rem; align-self: center; }
 
   /* En móvil el tag debe entrar en el flujo entre datos y acciones.
      Quitamos el posicionamiento absoluto y usamos order para colocarlo. */
@@ -397,10 +397,10 @@
     top: auto;
     order: 2;
     display: block;
-    margin: 8px 0;
+    margin: 0.5rem 0;
     align-self: center;
     z-index: auto;
-    border-radius: 4px;
+    border-radius: 0.25rem;
   }
 
   .profile-header__actions { order: 3; width: 100%; }
@@ -409,7 +409,7 @@
      columna ocupe toda la anchura y se centre su contenido */
   .player-profile__card-inner > * {
     width: 100%;
-    max-width: 520px;
+    max-width: 32.5rem;
     box-sizing: border-box;
   }
 

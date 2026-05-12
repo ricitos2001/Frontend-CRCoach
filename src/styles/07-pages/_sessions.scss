@@ -8,14 +8,14 @@
   position: relative;
   /* tarjeta tipo glass parecida a la maqueta */
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  -webkit-backdrop-filter: blur(6px) saturate(110%);
-  backdrop-filter: blur(6px) saturate(110%);
-  border-radius: 12px;
-  padding: 14px 18px;
+  -webkit-backdrop-filter: blur(0.375rem) saturate(110%);
+  backdrop-filter: blur(0.375rem) saturate(110%);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.125rem;
   color: var(--elements-color);
   overflow: visible;
-  box-shadow: 0 16px 36px rgba(3,39,58,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 1rem 2.25rem rgba(3,39,58,0.6), inset 0 0.0625rem 0 rgba(255,255,255,0.02);
+  border: 0.0625rem solid rgba(255,255,255,0.04);
 }
 
 .card::before {
@@ -23,12 +23,12 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 72px 72px, 72px 72px;
+    linear-gradient(to right, rgba(255,255,255,0.02) 0.0625rem, transparent 0.0625rem),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 0.0625rem, transparent 0.0625rem);
+  background-size: 4.5rem 4.5rem, 4.5rem 4.5rem;
   pointer-events: none;
   opacity: 0.2;
-  border-radius: 12px;
+  border-radius: 0.75rem;
 }
 
 .card__header {
@@ -49,7 +49,7 @@
   align-items: center;
   gap: 0.65rem;
   flex-wrap: nowrap;
-  min-height: 32px;
+  min-height: 2rem;
   overflow: hidden;
   /* allow the pills row to shrink inside flex parents */
   min-width: 0;
@@ -60,10 +60,10 @@
   color: var(--components-color);
   font-weight: 700;
   white-space: wrap;
-  padding: 8px 12px;
-  border-radius: 999px;
-  box-shadow: 0 6px 12px rgba(8,32,48,0.14);
-  border: 1px solid rgba(0,0,0,0.06);
+  padding: 0.5rem 0.75rem;
+  border-radius: 62.4375rem;
+  box-shadow: 0 0.375rem 0.75rem rgba(8,32,48,0.14);
+  border: 0.0625rem solid rgba(0,0,0,0.06);
   flex: 0 1 auto;
   display: inline-flex;
   align-items: center;
@@ -73,18 +73,18 @@
 }
 
 .pill.small {
-  padding: 6px 10px;
-  border-radius: 999px;
+  padding: 0.375rem 0.625rem;
+  border-radius: 62.4375rem;
   font-size: 0.78rem;
-  box-shadow: 0 3px 0 rgba(0,0,0,0.10) inset;
+  box-shadow: 0 0.1875rem 0 rgba(0,0,0,0.10) inset;
 }
 
 .pill.long {
-  height: 30px;
+  height: 1.875rem;
   /* let long pills adjust to their text but keep a comfortable padding */
   min-width: 0;
-  padding: 0 16px;
-  border-radius: 999px;
+  padding: 0 1rem;
+  border-radius: 62.4375rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -118,25 +118,25 @@
 /* style the action buttons on the right to be white rounded squares */
 .card__header .flex app-common-button button{
   background: var(--elements-color);
-  border-radius: 10px;
-  width: 48px;
-  height: 48px;
+  border-radius: 0.625rem;
+  width: 3rem;
+  height: 3rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 18px rgba(8,32,48,0.18);
-  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 0.5rem 1.125rem rgba(8,32,48,0.18);
+  border: 0.0625rem solid rgba(0,0,0,0.06);
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .card__header .flex app-common-button button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(8,32,48,0.22);
+  transform: translateY(-0.1875rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(8,32,48,0.22);
 }
 
 .card__header .flex app-common-button svg {
-  max-width:48px;
-  max-height:48px;
+  max-width:3rem;
+  max-height:3rem;
 }
 
 .card__header .flex app-common-button svg path { stroke: var(--components-color); }
@@ -181,10 +181,10 @@
 .expanded-fields .field .value {
   background: var(--elements-color);
   color: var(--components-color);
-  min-height: 56px;
-  padding: 14px 16px;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(8,32,48,0.12) inset;
+  min-height: 3.5rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.375rem 0.875rem rgba(8,32,48,0.12) inset;
 }
 
 .meta {
@@ -209,20 +209,20 @@
 }
 
 /* Mobile layout: stack cards full width and reduce paddings */
-@media (max-width: 720px) {
+@media (max-width: 45rem) {
   .sessions { gap: 0.85rem; }
 
   .card {
-    padding: 12px 14px;
-    border-radius: 10px;
-    margin: 0 8px; /* give breathing room at mobile sides */
+    padding: 0.75rem 0.875rem;
+    border-radius: 0.625rem;
+    margin: 0 0.5rem; /* give breathing room at mobile sides */
   }
 
   .card__header { gap: 0.65rem; }
 
   .card__pills { flex: 1 1 auto; }
 
-  .pills-row { min-height: 40px; gap: 0.5rem; }
+  .pills-row { min-height: 2.5rem; gap: 0.5rem; }
 
   /* first step: hide the long bars (they take more width) */
   .pill.long.hiden-pill {
@@ -238,19 +238,19 @@
 
   /* make action buttons a bit smaller on small screens */
   .card__header .flex app-common-button button{
-    width: 44px;
-    height: 44px;
+    width: 2.75rem;
+    height: 2.75rem;
   }
 }
 
 /* Narrow phones: hide any other pills marked as hiden-pill */
-@media (max-width: 520px) {
+@media (max-width: 32.5rem) {
   .sessions { gap: 0.75rem; }
 
   .card {
-    padding: 10px 12px;
-    border-radius: 8px;
-    margin: 0 12px;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.5rem;
+    margin: 0 0.75rem;
   }
 
   /* collapse any pill explicitly marked as hidden (both small and long) */
@@ -280,22 +280,22 @@
   }
 
   .expanded-fields .field .value {
-    min-height: 48px;
-    padding: 12px 12px;
+    min-height: 3rem;
+    padding: 0.75rem 0.75rem;
   }
 
   /* slightly reduce icon svg max size so layout doesn't wrap */
   .card__header .flex app-common-button svg {
-    max-width:36px;
-    max-height:36px;
+    max-width:2.25rem;
+    max-height:2.25rem;
   }
 }
 
 /* Extra narrow devices: ensure cards behave as vertical blocks and centered */
-@media (max-width: 380px) {
+@media (max-width: 23.75rem) {
   .card {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
   }
 
   .pills-row { gap: 0.5rem; }

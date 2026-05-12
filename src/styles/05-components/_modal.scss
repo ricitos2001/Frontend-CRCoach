@@ -3,13 +3,13 @@
 :root {
   --modal-overlay-bg: rgba(0, 0, 0, 0.55);
   --modal-bg: var(--components-color);
-  --modal-radius: 12px;
-  --modal-max-width: 720px;
+  --modal-radius: 0.75rem;
+  --modal-max-width: 45rem;
   --modal-padding: 1.25rem;
   --modal-header-padding: 0.75rem 1rem;
   --modal-z: 1000;
   --modal-transition: 200ms ease;
-  --modal-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  --modal-shadow: 0 0.625rem 1.875rem rgba(0,0,0,0.25);
 }
 
 .modal {
@@ -46,7 +46,7 @@
   max-width: var(--modal-max-width);
   width: calc(100% - 2rem);
   box-shadow: var(--modal-shadow);
-  transform: translateY(8px) scale(0.995);
+  transform: translateY(0.5rem) scale(0.995);
   opacity: 0;
   transition: transform var(--modal-transition), opacity var(--modal-transition);
   z-index: calc(var(--modal-z) + 1);
@@ -72,7 +72,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--modal-header-padding);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 0.0625rem solid rgba(0,0,0,0.06);
 }
 
 .modal__title {
@@ -106,13 +106,13 @@
 
 /* Sizes */
 .modal--small .modal__container {
-  max-width: 360px;
+  max-width: 22.5rem;
 }
 .modal--medium .modal__container {
-  max-width: 640px;
+  max-width: 40rem;
 }
 .modal--large .modal__container {
-  max-width: 980px;
+  max-width: 61.25rem;
 }
 
 /* Prevent body scroll when modal open */
@@ -131,7 +131,7 @@ body.modal-open {
 
 .modal__container .flex app-form-input[type="date"], .modal__container .flex app-form-input[type="number"] {
   flex: 0 0 48%;
-  min-width: 180px;
+  min-width: 11.25rem;
 }
 
 
@@ -141,7 +141,7 @@ body.modal-open {
   flex: 1 1 auto;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .modal__container .flex {
     flex-direction: column;
   }

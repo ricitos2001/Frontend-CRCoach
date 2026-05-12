@@ -2,79 +2,79 @@
   display: grid;
   /* La maqueta muestra tarjetas amplias en 2 columnas */
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 1.375rem;
   align-items: start;
-  padding: 18px 12px 36px 12px;
+  padding: 1.125rem 0.75rem 2.25rem 0.75rem;
 }
 
 .goal {
   /* efecto vidrio: fondo semitransparente + blur del fondo */
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
   background-clip: padding-box;
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(0.5rem) saturate(120%);
+  backdrop-filter: blur(0.5rem) saturate(120%);
   color: var(--elements-color);
-  padding: 18px;
-  border-radius: 12px;
+  padding: 1.125rem;
+  border-radius: 0.75rem;
   /* sombra externa + ligero brillo interior para apariencia glass */
-  box-shadow: 0 18px 40px rgba(3,39,58,0.6), inset 0 6px 18px rgba(255,255,255,0.03);
+  box-shadow: 0 1.125rem 2.5rem rgba(3,39,58,0.6), inset 0 0.375rem 1.125rem rgba(255,255,255,0.03);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 260px; /* tarjetas más altas como en la maqueta */
-  border: 1px solid rgba(255,255,255,0.06);
+  gap: 0.75rem;
+  min-height: 16.25rem; /* tarjetas más altas como en la maqueta */
+  border: 0.0625rem solid rgba(255,255,255,0.06);
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .goal:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 26px 54px rgba(3,39,58,0.72), inset 0 8px 22px rgba(255,255,255,0.04);
+  transform: translateY(-0.375rem);
+  box-shadow: 0 1.625rem 3.375rem rgba(3,39,58,0.72), inset 0 0.5rem 1.375rem rgba(255,255,255,0.04);
 }
 
 .goal__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .goal h3 {
   margin: 0;
-  padding: 8px 18px;
+  padding: 0.5rem 1.125rem;
   background: var(--elements-color);
   color: var(--components-color);
-  border-radius: 18px;
+  border-radius: 1.125rem;
   font-weight: 700;
-  box-shadow: 0 6px 14px rgba(8, 32, 48, 0.28);
+  box-shadow: 0 0.375rem 0.875rem rgba(8, 32, 48, 0.28);
   display: inline-block;
   font-size: 1rem;
 }
 
 .goal__buttons {
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
   align-items: center;
 }
 
 .goal__buttons app-common-button button {
   background: var(--elements-color);
   color: var(--components-color);
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
+  width: 2.875rem;
+  height: 2.875rem;
+  border-radius: 0.625rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  box-shadow: 0 8px 18px rgba(8, 32, 48, 0.22);
+  box-shadow: 0 0.5rem 1.125rem rgba(8, 32, 48, 0.22);
   border: none;
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .goal__buttons app-common-button button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(8,32,48,0.28);
+  transform: translateY(-0.1875rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(8,32,48,0.28);
 }
 
 .goal__buttons app-common-button svg,
@@ -91,16 +91,16 @@
 .goal__progress{
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:0.5rem;
 }
 /* Style native <progress> element for consistent look */
 progress.goal__progress-bar{
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 14px;
+  height: 0.875rem;
   background: var(--elements-color);
-  border-radius: 10px;
+  border-radius: 0.625rem;
   overflow: hidden;
 }
 /* Webkit/Blink */
@@ -131,10 +131,10 @@ progress.goal__progress-bar::-moz-progress-bar{
   margin: 0;
   background: var(--elements-color);
   color: var(--components-color);
-  padding: 16px;
-  border-radius: 8px;
-  min-height: 140px;
-  box-shadow: inset 0 1px 0 rgba(0,0,0,0.02);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-height: 8.75rem;
+  box-shadow: inset 0 0.0625rem 0 rgba(0,0,0,0.02);
 }
 
 /* Small progress pill */
@@ -142,8 +142,8 @@ progress.goal__progress-bar::-moz-progress-bar{
   margin: 0;
   background: var(--elements-color);
   color: var(--components-color);
-  padding: 8px 14px;
-  border-radius: 14px;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.875rem;
   width: fit-content;
 }
 
@@ -156,28 +156,28 @@ progress.goal__progress-bar::-moz-progress-bar{
 }
 
 /* Responsive tweaks */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   /* single column list */
   .goals { grid-template-columns: 1fr; }
 
   /* Card layout: stack internal bits and center */
   .goal__container { flex-direction: column; align-items: center; }
-  .goal h3 { margin-bottom: 8px; }
+  .goal h3 { margin-bottom: 0.5rem; }
   .goal__buttons { justify-content: center; }
 
-  .goal > p:nth-of-type(1) { min-height: 120px; padding: 14px; text-align: center; }
-  .goal__progress-meta { justify-content: center; gap: 8px; }
+  .goal > p:nth-of-type(1) { min-height: 7.5rem; padding: 0.875rem; text-align: center; }
+  .goal__progress-meta { justify-content: center; gap: 0.5rem; }
 }
 
 /* Narrow mobile layout (match mockup) */
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   /* Make cards narrower and centered like the mock */
-  .goals { gap: 26px; padding-left: 12px; padding-right: 12px; }
-  .goal { max-width: 360px; margin-left: auto; margin-right: auto; }
+  .goals { gap: 1.625rem; padding-left: 0.75rem; padding-right: 0.75rem; }
+  .goal { max-width: 22.5rem; margin-left: auto; margin-right: auto; }
 
-  .goal h3 { padding: 6px 12px; font-size: 0.95rem; }
-  .goal__buttons app-common-button button { width: 40px; height: 40px; }
-  .goal > p:nth-of-type(1) { min-height: 110px; padding: 12px; }
+  .goal h3 { padding: 0.375rem 0.75rem; font-size: 0.95rem; }
+  .goal__buttons app-common-button button { width: 2.5rem; height: 2.5rem; }
+  .goal > p:nth-of-type(1) { min-height: 6.875rem; padding: 0.75rem; }
 }
 
 

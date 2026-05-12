@@ -7,7 +7,7 @@ body.has-sidebar main {
    Evitar que en pantallas pequeñas (responsive) estas reglas reduzcan el ancho
    del contenido principal. En mobile el sidebar se muestra como panel inferior
    y no debe influir en el layout horizontal. */
-@media (min-width: 769px) {
+@media (min-width: 48.0625rem) {
   body.has-sidebar.sidebar-open main,
   body.sidebar-open main {
     margin-left: var(--sidebar-open-width);

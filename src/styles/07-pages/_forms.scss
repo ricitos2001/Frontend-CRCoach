@@ -29,8 +29,8 @@
 }
 
 .image-box, .image-box::before {
-  border-right: 1px solid rgba(0,0,0,0.08);
-  box-shadow: -30px 0 60px rgba(0,0,0,0.25) inset, 0 1px 60px rgba(0,0,0,0.25);
+  border-right: 0.0625rem solid rgba(0,0,0,0.08);
+  box-shadow: -1.875rem 0 3.75rem rgba(0,0,0,0.25) inset, 0 0.0625rem 3.75rem rgba(0,0,0,0.25);
 }
 
 .image-box h1,
@@ -48,7 +48,7 @@
   font-weight: 300;
   margin: 0 auto 1rem;
   max-width: 60ch;
-  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  text-shadow: 0 0.375rem 1.125rem rgba(0,0,0,0.6);
   color: var(--elements-color);
   z-index: 1;
 }
@@ -60,7 +60,7 @@
   font-weight: 400;
   max-width: 58ch;
   z-index: 1;
-  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  text-shadow: 0 0.375rem 1.125rem rgba(0,0,0,0.6);
 }
 
 .image-box p {
@@ -70,7 +70,7 @@
   font-size: 1.05rem;
   max-width: 56ch;
   line-height: 1.5;
-  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  text-shadow: 0 0.375rem 1.125rem rgba(0,0,0,0.6);
 }
 
 .login-and-register fieldset {
@@ -136,14 +136,14 @@ app-form-input.grid input:not([type="checkbox"]),
 app-form-input.glass-input textarea {
   width: 100%;
   background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  border: 0.0625rem solid rgba(255,255,255,0.12);
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.5rem);
   background-clip: padding-box;
   border-radius: 0.6rem;
   padding: 0.85rem 1rem;
   color: var(--elements-color);
-  box-shadow: inset 0 6px 18px rgba(0,0,0,0.45), 0 2px 0 rgba(255,255,255,0.02) inset;
+  box-shadow: inset 0 0.375rem 1.125rem rgba(0,0,0,0.45), 0 0.125rem 0 rgba(255,255,255,0.02) inset;
   outline: none;
   transition: box-shadow 160ms ease, transform 160ms ease;
 }
@@ -158,10 +158,10 @@ app-form-input.glass-input textarea::placeholder {
 app-form-input.glass-input input:not([type="checkbox"]):focus,
 app-form-input.grid input:not([type="checkbox"]):focus,
 app-form-input.glass-input textarea:focus {
-  box-shadow: inset 0 8px 24px rgba(0,0,0,0.55), 0 6px 18px rgba(0,0,0,0.2);
-  transform: translateY(-1px);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0.5rem 1.5rem rgba(0,0,0,0.55), 0 0.375rem 1.125rem rgba(0,0,0,0.2);
+  transform: translateY(-0.0625rem);
+  -webkit-backdrop-filter: blur(0.625rem);
+  backdrop-filter: blur(0.625rem);
 }
 
 .login-and-register section.flex {
@@ -206,14 +206,14 @@ app-form-input.grid .error {
   background: var(--color-error-1);
   color: var(--elements-color);
   padding: 0.28rem 0.6rem;
-  border-radius: 999px;
+  border-radius: 62.4375rem;
   font-size: 0.75rem;
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 32rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  box-shadow: 0 0.375rem 1.125rem rgba(0,0,0,0.35);
   opacity: 0;
   pointer-events: auto;
   animation: error-chip-in .16s ease forwards;
@@ -232,7 +232,7 @@ app-form-input.grid input[type="checkbox"] + label + .error {
 }
 
 @keyframes error-chip-in {
-  from { opacity: 0; transform: translateY(-8px) scale(.98); }
+  from { opacity: 0; transform: translateY(-0.5rem) scale(.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -240,16 +240,16 @@ app-form-input.glass-input.has-error input:not([type="checkbox"]),
 app-form-input.grid.has-error input:not([type="checkbox"]),
 app-form-input.glass-input.has-error textarea {
   border-color: var(--color-error-1);
-  box-shadow: inset 0 6px 18px rgba(0,0,0,0.45), 0 0 0 4px rgba(255,0,0,0.06);
+  box-shadow: inset 0 0.375rem 1.125rem rgba(0,0,0,0.45), 0 0 0 0.25rem rgba(255,0,0,0.06);
   animation: field-shake .36s ease;
 }
 
 @keyframes field-shake {
   0% { transform: translateX(0); }
-  20% { transform: translateX(-4px); }
-  40% { transform: translateX(4px); }
-  60% { transform: translateX(-2px); }
-  80% { transform: translateX(2px); }
+  20% { transform: translateX(-0.25rem); }
+  40% { transform: translateX(0.25rem); }
+  60% { transform: translateX(-0.125rem); }
+  80% { transform: translateX(0.125rem); }
   100% { transform: translateX(0); }
 }
 
@@ -258,7 +258,7 @@ app-form-input .error[title] { cursor: help; }
 
 /* Responsive rules: on small screens hide the left artwork panel and
    make the form take full width (used by login, register, recover-password) */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .login-and-register {
     flex-direction: column;
     align-items: stretch;
