@@ -353,6 +353,30 @@ header ul li {
   padding: 0 1rem;
 }
 
+header app-common-button:not(.hamburger) {
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: inline-block;
+  border-radius: 0.5rem;
+  transition: background 150ms ease-in-out;
+}
+
+header app-common-button:not(.hamburger):hover {
+  background: var(--components-color-on-hover);
+}
+
+header app-common-button:not(.hamburger) button {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--elements-color);
+  background: transparent;
+}
+
+header ul li app-common-button:hover {
+  background: var(--components-color-on-hover);
+}
+
 header app-common-button button {
   padding: 1rem;
   border: none;
@@ -366,19 +390,16 @@ header app-common-button button:hover, header app-language-selector .language-se
 }
 
 header ul li a {
-  font-size: 1.05rem; /* un poco más grande */
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--elements-color);
-  padding: 0.45rem 0.6rem; /* aumentar área clicable */
+  padding: 0.45rem 0.6rem;
   display: inline-block;
 }
 
-header ul li a:hover {
-  text-decoration: none;
-  opacity: 0.95;
-}
-
 header app-language-selector .language-selector {
+  font-size: 1.05rem;
+  font-weight: 600;
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
@@ -486,7 +507,7 @@ footer h1, footer .app {
   font-size: 3rem;
 }
 
-footer h2, footer h3 {
+footer h2, footer h3, footer .brand-heading {
   padding: 0.5rem;
   font-size: 2rem;
   font-weight: 700;
