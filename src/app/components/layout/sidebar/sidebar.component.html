@@ -1,5 +1,4 @@
-@if (isOpened) {
-  <aside [class.open]="isOpened" aria-label="Sidebar" [attr.aria-hidden]="!isOpened">
+<aside [class.open]="isOpened" aria-label="Sidebar" [attr.aria-hidden]="!isOpened">
     <ul>
       <li>
         <a routerLink="/dashboard">
@@ -98,7 +97,6 @@
       <span class="logout-label">{{ 'COMPONENTS.SHARED.LOGOUT' | translate }}</span>
     </app-common-button>
   </aside>
-}
 
 <!-- Toggle button: siempre visible, fuera del aside. aria-expanded refleja el estado -->
 <button class="sidebar-toggle" (click)="openOrCloseSidebar()" aria-label="Abrir o cerrar la barra lateral" [attr.aria-expanded]="isOpened" [class.open]="isOpened">

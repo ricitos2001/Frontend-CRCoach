@@ -8,8 +8,11 @@ import { Notification } from '../../interfaces/Notification';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationsService {
-  token = localStorage.getItem('token');
   constructor(private http: HttpClient) {}
+
+  private get token(): string | null {
+    return localStorage.getItem('token');
+  }
 
   pollNotifications(intervalMs: number, email: string | null): Observable<Notification[]> {
     return timer(0, intervalMs).pipe(

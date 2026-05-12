@@ -51,7 +51,7 @@ export class AuthService {
   logout() {
     // Llamar al endpoint de logout en el backend, pero asegurarnos
     // de limpiar los datos locales y los stores aunque falle la petición.
-    this.http.post(`${environment.apiUrl}/api/v1/auth/logout`, {}).subscribe({
+    this.http.post(`${environment.apiUrl}/api/v1/auth/logout`, {}, { responseType: 'text' }).subscribe({
       next: () => {
         this.removeUserData();
       },
