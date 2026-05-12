@@ -1,12 +1,11 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth/auth-guard';
-import { LandingPage } from './pages/landing/landing.page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   {
     path: 'landing',
-    component: LandingPage,
+    loadChildren: () => import('./pages/landing/landing-module').then((m) => m.LandingModule),
     data: { title: 'Landing', breadcrumb: 'Landing' },
   },
   {
