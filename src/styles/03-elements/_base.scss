@@ -65,30 +65,3 @@ footer .icon-letters {
   border: 0;
 }
 
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-[tabindex]:focus-visible {
-  outline: 0.125rem solid #EBFEFE;
-  outline-offset: 0.125rem;
-}
-
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  z-index: 10000;
-  padding: 0.5rem 1rem;
-  background-color: var(--components-color);
-  color: var(--elements-color);
-  font-family: var(--font-primary), sans-serif;
-  text-decoration: none;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
