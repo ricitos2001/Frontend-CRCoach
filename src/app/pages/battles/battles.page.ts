@@ -1,4 +1,4 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect, AfterViewInit, OnDestroy, ElementRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Battle } from '../../interfaces/Battle';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
@@ -7,6 +7,7 @@ import { RefreshButtonComponent } from '../../components/shared/refresh-button/r
 import { TranslateModule } from '@ngx-translate/core';
 import { SearcherComponent } from '../../components/shared/searcher/searcher.component';
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
+import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-battles',
@@ -22,7 +23,9 @@ import { FormInputComponent } from '../../components/shared/form-input/form-inpu
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class BattlesPage {
+export class BattlesPage implements AfterViewInit, OnDestroy {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private animator?: CascadeAnimator;
   tag = localStorage.getItem('tag');
   private lastLoadedTag: string | null = null;
   // filter options
@@ -136,5 +139,15 @@ export class BattlesPage {
   getClanBadgeUrl(badgeId: number) {
     console.log(badgeId)
     return `https://royaleapi.github.io/cr-api-assets/badges/medium/${badgeId}.png`;
+  }
+
+  ngAfterViewInit(): void {
+    this.animator = new CascadeAnimator(this.elementRef.nativeElement, [
+      { selector: '.battle-card', stagger: 0.08 },
+    ]);
+  }
+
+  ngOnDestroy(): void {
+    this.animator?.destroy();
   }
 }

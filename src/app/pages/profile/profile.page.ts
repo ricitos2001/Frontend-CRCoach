@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, effect, ViewChild, TemplateRef, HostListener, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, effect, ViewChild, TemplateRef, HostListener, ElementRef, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerCard } from '../../interfaces/PlayerCard';
 import { environment } from '../../../enviroments/enviroment';
@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { EditUserPage } from '../../components/shared/edit-user/edit-user.page';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,9 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CommonModule, SidebarComponent, CommonButtonComponent, ModalComponent, EditUserPage, TranslatePipe],
   standalone: true,
 })
-export class ProfilePage implements OnInit, OnDestroy {
+export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private animator?: CascadeAnimator;
   private lastAvatarPath: string | null = null;
   private lastLoadedEmail: string | null = null;
   private lastLoadedTag: string | null = null;
@@ -204,8 +207,17 @@ export class ProfilePage implements OnInit, OnDestroy {
     }
   }
 
+  ngAfterViewInit(): void {
+    this.animator = new CascadeAnimator(this.elementRef.nativeElement, [
+      { selector: '.player-profile__card.card--stats', stagger: 0.15 },
+      { selector: '.deck__images img', stagger: 0.08 },
+      { selector: '.player-profile__cards-grid img', stagger: 0.08 },
+    ]);
+  }
+
   ngOnDestroy(): void {
     this.clearAvatarObjectUrl();
+    this.animator?.destroy();
   }
   openDeleteModal(): void {
     this.deleteModalOpen = true;

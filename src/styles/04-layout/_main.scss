@@ -1,6 +1,9 @@
+.page-transition-container {
+  opacity: 1;
+}
+
 body.has-sidebar main {
   padding: 3rem;
-  //transition: margin-left 220ms ease, width 220ms ease;
 }
 
 /* Cuando el sidebar está abierto (solo en escritorio):

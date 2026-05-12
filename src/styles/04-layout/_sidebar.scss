@@ -12,7 +12,7 @@ aside {
   left: 0;
   top: 0;
   height: 100vh;
-  width: var(--sidebar-closed-width); /* ancho cerrado */
+  width: var(--sidebar-open-width);
   background: var(--components-color);
   color: var(--elements-color);
   box-shadow: 0.125rem 0 0.5rem rgba(0,0,0,0.12);
@@ -22,10 +22,16 @@ aside {
   flex-direction: column;
   justify-content: space-between;
   padding: 1.25rem 0.5rem;
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0ms 0ms;
 }
 
 aside.open {
   width: var(--sidebar-open-width);
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0ms 300ms;
 }
 
 aside ul {
@@ -212,7 +218,7 @@ button.sidebar-toggle {
   position: fixed;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(0);
   width: var(--sidebar-toggle-width);
   height: 4rem;
   border-top-right-radius: 0.75rem;
@@ -225,10 +231,11 @@ button.sidebar-toggle {
   padding: 0.375rem;
   cursor: pointer;
   z-index: 90;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button.sidebar-toggle.open {
-  left: 20rem;
+  transform: translateY(-50%) translateX(var(--sidebar-open-width));
 }
 
 button.sidebar-toggle.open svg {

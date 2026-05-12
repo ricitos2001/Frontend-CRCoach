@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, TemplateRef, ViewChild, DestroyRef, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, effect, OnInit, AfterViewInit, TemplateRef, ViewChild, DestroyRef, ElementRef, ChangeDetectorRef, inject } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
@@ -16,6 +16,7 @@ import { RefreshButtonComponent } from '../../components/shared/refresh-button/r
 import { UsersService } from '../../services/users/users.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { environment } from '../../../enviroments/enviroment';
+import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +32,9 @@ import { environment } from '../../../enviroments/enviroment';
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit, AfterViewInit {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private animator?: CascadeAnimator;
   // Track last loaded identifiers to avoid duplicate network requests
   private lastLoadedEmail: string | null = null;
   private lastLoadedTag: string | null = null;
@@ -277,6 +280,16 @@ export class DashboardPage implements OnInit {
     this.headerContentService.setContent(this.headerContent);
     void this.winLabels;
     this.destroyRef.onDestroy(() => {});
+    this.destroyRef.onDestroy(() => this.animator?.destroy());
+  }
+
+  ngAfterViewInit(): void {
+    this.animator = new CascadeAnimator(this.elementRef.nativeElement, [
+      { selector: '.stat-card', stagger: 0.1 },
+      { selector: '.chart-wrapper', stagger: 0.15 },
+      { selector: '.dashboard__recent__victory, .dashboard__recent__defeat, .dashboard__recent__draw', stagger: 0.08 },
+      { selector: '.dashboard__recent__content', stagger: 0.1 },
+    ]);
   }
 
   private clearAvatarObjectUrl(): void {

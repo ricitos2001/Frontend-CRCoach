@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, DestroyRef } from '@angular/core';
+import { Component, effect, OnInit, AfterViewInit, OnDestroy, ElementRef, inject, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { AnalyticsSignalStore } from '../../signal_stores/analytics.signal.store';
 import { ChartOptions, ChartDataset } from 'chart.js';
@@ -11,6 +11,7 @@ import { CommonButtonComponent } from '../../components/shared/common-button/com
 import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { AdvancedSearchComponent } from '../../components/shared/advanced-search/advanced-search.component';
 import { FormsModule } from '@angular/forms';
+import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-weaknesses',
@@ -30,7 +31,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class WeaknessesPage implements OnInit {
+export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private animator?: CascadeAnimator;
   tag = localStorage.getItem('tag');
   // game mode filter (same as BattlesPage)
   gameModes = [
@@ -348,5 +351,16 @@ export class WeaknessesPage implements OnInit {
   ngOnInit(): void {
     this.createOrUpdateChart();
     this.destroyRef.onDestroy(() => {});
+  }
+
+  ngAfterViewInit(): void {
+    this.animator = new CascadeAnimator(this.elementRef.nativeElement, [
+      { selector: '.chart-wrapper', stagger: 0.15 },
+      { selector: '.problematic-card', stagger: 0.1 },
+    ]);
+  }
+
+  ngOnDestroy(): void {
+    this.animator?.destroy();
   }
 }

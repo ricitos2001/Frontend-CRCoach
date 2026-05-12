@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, inject } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
 import { SearcherComponent } from '../../components/shared/searcher/searcher.component';
@@ -14,6 +14,7 @@ import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
 import { PaginationComponent } from '../../components/shared/pagination/pagination.component';
+import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-goals',
@@ -34,7 +35,9 @@ import { PaginationComponent } from '../../components/shared/pagination/paginati
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class GoalsPage implements OnInit {
+export class GoalsPage implements OnInit, AfterViewInit, OnDestroy {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private animator?: CascadeAnimator;
   public page = 0;
   public pageSize = 10;
   public editingGoal: Goal | null = null;
@@ -223,5 +226,15 @@ export class GoalsPage implements OnInit {
     const pct = Math.round((current / target) * 100);
     if (isNaN(pct)) return 0;
     return Math.max(0, Math.min(100, pct));
+  }
+
+  ngAfterViewInit(): void {
+    this.animator = new CascadeAnimator(this.elementRef.nativeElement, [
+      { selector: '.goal', stagger: 0.1 },
+    ]);
+  }
+
+  ngOnDestroy(): void {
+    this.animator?.destroy();
   }
 }

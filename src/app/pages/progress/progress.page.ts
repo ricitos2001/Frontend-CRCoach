@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, DestroyRef } from '@angular/core';
+import { Component, effect, OnInit, AfterViewInit, OnDestroy, ElementRef, inject, DestroyRef } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { MetricsSignalStore } from '../../signal_stores/metrics.signal.store';
 import { ChartOptions } from 'chart.js';
@@ -8,6 +8,7 @@ import { GraphComponent } from '../../components/shared/graph/graph.component';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
 import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store';
 import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
+import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-progress',
@@ -16,7 +17,9 @@ import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
   styleUrl: '../../../styles/styles.css',
   standalone: true,
 })
-export class ProgressPage implements OnInit {
+export class ProgressPage implements OnInit, AfterViewInit, OnDestroy {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private animator?: CascadeAnimator;
   constructor(
     public metricsStore: MetricsSignalStore,
     public snapshotsStore: SnapshotsSignalStore,
@@ -129,6 +132,16 @@ export class ProgressPage implements OnInit {
 
     void this.winLabels;
     this.destroyRef.onDestroy(() => {});
+  }
+
+  ngAfterViewInit(): void {
+    this.animator = new CascadeAnimator(this.elementRef.nativeElement, [
+      { selector: '.chart-wrapper', stagger: 0.15 },
+    ]);
+  }
+
+  ngOnDestroy(): void {
+    this.animator?.destroy();
   }
 
   private asNumber(v: any): number | undefined {
