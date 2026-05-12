@@ -12,7 +12,7 @@ import { CommonButtonComponent } from '../../components/shared/common-button/com
   standalone: true,
 })
 export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
-  protected readonly title = signal('Frontend-CRCoach');
+  protected readonly title = signal('Coach Royale');
   private _routerSub?: Subscription;
 
   @ViewChild('grid', { static: false }) grid!: ElementRef<HTMLElement>;
