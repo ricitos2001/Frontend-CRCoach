@@ -51,7 +51,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     }
     if (this._track) {
       const track = this._track;
-      import('gsap').then(({ gsap }) => gsap.killTweensOf(track));
+      import('gsap').then(({ gsap }) => gsap.killTweensOf(track)).catch(() => {});
       this._track = undefined;
     }
     if (this._routerSub) {
@@ -61,7 +61,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
 
     import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
       ScrollTrigger.getAll().forEach(t => t.kill());
-    });
+    }).catch(() => {});
 
     const host = this.elementRef.nativeElement;
     (host.querySelectorAll('[style*="will-change"]') as NodeListOf<HTMLElement>).forEach((el) => {
@@ -73,7 +73,12 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     const root = this.grid?.nativeElement;
     if (!root) return;
 
-    const { gsap } = await import('gsap');
+    let gsap: any;
+    try {
+      ({ gsap } = await import('gsap'));
+    } catch {
+      return;
+    }
 
     const existing = root.querySelector<HTMLElement>('[data-ribbon-track]');
     if (existing) {
@@ -138,8 +143,14 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private async setupAnimations(): Promise<void> {
-    const { gsap } = await import('gsap');
-    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    let gsap: any;
+    let ScrollTrigger: any;
+    try {
+      ({ gsap } = await import('gsap'));
+      ({ ScrollTrigger } = await import('gsap/ScrollTrigger'));
+    } catch {
+      return;
+    }
     gsap.registerPlugin(ScrollTrigger);
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
