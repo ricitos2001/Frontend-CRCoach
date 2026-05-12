@@ -51,6 +51,9 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
       }
       @if (metricsStore.metric(); as metric) {
+        @if (metric.battles.total === 0) {
+          <p class="no-items">{{ 'PAGES.DASHBOARD.NO_METRICS' | translate }}</p>
+        } @else {
         <section class="chart-body winrate-card">
           <app-graph [type]="'doughnut'" [labels]="winLabels" [data]="winData" [backgroundColor]="winBackground" [options]="winOptions" [width]="200" [height]="200"></app-graph>
           <article class="winrate-stats">
@@ -58,10 +61,17 @@
             <p class="stat defeat"><strong>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}:</strong> <span class="value">{{ displayPercent(metric, 'lossRate') | number:'1.2-2' }}%</span></p>
           </article>
         </section>
+        }
       }
     </section>
     <section class="chart-wrapper small">
       <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
+      @if (metricsStore.loading() && !metricsStore.metric()) {
+        <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
+      }
+      @if (metricsStore.error(); as mErr) {
+        <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
+      }
       @if (metricsStore.metric(); as metric) {
         <section class="chart-body streak-card">
           <section class="streak-top">
@@ -92,6 +102,9 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_BATTLES' | translate:{ err: bErr } }}</p>
       }
       @if (battlesStore.battles()) {
+        @if (recentBattles.length === 0) {
+          <p class="no-items">{{ 'PAGES.DASHBOARD.NO_BATTLES' | translate }}</p>
+        } @else {
         @for (battle of recentBattles; track battle.id) {
           @if (battle.team.trophyChange > 0 && battle.opponent.trophyChange < 0) {
             <section class="dashboard__recent__victory">
@@ -267,6 +280,7 @@
             }
           }
         }
+        }
       }
     </article>
   </section>
@@ -280,10 +294,14 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_GOALS' | translate:{ err: gErr } }}</p>
       }
       @if (goalsStore.goalsPage()) {
-        @for (goal of recentGoals; track goal.id) {
-          <article class="dashboard__recent__content">
-            <p>{{goal.title}}</p>—<p>{{goal.status}}</p>—<p>{{goal.currentValue}}/{{goal.targetValue}}</p>
-          </article>
+        @if (recentGoals.length === 0) {
+          <p class="no-items">{{ 'PAGES.DASHBOARD.NO_GOALS' | translate }}</p>
+        } @else {
+          @for (goal of recentGoals; track goal.id) {
+            <article class="dashboard__recent__content">
+              <p>{{goal.title}}</p>—<p>{{goal.status}}</p>—<p>{{goal.currentValue}}/{{goal.targetValue}}</p>
+            </article>
+          }
         }
       }
     </article>
@@ -298,10 +316,14 @@
         <p class="error">{{ 'PAGES.DASHBOARD.ERROR_SESSIONS' | translate:{ err: sErr } }}</p>
       }
       @if (sessionsStore.sessionsPage()) {
+        @if (recentSessions.length === 0) {
+          <p class="no-items">{{ 'PAGES.DASHBOARD.NO_SESSIONS' | translate }}</p>
+        } @else {
         @for (s of recentSessions; track s.id) {
           <article class="dashboard__recent__content">
             <p>{{s.title}}</p>—<p>{{s.mood}}</p>—<p>{{s.startTime | date:'short'}}</p>
           </article>
+        }
         }
       }
     </section>

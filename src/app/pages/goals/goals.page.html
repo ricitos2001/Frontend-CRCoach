@@ -21,6 +21,9 @@
     <p class="error">{{ 'PAGES.GOALS.ERROR' | translate:{ err: gErr } }}</p>
   }
   @if (goalsStore.goalsPage(); as goalsPage) {
+    @if (filteredGoals(goalsPage).length === 0) {
+      <p class="no-items">{{ 'PAGES.GOALS.NO_GOALS' | translate }}</p>
+    } @else {
     <section class="goals">
       @for (goal of filteredGoals(goalsPage); track goal.id) {
         <section class="goal">
@@ -87,6 +90,7 @@
         </section>
       }
     </section>
+    }
     <app-pagination [page]="goalsPage" (prev)="prevPage($event)" (next)="nextPage($event)"></app-pagination>
   }
 </section>

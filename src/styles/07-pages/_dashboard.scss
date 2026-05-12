@@ -409,6 +409,10 @@
   background: var(--components-color);
 }
 
+.dashboard__recent p.no-items {
+  background: none;
+}
+
 .dashboard__recent__content {
   background: var(--elements-color);
   padding: 0.75rem 0.875rem;

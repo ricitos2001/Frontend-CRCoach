@@ -22,6 +22,9 @@
     }
 
     @if (sessionsStore.sessionsPage(); as sessionsPage) {
+      @if (pageToArray(sessionsPage).length === 0) {
+        <p class="no-items">{{ 'PAGES.SESSIONS.NO_SESSIONS' | translate }}</p>
+      } @else {
       <section class="sessions">
         @for (s of pageToArray(sessionsPage); track s.id) {
           <section class="card" [class.expanded]="expandedSessionId === s.id">
@@ -79,6 +82,7 @@
           </section>
         }
       </section>
+      }
       <app-pagination [page]="sessionsPage" (prev)="prevPage($event)" (next)="nextPage($event)"></app-pagination>
     }
   </section>

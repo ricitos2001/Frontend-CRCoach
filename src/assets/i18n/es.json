@@ -171,7 +171,8 @@
       "VICTORY": "Victoria",
       "DEFEAT": "Derrota",
       "DRAW": "Empate",
-      "ALL": "todas las batallas"
+      "ALL": "todas las batallas",
+      "NO_BATTLES": "No hay batallas"
     },
     "WEAKNESSES": {
       "TITLE": "Diagnóstico de debilidades",
@@ -203,7 +204,8 @@
       "FILTER_MIN_APPEARANCES": "Apariciones mínimas",
       "FILTER_RESET": "Restablecer",
       "FILTER_APPLY": "Aplicar",
-      "WEAKNESSES_TITLE": "Debilidades por arquetipo rival"
+      "WEAKNESSES_TITLE": "Debilidades por arquetipo rival",
+      "NO_PROBLEMATIC_CARDS": "No hay cartas problemáticas"
     },
     "DASHBOARD": {
       "TROPHIES_TITLE": "Evolución de trofeos",
@@ -231,6 +233,10 @@
       "REFRESH": "Actualizar",
       "LOADING_BATTLES": "Cargando batallas...",
       "ERROR_BATTLES": "Error batallas: {{err}}",
+      "NO_GOALS": "No hay objetivos recientes",
+      "NO_BATTLES": "No hay batallas recientes",
+      "NO_SESSIONS": "No hay sesiones recientes",
+      "NO_METRICS": "No hay métricas recientes",
       "LOADING_GOALS": "Cargando objetivos...",
       "ERROR_GOALS": "Error objetivos: {{err}}",
       "LOADING_SESSIONS": "Cargando sesiones...",
@@ -245,6 +251,7 @@
       "ADD": "Agregar objetivo",
       "LOADING": "Cargando objetivos...",
       "ERROR": "Error al cargar objetivos: {{err}}",
+      "NO_GOALS": "No hay objetivos",
       "STATUS": {
         "LABEL": "Estado",
         "ALL": "Todos",
@@ -297,6 +304,7 @@
       "ADD": "Agregar sesión",
       "LOADING": "Cargando sesiones...",
       "ERROR": "Error al cargar sesiones: {{err}}",
+      "NO_SESSIONS": "No hay sesiones",
       "CREATE_TITLE": "Crear sesión",
       "EDIT_TITLE": "Editar sesión",
       "LABEL": {
@@ -320,6 +328,7 @@
       "TITLE": "Progreso del jugador",
       "TROPHIES_TITLE": "Evolución de trofeos",
       "WINRATE_TITLE": "Porcentaje de victorias",
+      "NO_METRICS": "No hay métricas recientes",
       "BATTLES_COMPARISON": "Comparación de batallas",
       "DONATIONS_LABEL": "Donaciones",
       "BATTLES_TOTAL_LABEL": "Total batallas",

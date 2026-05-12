@@ -20,6 +20,9 @@
           <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
         }
         @if (metricsStore.metric(); as metric) {
+          @if (metric.battles.total === 0) {
+            <p class="no-items">{{ 'PAGES.PROGRESS.NO_METRICS' | translate }}</p>
+          } @else {
           <section class="chart-body winrate-card">
             <app-graph [type]="'doughnut'" [labels]="winLabels" [data]="winData" [backgroundColor]="winBackground" [options]="winOptions" [width]="200" [height]="200"></app-graph>
             <article class="winrate-stats">
@@ -27,10 +30,17 @@
               <p class="stat defeat"><strong>{{ 'PAGES.DASHBOARD.DEFEATS' | translate }}:</strong> <span class="value">{{ displayPercent(metric, 'lossRate') | number:'1.2-2' }}%</span></p>
             </article>
           </section>
+          }
         }
       </section>
       <section class="chart-wrapper small">
         <h2>{{ 'PAGES.DASHBOARD.STREAK_TITLE' | translate }}</h2>
+        @if (metricsStore.loading() && !metricsStore.metric()) {
+          <p>{{ 'PAGES.DASHBOARD.LOADING_METRICS' | translate }}</p>
+        }
+        @if (metricsStore.error(); as mErr) {
+          <p class="error">{{ 'PAGES.DASHBOARD.ERROR_METRICS' | translate:{ err: mErr } }}</p>
+        }
         @if (metricsStore.metric(); as metric) {
           <section class="chart-body streak-card">
             <section class="streak-top">

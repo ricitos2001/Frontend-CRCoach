@@ -171,7 +171,8 @@
       "VICTORY": "Victory",
       "DEFEAT": "Defeat",
       "DRAW": "Draw",
-      "ALL": "All battles"
+      "ALL": "All battles",
+      "NO_BATTLES": "No battles"
     },
     "WEAKNESSES": {
       "TITLE": "Weaknesses diagnostic",
@@ -203,7 +204,8 @@
       "FILTER_MIN_APPEARANCES": "Minimum appearances",
       "FILTER_RESET": "Reset",
       "FILTER_APPLY": "Apply",
-      "WEAKNESSES_TITLE": "Weaknesses for opponent archetype"
+      "WEAKNESSES_TITLE": "Weaknesses for opponent archetype",
+      "NO_PROBLEMATIC_CARDS": "No problematic cards"
     },
     "DASHBOARD": {
       "TROPHIES_TITLE": "Trophies evolution",
@@ -231,6 +233,10 @@
       "REFRESH": "Refresh",
       "LOADING_BATTLES": "Loading battles...",
       "ERROR_BATTLES": "Battles error: {{err}}",
+      "NO_GOALS": "No recent goals",
+      "NO_BATTLES": "No recent battles",
+      "NO_SESSIONS": "No recent sessions",
+      "NO_METRICS": "No recent metrics",
       "LOADING_GOALS": "Loading goals...",
       "ERROR_GOALS": "Goals error: {{err}}",
       "LOADING_SESSIONS": "Loading sessions...",
@@ -244,6 +250,7 @@
       "ADD": "Add goal",
       "LOADING": "Loading goals...",
       "ERROR": "Error loading goals: {{err}}",
+      "NO_GOALS": "No goals",
       "STATUS": {
         "LABEL": "Status",
         "ALL": "All",
@@ -296,6 +303,7 @@
       "ADD": "Add session",
       "LOADING": "Loading sessions...",
       "ERROR": "Error loading sessions: {{err}}",
+      "NO_SESSIONS": "No sessions",
       "CREATE_TITLE": "Create session",
       "EDIT_TITLE": "Edit session",
       "LABEL": {
@@ -319,6 +327,7 @@
       "TITLE": "Player progress",
       "TROPHIES_TITLE": "Trophies evolution",
       "WINRATE_TITLE": "Winrate",
+      "NO_METRICS": "No recent metrics",
       "BATTLES_COMPARISON": "Battles comparison",
       "DONATIONS_LABEL": "Donations",
       "BATTLES_TOTAL_LABEL": "Total battles",

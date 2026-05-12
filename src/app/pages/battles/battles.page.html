@@ -21,6 +21,9 @@
   }
 
   @if (filteredBattles(); as battles) {
+    @if (battles.length === 0) {
+      <p class="no-items">{{ 'PAGES.BATTLES.NO_BATTLES' | translate }}</p>
+    } @else {
     @for (battle of battles; track battle.id) {
       <section class="battle-card">
         <!-- header: result left, trophy change right -->
@@ -178,6 +181,7 @@
           </section>
         </section>
       </section>
+    }
     }
   }
 

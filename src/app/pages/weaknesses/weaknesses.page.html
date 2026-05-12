@@ -64,6 +64,9 @@
       <p class="error">{{ 'PAGES.WEAKNESSES.ERROR_PROBLEMATIC_CARDS' | translate:{ err: pErr } }}</p>
     }
     @if (analyticsStore.problematicCards(); as problematicCardsReport) {
+      @if (problematicCardsReport.problematicCards.length === 0) {
+        <p class="no-items">{{ 'PAGES.WEAKNESSES.NO_PROBLEMATIC_CARDS' | translate }}</p>
+      } @else {
       <section class="problematic-cards">
         @for (problematicCard of problematicCardsReport.problematicCards; track problematicCard.cardId) {
           <article class="problematic-card">
@@ -76,6 +79,7 @@
           </article>
         }
       </section>
+      }
     }
   </article>
 </section>

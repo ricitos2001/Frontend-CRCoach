@@ -53,6 +53,14 @@ footer .icon-letters {
   flex: 0 0 auto;
 }
 
+.no-items {
+  background: none;
+  font-size: 2rem;
+  color: var(--elements-color);
+  text-align: center;
+  padding: 2rem 0;
+}
+
 .visually-hidden {
   position: absolute;
   width: 0.0625rem;
@@ -64,4 +72,3 @@ footer .icon-letters {
   white-space: nowrap;
   border: 0;
 }
-
