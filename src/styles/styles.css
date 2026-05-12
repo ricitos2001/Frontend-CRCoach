@@ -353,12 +353,24 @@ header ul li {
   padding: 0 1rem;
 }
 
-header app-common-button button {
+header app-common-button:not(.hamburger) {
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: inline-block;
+  border-radius: 0.5rem;
+  transition: background 150ms ease-in-out;
+}
+
+header app-common-button:not(.hamburger):hover {
+  background: var(--components-color-on-hover);
+}
+
+header app-common-button:not(.hamburger) button {
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
   color: var(--elements-color);
-  background: var(--components-color);
+  background: transparent;
 }
 
 header app-common-button button:hover, header app-language-selector .language-selector:hover {
@@ -366,10 +378,10 @@ header app-common-button button:hover, header app-language-selector .language-se
 }
 
 header ul li a {
-  font-size: 1.05rem; /* un poco más grande */
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--elements-color);
-  padding: 0.45rem 0.6rem; /* aumentar área clicable */
+  padding: 0.45rem 0.6rem;
   display: inline-block;
 }
 
@@ -379,6 +391,8 @@ header ul li a:hover {
 }
 
 header app-language-selector .language-selector {
+  font-size: 1.05rem;
+  font-weight: 600;
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
