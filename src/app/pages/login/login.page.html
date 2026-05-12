@@ -5,7 +5,7 @@
     <p>{{'PAGES.AUTH.GLOBAL.TEXT' | translate}}</p>
   </article>
   <fieldset class="fieldset">
-    <h1 class="form__legend">{{ 'PAGES.AUTH.LOGIN.LEGEND' | translate }}</h1>
+    <h2 class="form__legend">{{ 'PAGES.AUTH.LOGIN.LEGEND' | translate }}</h2>
 
     <app-form-input formControlName="email" type="email" name="email" [label]="'PAGES.AUTH.LOGIN.EMAIL_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.EMAIL_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
       @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid && loginForm.get('email')?.errors?.['required']) {

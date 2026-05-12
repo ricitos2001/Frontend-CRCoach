@@ -1,6 +1,6 @@
 <form [formGroup]="editForm" (ngSubmit)="onSubmit($event)" novalidate>
   <fieldset class="fieldset">
-	<h1 class="form__legend">{{ 'PAGES.EDIT_USER.LEGEND' | translate }}</h1>
+	<h2 class="form__legend">{{ 'PAGES.EDIT_USER.LEGEND' | translate }}</h2>
 	<section class="flex">
 	  <article>
 		<app-form-input formControlName="name" name="name" [label]="'PAGES.EDIT_USER.NAME_LABEL' | translate" [placeholder]="'PAGES.EDIT_USER.NAME_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="editForm.get('name')?.touched && editForm.get('name')?.invalid">

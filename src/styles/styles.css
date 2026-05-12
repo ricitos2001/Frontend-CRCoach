@@ -4127,7 +4127,7 @@ section p.error {
   background-color: transparent;
 }
 
-.player-profile > h1 {
+.player-profile > h2 {
   color: var(--elements-color);
   margin: 1.125rem 0 0.875rem;
   font-size: 1.75rem;
@@ -4177,7 +4177,7 @@ section p.error {
   text-align: center;
 }
 
-.deck h2 {
+.deck h3 {
   background: none;
   box-shadow: none;
   color: var(--components-color);

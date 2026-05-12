@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
   <section class="fieldset">
-    <h1 class="form__legend">@if(goal) { {{ 'PAGES.GOALS.EDIT_TITLE' | translate }} } @else { {{ 'PAGES.GOALS.CREATE_TITLE' | translate }} }</h1>
+    <h2 class="form__legend">@if(goal) { {{ 'PAGES.GOALS.EDIT_TITLE' | translate }} } @else { {{ 'PAGES.GOALS.CREATE_TITLE' | translate }} }</h2>
 
     <app-form-input class="glass-input" name="title" label="{{ 'PAGES.GOALS.LABEL.TITLE' | translate }}" placeholder="" formControlName="title"></app-form-input>
 
