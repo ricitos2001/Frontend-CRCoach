@@ -3,6 +3,13 @@ body.has-sidebar main {
   //transition: margin-left 220ms ease, width 220ms ease;
 }
 
+.landing h3 {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
 /* Cuando el sidebar está abierto (solo en escritorio):
    Evitar que en pantallas pequeñas (responsive) estas reglas reduzcan el ancho
    del contenido principal. En mobile el sidebar se muestra como panel inferior
