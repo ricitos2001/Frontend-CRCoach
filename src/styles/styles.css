@@ -455,13 +455,6 @@ body.has-sidebar main {
   padding: 3rem;
 }
 
-.landing h3 {
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
 /* Cuando el sidebar está abierto (solo en escritorio):
    Evitar que en pantallas pequeñas (responsive) estas reglas reduzcan el ancho
    del contenido principal. En mobile el sidebar se muestra como panel inferior
@@ -1537,6 +1530,20 @@ app-form-input .error[title] {
   text-align: center;
   color: var(--elements-color);
   padding: 6rem 0 4rem;
+}
+
+.landing h2, .landing h3 {
+  padding: 0.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.landing h2 {
+  font-size: 2rem;
+}
+
+.landing h3 {
+  font-size: 1.5rem;
 }
 
 .landing__hero {

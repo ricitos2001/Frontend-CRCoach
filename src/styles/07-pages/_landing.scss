@@ -5,6 +5,20 @@
   padding: 6rem 0 4rem;
 }
 
+.landing h2, .landing h3 {
+  padding: 0.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.landing h2 {
+  font-size: 2rem;
+}
+
+.landing h3 {
+  font-size: 1.5rem;
+}
+
 .landing__hero {
   display: flex;
   flex-direction: column;
