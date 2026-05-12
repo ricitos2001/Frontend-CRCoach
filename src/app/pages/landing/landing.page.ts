@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
-import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-landing',
@@ -19,36 +18,31 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('grid', { static: false }) grid!: ElementRef<HTMLElement>;
 
   private _track?: HTMLElement;
-  private _tween?: gsap.core.Tween;
+  private _tween?: any;
 
   ngOnInit(): void {
-    // no-op here: animation needs DOM, handled in ngAfterViewInit
   }
 
   constructor(private router: Router) {}
 
   ngAfterViewInit(): void {
-    // ensure animation runs when the view is ready; also safe to call again
     requestAnimationFrame(() => this.setupRibbon());
 
-    // Si el componente se reutiliza por la estrategia de rutas, hacemos re-setup
-    // al recibir NavigationEnd apuntando a esta ruta.
     this._routerSub = this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd && ev.urlAfterRedirects.includes('/landing')) {
-        // small delay to ensure DOM is stable
         requestAnimationFrame(() => this.setupRibbon());
       }
     });
   }
 
   ngOnDestroy(): void {
-    // cleanup any running tween to avoid side-effects when navigating away
     if (this._tween) {
       this._tween.kill();
       this._tween = undefined;
     }
     if (this._track) {
-      gsap.killTweensOf(this._track);
+      const track = this._track;
+      import('gsap').then(({ gsap }) => gsap.killTweensOf(track));
       this._track = undefined;
     }
     if (this._routerSub) {
@@ -57,14 +51,14 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private setupRibbon(): void {
+  private async setupRibbon(): Promise<void> {
     const root = this.grid?.nativeElement;
     if (!root) return;
 
-    // If there's already a prepared track, restart its animation.
+    const { gsap } = await import('gsap');
+
     const existing = root.querySelector<HTMLElement>('[data-ribbon-track]');
     if (existing) {
-      // kill any previous tweens and restart
       gsap.killTweensOf(existing);
       const totalWidth = existing.scrollWidth / 2;
       this._tween = gsap.to(existing, {
@@ -77,19 +71,15 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    // 🔥 Creamos un wrapper interno SIN modificar HTML original
     const track = document.createElement('div');
     track.setAttribute('data-ribbon-track', 'true');
 
-    // transferimos hijos al track
     while (root.firstChild) {
       track.appendChild(root.firstChild);
     }
 
-    // duplicamos contenido para loop
     track.innerHTML += track.innerHTML;
 
-    // estilos críticos del track
     track.style.display = 'grid';
     track.style.gridAutoFlow = 'column';
     track.style.gridAutoColumns = 'max-content';
