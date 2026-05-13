@@ -226,12 +226,13 @@ export class DashboardPage implements OnInit, AfterViewInit {
         return;
       }
 
-      // Fallback: construir a partir de metric.streak.current (número de victorias consecutivas)
+      // Fallback: construir a partir de metric.streak.current
       const current = metric?.streak?.current ? Number(metric.streak.current) : 0;
+      const streakType = metric?.streak?.type?.toLowerCase() || 'win';
+      const pillType = (streakType === 'lose' || streakType === 'loss' || streakType === 'defeat') ? 'defeat' : 'victory';
       const total = 12;
-      // Llenar con 'victory' para las victorias actuales y 'none' para el resto
       this.streakPills = Array.from({ length: total }, (_, i) =>
-        i < current ? 'victory' : 'none',
+        i < current ? pillType : 'none',
       ).map((p: any, i: number) => ({ id: i, type: p }));
     });
   }
