@@ -1580,9 +1580,6 @@ body.modal-open {
   header {
     padding: 0.75rem 1.125rem;
   }
-  .chart-wrapper {
-    padding: 1rem;
-  }
   .chart-container {
     padding: 0.75rem;
   }
