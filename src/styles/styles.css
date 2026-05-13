@@ -1143,22 +1143,18 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   }
   button.sidebar-toggle {
     top: auto;
-    bottom: 0.25rem;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 90;
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 50%;
-    padding: 0.5rem;
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+    border-radius: 0.75rem 0.75rem 0 0;
   }
   button.sidebar-toggle svg {
     transform: rotate(-90deg);
     transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   button.sidebar-toggle.open {
-    top: calc(15vh - 1.375rem);
+    top: calc(15vh - 2rem);
     bottom: auto;
     transform: translateX(-50%);
     z-index: 91;
@@ -1172,14 +1168,15 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
     display: none;
   }
   aside {
-    max-height: 85vh;
+    height: 85vh;
     padding: 1.25rem 0.75rem 0.75rem;
   }
   button.sidebar-toggle {
-    bottom: 0.25rem;
-    width: 2.25rem;
-    height: 2.25rem;
-    padding: 0.375rem;
+    bottom: 0;
+    z-index: 90;
+  }
+  button.sidebar-toggle.open {
+    top: calc(15vh - 2rem);
   }
 }
 .checkbox {
