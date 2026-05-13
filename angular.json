@@ -65,7 +65,8 @@
               "buildTarget": "Frontend-CRCoach:build:production"
             },
             "development": {
-              "buildTarget": "Frontend-CRCoach:build:development"
+              "buildTarget": "Frontend-CRCoach:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
