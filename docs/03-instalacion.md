@@ -174,21 +174,40 @@ El frontend tiene un archivo de entorno en `src/enviroments/enviroment.ts`:
 
 ```typescript
 export const environment = {
-  production: false,
-  apiUrl: 'https://backend-crcoach.onrender.com',  // URL del backend
+  production: true,
+  apiUrl: '/api',
 };
 ```
 
-Para desarrollo local, cambia la URL del backend:
+> El valor `apiUrl: '/api'` se usa tanto en desarrollo como en producción. En producción, Nginx recibe las peticiones en `/api/` y las redirige al backend mediante proxy inverso. En desarrollo, Angular CLI usa un proxy para hacer lo mismo.
 
-```typescript
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080',
-};
+### 3.4.2. Proxy de desarrollo
+
+Para que las peticiones al backend funcionen en local, Angular CLI utiliza un proxy configurado en `proxy.conf.json`:
+
+```json
+{
+  "/api/**": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
 ```
 
-### 3.4.2. Ejecución con Angular CLI (desarrollo)
+**Cómo funciona:**
+
+1. El frontend hace peticiones a `/api/api/v1/...` (el `apiUrl` es `/api` y los servicios concatenan `/api/v1/...`).
+2. El proxy de Angular intercepta cualquier ruta que empiece por `/api/`.
+3. La opción `pathRewrite` elimina el primer `/api` de la ruta, quedando `/api/v1/...`.
+4. La petición se reenvía a `http://localhost:8080/api/v1/...` (el backend).
+
+El proxy solo se activa en la configuración `development` de `angular.json`, por lo que no interfiere en builds de producción.
+
+### 3.4.3. Ejecución con Angular CLI (desarrollo)
 
 ```bash
 cd Frontend-CRCoach
@@ -203,6 +222,8 @@ ng serve
 ```
 
 La aplicación arrancará en `http://localhost:4200`.
+
+> Asegúrate de tener el backend corriendo en `http://localhost:8080` antes de iniciar el frontend.
 
 ### 3.4.3. Ejecución con Docker (recomendado)
 

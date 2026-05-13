@@ -466,7 +466,7 @@ export const environment = {
 };
 ```
 
-> El frontend ahora llama al backend a través de `/api`, que Nginx redirige mediante proxy inverso al backend en `https://backend-crcoach.onrender.com`. Esto elimina la necesidad de CORS y sigue el patrón de gateway unificado.
+> El frontend llama al backend a través de `/api`. En producción, Nginx redirige mediante proxy inverso al backend. En desarrollo local, Angular CLI usa `proxy.conf.json` para el mismo propósito, con `pathRewrite` que elimina el primer segmento `/api` duplicado en las rutas. Consulta la sección 3.4.2 de `03-instalacion.md` para más detalles.
 
 ### 8.3.2. Despliegue del backend en Render
 
@@ -989,6 +989,8 @@ https://backend-crcoach.onrender.com/swagger-ui/index.html
 | `apiUrl` | URL base del backend (ruta relativa para proxy Nginx) | Sí | `/api` |
 | `PORT` | Puerto del servidor de desarrollo | No | `4200` |
 
+> **Nota sobre proxy de desarrollo**: En local, Angular CLI usa `proxy.conf.json` para redirigir las peticiones `/api/**` al backend. Este proxy incluye `pathRewrite` para eliminar el segmento `/api` duplicado en las rutas. Solo se activa en la configuración `development` de `angular.json`, por lo que no afecta a builds de producción.
+
 **Archivo `.env.example`** disponible en `Frontend-CRCoach/.env.example`:
 ```bash
 # Port for local development server
@@ -1244,6 +1246,18 @@ Solución:
   1. Verificar las variables PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD.
   2. En Neon, verificar que la IP de Render está permitida en la configuración de red.
   3. Asegurar que la URL JDBC tiene sslmode=require.
+```
+
+### Problema: El proxy de desarrollo no funciona (error 404 en local)
+
+```
+Causa posible: El proxy.conf.json no está configurado correctamente o ng serve no lo está usando.
+Solución:
+  1. Verificar que `proxy.conf.json` existe en la raíz del frontend con el contenido adecuado.
+  2. Verificar que `angular.json` incluye `"proxyConfig": "proxy.conf.json"` en la configuración `development` del serve.
+  3. Asegurar que el backend está corriendo en `http://localhost:8080`.
+  4. Si el patrón del proxy no captura las rutas, usar `/api/**` en lugar de `/api/*`.
+  5. Si las rutas llegan duplicadas al backend, usar `pathRewrite: {"^/api": ""}` en el proxy.
 ```
 
 ### Problema: Los tests fallan en CI
