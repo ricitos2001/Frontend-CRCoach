@@ -123,6 +123,7 @@ export class RefreshButtonComponent implements OnDestroy {
           clearInterval(this._pollHandle);
           this._pollHandle = null;
           this.toast.show({ type: 'success', message: 'PAGES.REFRESH.DONE', duration: 2000 });
+          window.location.reload();
         }
       } catch (e) {
         // keep trying, but avoid silent crash
