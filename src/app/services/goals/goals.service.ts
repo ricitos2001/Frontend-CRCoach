@@ -23,7 +23,7 @@ export class GoalsService {
   ): Observable<PaginatedResponse<Goal>> {
     const params = new HttpParams().set('page', page).set('pageSize', pageSize);
     return this.http.get<PaginatedResponse<Goal>>(
-      `${environment.apiUrl}/api/v1/goals/myGoals/${email}`,
+      `${environment.apiUrl}/v1/goals/myGoals/${email}`,
       {
         headers: { Authorization: `Bearer ${this.token}` },
         params,
@@ -34,7 +34,7 @@ export class GoalsService {
   getGoal(id: string): Observable<Goal> {
     this.loadingService.show();
     return this.http
-      .get<Goal>(`${environment.apiUrl}/api/v1/goals/id/${id}`, {
+      .get<Goal>(`${environment.apiUrl}/v1/goals/id/${id}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -43,19 +43,19 @@ export class GoalsService {
   }
 
   createGoal(goal: Goal): Observable<Goal> {
-    return this.http.post<Goal>(`${environment.apiUrl}/api/v1/goals`, goal, {
+    return this.http.post<Goal>(`${environment.apiUrl}/v1/goals`, goal, {
       headers: { Authorization: `Bearer ${this.token}` },
     });
   }
 
   editGoal(id: string | null, goal: Goal): Observable<Goal> {
-    return this.http.put<Goal>(`${environment.apiUrl}/api/v1/goals/${id}`, goal, {
+    return this.http.put<Goal>(`${environment.apiUrl}/v1/goals/${id}`, goal, {
       headers: { Authorization: `Bearer ${this.token}` },
     });
   }
 
   removeGoal(id: string): Observable<Goal> {
-    return this.http.delete<Goal>(`${environment.apiUrl}/api/v1/goals/${id}`, {
+    return this.http.delete<Goal>(`${environment.apiUrl}/v1/goals/${id}`, {
       headers: { Authorization: `Bearer ${this.token}` },
     });
   }

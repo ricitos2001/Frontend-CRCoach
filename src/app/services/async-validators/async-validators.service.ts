@@ -19,7 +19,7 @@ export class AsyncValidatorsService {
       return timer(500).pipe(
         switchMap(() =>
           this.http.get<{ exists: boolean }>(
-            `${environment.apiUrl}/api/v1/users/email-exists?email=${val}`,
+            `${environment.apiUrl}/v1/users/email-exists?email=${val}`,
           ),
         ),
         map((res) => (res.exists ? { emailTaken: true } : null)),
@@ -37,7 +37,7 @@ export class AsyncValidatorsService {
       return timer(500).pipe(
         switchMap(() =>
           this.http.get<{ exists: boolean }>(
-            `${environment.apiUrl}/api/v1/users/username-exists?username=${val}`,
+            `${environment.apiUrl}/v1/users/username-exists?username=${val}`,
           ),
         ),
         map((res) => (res.exists ? { usernameTaken: true } : null)),
@@ -63,7 +63,7 @@ export class AsyncValidatorsService {
       return timer(500).pipe(
         switchMap(() =>
           this.http.get<any>(
-            `${environment.apiUrl}/api/v1/player_profiles/exists-in-api/${encodedTag}`,
+            `${environment.apiUrl}/v1/player_profiles/exists-in-api/${encodedTag}`,
             {
               headers: token
                 ? {
@@ -108,7 +108,7 @@ export class AsyncValidatorsService {
       console.debug('[AsyncValidators] playerTagTaken: checking tag', normalizedTag, 'encoded:', encodedTag);
       return timer(500).pipe(
         switchMap(() =>
-          this.http.get<any>(`${environment.apiUrl}/api/v1/player_profiles/exists-in-local/${encodedTag}`, {
+          this.http.get<any>(`${environment.apiUrl}/v1/player_profiles/exists-in-local/${encodedTag}`, {
             headers: token
               ? {
                   Authorization: `Bearer ${token}`,
