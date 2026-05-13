@@ -1,6 +1,6 @@
 module.exports = [
   {
-    context: ['/api'],
+    context: ['/api/api'],
     target: 'http://localhost:8080',
     secure: false,
   },
