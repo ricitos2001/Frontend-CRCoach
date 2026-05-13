@@ -1,24 +1,34 @@
 header {
   border-radius: 0 0 0.5rem 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+header.scrolled {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.25);
 }
 
 header svg {
   margin: 0 1rem;
 }
 
-/* Tamaño específico para el logo (la corona) en el header */
 header .logo {
-  width: 4rem;
+  width: 3.5rem;
   height: auto;
+  cursor: pointer;
 }
 
 header ul {
   display: flex;
   flex-direction: row;
   align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Mobile / hamburger styles */
 .hamburger {
   display: none;
   background: transparent;
@@ -45,62 +55,83 @@ header ul {
 .hamburger-inner:after { content: ''; top: 0.5rem; }
 
 .nav-links { display: block; }
-.nav-links ul { display:flex; flex-direction:row; gap:0.25rem; align-items:center; }
-
-/* Open state animation */
-.nav-links.open { }
-
+.nav-links ul { display: flex; flex-direction: row; gap: 0.5rem; align-items: center; }
 
 header ul li {
-  margin: 0 0.35rem;
-  padding: 0 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+header ul li a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--elements-color);
+  padding: 0.45rem 0.8rem;
+  display: inline-block;
+  text-decoration: none;
+  opacity: 0.85;
+  border-bottom: 2px solid transparent;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+header ul li a:hover {
+  opacity: 1;
+  border-bottom-color: var(--elements-color);
 }
 
 header app-common-button:not(.hamburger) {
-  font-size: 1.05rem;
-  font-weight: 600;
   display: inline-block;
   border-radius: 0.5rem;
   transition: background 150ms ease-in-out;
 }
 
-header app-common-button:not(.hamburger):hover {
-  background: var(--components-color-on-hover);
-}
-
 header app-common-button:not(.hamburger) button {
-  padding: 1rem;
-  border: none;
+  padding: 0.65rem 1.5rem;
+  border: 0.0625rem solid rgba(255,255,255,0.18);
   border-radius: 0.5rem;
   color: var(--elements-color);
-  background: transparent;
+  background-color: rgba(255,255,255,0.08);
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 50%);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, backdrop-filter 0.2s ease;
+  box-shadow: 0 0.5rem 1rem rgba(2,12,30,0.5), inset 0 -0.25rem 0.5rem rgba(255,255,255,0.03);
+  text-shadow: 0 0.0625rem 0 rgba(0,0,0,0.3);
+  -webkit-backdrop-filter: blur(0.375rem);
+  backdrop-filter: blur(0.375rem);
 }
 
-header app-common-button button:hover, header app-language-selector .language-selector:hover {
-  background: var(--components-color-on-hover);
+header app-common-button:not(.hamburger) button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.5rem rgba(2,12,30,0.55);
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.5rem);
 }
 
-header ul li a {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--elements-color);
-  padding: 0.45rem 0.6rem;
-  display: inline-block;
-}
-
-header ul li a:hover {
-  text-decoration: none;
-  opacity: 0.95;
+header app-language-selector {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
 }
 
 header app-language-selector .language-selector {
-  font-size: 1.05rem;
-  font-weight: 600;
-  padding: 1rem;
-  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath stroke='white' stroke-width='1.5' stroke-linecap='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 0.65rem;
+  min-width: 5rem;
 }
 
 header app-language-selector .language-selector option {
@@ -108,31 +139,77 @@ header app-language-selector .language-selector option {
   background: var(--components-color);
 }
 
-header app-language-selector {
-  display: inline-block;
-  position: relative;
+header app-language-selector .language-selector__flag {
+  margin-right: 0.35rem;
+  vertical-align: middle;
 }
 
 header app-language-selector::after {
-  content: '';
-  position: absolute;
-  right: 0.6rem;
-  top: 50%;
-  width: 0.6rem;
-  height: 0.6rem;
-  pointer-events: none;
-  transform: translateY(-50%) rotate(45deg);
+  display: none;
 }
 
 header app-dark-mode-button button {
-  background: var(--components-color);
-  border: none;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.4rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-/* Responsive behaviour: collapse nav into hamburger under 45rem */
+header app-dark-mode-button button:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.4);
+}
+
+header app-dark-mode-button button svg {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* Mobile drawer close button */
+.mobile-drawer-close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--elements-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  z-index: 10;
+}
+
+@media (max-width: 64rem) {
+  header { padding: 0.6rem 1rem; }
+  header .logo { width: 3rem; }
+  header ul li a { font-size: 0.9rem; padding: 0.35rem 0.6rem; }
+  header app-common-button:not(.hamburger) button { padding: 0.55rem 1.2rem; font-size: 0.9rem; }
+  header app-language-selector .language-selector { font-size: 0.85rem; padding: 0.4rem 1.8rem 0.4rem 0.6rem; }
+  header app-dark-mode-button button { width: 2rem; height: 2rem; }
+}
+
 @media (max-width: 45rem) {
-  header ul { display:none; }
-  .hamburger { display:inline-block; }
+  header { padding: 0.5rem 0.75rem; min-height: 3.5rem; }
+  header .logo { width: 2.5rem; }
+  header svg { margin: 0 0.5rem; }
+
+  header ul { display: none; }
+  .hamburger { display: inline-block; }
+
+  .mobile-drawer-close {
+    display: block;
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -143,13 +220,51 @@ header app-dark-mode-button button {
     background: var(--components-color);
     box-shadow: -0.375rem 0 1.5rem rgba(0,0,0,0.6);
     transform: translateX(100%);
-    transition: transform 0.25s ease;
+    transition: transform 0.3s ease;
     z-index: 1200;
-    padding: 2.5rem 1rem;
+    padding: 3.5rem 1.5rem 1rem;
+    overflow-y: auto;
   }
   .nav-links.open { transform: translateX(0%); }
-  .nav-links ul { display:flex; flex-direction:column; gap:1rem; }
+  .nav-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
   .nav-links ul li { padding: 0; margin: 0; }
-  .nav-links a { font-size: 1.05rem; display:block; }
+  .nav-links ul li a {
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-links ul li a:hover { border-bottom-color: var(--elements-color); }
+  .nav-links ul li app-common-button button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  .nav-links ul li app-language-selector {
+    width: 100%;
+  }
+  .nav-links ul li app-language-selector .language-selector {
+    width: 100%;
+    padding: 0.75rem 2rem 0.75rem 0.75rem;
+  }
+  .nav-links ul li app-dark-mode-button {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+  .nav-links ul li app-dark-mode-button button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
+@media (max-width: 30rem) {
+  header { padding: 0.4rem 0.5rem; min-height: 3rem; }
+  header .logo { width: 2rem; }
+  header svg { margin: 0 0.25rem; }
+  .nav-links { max-width: 100%; width: 85%; }
+}

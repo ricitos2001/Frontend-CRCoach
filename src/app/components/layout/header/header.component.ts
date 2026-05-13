@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, HostListener } from '@angular/core';
 import { LanguageSelectorComponent } from '../../shared/language-selector/language-selector.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CommonButtonComponent } from '../../shared/common-button/common-button.component';
@@ -23,39 +23,37 @@ import { DarkModeButtonComponent } from '../../shared/dark-mode-button/dark-mode
   standalone: true,
 })
 export class HeaderComponent {
-  // media query listener used to detect mobile layout
   private mq?: MediaQueryList;
   public isMobile = false;
+  public scrolled = false;
 
   constructor(protected router: Router) {
-    // initialize mobile flag and subscribe to changes
     try {
       this.mq = window.matchMedia('(max-width: 720px)');
       this.isMobile = this.mq.matches;
-      // update on changes
       const listener = (e: MediaQueryListEvent) => {
         this.isMobile = e.matches;
-        // ensure menu is closed when switching to desktop
         if (!this.isMobile) {
           this.menuOpen = false;
         }
       };
-      // support both modern and older browsers
       if ((this.mq as any).addEventListener) {
         (this.mq as any).addEventListener('change', listener);
       } else if ((this.mq as any).addListener) {
-        // deprecated but supported in some environments
         (this.mq as any).addListener(listener);
       }
     } catch (e) {
-      // matchMedia might not be available in some test environments
       this.isMobile = false;
     }
   }
   headerContentService = inject(HeaderContentService);
   content$ = this.headerContentService.content$;
-  // Control del menú hamburguesa en landing
   public menuOpen = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.scrolled = window.scrollY > 10;
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
@@ -68,9 +66,7 @@ export class HeaderComponent {
     if (event) {
       event.preventDefault();
     }
-    // Navegar a /landing con fragment y forzar scroll tras la navegación
     this.router.navigate(['/landing'], { fragment }).then(() => {
-      // small timeout to ensure elements are rendered
       setTimeout(() => {
         const el = document.getElementById(fragment);
         if (el) {

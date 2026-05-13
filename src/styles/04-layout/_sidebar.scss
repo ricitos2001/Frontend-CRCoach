@@ -2,9 +2,23 @@ aside {
   background: var(--components-color);
 }
 
-/* Estilos del sidebar (colapsable) */
 :host {
   display: block;
+}
+
+/* Overlay backdrop */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 79;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
 }
 
 aside {
@@ -40,7 +54,7 @@ aside ul {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: 0.375rem;
 }
 
 aside ul li {
@@ -58,16 +72,13 @@ aside ul li a {
   transition: background-color 160ms, color 160ms, transform 160ms;
 }
 
-/* Icono: mantener tamaño y color */
 aside ul li a svg {
-  width: 2.5rem;
-  height: 2.5rem;
-  flex: 0 0 2.5rem;
-  /* asegurar que el svg herede el color del enlace */
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 2.25rem;
   color: inherit;
 }
 
-/* Forzar que los trazos y rellenos de los iconos sigan el color del texto */
 aside ul li a svg path,
 aside ul li a svg g,
 aside ul li a svg circle,
@@ -79,7 +90,6 @@ aside ul li a svg polyline {
   stroke: var(--elements-color);
 }
 
-/* Etiqueta: oculta en estado cerrado */
 aside ul li a span {
   white-space: nowrap;
   font-weight: 600;
@@ -91,30 +101,25 @@ aside ul li a span {
   color: inherit;
 }
 
-/* Mostrar etiqueta cuando esté abierto */
 aside.open ul li a span {
   opacity: 1;
   transform: translateX(0);
-  /* dar un pequeño retardo para que el texto aparezca cuando el ancho ya ha comenzado */
   transition-delay: 120ms;
 }
 
-/* Resaltar el enlace al pasar el ratón */
 aside ul li a:hover {
   background: rgba(255,255,255,0.05);
 }
 
-/* Botones (selector de idioma y dark mode) en fila cuando cerrado */
 aside ul li.buttons {
   margin-top: 0.75rem;
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  justify-content: flex-start; /* mantener selector y toggle juntos a la izquierda */
+  justify-content: flex-start;
   padding-left: 0.375rem;
 }
 
-/* Forzar que los selectores personalizados se alineen en línea y tengan tamaño adecuado */
 aside ul li.buttons app-language-selector,
 aside ul li.buttons app-dark-mode-button {
   display: inline-flex;
@@ -124,7 +129,6 @@ aside ul li.buttons app-dark-mode-button {
   padding: 0.125rem;
 }
 
-/* Estilos específicos para el selector de idioma dentro del aside */
 aside app-language-selector {
   display: inline-flex;
   align-items: center;
@@ -132,11 +136,20 @@ aside app-language-selector {
 }
 
 aside app-language-selector .language-selector {
-  padding: 1rem;
-  border: none;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
+  font-size: 0.85rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath stroke='white' stroke-width='1.5' stroke-linecap='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 0.65rem;
 }
 
 aside app-language-selector .language-selector option {
@@ -144,14 +157,13 @@ aside app-language-selector .language-selector option {
   background: var(--components-color);
 }
 
-/* Reducir ligeramente la bandera en el sidebar */
 aside .language-selector__flag {
-  width: 1.6rem;
-  height: 1.6rem;
-  margin-right: 0.4rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.35rem;
+  vertical-align: middle;
 }
 
-/* Si el selector de idioma expone un botón interno, reducir su tamaño para que quepa */
 aside ul li.buttons app-language-selector select,
 aside ul li.buttons app-language-selector button {
   font-size: 0.8125rem;
@@ -171,20 +183,16 @@ aside ul li.buttons app-dark-mode-button {
   cursor: pointer;
 }
 
-/* Small spacing between flag select and dark-mode button */
 aside ul li.buttons app-dark-mode-button {
-  margin-left: 0.375rem;
+  margin-left: 0.25rem;
 }
 
-/* Botón de logout: ubicado abajo */
 aside app-common-button {
   width: calc(100% - 1rem);
   margin: 0.75rem 0.5rem 0 0.5rem;
   align-self: center;
 }
 
-/* Estilos para el botón de cerrar sesión interno del componente app-common-button */
-/* Forzar estilos del botón de logout únicamente dentro del aside */
 aside app-common-button,
 aside app-common-button button {
   display: block;
@@ -194,24 +202,25 @@ aside app-common-button button {
 aside app-common-button button {
   background: var(--components-color);
   color: var(--elements-color);
-  padding: 0.75rem 0.875rem;
+  padding: 0.65rem 0.875rem;
   border-radius: 0.5rem;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.15);
   display: flex;
   align-items: center;
   gap: 0.75rem;
   justify-content: flex-start;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 aside app-common-button button:hover {
   background: rgba(255,255,255,0.05);
 }
 
-/* Icono dentro del botón de logout */
 app-common-button button svg {
-  width: 2.25rem;
-  height: 2.25rem;
-  flex: 0 0 2.25rem;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
 }
 
 button.sidebar-toggle {
@@ -250,3 +259,111 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   fill: none;
 }
 
+/* Close button inside sidebar */
+.sidebar-close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  color: var(--elements-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.sidebar-close-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 48rem) {
+  .sidebar-overlay {
+    display: block;
+    pointer-events: none;
+  }
+  .sidebar-overlay.open {
+    pointer-events: auto;
+  }
+
+  aside {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 85vh;
+    transform: translateY(100%);
+    visibility: visible;
+    border-radius: 1rem 1rem 0 0;
+    padding: 1.5rem 1rem 1rem;
+    box-shadow: 0 -0.375rem 1.5rem rgba(0,0,0,0.3);
+    overflow-y: auto;
+  }
+  aside.open {
+    width: 100%;
+    transform: translateY(0);
+  }
+
+  aside ul {
+    gap: 0.25rem;
+  }
+
+  aside ul li a span {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  aside ul li.buttons {
+    justify-content: center;
+    padding: 0.5rem 0;
+    gap: 0.75rem;
+  }
+
+  button.sidebar-toggle {
+    top: auto;
+    bottom: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 90;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.25);
+  }
+  button.sidebar-toggle svg {
+    transform: rotate(-90deg);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  button.sidebar-toggle.open {
+    top: calc(15vh - 1.375rem);
+    bottom: auto;
+    transform: translateX(-50%);
+    z-index: 91;
+  }
+  button.sidebar-toggle.open svg {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 30rem) {
+  .sidebar-overlay { display: none; }
+  aside {
+    height: 85vh;
+    padding: 1.25rem 0.75rem 0.75rem;
+  }
+  button.sidebar-toggle {
+    bottom: 0.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0.375rem;
+  }
+  button.sidebar-toggle.open {
+    top: calc(15vh - 1.125rem);
+  }
+}

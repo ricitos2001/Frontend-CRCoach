@@ -83,10 +83,11 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     const existing = root.querySelector<HTMLElement>('[data-ribbon-track]');
     if (existing) {
       gsap.killTweensOf(existing);
+      existing.style.gap = '3rem';
       const totalWidth = existing.scrollWidth / 2;
       this._tween = gsap.to(existing, {
         x: -totalWidth,
-        duration: 25,
+        duration: 50,
         ease: 'none',
         repeat: -1,
       });
@@ -106,7 +107,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
     track.style.display = 'grid';
     track.style.gridAutoFlow = 'column';
     track.style.gridAutoColumns = 'max-content';
-    track.style.gap = '1.6rem';
+    track.style.gap = '3rem';
     track.style.width = 'max-content';
     track.style.willChange = 'transform';
 
@@ -116,7 +117,7 @@ export class LandingPage implements OnInit, AfterViewInit, OnDestroy {
 
     this._tween = gsap.to(track, {
       x: -totalWidth,
-      duration: 25,
+      duration: 50,
       ease: 'none',
       repeat: -1,
     });

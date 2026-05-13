@@ -1,10 +1,24 @@
-/* Language selector flag */
 .language-selector__flag {
-  width: 2rem;
-  height: 2rem;
+  width: 1.4rem;
+  height: 1.4rem;
   object-fit: cover;
   vertical-align: middle;
   display: inline-block;
   border-radius: 0.125rem;
-  margin-right: 0.5rem;
+  margin-right: 0.35rem;
+}
+
+.language-selector {
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.language-selector:hover {
+  border-color: rgba(255,255,255,0.4);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+}
+
+.language-selector:focus-visible {
+  outline: 2px solid var(--elements-color);
+  outline-offset: 2px;
 }
