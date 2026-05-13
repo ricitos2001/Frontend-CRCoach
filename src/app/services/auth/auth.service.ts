@@ -40,18 +40,18 @@ export class AuthService {
 
   login(data: FormGroup | any) {
     const body = this.extractValue(data);
-    return this.http.post<any>(`${environment.apiUrl}/api/v1/auth/authenticate`, body);
+    return this.http.post<any>(`${environment.apiUrl}/v1/auth/authenticate`, body);
   }
 
   register(data: FormGroup | any) {
     const body = this.extractValue(data);
-    return this.http.post<any>(`${environment.apiUrl}/api/v1/auth/register`, body);
+    return this.http.post<any>(`${environment.apiUrl}/v1/auth/register`, body);
   }
 
   logout() {
     // Llamar al endpoint de logout en el backend, pero asegurarnos
     // de limpiar los datos locales y los stores aunque falle la petición.
-    this.http.post(`${environment.apiUrl}/api/v1/auth/logout`, {}, { responseType: 'text' }).subscribe({
+    this.http.post(`${environment.apiUrl}/v1/auth/logout`, {}, { responseType: 'text' }).subscribe({
       next: () => {
         this.removeUserData();
       },

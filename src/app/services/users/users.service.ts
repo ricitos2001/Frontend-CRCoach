@@ -18,7 +18,7 @@ export class UsersService {
 
   getUsers(): Observable<User[]> {
     return this.http
-      .get<User[]>(`${environment.apiUrl}/api/v1/users`, {
+      .get<User[]>(`${environment.apiUrl}/v1/users`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -28,7 +28,7 @@ export class UsersService {
 
   getUserById(id: string | null): Observable<User> {
     return this.http
-      .get<User>(`${environment.apiUrl}/api/v1/users/id/${id}`, {
+      .get<User>(`${environment.apiUrl}/v1/users/id/${id}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -39,7 +39,7 @@ export class UsersService {
   getUser(email: string | null): Observable<User> {
     const encoded = email ? encodeURIComponent(email) : '';
     return this.http
-      .get<User>(`${environment.apiUrl}/api/v1/users/email/${encoded}`, {
+      .get<User>(`${environment.apiUrl}/v1/users/email/${encoded}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -49,7 +49,7 @@ export class UsersService {
 
   getUserByName(username: string | null): Observable<User> {
     return this.http
-      .get<User>(`${environment.apiUrl}/api/v1/users/username/${username}`, {
+      .get<User>(`${environment.apiUrl}/v1/users/username/${username}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -59,7 +59,7 @@ export class UsersService {
 
   editUser(id: string | null, user: User): Observable<User> {
     return this.http
-      .put<User>(`${environment.apiUrl}/api/v1/users/${id}`, user, {
+      .put<User>(`${environment.apiUrl}/v1/users/${id}`, user, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -69,7 +69,7 @@ export class UsersService {
 
   removeUser(id: number): Observable<User> {
     return this.http
-      .delete<User>(`${environment.apiUrl}/api/v1/users/${id}`, {
+      .delete<User>(`${environment.apiUrl}/v1/users/${id}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -79,8 +79,8 @@ export class UsersService {
 
   getImageProfile(id: number, cacheBust: boolean = false): Observable<Blob> {
     const url = cacheBust
-      ? `${environment.apiUrl}/api/v1/users/${id}/avatar?t=${Date.now()}`
-      : `${environment.apiUrl}/api/v1/users/${id}/avatar`;
+      ? `${environment.apiUrl}/v1/users/${id}/avatar?t=${Date.now()}`
+      : `${environment.apiUrl}/v1/users/${id}/avatar`;
     return this.http.get(url, {
       headers: {
         Authorization: `Bearer ${this.token}`,
@@ -91,7 +91,7 @@ export class UsersService {
 
   postImageProfile(id: number, imageFormData: FormData): Observable<any> {
     return this.http
-      .post(`${environment.apiUrl}/api/v1/users/${id}/avatar`, imageFormData, {
+      .post(`${environment.apiUrl}/v1/users/${id}/avatar`, imageFormData, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },

@@ -18,7 +18,7 @@ export class NotificationsService {
     return timer(0, intervalMs).pipe(
       switchMap(() =>
         this.http.get<PaginatedResponse<Notification>>(
-          `${environment.apiUrl}/api/v1/notifications/myNotifications/${email}`,
+          `${environment.apiUrl}/v1/notifications/myNotifications/${email}`,
           {
             headers: {
               Authorization: `Bearer ${this.token}`,
@@ -33,7 +33,7 @@ export class NotificationsService {
 
   pushNotifications(notification: Notification) {
     return this.http.post<Notification>(
-      `${environment.apiUrl}/api/v1/notifications`,
+      `${environment.apiUrl}/v1/notifications`,
       notification,
       {
         headers: {
@@ -47,7 +47,7 @@ export class NotificationsService {
     const params = new HttpParams().set('page', String(page)).set('pageSize', String(pageSize));
 
     return this.http.get<PaginatedResponse<Notification>>(
-      `${environment.apiUrl}/api/v1/notifications/myNotifications/${email}`,
+      `${environment.apiUrl}/v1/notifications/myNotifications/${email}`,
       {
         headers: {
           Authorization: `Bearer ${this.token}`,
