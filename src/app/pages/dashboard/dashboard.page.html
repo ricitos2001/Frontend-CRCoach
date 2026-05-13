@@ -80,7 +80,14 @@
             </svg>
             <article class="streak-info">
               <p class="streak-number">{{ metric.streak.current }}</p>
-              <p class="streak-sub">{{ 'PAGES.DASHBOARD.STREAK_SUBTITLE' | translate }}</p>
+              @switch (metric.streak.type) {
+                @case ("LOSS") {
+                  <p class="streak-sub">{{ 'PAGES.DASHBOARD.STREAK_SUBTITLE_LOSS' | translate }}</p>
+                }
+                @case ("WIN") {
+                  <p class="streak-sub">{{ 'PAGES.DASHBOARD.STREAK_SUBTITLE_WIN' | translate }}</p>
+                }
+              }
             </article>
           </section>
           <article class="streak-bar below">
