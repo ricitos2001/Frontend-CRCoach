@@ -1,4 +1,4 @@
-<aside [class.open]="isOpened" aria-label="Sidebar" [attr.aria-hidden]="!isOpened">
+<aside [class.open]="isOpened" aria-label="Sidebar" [attr.inert]="!isOpened ? '' : null">
     <ul>
       <li>
         <a routerLink="/dashboard">
