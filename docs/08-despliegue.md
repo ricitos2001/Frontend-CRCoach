@@ -13,21 +13,21 @@
 │       │                                                                 │
 │       ▼                                                                 │
 │   ┌──────────────────────────────────────────────────────┐              │
-│   │          Frontend (Render.com)                        │              │
-│   │          https://frontend-crcoach.onrender.com        │              │
-│   │                                                       │              │
+│   │          Frontend (Render.com)                       │              │
+│   │          https://frontend-crcoach.onrender.com       │              │
+│   │                                                      │              │
 │   │   ┌──────────────────────────────────────────────┐   │              │
 │   │   │  Nginx (reverse proxy + static files)        │   │              │
 │   │   │  ├─ Sirve SPA Angular (dist/)                │   │              │
 │   │   │  └─ Proxy pass /api/ → https://backend-...   │   │              │
 │   │   └──────────────────────────────────────────────┘   │              │
 │   └──────────────────┬───────────────────────────────────┘              │
-│                      │ HTTP/HTTPS                                      │
+│                      │ HTTP/HTTPS                                       │
 │                      ▼                                                  │
 │   ┌──────────────────────────────────────────────────────┐              │
-│   │          Backend (Render.com)                         │              │
-│   │          https://backend-crcoach.onrender.com         │              │
-│   │                                                       │              │
+│   │          Backend (Render.com)                        │              │
+│   │          https://backend-crcoach.onrender.com        │              │
+│   │                                                      │              │
 │   │   ┌──────────────────────────────────────────────┐   │              │
 │   │   │  Spring Boot 4.0 + Java 21                   │   │              │
 │   │   │  ├─ API REST en /api/v1/*                    │   │              │
@@ -36,33 +36,33 @@
 │   │   │  └─ JWT Auth + Spring Security               │   │              │
 │   │   └──────────────────────────────────────────────┘   │              │
 │   └──────────────────┬───────────────────────────────────┘              │
-│                      │ SSL/TLS                                         │
+│                      │ SSL/TLS                                          │
 │                      ▼                                                  │
 │   ┌──────────────────────────────────────────────────────┐              │
-│   │          Base de Datos (Neon.tech)                    │              │
-│   │          PostgreSQL 15 Serverless                     │              │
-│   │                                                       │              │
+│   │          Base de Datos (Neon.tech)                   │              │
+│   │          PostgreSQL 15 Serverless                    │              │
+│   │                                                      │              │
 │   │   ┌──────────────────────────────────────────────┐   │              │
-│   │   │  Conexión: jdbc:postgresql://ep-...neon.tech  │   │              │
-│   │   │  ├─ Tablas: User, Battle, Goal, Session,...   │   │              │
-│   │   │  └─ Pool: HikariCP con sslmode=require        │   │              │
+│   │   │  Conexión: jdbc:postgresql://ep-...neon.tech │   │              │
+│   │   │  ├─ Tablas: User, Battle, Goal, Session,...  │   │              │
+│   │   │  └─ Pool: HikariCP con sslmode=require       │   │              │
 │   │   └──────────────────────────────────────────────┘   │              │
 │   └──────────────────────────────────────────────────────┘              │
 │                                                                         │
-│   🌐 API Externa                                                       │
+│   🌐 API Externa                                                        │
 │       https://api.clashroyale.com/v1                                    │
 │       (Supercell - Clash Royale API)                                    │
 │                                                                         │
-│   📧 Email (Brevo SMTP)                                                │
+│   📧 Email (Brevo SMTP)                                                 │
 │       smtp-relay.brevo.com:587                                          │
 │       (Recuperación de contraseña, notificaciones)                      │
 │                                                                         │
-│   📦 CI/CD (GitHub Actions)                                            │
-│       ├─ CI Pipeline: test + build en push/PR a master                │
-│       ├─ CD Pipeline: build y push Docker image a Docker Hub          │
-│       ├─ CodeQL: análisis de seguridad                                │
-│       ├─ Qodana: calidad de código                                    │
-│       └─ Deploy Docs: publica documentación en GitHub Pages           │
+│   📦 CI/CD (GitHub Actions)                                             │
+│       ├─ CI Pipeline: test + build en push/PR a master                  │
+│       ├─ CD Pipeline: build y push Docker image a Docker Hub            │
+│       ├─ CodeQL: análisis de seguridad                                  │
+│       ├─ Qodana: calidad de código                                      │
+│       └─ Deploy Docs: publica documentación en GitHub Pages             │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -123,7 +123,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-docs: Remove duplicate section header in README
       - name: Run tests
         run: mvn -B verify
 
@@ -160,7 +159,7 @@ docs: Remove duplicate section header in README
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_IMAGE_BACKEND }}
+          images: ${{ env.DOCKER_IMAGE }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix={{branch}}-,format=short
@@ -255,7 +254,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_IMAGE_FRONTEND }}
+          images: ${{ env.DOCKER_IMAGE }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,prefix={{branch}}-,format=short
@@ -362,7 +361,37 @@ jobs:
           publish_dir: ./site
 ```
 
-### 8.2.6. Configuración de secrets y variables en GitHub
+### 8.2.6. Estrategia de ramas
+
+El proyecto sigue un modelo **GitHub Flow** simplificado, adaptado al tamaño del equipo (un desarrollador):
+
+```
+feature/* → PR → master (estable)
+```
+
+| Rama | Propósito | Protección |
+|:-----|:-----------|:-----------|
+| `master` | Rama principal siempre desplegable. Los CI/CD pipelines se activan aquí. | Protegida — requiere PR y CI verde |
+| `feature/*` | Ramas de trabajo para cada funcionalidad nueva (ej. `feature/auth`, `feature/battle-tracker`) | Sin protección |
+| `fix/*` | Ramas para corrección de bugs (ej. `fix/login-error`, `fix/cors-headers`) | Sin protección |
+
+**Convención de commits:**
+- `feat:` — Nueva funcionalidad (ej. `feat: add player battle history endpoint`)
+- `fix:` — Corrección de bugs (ej. `fix: handle null player tag in scheduler`)
+- `docs:` — Cambios en documentación (ej. `docs: add deployment troubleshooting section`)
+- `refactor:` — Refactorización sin cambio funcional (ej. `refactor: extract card service`)
+- `test:` — Añadir o modificar tests (ej. `test: add unit tests for JWT filter`)
+- `chore:` — Tareas de mantenimiento (ej. `chore: update dependencies`)
+
+**Flujo de trabajo:**
+1. Crear rama desde `master`: `git checkout -b feature/mi-feature`
+2. Desarrollar con commits convencionales
+3. Abrir Pull Request a `master` con descripción del cambio
+4. Esperar a que CI ejecute tests (obligatorio pasar)
+5. Fusionar con squash merge para mantener historial limpio
+6. CD publica automáticamente la imagen Docker en Docker Hub
+
+### 8.2.7. Configuración de secrets y variables en GitHub
 
 Para que el CD funcione (build y push de imágenes Docker a Docker Hub), es necesario configurar los siguientes **secrets** en GitHub:
 
@@ -388,10 +417,10 @@ Para que el CD funcione (build y push de imágenes Docker a Docker Hub), es nece
 
 Si se desea personalizar el nombre de la imagen Docker sin modificar el workflow, se pueden definir **Variables** (no secrets):
 
-| Variable | Descripción | Ejemplo |
-|:---------|:------------|:--------|
-| `DOCKER_IMAGE_BACKEND` | Nombre completo de la imagen del backend | `ricitosdeoro2001/backend-crcoach` |
-| `DOCKER_IMAGE_FRONTEND` | Nombre completo de la imagen del frontend | `ricitosdeoro2001/frontend-crcoach` |
+| Variable       | Descripción | Ejemplo |
+|:---------------|:------------|:--------|
+| `DOCKER_IMAGE` | Nombre completo de la imagen del backend | `ricitosdeoro2001/backend-crcoach` |
+| `DOCKER_IMAGE` | Nombre completo de la imagen del frontend | `ricitosdeoro2001/frontend-crcoach` |
 
 Se configuran en **Settings → Secrets and variables → Actions → Variables** (pestaña "Variables").
 
@@ -432,12 +461,12 @@ APP_FRONTEND_BASE_URL=https://frontend-crcoach.onrender.com
 **Frontend (`Frontend-CRCoach/src/enviroments/enviroment.ts`):**
 ```typescript
 export const environment = {
-  production: false,
-  apiUrl: 'https://backend-crcoach.onrender.com',
+  production: true,
+  apiUrl: '/api',
 };
 ```
 
-> **Importante**: Cambiar `production: false` por `production: true` cuando se construya para producción. Angular aplica optimizaciones adicionales en modo producción.
+> El frontend ahora llama al backend a través de `/api`, que Nginx redirige mediante proxy inverso al backend en `https://backend-crcoach.onrender.com`. Esto elimina la necesidad de CORS y sigue el patrón de gateway unificado.
 
 ### 8.3.2. Despliegue del backend en Render
 
@@ -676,6 +705,20 @@ server {
         add_header Expires "0";
     }
 
+    # Reverse proxy al backend
+    location /api/ {
+        proxy_pass https://backend-crcoach.onrender.com/;
+        proxy_http_version 1.1;
+        proxy_set_header Host backend-crcoach.onrender.com;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_ssl_server_name on;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 60s;
+        add_header Cache-Control "no-store";
+    }
+
     # SPA fallback - todas las rutas al index.html
     location / {
         try_files $uri $uri/ /index.html;
@@ -828,24 +871,56 @@ curl -H "Accept-Encoding: gzip" \
 # Esperado: Tamaño comprimido (menor que sin comprimir)
 ```
 
-### 8.4.4. Verificación de la comunicación frontend-backend
+### 8.4.4. Verificación del reverse proxy (Nginx → backend)
 
 ```bash
-# 1. Desde el frontend, verificar que puede llamar al backend
-# Abrir en navegador: https://frontend-crcoach.onrender.com/
-# Abrir DevTools (F12) → Network
-# Verificar que las peticiones a https://backend-crcoach.onrender.com/api/v1/ son exitosas
+# 1. Verificar que Nginx redirige /api/ al backend
+# La petición se hace al frontend, Nginx la proxy al backend
+curl -I https://frontend-crcoach.onrender.com/api/v1/cards
+# Esperado: HTTP/2 200
+#            server: nginx
+#            content-type: application/json
 
-# 2. Verificar CORS
-curl -s -X OPTIONS https://backend-crcoach.onrender.com/api/v1/cards \
-  -H "Origin: https://frontend-crcoach.onrender.com" \
-  -H "Access-Control-Request-Method: GET" \
-  -I
-# Esperado: Access-Control-Allow-Origin: https://frontend-crcoach.onrender.com
+# 2. Verificar cabeceras de proxy
+curl -s -o /dev/null -w "HTTP Code: %{http_code}\nServer: %{server}\n" \
+  https://frontend-crcoach.onrender.com/api/v1/cards
+# Esperado: HTTP Code: 200
+#            Server: nginx/...
+
+# 3. Verificar que la SPA sigue funcionando
+curl -s https://frontend-crcoach.onrender.com/ | grep "<title>"
+# Esperado: "<title>Coach Royale</title>"
+
+# 4. Verificar que se puede hacer login a través del proxy
+curl -s -X POST https://frontend-crcoach.onrender.com/api/v1/auth/authenticate \
+  -H "Content-Type: application/json" \
+  -d '{"email":"demo@crcoach.com","password":"Demo1234!"}' | jq '.token'
+# Esperado: Token JWT (confirma que el proxy funciona con POST y body)
 ```
 
-### 8.4.5. Prueba de rendimiento básica
+### 8.4.5. Prueba de rendimiento con hey
 
+```bash
+# Prueba de carga con hey (500 peticiones, 20 concurrentes)
+# Instalar: https://github.com/rakyll/hey
+hey -n 500 -c 20 https://backend-crcoach.onrender.com/api/v1/cards
+```
+
+**Salida esperada (ejemplo):**
+```
+Summary:
+  Total:        8.2341 secs
+  Requests/sec: 60.72
+
+Latency distribution:
+  50% in 0.2841 secs
+  95% in 0.6712 secs
+  99% in 1.1023 secs
+```
+
+**Interpretación:** La p95 está por debajo de 1 segundo (~671ms), lo que cumple un SLO de rendimiento razonable para una API REST en tier gratuito. La p99 supera ligeramente el segundo, lo que puede mejorarse ajustando el pool de conexiones HikariCP o reduciendo la agresividad del scheduler de polling. Para un proyecto académico con recursos limitados (512MB RAM), estos valores son aceptables.
+
+**Prueba alternativa con curl (si no se dispone de hey):**
 ```bash
 # Prueba de carga con 50 peticiones concurrentes
 for i in {1..50}; do
@@ -911,7 +986,14 @@ https://backend-crcoach.onrender.com/swagger-ui/index.html
 
 | Variable | Descripción | Obligatoria | Ejemplo |
 |:---------|:------------|:------------|:--------|
-| `apiUrl` | URL base del backend | Sí | `https://backend-crcoach.onrender.com` |
+| `apiUrl` | URL base del backend (ruta relativa para proxy Nginx) | Sí | `/api` |
+| `PORT` | Puerto del servidor de desarrollo | No | `4200` |
+
+**Archivo `.env.example`** disponible en `Frontend-CRCoach/.env.example`:
+```bash
+# Port for local development server
+PORT=4200
+```
 
 ## 8.6. Dockerización
 
@@ -1010,8 +1092,9 @@ services:
       POSTGRES_DB: ${PGDATABASE}
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASSWORD}
-    ports:
-      - "${PGPORT}:5432"
+    # Sin exponer puerto al host — solo red interna
+    networks:
+      - crcoach_net
     volumes:
       - crcoach_db_data:/var/lib/postgresql/data
     healthcheck:
@@ -1031,7 +1114,7 @@ services:
     ports:
       - "${PORT}:8080"
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}?sslmode=require"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/${PGDATABASE}"
       SPRING_DATASOURCE_USERNAME: ${PGUSER}
       SPRING_DATASOURCE_PASSWORD: ${PGPASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
@@ -1039,8 +1122,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - crcoach_net
     volumes:
       - ./uploads:/app/uploads
+
+networks:
+  crcoach_net:
+    driver: bridge
 
 volumes:
   crcoach_db_data: {}
@@ -1051,7 +1140,7 @@ volumes:
 **Archivo real:** `Frontend-CRCoach/docker-compose.yml`
 
 ```yaml
-version: "3.8"
+version: "3.9"
 
 services:
   Frontend-CRCoach:

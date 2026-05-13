@@ -232,34 +232,34 @@ La navegación principal se realiza mediante un sidebar fijo en la parte izquier
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    CRCoach Platform                          │
-│                                                              │
-│  ┌──────────────┐              ┌──────────────────┐          │
-│  │  Visitante    │              │    Usuario        │          │
-│  └──────┬───────┘              └────────┬─────────┘          │
-│         │                               │                     │
-│  ┌──────┴───────┐              ┌────────┴─────────┐          │
-│  │ • Registrarse│              │ • Ver dashboard   │          │
-│  │ • Iniciar    │              │ • Ver batallas    │          │
-│  │   sesión     │              │ • Analizar        │          │
-│  │ • Recuperar  │              │   debilidades     │          │
-│  │   contraseña │              │ • Gestionar       │          │
-│  └──────────────┘              │   objetivos       │          │
-│                                │ • Registrar       │          │
-│                                │   sesiones        │          │
-│                                │ • Ver evolución   │          │
-│                                │ • Gestionar       │          │
-│                                │   perfil          │          │
-│                                │ • Cambiar idioma  │          │
-│                                │ • Tema oscuro     │          │
-│                                └──────────────────┘          │
-│                                                              │
-│  ┌──────────────────────────────────────────────────┐        │
-│  │  Sistema (polling automático)                     │        │
-│  │  • Sincronizar batallas cada 5 minutos            │        │
-│  │  • Crear snapshots de perfil                      │        │
-│  │  • Clasificar arquetipos                          │        │
-│  │  • Evaluar objetivos automáticamente              │        │
-│  └──────────────────────────────────────────────────┘        │
+│                    CRCoach Platform                         │
+│                                                             │
+│  ┌──────────────┐              ┌──────────────────┐         │
+│  │  Visitante   │              │    Usuario       │         │
+│  └──────┬───────┘              └────────┬─────────┘         │
+│         │                               │                   │
+│  ┌──────┴───────┐              ┌────────┴─────────┐         │
+│  │ • Registrarse│              │ • Ver dashboard  │         │
+│  │ • Iniciar    │              │ • Ver batallas   │         │
+│  │   sesión     │              │ • Analizar       │         │
+│  │ • Recuperar  │              │   debilidades    │         │
+│  │   contraseña │              │ • Gestionar      │         │
+│  └──────────────┘              │   objetivos      │         │
+│                                │ • Registrar      │         │
+│                                │   sesiones       │         │
+│                                │ • Ver evolución  │         │
+│                                │ • Gestionar      │         │
+│                                │   perfil         │         │
+│                                │ • Cambiar idioma │         │
+│                                │ • Tema oscuro    │         │
+│                                └──────────────────┘         │
+│                                                             │
+│  ┌──────────────────────────────────────────────────┐       │
+│  │  Sistema (polling automático)                    │       │
+│  │  • Sincronizar batallas cada 5 minutos           │       │
+│  │  • Crear snapshots de perfil                     │       │
+│  │  • Clasificar arquetipos                         │       │
+│  │  • Evaluar objetivos automáticamente             │       │
+│  └──────────────────────────────────────────────────┘       │
 └─────────────────────────────────────────────────────────────┘
 ```
