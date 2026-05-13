@@ -24,7 +24,7 @@ export class SnapshotsService {
 
     return this.http
       .get<Snapshot[]>(
-        `${environment.apiUrl}/v1/snapshots/mySnapshots/${encodedTag}`,
+        `${environment.apiUrl}/api/v1/snapshots/mySnapshots/${encodedTag}`,
         {
           headers: {
             Authorization: `Bearer ${this.token}`,

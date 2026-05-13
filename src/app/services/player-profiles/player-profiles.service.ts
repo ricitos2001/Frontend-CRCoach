@@ -22,7 +22,7 @@ export class PlayerProfilesService {
     const encodedTag = encodeURIComponent(normalizedTag);
 
     return this.http
-      .get<PlayerProfile>(`${environment.apiUrl}/v1/player_profiles/tag/${encodedTag}`, {
+      .get<PlayerProfile>(`${environment.apiUrl}/api/v1/player_profiles/tag/${encodedTag}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -35,7 +35,7 @@ export class PlayerProfilesService {
     const encodedTag = encodeURIComponent(normalizedTag);
     return this.http
       // The import endpoint may return 202 Accepted with no JSON body, request text
-      .get(`${environment.apiUrl}/v1/player_profiles/player/${encodedTag}`, {
+      .get(`${environment.apiUrl}/api/v1/player_profiles/player/${encodedTag}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
