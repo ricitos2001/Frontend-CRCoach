@@ -495,10 +495,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#342-ejecucion-con-angular-cli-desarrollo" class="md-nav__link">
+  <a href="#342-proxy-de-desarrollo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4.2. Ejecución con Angular CLI (desarrollo)
+        3.4.2. Proxy de desarrollo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#343-ejecucion-con-angular-cli-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.3. Ejecución con Angular CLI (desarrollo)
       
     </span>
   </a>
@@ -1117,10 +1128,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#342-ejecucion-con-angular-cli-desarrollo" class="md-nav__link">
+  <a href="#342-proxy-de-desarrollo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4.2. Ejecución con Angular CLI (desarrollo)
+        3.4.2. Proxy de desarrollo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#343-ejecucion-con-angular-cli-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4.3. Ejecución con Angular CLI (desarrollo)
       
     </span>
   </a>
@@ -1556,17 +1578,35 @@ curl -X POST http://localhost:8080/api/v1/auth/authenticate \
 <h3 id="341-variables-de-entorno">3.4.1. Variables de entorno</h3>
 <p>El frontend tiene un archivo de entorno en <code>src/enviroments/enviroment.ts</code>:</p>
 <pre><code class="language-typescript">export const environment = {
-  production: false,
-  apiUrl: 'https://backend-crcoach.onrender.com',  // URL del backend
+  production: true,
+  apiUrl: '/api',
 };
 </code></pre>
-<p>Para desarrollo local, cambia la URL del backend:</p>
-<pre><code class="language-typescript">export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080',
-};
+<blockquote>
+<p>El valor <code>apiUrl: '/api'</code> se usa tanto en desarrollo como en producción. En producción, Nginx recibe las peticiones en <code>/api/</code> y las redirige al backend mediante proxy inverso. En desarrollo, Angular CLI usa un proxy para hacer lo mismo.</p>
+</blockquote>
+<h3 id="342-proxy-de-desarrollo">3.4.2. Proxy de desarrollo</h3>
+<p>Para que las peticiones al backend funcionen en local, Angular CLI utiliza un proxy configurado en <code>proxy.conf.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;/api/**&quot;: {
+    &quot;target&quot;: &quot;http://localhost:8080&quot;,
+    &quot;secure&quot;: false,
+    &quot;logLevel&quot;: &quot;debug&quot;,
+    &quot;pathRewrite&quot;: {
+      &quot;^/api&quot;: &quot;&quot;
+    }
+  }
+}
 </code></pre>
-<h3 id="342-ejecucion-con-angular-cli-desarrollo">3.4.2. Ejecución con Angular CLI (desarrollo)</h3>
+<p><strong>Cómo funciona:</strong></p>
+<ol>
+<li>El frontend hace peticiones a <code>/api/api/v1/...</code> (el <code>apiUrl</code> es <code>/api</code> y los servicios concatenan <code>/api/v1/...</code>).</li>
+<li>El proxy de Angular intercepta cualquier ruta que empiece por <code>/api/</code>.</li>
+<li>La opción <code>pathRewrite</code> elimina el primer <code>/api</code> de la ruta, quedando <code>/api/v1/...</code>.</li>
+<li>La petición se reenvía a <code>http://localhost:8080/api/v1/...</code> (el backend).</li>
+</ol>
+<p>El proxy solo se activa en la configuración <code>development</code> de <code>angular.json</code>, por lo que no interfiere en builds de producción.</p>
+<h3 id="343-ejecucion-con-angular-cli-desarrollo">3.4.3. Ejecución con Angular CLI (desarrollo)</h3>
 <pre><code class="language-bash">cd Frontend-CRCoach
 
 # Instalar dependencias
@@ -1578,6 +1618,9 @@ npm start
 ng serve
 </code></pre>
 <p>La aplicación arrancará en <code>http://localhost:4200</code>.</p>
+<blockquote>
+<p>Asegúrate de tener el backend corriendo en <code>http://localhost:8080</code> antes de iniciar el frontend.</p>
+</blockquote>
 <h3 id="343-ejecucion-con-docker-recomendado">3.4.3. Ejecución con Docker (recomendado)</h3>
 <pre><code class="language-bash">cd Frontend-CRCoach
 

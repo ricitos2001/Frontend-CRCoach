@@ -1034,6 +1034,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#problema-el-proxy-de-desarrollo-no-funciona-error-404-en-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: El proxy de desarrollo no funciona (error 404 en local)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#problema-los-tests-fallan-en-ci" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2359,6 +2370,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#problema-el-proxy-de-desarrollo-no-funciona-error-404-en-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problema: El proxy de desarrollo no funciona (error 404 en local)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#problema-los-tests-fallan-en-ci" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3579,7 +3601,7 @@ APP_FRONTEND_BASE_URL=https://frontend-crcoach.onrender.com
 };
 </code></pre>
 <blockquote>
-<p>El frontend ahora llama al backend a través de <code>/api</code>, que Nginx redirige mediante proxy inverso al backend en <code>https://backend-crcoach.onrender.com</code>. Esto elimina la necesidad de CORS y sigue el patrón de gateway unificado.</p>
+<p>El frontend llama al backend a través de <code>/api</code>. En producción, Nginx redirige mediante proxy inverso al backend. En desarrollo local, Angular CLI usa <code>proxy.conf.json</code> para el mismo propósito, con <code>pathRewrite</code> que elimina el primer segmento <code>/api</code> duplicado en las rutas. Consulta la sección 3.4.2 de <code>03-instalacion.md</code> para más detalles.</p>
 </blockquote>
 <h3 id="832-despliegue-del-backend-en-render">8.3.2. Despliegue del backend en Render</h3>
 <h4 id="paso-1-crear-el-servicio-en-render">Paso 1: Crear el servicio en Render</h4>
@@ -4171,6 +4193,9 @@ curl -s https://backend-crcoach.onrender.com/api/v1/snapshots/by-user/1 \
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Nota sobre proxy de desarrollo</strong>: En local, Angular CLI usa <code>proxy.conf.json</code> para redirigir las peticiones <code>/api/**</code> al backend. Este proxy incluye <code>pathRewrite</code> para eliminar el segmento <code>/api</code> duplicado en las rutas. Solo se activa en la configuración <code>development</code> de <code>angular.json</code>, por lo que no afecta a builds de producción.</p>
+</blockquote>
 <p><strong>Archivo <code>.env.example</code></strong> disponible en <code>Frontend-CRCoach/.env.example</code>:</p>
 <pre><code class="language-bash"># Port for local development server
 PORT=4200
@@ -4410,6 +4435,15 @@ Solución:
   1. Verificar las variables PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD.
   2. En Neon, verificar que la IP de Render está permitida en la configuración de red.
   3. Asegurar que la URL JDBC tiene sslmode=require.
+</code></pre>
+<h3 id="problema-el-proxy-de-desarrollo-no-funciona-error-404-en-local">Problema: El proxy de desarrollo no funciona (error 404 en local)</h3>
+<pre><code>Causa posible: El proxy.conf.json no está configurado correctamente o ng serve no lo está usando.
+Solución:
+  1. Verificar que `proxy.conf.json` existe en la raíz del frontend con el contenido adecuado.
+  2. Verificar que `angular.json` incluye `&quot;proxyConfig&quot;: &quot;proxy.conf.json&quot;` en la configuración `development` del serve.
+  3. Asegurar que el backend está corriendo en `http://localhost:8080`.
+  4. Si el patrón del proxy no captura las rutas, usar `/api/**` en lugar de `/api/*`.
+  5. Si las rutas llegan duplicadas al backend, usar `pathRewrite: {&quot;^/api&quot;: &quot;&quot;}` en el proxy.
 </code></pre>
 <h3 id="problema-los-tests-fallan-en-ci">Problema: Los tests fallan en CI</h3>
 <pre><code>Causa posible: Dependencias desactualizadas o configuración incorrecta.
