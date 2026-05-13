@@ -24,7 +24,7 @@ export class MetricsService {
     const encodedTag = encodeURIComponent(normalizedTag);
 
     return this.http
-      .get<Metric>(`${environment.apiUrl}/v1/metrics/player/${encodedTag}/summary`, {
+      .get<Metric>(`${environment.apiUrl}/api/v1/metrics/player/${encodedTag}/summary`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },

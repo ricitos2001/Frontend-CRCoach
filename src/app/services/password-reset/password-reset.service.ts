@@ -29,7 +29,7 @@ export class PasswordResetService {
 
   forgotPassword(request: PasswordForgotRequest): Observable<MessageResponse> {
     return this.http.post<MessageResponse>(
-      `${environment.apiUrl}/v1/auth/password/forgot`,
+      `${environment.apiUrl}/api/v1/auth/password/forgot`,
       request,
     );
   }
@@ -38,14 +38,14 @@ export class PasswordResetService {
     const params = new HttpParams().set('token', token);
 
     return this.http.get<TokenValidationResponse>(
-      `${environment.apiUrl}/v1/auth/password/verify`,
+      `${environment.apiUrl}/api/v1/auth/password/verify`,
       { params },
     );
   }
 
   resetPassword(request: PasswordResetConfirm): Observable<MessageResponse> {
     return this.http.post<MessageResponse>(
-      `${environment.apiUrl}/v1/auth/password/reset`,
+      `${environment.apiUrl}/api/v1/auth/password/reset`,
       request,
     );
   }

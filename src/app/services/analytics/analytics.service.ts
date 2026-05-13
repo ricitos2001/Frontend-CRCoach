@@ -22,7 +22,7 @@ export class AnalyticsService {
   getWeaknesses(tag: string, gameMode?:string, from?: string, to?: string, minBattles?: number): Observable<WeaknessReport> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
-    let url = `${environment.apiUrl}/v1/analytics/player/${encodedTag}/weaknesses`;
+    let url = `${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/weaknesses`;
     const params: string[] = [];
     if (gameMode) params.push(`gameMode=${encodeURIComponent(gameMode)}`);
     if (from) params.push(`from=${encodeURIComponent(from)}`);
@@ -43,7 +43,7 @@ export class AnalyticsService {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
 
-    let url = `${environment.apiUrl}/v1/analytics/player/${encodedTag}/cards`;
+    let url = `${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/cards`;
     const params: string[] = [];
     if (gameMode) params.push(`gameMode=${encodeURIComponent(gameMode)}`);
     if (from) params.push(`from=${encodeURIComponent(from)}`);
@@ -68,7 +68,7 @@ export class AnalyticsService {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
 
-    let url = `${environment.apiUrl}/v1/analytics/player/${encodedTag}/summary`;
+    let url = `${environment.apiUrl}/api/v1/analytics/player/${encodedTag}/summary`;
     const params: string[] = [];
     if (gameMode) params.push(`gameMode=${encodeURIComponent(gameMode)}`);
     if (from) params.push(`from=${encodeURIComponent(from)}`);
