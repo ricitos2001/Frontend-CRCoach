@@ -13,7 +13,7 @@ import { routes } from './app.routes';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -49,7 +49,7 @@ export const appConfig: ApplicationConfig = {
       const languageService = inject(LanguageService);
       return languageService.init();
     }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     // Registrar interceptor que añade Authorization cuando hay token en localStorage
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     importProvidersFrom(
