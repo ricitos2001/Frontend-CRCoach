@@ -337,7 +337,8 @@
       "TROPHIES_LABEL": "Trofeos",
       "NO_DATA": "No hay datos",
       "BATTLES_LABEL": "Batallas",
-      "DONATIONS": "Donaciones"
+      "DONATIONS": "Donaciones",
+      "DONATIONS_TITLE": "Donaciones realizadas"
     }
   ,
     "EDIT_USER": {
