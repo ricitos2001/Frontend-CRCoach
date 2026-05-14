@@ -1256,6 +1256,17 @@ button.sidebar-toggle svg path, button.sidebar-toggle svg line {
   outline-offset: 2px;
 }
 
+app-graph {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+app-graph canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .refresh-button {
   border: none;
   border-radius: 0.5rem;
