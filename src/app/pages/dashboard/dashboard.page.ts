@@ -557,8 +557,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
           {
             label: 'Trofeos',
             data,
-            borderColor: 'rgba(52,152,219,0.9)',
-            backgroundColor: 'rgba(52,152,219,0.2)',
+            borderColor: '#C9DAF8',
             tension: 0.3,
           },
         ]

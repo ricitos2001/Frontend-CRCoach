@@ -268,8 +268,7 @@ export class ProgressPage implements OnInit, AfterViewInit, OnDestroy {
           {
             label: 'Trofeos',
             data,
-            borderColor: 'rgba(52,152,219,0.9)',
-            backgroundColor: 'rgba(52,152,219,0.2)',
+            borderColor: '#C9DAF8',
             tension: 0.3,
           },
         ]
@@ -344,7 +343,7 @@ export class ProgressPage implements OnInit, AfterViewInit, OnDestroy {
       {
         label: this.translate.instant('PAGES.PROGRESS.DONATIONS_TITLE') || 'Donaciones',
         data: [donations],
-        backgroundColor: 'rgba(46, 204, 113, 0.9)',
+        backgroundColor: '#EBF9C8',
       },
     ];
     this.donationsOptions = {
@@ -370,7 +369,7 @@ export class ProgressPage implements OnInit, AfterViewInit, OnDestroy {
       {
         label: this.translate.instant('PAGES.PROGRESS.BATTLES_LABEL') || 'Batallas',
         data: [total, last24],
-        backgroundColor: ['rgba(52,152,219,0.9)', 'rgba(241,196,15,0.9)'],
+        backgroundColor: ['#C9DAF8', '#F8E2C9'],
       },
     ];
 

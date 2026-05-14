@@ -39,8 +39,8 @@ export class ThemeService {
   }
 
   setDark(value: boolean, persist = true) {
-    this._isDark.next(value);
     this.applyClass(value);
+    this._isDark.next(value);
     if (persist) {
       try {
         localStorage.setItem(STORAGE_KEY, value ? 'true' : 'false');
