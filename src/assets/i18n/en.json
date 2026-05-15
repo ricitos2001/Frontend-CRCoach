@@ -31,7 +31,8 @@
         "COMPONENTS.LAYOUT.FOOTER.SOCIAL.TWITTER": "Follow me on Twitter",
         "COMPONENTS.LAYOUT.FOOTER.SOCIAL.GITHUB": "Discover other projects on my github profile",
         "COMPONENTS.LAYOUT.FOOTER.SOCIAL.LINKEDIN": "Contact me on LinkedIn",
-        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.KOFI": "Buy me a coffee on Ko-fi"
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.KOFI": "Buy me a coffee on Ko-fi",
+        "BRAND": "Coach Royale"
       }
     },
     "SHARED": {
@@ -43,7 +44,7 @@
   "PAGES": {
     "LANDING": {
       "HERO_TITLE": "Stop losing, start winning.",
-      "HERO_PARAGRAPH": "CR Coach analyzes every match, detects your weaknesses and guides you with clear goals so you steadily climb trophies.",
+      "HERO_PARAGRAPH": "Coach Royale analyzes every match, detects your weaknesses and guides you with clear goals so you steadily climb trophies.",
       "WHAT_OFFERS_TITLE": "Everything you need to improve",
       "WHAT_OFFERS_DESC": "Tools designed specifically for players who want to level up.",
       "FEATURE_BATTLES_TITLE": "Battle History",
