@@ -1,5 +1,6 @@
 @if(router.url === '/landing' || router.url === '/terms' || router.url === '/notice' || router.url === '/privacy' || router.url === '/cookies' || router.url === '/landing#start' || router.url === '/landing#what-offers' || router.url === '/landing#contact') {
   <footer>
+    <h1>hola mundo</h1>
     <section class="app">
       <svg routerLink="/landing" [attr.aria-label]="'COMPONENTS.LAYOUT.HEADER.GO_HOME' | translate" class="logo" width="94" height="64" viewBox="0 0 94 64" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.3291 20.6582H15.006C18.5001 20.6582 20.2472 20.6582 21.4174 20.2908C25.3695 19.0497 27.7205 14.9972 26.8363 10.9504C26.5744 9.75215 25.7072 8.2355 23.9729 5.2022L23.9729 5.20217L23.9729 5.20214C23.3228 4.06513 22.9977 3.49662 22.6156 3.01676C21.3631 1.44374 19.5642 0.400067 17.5769 0.0935159C16.9707 0 16.3158 0 15.006 0H10.3291C8.16394 0 7.08135 0 6.18662 0.208232C3.21755 0.899225 0.899225 3.21755 0.208232 6.18662C0 7.08135 0 8.16394 0 10.3291C0 12.4943 0 13.5769 0.208232 14.4716C0.899225 17.4407 3.21755 19.759 6.18662 20.45C7.08135 20.6582 8.16394 20.6582 10.3291 20.6582Z" fill="white" class="icon-background"/>
@@ -22,7 +23,7 @@
         </svg>
       </article>
     </section>
-    <!--article>
+    <article>
       <h3>{{'COMPONENTS.LAYOUT.FOOTER.TITLE1' | translate }}</h3>
       <ul>
         <li><a routerLink="/terms">{{ 'COMPONENTS.LAYOUT.FOOTER.LINK1' | translate }}</a></li>
@@ -107,6 +108,6 @@
           </svg>
         </li>
       </ul>
-    </article-->
+    </article>
   </footer>
 }
