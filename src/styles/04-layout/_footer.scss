@@ -54,7 +54,8 @@ footer article {
   flex: 1 1 12rem;
 }
 
-footer h3 {
+footer h3,
+footer article > span:not([class]) {
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0 0 0.75rem;
@@ -129,7 +130,8 @@ footer .icon-background {
   }
   footer .app { flex: 1 1 100%; }
   footer article { flex: 1 1 10rem; }
-  footer h3 { font-size: 1rem; }
+  footer h3,
+  footer article > span:not([class]) { font-size: 1rem; }
 }
 
 @media (max-width: 48rem) {
@@ -160,7 +162,8 @@ footer .icon-background {
   footer .social-media {
     justify-content: center;
   }
-  footer h3 {
+  footer h3,
+  footer article > span:not([class]) {
     margin-bottom: 0.5rem;
   }
 }
@@ -170,7 +173,8 @@ footer .icon-background {
     padding: 1.5rem 1rem;
     gap: 1.25rem;
   }
-  footer h3 { font-size: 0.95rem; }
+  footer h3,
+  footer article > span:not([class]) { font-size: 0.95rem; }
   footer ul li a { font-size: 0.85rem; }
   footer .logo { width: 4rem; }
   footer .social-media li svg { width: 1.5rem; height: 1.5rem; }
