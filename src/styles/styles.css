@@ -660,7 +660,7 @@ footer .app {
   flex: 1 1 14rem;
 }
 
-footer .app h2 {
+footer .app .app__title {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
@@ -828,7 +828,7 @@ footer .icon-background {
     width: 1.5rem;
     height: 1.5rem;
   }
-  footer .app h2 {
+  footer .app .app__title {
     font-size: 1.25rem;
   }
 }
