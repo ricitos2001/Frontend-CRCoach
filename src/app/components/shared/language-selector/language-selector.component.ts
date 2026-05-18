@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LanguageService } from '../../../services/language/language.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-language-selector',
-  imports: [TranslateModule],
+  imports: [TranslateModule, UpperCasePipe],
   templateUrl: './language-selector.component.html',
   styleUrl: '../../../../styles/styles.css',
   standalone: true,

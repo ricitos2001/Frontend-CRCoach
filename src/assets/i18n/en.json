@@ -38,7 +38,9 @@
     "SHARED": {
       "LANGUAGE": "Language",
       "GET_STARTED": "Get Started",
-      "LOGOUT": "Log out"
+      "LOGOUT": "Log out",
+      "FLAG_DESC_ES": "Flag of Spain: three horizontal stripes, red, yellow and red, with the yellow stripe twice the width of each red stripe. Represents the Spanish language.",
+      "FLAG_DESC_EN": "Flag of the United Kingdom: a blue field with the red Cross of Saint George edged in white, the red Cross of Saint Patrick edged in white, and the white Cross of Saint Andrew. Represents the English language."
     }
   },
   "PAGES": {

@@ -38,7 +38,9 @@
     "SHARED": {
       "LANGUAGE": "Idioma",
       "GET_STARTED": "Empecemos",
-      "LOGOUT": "Cerrar sesión"
+      "LOGOUT": "Cerrar sesión",
+      "FLAG_DESC_ES": "Bandera de España: tres franjas horizontales, roja, amarilla y roja, con la franja amarilla de doble anchura que cada una de las rojas. Representa el idioma español.",
+      "FLAG_DESC_EN": "Flag of the United Kingdom: a blue field with the red Cross of Saint George edged in white, the red Cross of Saint Patrick edged in white, and the white Cross of Saint Andrew. Represents the English language."
     }
   },
   "PAGES": {
