@@ -260,12 +260,100 @@ Archivo `.env` en la raíz del frontend:
 |----------|-------------|-------------|
 | `PORT` | Puerto del servidor web (producción) | `80` |
 
-La URL de la API se configura en `src/environments/environment.ts`:
+La URL de la API se configura en `src/environments/environment.ts` y en el archivo nginx.conf:
 
 ```typescript
 export const environment = {
-  apiUrl: 'https://backend-crcoach.onrender.com',
+  production: true,
+  apiUrl: '/api',
 };
+```
+
+```nginx
+server {
+    listen 80;
+    server_name _;
+
+    # Servir desde el root donde el Dockerfile copia los ficheros
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # -------------------------
+    # Compresión
+    # -------------------------
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml;
+    gzip_min_length 256;
+    gzip_vary on;
+    gzip_comp_level 6;
+    gzip_proxied any;
+    gzip_disable "msie6";
+
+    # -------------------------
+    # HTML — NO cachear
+    # -------------------------
+    location = /index.html {
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+        add_header Pragma "no-cache";
+        add_header Expires "0";
+    }
+
+    # Si usas SPA (React, Angular, Vue, etc.)
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # -------------------------
+    # JS y CSS — caché muy larga
+    # -------------------------
+    location ~* \.(js|css)$ {
+        expires 1y;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # -------------------------
+    # Imágenes — caché larga
+    # -------------------------
+    location ~* \.(png|jpg|jpeg|gif|svg|webp|ico)$ {
+        expires 6M;
+        add_header Cache-Control "public, max-age=15552000";
+    }
+
+    # -------------------------
+    # Fuentes — caché larga + CORS
+    # -------------------------
+    location ~* \.(woff|woff2|ttf|otf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        add_header Access-Control-Allow-Origin "*";
+        # try_files para evitar 404 silenciosos
+        try_files $uri =404;
+    }
+
+    # -------------------------
+    # Assets genéricos (fallback)
+    # -------------------------
+    location /assets/ {
+        expires 6M;
+        add_header Cache-Control "public";
+    }
+
+    # -------------------------
+    # API — Reverse proxy al backend (sin caché)
+    # -------------------------
+    location /api/ {
+        proxy_pass https://crcoachapi.onrender.com/;
+        proxy_http_version 1.1;
+        proxy_set_header Host crcoachapi.onrender.com;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_ssl_server_name on;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 60s;
+        add_header Cache-Control "no-store";
+    }
+}
 ```
 
 ---
