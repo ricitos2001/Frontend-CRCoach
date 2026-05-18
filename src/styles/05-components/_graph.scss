@@ -1,0 +1,11 @@
+app-graph {
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

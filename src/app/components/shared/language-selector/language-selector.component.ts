@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LanguageService } from '../../../services/language/language.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -7,8 +7,11 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   imports: [TranslateModule],
   templateUrl: './language-selector.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class LanguageSelectorComponent implements OnInit {
+  // Allow parent components to control focusability (tabindex)
+  @Input() tabindex?: number;
   constructor(
     private languageService: LanguageService,
     private translate: TranslateService,
@@ -37,6 +40,16 @@ export class LanguageSelectorComponent implements OnInit {
   setLanguage(lang: string) {
     this.languageService.setLanguage(lang);
     this.currentLang = lang;
+  }
+
+  getFlagPath(lang: string) {
+    // Map language codes to flag filenames in assets/img/flags
+    const map: { [k: string]: string } = {
+      es: 'espana.png',
+      en: 'reino-unido.png',
+    };
+    const file = map[lang] || 'union-europea.png';
+    return `/assets/img/flags/${file}`;
   }
 
   private setTranslations() {

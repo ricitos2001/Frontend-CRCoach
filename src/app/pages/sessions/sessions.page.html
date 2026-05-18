@@ -1,1 +1,90 @@
-<p>sessions.page works!</p>
+<section>
+  <h1>Diario de sesiones</h1>
+  <article class="controls">
+    <app-searcher></app-searcher>
+    <app-common-button (click)="openCreate()">{{ 'PAGES.SESSIONS.ADD' | translate }}</app-common-button>
+    <app-refresh-button></app-refresh-button>
+  </article>
+  <app-modal [isOpen]="creating || !!editingSession" title="{{ creating ? ( 'PAGES.SESSIONS.ADD' | translate ) : ( 'PAGES.SESSIONS.EDIT' | translate ) }}" (close)="onCancel()">
+    @if (creating) {
+      <app-session-form (saved)="onSessionSaved($event)" (cancel)="onCancel()"></app-session-form>
+    }
+    @if (editingSession) {
+      <app-session-form [session]="editingSession" (saved)="onSessionSaved($event)" (cancel)="onCancel()"></app-session-form>
+    }
+  </app-modal>
+  <section>
+    @if (sessionsStore.loading() && !sessionsStore.sessionsPage()) {
+      <p>{{ 'PAGES.SESSIONS.LOADING' | translate }}</p>
+    }
+    @if (sessionsStore.error(); as sErr) {
+      <p class="error">{{ 'PAGES.SESSIONS.ERROR' | translate:{ err: sErr } }}</p>
+    }
+
+    @if (sessionsStore.sessionsPage(); as sessionsPage) {
+      @if (pageToArray(sessionsPage).length === 0) {
+        <p class="no-items">{{ 'PAGES.SESSIONS.NO_SESSIONS' | translate }}</p>
+      } @else {
+      <section class="sessions">
+        @for (s of pageToArray(sessionsPage); track s.id) {
+          <section class="card" [class.expanded]="expandedSessionId === s.id">
+            <section class="card__header">
+              <section class="card__pills">
+                <article class="pills-row">
+                  <span class="pill small">{{s.title}}</span>
+                  <span class="pill small hiden-pill">{{ s.startTime | date:'short' }} - {{ s.endTime | date:'short' }}</span>
+                  @if(!expandedSessionId) {
+                    <span class="pill long hiden-pill">{{s.enfoque}}</span>
+                    <span class="pill long hiden-pill">{{s.mood}}</span>
+                    <span class="pill long hiden-pill">{{s.notes}}</span>
+                  }
+                </article>
+              </section>
+              <h3 class="card__title">{{s.title}}</h3>
+              <article class="flex">
+                <app-common-button (click)="viewDetails(s)" [class.expanded]="expandedSessionId === s.id">
+                  <!-- chevron icon (down when collapsed) -->
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 12L16 20L24 12" stroke="#184262" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </app-common-button>
+                <app-common-button (click)="editSession(s)">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 26.6667H28M22 4.66667C22.5304 4.13623 23.2499 3.83824 24 3.83824C24.3714 3.83824 24.7392 3.9114 25.0824 4.05354C25.4256 4.19568 25.7374 4.40402 26 4.66667C26.2626 4.92931 26.471 5.24111 26.6131 5.58427C26.7553 5.92743 26.8284 6.29523 26.8284 6.66667C26.8284 7.0381 26.7553 7.4059 26.6131 7.74906C26.471 8.09222 26.2626 8.40402 26 8.66667L9.33333 25.3333L4 26.6667L5.33333 21.3333L22 4.66667Z" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </app-common-button>
+                <app-common-button (click)="deleteSession(s)">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 8H6.66667M6.66667 8H28M6.66667 8L6.66667 26.6667C6.66667 27.3739 6.94762 28.0522 7.44772 28.5523C7.94781 29.0524 8.62609 29.3333 9.33333 29.3333H22.6667C23.3739 29.3333 24.0522 29.0524 24.5523 28.5523C25.0524 28.0522 25.3333 27.3739 25.3333 26.6667V8M10.6667 8V5.33333C10.6667 4.62609 10.9476 3.94781 11.4477 3.44771C11.9478 2.94762 12.6261 2.66667 13.3333 2.66667H18.6667C19.3739 2.66667 20.0522 2.94762 20.5523 3.44771C21.0524 3.94781 21.3333 4.62609 21.3333 5.33333V8M13.3333 14.6667V22.6667M18.6667 14.6667V22.6667" stroke="#184262" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </app-common-button>
+              </article>
+            </section>
+
+            @if (expandedSessionId === s.id) {
+              <section class="session-details">
+                <section class="expanded-fields">
+                  <article class="field">
+                    <label>{{ 'PAGES.SESSIONS.LABEL.ENFOQUE' | translate }}</label>
+                    <p class="value">{{s.enfoque || ''}}</p>
+                  </article>
+                  <article class="field">
+                    <label>{{ 'PAGES.SESSIONS.LABEL.NOTES' | translate }}</label>
+                    <p class="value">{{s.notes}}</p>
+                  </article>
+                  <article class="field">
+                    <label>{{ 'PAGES.SESSIONS.LABEL.MOOD' | translate }}</label>
+                    <p class="value">{{s.mood}}</p>
+                  </article>
+                </section>
+              </section>
+            }
+          </section>
+        }
+      </section>
+      }
+      <app-pagination [page]="sessionsPage" (prev)="prevPage($event)" (next)="nextPage($event)"></app-pagination>
+    }
+  </section>
+</section>
+<app-sidebar></app-sidebar>

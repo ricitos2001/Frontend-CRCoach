@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Output, } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordStrength } from '../../validators/password-strength.validator';
-import { NotificationsService, Notification } from '../../services/notifications/notifications.service';
+import { NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { Notification } from '../../interfaces/Notification';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,12 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
   ],
   templateUrl: './login.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
 export class LoginPage {
   @Output() authSuccess = new EventEmitter<void>();
   submitted = false;
-
+  loading = false;
   loginForm: FormGroup;
 
   constructor(
@@ -46,6 +48,7 @@ export class LoginPage {
       return;
     }
     this.submitted = true;
+    this.loading = true; // show loading indicator while authenticating
 
     this.authService.login(this.loginForm).subscribe({
       next: (res) => {
@@ -65,12 +68,16 @@ export class LoginPage {
             console.warn('Error enviando notificación al API:', err);
           },
         });
-        this.router.navigate(['dashboard']).then(r => console.log(r));
+        this.router.navigate(['dashboard']).then((r) => console.log(r));
       },
       error: (err) => {
         console.error('Error en login', err);
         this.translate.instant('NOTIFICATIONS.AUTH.LOGIN.ERROR');
+        this.loading = false;
       },
+      complete: () => {
+        this.loading = false;
+      }
     });
   }
 }

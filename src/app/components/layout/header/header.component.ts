@@ -1,38 +1,78 @@
-import { Component } from '@angular/core';
+import { Component, inject, HostListener } from '@angular/core';
 import { LanguageSelectorComponent } from '../../shared/language-selector/language-selector.component';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CommonButtonComponent } from '../../shared/common-button/common-button.component';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../services/auth/auth.service';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { HeaderContentService } from '../../../services/header-content/header-content.service';
+import { DarkModeButtonComponent } from '../../shared/dark-mode-button/dark-mode-button.component';
 
 @Component({
   selector: 'app-header',
-  imports: [LanguageSelectorComponent, CommonButtonComponent, TranslatePipe, RouterLink],
+  imports: [
+    LanguageSelectorComponent,
+    CommonButtonComponent,
+    TranslatePipe,
+    RouterLink,
+    NgTemplateOutlet,
+    AsyncPipe,
+    DarkModeButtonComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class HeaderComponent {
-  constructor(
-    private translate: TranslateService,
-    protected router: Router,
-    private authService: AuthService,
-  ) {}
-  getStarted = '';
-  logoutText = '';
+  private mq?: MediaQueryList;
+  public isMobile = false;
+  public scrolled = false;
 
-  ngOnInit() {
-    this.setTranslations();
-    this.translate.onLangChange.subscribe(() => this.setTranslations());
-    console.log(this.router.url);
+  constructor(protected router: Router) {
+    try {
+      this.mq = window.matchMedia('(max-width: 720px)');
+      this.isMobile = this.mq.matches;
+      const listener = (e: MediaQueryListEvent) => {
+        this.isMobile = e.matches;
+        if (!this.isMobile) {
+          this.menuOpen = false;
+        }
+      };
+      if ((this.mq as any).addEventListener) {
+        (this.mq as any).addEventListener('change', listener);
+      } else if ((this.mq as any).addListener) {
+        (this.mq as any).addListener(listener);
+      }
+    } catch (e) {
+      this.isMobile = false;
+    }
+  }
+  headerContentService = inject(HeaderContentService);
+  content$ = this.headerContentService.content$;
+  public menuOpen = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.scrolled = window.scrollY > 10;
   }
 
-  private setTranslations() {
-    this.getStarted = this.translate.instant('COMPONENTS.SHARED.GET_STARTED');
-    this.logoutText = this.translate.instant('COMPONENTS.SHARED.LOGOUT');
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+  closeMenu() {
+    this.menuOpen = false;
   }
 
-  protected logout() {
-    this.authService.logout();
-    this.router.navigate(['/landing']).then((r) => console.log(r));
+  navigateToFragment(fragment: string, event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    this.router.navigate(['/landing'], { fragment }).then(() => {
+      setTimeout(() => {
+        const el = document.getElementById(fragment);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    });
   }
 }

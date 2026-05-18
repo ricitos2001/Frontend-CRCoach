@@ -1,8 +1,11 @@
 <section class="toast-container" aria-live="polite">
-  <section class="toast" *ngFor="let t of toasts()" [attr.data-type]="t.type">
-    <section class="toast-body">
-      <article class="toast-message">{{ t.message }}</article>
-      <button class="toast-close" (click)="dismiss(t.id)" aria-label="Cerrar">×</button>
+
+  @for (t of toasts(); track t.id) {
+    <section class="toast" [attr.data-type]="t.type">
+      <article class="toast-body">
+        <h2 class="toast-message">{{ t.message | translate }}</h2>
+        <button class="toast-close" (click)="dismiss(t.id)" aria-label="Cerrar">×</button>
+      </article>
     </section>
-  </section>
+  }
 </section>

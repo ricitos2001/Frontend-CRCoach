@@ -1,0 +1,70 @@
+
+/* Generic reductions for tablet (<=64rem) */
+@media (max-width: 64rem) {
+  header { padding: 0.75rem 1.125rem; }
+  .chart-container { padding: 0.75rem; }
+
+  // Sidebar: slightly narrower
+  .sidebar { width: 5rem; }
+
+  // Components
+  .common-button { padding: 0.5rem 0.75rem; font-size: 0.95rem; }
+  .form-input { max-width: 100%; }
+
+  // Pages: reduce grid columns where appropriate
+  .summary-grid { grid-template-columns: repeat(4, 1fr); }
+  .problematic-cards { grid-template-columns: repeat(3, 1fr); }
+  .player-profile__cards-grid { grid-template-columns: repeat(4, 1fr); }
+
+  // Charts
+  .chart-container { height: 22.5rem; }
+  .chart-small { padding: 0.4rem; }
+}
+
+@media (max-width: 45rem) {
+  header { padding: 0.625rem 0.875rem; }
+  h1 { font-size: 2.25rem; }
+
+  .sidebar { width: 4rem; }
+
+  .common-button { display:block; width:100%; box-sizing:border-box; }
+  .form-input { width:100%; }
+
+  .summary-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+  .problematic-cards { grid-template-columns: repeat(2, 1fr); }
+  .player-profile__cards-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .chart-container { height: 20rem; padding: 0.6rem; }
+  .chart-small { flex-direction: row; gap: 0.6rem; padding: 0.4rem; }
+
+  // Modal full-width on narrow screens
+  .modal { width: 92%; left: 4%; right: 4%; }
+  footer {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 30rem) {
+  header { padding: 0.5rem 0.625rem; }
+  h1 { font-size: 1.75rem; }
+
+  .sidebar { display:none; }
+  .chart-wrapper { padding: 0.6rem; }
+
+  .summary-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+  .problematic-cards { grid-template-columns: 1fr; }
+  .player-profile__cards-grid { grid-template-columns: repeat(2,1fr); }
+
+  .chart-container { height: 16.25rem; padding: 0.4rem; }
+  .chart-small { padding: 0.3rem; }
+
+  // Images and cards
+  .problematic-card img { width: 6rem; height: 6rem; }
+
+  // Reduce font sizes in stat cards
+  .stat-card .label { font-size: 0.68rem; }
+  .stat-card .value { font-size: 0.95rem; }
+}
+

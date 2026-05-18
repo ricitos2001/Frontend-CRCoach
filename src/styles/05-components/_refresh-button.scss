@@ -1,0 +1,44 @@
+.refresh-button {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+header .refresh-button {
+  padding: 1rem;
+  background: var(--elements-color);
+  border: none;
+}
+
+header .refresh-button svg path,{
+  stroke: var(--components-color);
+}
+
+header .refresh-button svg{
+  max-width: 2rem;
+  max-height: 2rem;
+}
+
+main .refresh-button {
+  padding: 0.75rem;
+  background: var(--components-color);
+}
+
+main .refresh-button svg {
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+main .refresh-button svg path,{
+  stroke: var(--elements-color);
+}
+
+/* rotation animation for refresh button when loading */
+.refresh-button.loading svg {
+  animation: refresh-rotate 1s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes refresh-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

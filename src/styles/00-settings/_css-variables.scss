@@ -49,11 +49,117 @@
   --dark-color-4: #{$dark-color-4};
   --dark-color-5: #{$dark-color-5};
 
+  --card-opacity-light: #{$card-opacity-light};
+  --card-opacity-dark: #{$card-opacity-dark};
+
   --font-primary: #{$font-primary};
   --font-secondary: #{$font-secondary};
 
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-size-4xl: #{$font-size-4xl};
+  --font-size-5xl: #{$font-size-5xl};
+
+  --font-weight-light: #{$font-weight-light};
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+
+  --line-height-tight: #{$line-height-tight};
+  --line-height-normal: #{$line-height-normal};
+  --line-height-relaxed: #{$line-height-relaxed};
+
+  /* -------------------------
+     Spacing
+  ------------------------- */
+  --spacing-1: #{$spacing-1};
+  --spacing-2: #{$spacing-2};
+  --spacing-3: #{$spacing-3};
+  --spacing-4: #{$spacing-4};
+  --spacing-5: #{$spacing-5};
+  --spacing-6: #{$spacing-6};
+  --spacing-7: #{$spacing-7};
+  --spacing-8: #{$spacing-8};
+  --spacing-9: #{$spacing-9};
+  --spacing-10: #{$spacing-10};
+  --spacing-11: #{$spacing-11};
+  --spacing-12: #{$spacing-12};
+  --spacing-13: #{$spacing-13};
+  --spacing-14: #{$spacing-14};
+  --spacing-15: #{$spacing-15};
+  --spacing-16: #{$spacing-16};
+  --spacing-17: #{$spacing-17};
+  --spacing-18: #{$spacing-18};
+  --spacing-19: #{$spacing-19};
+  --spacing-20: #{$spacing-20};
+  --spacing-21: #{$spacing-21};
+  --spacing-22: #{$spacing-22};
+  --spacing-23: #{$spacing-23};
+  --spacing-24: #{$spacing-24};
+
+  /* -------------------------
+     Breakpoints
+  ------------------------- */
   --break-sm: #{$break-sm};
   --break-md: #{$break-md};
   --break-lg: #{$break-lg};
   --break-xl: #{$break-xl};
+
+  /* -------------------------
+     Shadows
+  ------------------------- */
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+
+  /* -------------------------
+     Borders & radius
+  ------------------------- */
+  --border-thin: #{$border-thin};
+  --border-medium: #{$border-medium};
+  --border-thick: #{$border-thick};
+
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --radius-xl: #{$radius-xl};
+  --radius-full: #{$radius-full};
+
+  /* -------------------------
+     Transitions
+  ------------------------- */
+  --transition-fast: #{$transition-fast};
+  --transition-base: #{$transition-base};
+  --transition-slow: #{$transition-slow};
+
+  --tray-offset-x: #{$tray-offset-x};
+  --tray-gap: #{$tray-gap};
+
+  /* Sidebar layout variables (usadas por main y sidebar) */
+  --sidebar-closed-width: 5.5rem;
+  --sidebar-open-width: 20rem;
+  --sidebar-toggle-width: 2.75rem;
+
+  --first-background-color: var(--color-primary-5);
+  --second-background-color: var(--color-primary-4);
+  --elements-color: var(--light-color-1);
+  --components-color: var(--color-primary-1);
+  --components-color-on-hover: var(--color-primary-2);
+  --components-color-two: var(--color-primary-3);
+}
+
+.dark-mode {
+  --first-background-color: var(--dark-color-5);
+  --second-background-color: var(--dark-color-4);
+  --elements-color: var(--color-secondary-1);
+  --components-color: var(--dark-color-1);
+  --components-color-on-hover: var(--dark-color-3);
+  --components-color-two: var(--dark-color-2);
 }

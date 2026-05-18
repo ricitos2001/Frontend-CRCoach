@@ -1,0 +1,153 @@
+
+// Modal styles (component-level styles included via main styles.scss)
+:root {
+  --modal-overlay-bg: rgba(0, 0, 0, 0.55);
+  --modal-bg: var(--components-color);
+  --modal-radius: 0.75rem;
+  --modal-max-width: 45rem;
+  --modal-padding: 1.25rem;
+  --modal-header-padding: 0.75rem 1rem;
+  --modal-z: 1000;
+  --modal-transition: 200ms ease;
+  --modal-shadow: 0 0.625rem 1.875rem rgba(0,0,0,0.25);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--modal-z);
+  /* ensure space on small viewports so the modal doesn't touch edges */
+  padding: 1.5rem;
+  box-sizing: border-box;
+  /* allow the modal area to scroll if the viewport is too small */
+  overflow: auto;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--modal-overlay-bg);
+  opacity: 0;
+  transition: opacity var(--modal-transition);
+}
+
+.modal-open .modal__overlay,
+.modal .modal__overlay {
+  opacity: 1;
+}
+
+.modal__container {
+  position: relative;
+  background: var(--modal-bg);
+  border-radius: var(--modal-radius);
+  max-width: var(--modal-max-width);
+  width: calc(100% - 2rem);
+  box-shadow: var(--modal-shadow);
+  transform: translateY(0.5rem) scale(0.995);
+  opacity: 0;
+  transition: transform var(--modal-transition), opacity var(--modal-transition);
+  z-index: calc(var(--modal-z) + 1);
+  padding: var(--modal-padding);
+  /* Limit modal height to the viewport and allow internal scrolling so the entire form remains reachable */
+  max-height: calc(100vh - 3rem);
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.modal .modal__container:focus {
+  outline: none;
+}
+
+.modal-open .modal__container,
+.modal .modal__container {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--modal-header-padding);
+  border-bottom: 0.0625rem solid rgba(0,0,0,0.06);
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.modal__close {
+  background: transparent;
+  border: none;
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.modal__body {
+  padding: 1rem 0 0;
+  /* Let the container manage scrolling; avoid nested scroll regions that hide form parts */
+  max-height: none;
+  overflow: visible;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+/* Sizes */
+.modal--small .modal__container {
+  max-width: 22.5rem;
+}
+.modal--medium .modal__container {
+  max-width: 40rem;
+}
+.modal--large .modal__container {
+  max-width: 61.25rem;
+}
+
+/* Prevent body scroll when modal open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Modal form flex tweaks: make date fields a bit wider so labels and inputs
+   for Inicio / Fin have more room. Targets app-form-input elements that
+   expose a `type="date"` attribute (used in templates). */
+.modal__container .flex {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.modal__container .flex app-form-input[type="date"], .modal__container .flex app-form-input[type="number"] {
+  flex: 0 0 48%;
+  min-width: 11.25rem;
+}
+
+
+
+/* If the flex contains a third control (e.g. a small numeric input), allow it to shrink */
+.modal__container .flex app-form-input:not([type="date"]), .modal__container .flex app-form-input:not([type="number"]) {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 40rem) {
+  .modal__container .flex {
+    flex-direction: column;
+  }
+  .modal__container .flex app-form-input[type="date"] {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+

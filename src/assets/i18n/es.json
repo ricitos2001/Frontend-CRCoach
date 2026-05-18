@@ -1,5 +1,40 @@
 {
   "COMPONENTS": {
+    "LAYOUT": {
+      "SIDEBAR": {
+        "DASHBOARD": "Panel de control",
+        "BATTLES": "Registro de batallas",
+        "WEAKNESSES": "Diagnóstico de debilidades",
+        "GOALS": "Lista de objetivos",
+        "SESSIONS": "Diario de sesiones",
+        "PROGRESS": "Progreso del jugador",
+        "PROFILE": "Perfil de usuario"
+      },
+      "HEADER": {
+        "START": "Inicio",
+        "WHAT_OFFERS": "Que ofrecemos",
+        "CONTACT": "Contacto",
+        "GET_STARTED": "Empecemos",
+        "GO_HOME": "Volver al inicio"
+      },
+      "FOOTER": {
+        "SECTION_TITLE": "Enlaces del pie de página",
+        "TITLE1": "Información legal",
+        "TITLE2": "Ayuda",
+        "TITLE3": "Contacto",
+        "LINK1": "Términos y condiciones",
+        "LINK2": "Acuerdo con los TOS",
+        "LINK3": "Aviso legal",
+        "LINK4": "Política de privacidad",
+        "LINK5": "Información sobre las cookies",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.DISCORD": "Únete a mi servidor de Discord",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.INSTAGRAM": "Sígueme en Instagram",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.TWITTER": "Sígueme en Twitter",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.GITHUB": "Descubre otros proyectos en mi perfil de github",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.LINKEDIN": "Contacta conmigo en LinkedIn",
+        "COMPONENTS.LAYOUT.FOOTER.SOCIAL.KOFI": "Invítame a un café en Ko-fi"
+      }
+    },
     "SHARED": {
       "LANGUAGE": "Idioma",
       "GET_STARTED": "Empecemos",
@@ -8,9 +43,54 @@
   },
   "PAGES": {
     "LANDING": {
-      "HELLO_WORLD": "¡Hola Mundo!"
+      "HERO_TITLE": "Deja de perder, empieza a ganar.",
+      "HERO_PARAGRAPH": "Coach Royale analiza cada partida, detecta tus debilidades y te guía con objetivos claros para que subas de trofeos de forma constante.",
+      "WHAT_OFFERS_TITLE": "Todo lo que necesitas para mejorar",
+      "WHAT_OFFERS_DESC": "Herramientas diseñadas específicamente para jugadores que quieren subir de nivel.",
+      "FEATURE_BATTLES_TITLE": "Historial de Batallas",
+      "FEATURE_BATTLES_DESC": "Visualiza y analiza todas tus partidas con estadísticas detalladas.",
+      "FEATURE_SESSIONS_TITLE": "Diario de Sesiones",
+      "FEATURE_SESSIONS_DESC": "Anota reflexiones, lecciones aprendidas y el estado de ánimo de cada sesión.",
+      "FEATURE_GOALS_TITLE": "Objetivos Medibles",
+      "FEATURE_GOALS_DESC": "Define metas concretas y realiza un seguimiento automático de tu progreso.",
+      "FEATURE_WEAKNESSES_TITLE": "Diagnóstico de Debilidades",
+      "FEATURE_WEAKNESSES_DESC": "Descubre contra qué arquetipos y cartas pierdes más para mejorar.",
+      "FEATURE_TROPHIES_TITLE": "Evolución de Trofeos",
+      "FEATURE_TROPHIES_DESC": "Registra y analiza tu progreso de trofeos a lo largo del tiempo.",
+      "FEATURE_STATS_TITLE": "Estadísticas Avanzadas",
+      "FEATURE_STATS_DESC": "Winrate por arquetipo, racha de victorias, evolución de trofeos y mucho más.",
+      "STEPS_TITLE": "Empieza en 3 pasos",
+      "STEP_1_NUMBER": "01",
+      "STEP_1_TITLE": "Crea tu cuenta",
+      "STEP_1_DESC": "Regístrate gratis en segundos con tu email.",
+      "STEP_2_NUMBER": "02",
+      "STEP_2_TITLE": "Juega partidas",
+      "STEP_2_DESC": "Juega partidas de Clash Royale para obtener datos.",
+      "STEP_3_NUMBER": "03",
+      "STEP_3_TITLE": "Analiza y mejora",
+      "STEP_3_DESC": "Ve datos, establece objetivos y sube copas.",
+      "READY_TITLE": "¿Listo para subir de trofeos?",
+      "READY_DESC": "Únete, vincula tu cuenta y empieza a mejorar hoy mismo. Es gratis.",
+      "STATS_PLAYERS_ACTIVE": "Jugadores activos",
+      "STATS_BATTLES_ANALYZED": "Batallas analizadas",
+      "STATS_WINRATE_ACCURACY": "Precisión de winrate",
+      "STATS_COUNTRIES": "Países",
+      "STATS_DAILY_ANALYSIS": "Análisis diarios",
+      "STATS_RESPONSE_TIME": "Tiempo de respuesta",
+      "STATS_UPTIME": "Disponibilidad del sistema",
+      "STATS_MATCHUPS_PROCESSED": "Enfrentamientos procesados",
+      "STATS_GAME_MODES_SUPPORTED": "Modos de juego soportados",
+      "STATS_ACTIVE_DAILY_USERS": "Usuarios activos diarios",
+      "STATS_USER_IMPROVEMENT": "Mejora media de rendimiento",
+      "STATS_AVAILABILITY": "Disponibilidad 24/7"
     },
     "AUTH": {
+      "GLOBAL": {
+        "TITLE": "COACH ROYALE",
+        "SUBTITLE": "Reclama tu trono",
+        "TEXT": "Domina el campo de batalla con analíticas de nivel soberano. La evolución de tu estrategia comienza en la Ciudadela Etherea"
+      },
+      "SESSION_EXPIRED": "La sesión ha expirado. Vuelva a iniciar sesión.",
       "LOGIN": {
         "LEGEND": "Iniciar sesión",
         "EMAIL_LABEL": "Correo electrónico",
@@ -19,7 +99,8 @@
         "PASSWORD_PLACEHOLDER": "Contraseña",
         "SUBMIT": "Iniciar sesión",
         "NO_ACCOUNT": "¿No tienes cuenta? Regístrate",
-        "FORGOT_PASSWORD": "¿Has olvidado tu contraseña? Recupérala"
+        "FORGOT_PASSWORD": "¿Has olvidado tu contraseña? Recupérala",
+        "SUBMITTING": "Iniciando sesión..."
       },
       "REGISTER": {
         "LEGEND": "Regístrate",
@@ -37,9 +118,10 @@
         "PASSWORD_PLACEHOLDER": "Contraseña",
         "REPEAT_PASSWORD_LABEL": "Repetir contraseña",
         "REPEAT_PASSWORD_PLACEHOLDER": "Repetir contraseña",
-        "PLAYERTAG_LABEL": "tag del jugador",
-        "PLAYERTAG_PLACEHOLDER": "tag del jugador",
-        "PLAYERTAG_INVALID": "el tag del jugador no existe",
+        "PLAYERTAG_LABEL": "Tag del jugador",
+        "PLAYERTAG_PLACEHOLDER": "Tag del jugador",
+        "PLAYERTAG_INVALID": "El tag del jugador no existe",
+        "PLAYERTAG_TAKEN": "El tag introducido ya está vinculado a otro usuario",
         "SUBMIT": "Regístrate",
         "SUBMITTING": "Registrando...",
         "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión",
@@ -53,6 +135,7 @@
         "CONFIRM_PASSWORD_LABEL": "Confirmar contraseña",
         "CONFIRM_PASSWORD_PLACEHOLDER": "Confirmar contraseña",
         "SEND_EMAIL": "Enviar correo",
+        "SUBMITTED": "Enviado",
         "CHANGE_PASSWORD": "Cambiar contraseña",
         "BACK_TO_LOGIN": "Volver a iniciar sesión",
         "SUCCESS_EMAIL_SENT": "Se ha enviado un correo con instrucciones.",
@@ -63,7 +146,7 @@
     },
     "LINK_PLAYER_PROFILE": {
       "LEGEND": "Introduce el tag del jugador",
-      "TAG_LABEL": "tag del jugador",
+      "TAG_LABEL": "Tag del jugador",
       "TAG_PLACEHOLDER": "Introduce el tag",
       "REQUIRED_ERROR": "El tag es obligatorio",
       "TAG_NOT_FOUND": "Tag no encontrado",
@@ -75,7 +158,244 @@
       "NOTIFICATION_LINKED_MESSAGE": "El tag {{tag}} se ha vinculado correctamente.",
       "NOTIFICATION_ERROR_TITLE": "Error vinculando perfil",
       "NOTIFICATION_ERROR_MESSAGE": "No se pudo vincular el tag {{tag}}."
+    },
+    "REFRESH": {
+      "NO_TAG": "No hay tag vinculado",
+      "STARTED": "Actualización iniciada",
+      "DONE": "Actualización finalizada"
+    },
+    "BATTLES": {
+      "TITLE": "Registro de batallas",
+      "LOADING": "Cargando batallas...",
+      "ERROR": "Error cargando batallas: {{err}}",
+      "NO_CLAN": "Sin clan",
+      "VICTORY": "Victoria",
+      "DEFEAT": "Derrota",
+      "DRAW": "Empate",
+      "ALL": "todas las batallas",
+      "NO_BATTLES": "No hay batallas"
+    },
+    "WEAKNESSES": {
+      "TITLE": "Diagnóstico de debilidades",
+      "SUMMARY_TITLE": "Resumen de estadísticas",
+      "LOADING_SUMMARY": "Cargando resumen de estadísticas...",
+      "ERROR_SUMMARY": "Error cargando resumen: {{err}}",
+      "ADVANCED_TITLE": "Filtros avanzados",
+      "TOTAL_BATTLES": "Batallas totales",
+      "AVG_ELIXIR": "Elixir medio (último mazo)",
+      "WEAKEST_ARCHETYPE": "Arquetipo más débil",
+      "STRONGEST_ARCHETYPE": "Arquetipo más fuerte",
+      "LOADING_WEAKNESSES": "Cargando debilidades...",
+      "ERROR_WEAKNESSES": "Error cargando debilidades: {{err}}",
+      "PROBLEMATIC_CARDS_TITLE": "Cartas problemáticas",
+      "LOADING_PROBLEMATIC_CARDS": "Cargando cartas problemáticas...",
+      "ERROR_PROBLEMATIC_CARDS": "Error cargando cartas problemáticas: {{err}}",
+      "APPEARANCES": "apariciones",
+      "WINRATE_25": "Winrate (últimas 25)",
+      "WINRATE_7D": "Winrate (7 días)",
+      "NO_DATA": "no hay datos",
+      "ARCHETYPE": "Arquetipo",
+      "BATTLES_LABEL": "Batallas",
+      "BUTTON": "Búsqueda avanzada",
+      "FILTER_FROM": "Desde",
+      "FILTER_TO": "Hasta",
+      "FILTER_MODE": "Modo de juego",
+      "FILTER_MIN_BATTLES": "Batallas mínimas",
+      "FILTER_LIMIT": "Límite",
+      "FILTER_MIN_APPEARANCES": "Apariciones mínimas",
+      "FILTER_RESET": "Restablecer",
+      "FILTER_APPLY": "Aplicar",
+      "WEAKNESSES_TITLE": "Debilidades por arquetipo rival",
+      "NO_PROBLEMATIC_CARDS": "No hay cartas problemáticas"
+    },
+    "DASHBOARD": {
+      "TROPHIES_TITLE": "Evolución de trofeos",
+      "WINRATE_TITLE": "Porcentaje de victorias",
+      "STREAK_TITLE": "Racha de victorias",
+      "STREAK_SUBTITLE_LOSS": "derrotas seguidas",
+      "STREAK_SUBTITLE_WIN": "victorias seguidas",
+      "RECENT_BATTLES": "Batallas recientes",
+      "RECENT_GOALS": "Objetivos recientes",
+      "RECENT_SESSIONS": "Sesiones recientes",
+      "LOADING_METRICS": "Cargando métricas...",
+      "ERROR_METRICS": "Error métricas: {{err}}",
+      "NO_DATA_TROPHIES": "no hay datos...\njuega en el camino de trofeos para generar datos que analizar",
+      "VICTORIES": "Victorias",
+      "DEFEATS": "Derrotas",
+      "LOADING_USER": "Cargando usuario...",
+      "WELCOME": "Bienvenido:",
+      "ERROR_USER": "Error usuario: {{err}}",
+      "LOADING_PROFILE": "Cargando perfil de jugador...",
+      "ERROR_PROFILE": "Error perfil: {{err}}",
+      "AVATAR_ALT": "Avatar del jugador",
+      "TROPHIES": "Número de trofeos actuales",
+      "BEST_TROPHIES": "Mejores trofeos",
+      "DONATIONS": "Donaciones",
+      "CURRENT_LEAGUE": "Liga actual",
+      "REFRESH": "Actualizar",
+      "LOADING_BATTLES": "Cargando batallas...",
+      "ERROR_BATTLES": "Error batallas: {{err}}",
+      "NO_GOALS": "No hay objetivos recientes",
+      "NO_BATTLES": "No hay batallas recientes",
+      "NO_SESSIONS": "No hay sesiones recientes",
+      "NO_METRICS": "No hay métricas recientes",
+      "LOADING_GOALS": "Cargando objetivos...",
+      "ERROR_GOALS": "Error objetivos: {{err}}",
+      "LOADING_SESSIONS": "Cargando sesiones...",
+      "ERROR_SESSIONS": "Error sesiones: {{err}}",
+      "TEXT1": "Trofeos",
+      "TEXT2": "Coronas",
+      "TEXT3": "Sin clan"
     }
+    ,
+    "GOALS": {
+      "TITLE": "Lista de objetivos",
+      "ADD": "Agregar objetivo",
+      "LOADING": "Cargando objetivos...",
+      "ERROR": "Error al cargar objetivos: {{err}}",
+      "NO_GOALS": "No hay objetivos",
+      "STATUS": {
+        "LABEL": "Estado",
+        "ALL": "Todos",
+        "IN_PROGRESS": "En progreso",
+        "PAUSED": "En pausa",
+        "COMPLETED": "Completado",
+        "FAILED": "Fallado"
+      },
+      "ACTIONS": {
+        "PAUSE": "Pausar",
+        "RESUME": "Reanudar",
+        "FAIL": "Marcar como fallado",
+        "COMPLETE": "Marcar como completado"
+      },
+      "CREATE_TITLE": "Crear objetivo",
+      "EDIT_TITLE": "Editar objetivo",
+      "LABEL": {
+        "TITLE": "Título",
+        "DESCRIPTION": "Descripción",
+        "METRYC": "Tipo de métrica",
+        "TARGET": "Valor objetivo",
+        "DEADLINE": "Fecha límite"
+      },
+      "METRYC_OPTIONS": {
+        "TROPHIES": "Trofeos",
+        "WINRATE": "Porcentaje de victorias",
+        "BATTLES": "Batallas",
+        "DONATIONS": "Donaciones",
+        "STREAK": "Racha"
+      },
+      "SAVE": "Guardar",
+      "CANCEL": "Cancelar",
+      "CREATED": "Objetivo creado correctamente",
+      "CREATE_ERROR": "Error al crear el objetivo",
+      "UPDATED": "Objetivo actualizado correctamente",
+      "UPDATE_ERROR": "Error al actualizar el objetivo",
+      "DELETED": "Objetivo eliminado correctamente",
+      "DELETE_ERROR": "Error eliminando objetivo",
+      "PAUSED": "Objetivo puesto en pausa",
+      "PAUSE_ERROR": "Error al pausar objetivo",
+      "RESUMED": "Objetivo reanudado",
+      "RESUME_ERROR": "Error al reanudar objetivo",
+      "COMPLETED": "Objetivo marcado como completado",
+      "COMPLETE_ERROR": "Error al completar objetivo",
+      "FAILED": "Objetivo marcado como fallado",
+      "FAIL_ERROR": "Error al marcar objetivo como fallado"
+    },
+    "SESSIONS": {
+      "TITLE": "Diario de sesiones",
+      "ADD": "Agregar sesión",
+      "LOADING": "Cargando sesiones...",
+      "ERROR": "Error al cargar sesiones: {{err}}",
+      "NO_SESSIONS": "No hay sesiones",
+      "CREATE_TITLE": "Crear sesión",
+      "EDIT_TITLE": "Editar sesión",
+      "LABEL": {
+        "TITLE": "Título",
+        "NOTES": "Notas",
+          "MOOD": "Estado de ánimo",
+          "ENFOQUE": "Área de enfoque",
+        "START": "Fecha de inicio",
+        "END": "Fecha de finalizacion"
+      },
+      "SAVE": "Guardar",
+      "CANCEL": "Cancelar",
+      "CREATED": "Sesión creada correctamente",
+      "CREATE_ERROR": "Error al crear la sesión",
+      "UPDATED": "Sesión actualizada correctamente",
+      "UPDATE_ERROR": "Error al actualizar la sesión",
+      "DELETED": "Sesión eliminada correctamente",
+      "DELETE_ERROR": "Error al eliminar la sesión"
+    },
+    "PROGRESS": {
+      "TITLE": "Progreso del jugador",
+      "TROPHIES_TITLE": "Evolución de trofeos",
+      "WINRATE_TITLE": "Porcentaje de victorias",
+      "NO_METRICS": "No hay métricas recientes",
+      "BATTLES_COMPARISON": "Comparación de batallas",
+      "DONATIONS_LABEL": "Donaciones",
+      "BATTLES_TOTAL_LABEL": "Total batallas",
+      "BATTLES_LAST24_LABEL": "Batallas últimas 24h",
+      "TROPHIES_LABEL": "Trofeos",
+      "NO_DATA": "No hay datos",
+      "BATTLES_LABEL": "Batallas",
+      "DONATIONS": "Donaciones",
+      "DONATIONS_TITLE": "Donaciones realizadas"
+    }
+  ,
+    "EDIT_USER": {
+      "LEGEND": "Editar perfil",
+      "NAME_LABEL": "Nombre",
+      "NAME_PLACEHOLDER": "Nombre",
+      "SURNAMES_LABEL": "Apellidos",
+      "SURNAMES_PLACEHOLDER": "Apellidos",
+      "USERNAME_LABEL": "Nombre de usuario",
+      "USERNAME_PLACEHOLDER": "Nombre de usuario",
+      "EMAIL_LABEL": "Correo electrónico",
+      "EMAIL_PLACEHOLDER": "Correo electrónico",
+      "PHONE_LABEL": "Teléfono",
+      "PHONE_PLACEHOLDER": "Teléfono",
+      "PLAYER_TAG_LABEL": "Tag del jugador (no editable)",
+      "PLAYER_TAG_PLACEHOLDER": "Tag del jugador",
+      "SAVE": "Guardar",
+      "SAVING": "Guardando...",
+      "CANCEL": "Cancelar"
+    },
+    "PROFILE": {
+      "DELETE_MODAL": {
+        "TITLE": "Confirmar borrado de cuenta",
+        "MESSAGE": "¿Estás seguro de que deseas borrar tu cuenta? Esta acción no se puede deshacer.",
+        "CANCEL": "Cancelar",
+        "CONFIRM": "Confirmar"
+      },
+      "EDIT_PROFILE": "Editar perfil",
+      "DELETE_ACCOUNT": "Borrar cuenta",
+      "CARD_IN_DECK": "Carta del mazo",
+      "PLAYER_CARD": "Carta del jugador",
+      "CHANGE_IMAGE_PROFILE": "Cambiar imagen de perfil",
+      "HEADER": "Perfil de usuario",
+      "PLAYER_PROFILE_TITLE": "Perfil del jugador",
+      "PLAYER_DATA": "Datos del jugador",
+      "DECK_OF": "Mazo de {{name}}",
+      "FAVORITE_CARD": "Carta favorita",
+      "CARDS_TITLE": "Cartas del jugador",
+      "LABELS": {
+        "NAME_AND_SURNAMES": "Nombre y apellidos",
+        "USERNAME": "Nombre de usuario",
+        "EMAIL": "Correo electrónico"
+      },
+      "CARD_RARITY": "Rareza",
+      "CARD_LEVEL": "Nivel",
+      "CARD_ELIXIR": "Elixir",
+      "CARD_COUNT": "Cantidad"
+    }
+  },
+  "USER": {
+    "NOT_LOADED": "Datos del usuario no cargados"
+  },
+  "PAGINATION": {
+    "PREV": "Anterior",
+    "NEXT": "Siguiente",
+    "PAGE": "Página"
   },
   "VALIDATION": {
     "REQUIRED": "Este campo es obligatorio.",
@@ -89,7 +409,8 @@
     "PASSWORD_NO_NUMBER": "Debe incluir un número.",
     "PASSWORD_NO_SPECIAL": "Debe incluir un carácter especial.",
     "PASSWORDS_MISMATCH": "Las contraseñas no coinciden.",
-    "MIN_LENGTH": "Longitud mínima no cumplida."
+    "MIN_LENGTH": "Longitud mínima no cumplida.",
+    "ACCEPT_TERMS": "Debes aceptar los términos de privacidad y condiciones de servicio"
   },
   "NOTIFICATIONS": {
     "AUTH": {
@@ -104,26 +425,29 @@
         "ERROR": "Error al registrar el usuario"
       }
     },
-    "TASK": {
-      "CREATED": "Tarea creada correctamente",
-      "UPDATED": "Tarea actualizada correctamente",
-      "TITLE": "Tarea creada",
-      "MESSAGE": "La tarea \"{{title}}\" se ha creado correctamente.",
-      "UPDATED_TITLE": "Tarea actualizada",
-      "UPDATED_MESSAGE": "La tarea \"{{title}}\" se ha actualizado correctamente.",
-      "CREATE_ERROR": "Error al crear la tarea",
-      "CANCELLED": "Operación cancelada"
-    },
-    "GROUP": {
-      "CREATED": "Grupo creado correctamente",
-      "TITLE": "Grupo creado",
-      "MESSAGE": "El grupo \"{{name}}\" se ha creado correctamente.",
-      "CREATE_ERROR": "Error al crear el grupo"
-    },
     "USER": {
       "UPDATED": "Usuario actualizado correctamente",
       "UPDATE_ERROR": "Error al editar el usuario",
-      "CANCELLED": "Operación cancelada"
+      "CANCELLED": "Operación cancelada",
+      "GET_ERROR": "Error al obtener los datos del usuario"
+    },
+    "GOALS": {
+      "CREATED": "Objetivo creado correctamente",
+      "CREATE_ERROR": "Error al crear el objetivo",
+      "UPDATED": "Objetivo actualizado correctamente",
+      "UPDATE_ERROR": "Error al actualizar el objetivo",
+      "DELETED": "Objetivo eliminado correctamente",
+      "DELETE_ERROR": "Error al eliminar el objetivo",
+      "GET_ERROR": "Error al obtener los objetivos"
+    },
+    "SESSIONS": {
+      "CREATED": "Sesión creada correctamente",
+      "CREATE_ERROR": "Error al crear la sesión",
+      "UPDATED": "Sesión actualizada correctamente",
+      "UPDATE_ERROR": "Error al actualizar la sesión",
+      "DELETED": "Sesión eliminada correctamente",
+      "DELETE_ERROR": "Error al eliminar la sesión",
+      "GET_ERROR": "Error al obtener las sesiones"
     }
   }
 }

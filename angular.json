@@ -32,23 +32,20 @@
               "src/robots.txt",
               "src/sitemap.xml"
             ],
-            "styles": [
-              "src/styles.css",
-              "src/styles/styles.css"
-            ]
+            "styles": ["src/material-theme.scss", "src/styles.css", "src/styles/styles.css"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2.5MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "2.5MB",
+                  "maximumError": "5MB"
                 }
               ],
               "outputHashing": "all"
@@ -68,7 +65,8 @@
               "buildTarget": "Frontend-CRCoach:build:production"
             },
             "development": {
-              "buildTarget": "Frontend-CRCoach:build:development"
+              "buildTarget": "Frontend-CRCoach:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

@@ -1,0 +1,24 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <section class="fieldset">
+    <h2 class="form__legend">@if(goal) { {{ 'PAGES.GOALS.EDIT_TITLE' | translate }} } @else { {{ 'PAGES.GOALS.CREATE_TITLE' | translate }} }</h2>
+
+    <app-form-input class="glass-input" name="title" label="{{ 'PAGES.GOALS.LABEL.TITLE' | translate }}" placeholder="" formControlName="title"></app-form-input>
+
+    <app-form-input class="glass-input" type="textarea" name="description" label="{{ 'PAGES.GOALS.LABEL.DESCRIPTION' | translate }}" formControlName="description"></app-form-input>
+
+    <article class="flex">
+      <app-form-input class="glass-input" type="date" name="deadline" label="{{ 'PAGES.GOALS.LABEL.DEADLINE' | translate }}" formControlName="deadline"></app-form-input>
+
+      <app-form-input class="glass-input" type="number" name="targetValue" label="{{ 'PAGES.GOALS.LABEL.TARGET' | translate }}" formControlName="targetValue"></app-form-input>
+
+      <app-form-input class="glass-input" type="select" name="metricType" label="{{ 'PAGES.GOALS.LABEL.METRYC' | translate }}" formControlName="metricType" [options]="metricOptionsMap"></app-form-input>
+    </article>
+
+
+    <article class="flex">
+      <app-common-button type="submit" [disabled]="form.invalid || loading">{{ 'PAGES.GOALS.SAVE' | translate }}</app-common-button>
+      <app-common-button type="button" (click)="onCancel()">{{ 'PAGES.GOALS.CANCEL' | translate }}</app-common-button>
+    </article>
+  </section>
+</form>
+

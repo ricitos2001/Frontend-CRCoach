@@ -23,7 +23,7 @@ export class UsersService {
           Authorization: `Bearer ${this.token}`,
         },
       })
-      .pipe(finalize(() => this.loadingService.hide()));;
+      .pipe(finalize(() => this.loadingService.hide()));
   }
 
   getUserById(id: string | null): Observable<User> {
@@ -37,8 +37,9 @@ export class UsersService {
   }
 
   getUser(email: string | null): Observable<User> {
+    const encoded = email ? encodeURIComponent(email) : '';
     return this.http
-      .get<User>(`${environment.apiUrl}/api/v1/users/email/${email}`, {
+      .get<User>(`${environment.apiUrl}/api/v1/users/email/${encoded}`, {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
@@ -95,16 +96,6 @@ export class UsersService {
           Authorization: `Bearer ${this.token}`,
         },
         responseType: 'text' as 'json',
-      })
-      .pipe(finalize(() => this.loadingService.hide()));
-  }
-
-  linkPlayerTag(tag: string): Observable<any> {
-    return this.http
-      .post(`${environment.apiUrl}/api/v1/users/me/player-profile/link/${tag}`, null, {
-        headers: {
-          Authorization: `Bearer ${this.token}`,
-        },
       })
       .pipe(finalize(() => this.loadingService.hide()));
   }

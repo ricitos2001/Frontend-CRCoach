@@ -7,6 +7,7 @@ export interface PlayerCard {
   name: string;
   level: number;
   maxLevel: number;
+  evolutionLevel: number;
   maxEvolutionLevel: number;
   rarity: string;
   count: string;
@@ -14,4 +15,5 @@ export interface PlayerCard {
   iconUrl: IconUrl;
   playerProfile: PlayerProfile;
   supportCard: Boolean;
+  useType: string;
 }

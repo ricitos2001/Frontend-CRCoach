@@ -1,0 +1,45 @@
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+
+.select select {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--elements-color);
+  background: var(--components-color);
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.search input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  color: var(--elements-color);
+  background: var(--components-color);
+}
+
+.search svg {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  background: var(--components-color-two);
+}
+
+.search svg path {
+  stroke: var(--elements-color)
+}

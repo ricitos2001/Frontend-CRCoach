@@ -9,6 +9,28 @@ export const routes: Routes = [
     data: { title: 'Landing', breadcrumb: 'Landing' },
   },
   {
+    path: 'terms',
+    loadChildren: () => import("./pages/terms/terms-module").then((m) => m.TermsModule),
+    data: { title: 'Terms and conditions', breadcrumb: 'Terms and conditions' },
+  },
+  {
+    path: 'notice',
+    loadChildren: () => import("./pages/notice/notice-module" ).then((m) => m.NoticeModule),
+    data: { title: 'Legal notice', breadcrumb: 'Legal notice' },
+  },
+  {
+    path: 'privacy',
+    loadChildren: () => import("./pages/privacy/privacy-module").then((m) => m.PrivacyModule),
+    data: { title: 'Privacy policy', breadcrumb: 'Privacy policy' },
+
+  },
+  {
+    path: 'cookies',
+    loadChildren: () => import("./pages/cookies/cookies-module").then((m) => m.CookiesModule),
+    data: { title: 'Cookies information', breadcrumb: 'Cookies information' },
+
+  },
+  {
     path: 'login',
     loadChildren: () => import('./pages/login/login-module').then((m) => m.LoginModule),
     data: { title: 'Login', breadcrumb: 'Login' },

@@ -21,16 +21,17 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
   ],
   templateUrl: './recover-password.page.html',
   styleUrl: '../../../styles/styles.css',
+  standalone: true,
 })
 export class RecoverPasswordPage implements OnInit {
   @Output() authSuccess = new EventEmitter<void>();
 
   submitted = false;
+  loading = false;
   tokenValid = false;
   token?: string;
   message?: string;
   error?: string;
-
   recoverPasswordForm!: FormGroup;
 
   constructor(
@@ -42,21 +43,14 @@ export class RecoverPasswordPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Inicializamos un FormGroup vacío temprano para evitar errores si el template
-    // renderiza antes de que initEmailForm/initResetForm cree los controles.
     this.recoverPasswordForm = this.fb.group({});
     this.token = this.route.snapshot.queryParamMap.get('token') ?? undefined;
-
     if (this.token) {
       this.verifyToken(this.token);
     } else {
       this.initEmailForm();
     }
   }
-
-  /* =========================
-     FORMULARIOS
-     ========================= */
 
   onSubmit(event: Event): void {
     event.preventDefault();
@@ -83,10 +77,6 @@ export class RecoverPasswordPage implements OnInit {
     });
   }
 
-  /* =========================
-     TOKEN
-     ========================= */
-
   private initResetForm(): void {
     this.recoverPasswordForm = this.fb.group(
       {
@@ -97,15 +87,11 @@ export class RecoverPasswordPage implements OnInit {
     );
   }
 
-  /* =========================
-     SUBMIT
-     ========================= */
-
   private verifyToken(token: string): void {
     this.passwordResetService.verifyToken(token).subscribe({
       next: (res) => {
         if (!res.valid) {
-          this.router.navigate(['/invalid-token']).then(r => console.log(r));
+          this.router.navigate(['/invalid-token']).then((r) => console.log(r));
           return;
         }
         this.tokenValid = true;
@@ -117,31 +103,36 @@ export class RecoverPasswordPage implements OnInit {
 
   private sendRecoveryEmail(): void {
     const { email } = this.recoverPasswordForm.value;
+    this.loading = true;
 
     this.passwordResetService.forgotPassword({ email }).subscribe({
       next: (res) => {
         this.message = res.message || this.translate.instant('PAGES.RECOVER.SUCCESS_EMAIL_SENT');
         this.submitted = false;
+        this.loading = false;
       },
       error: () => {
         this.error = this.translate.instant('PAGES.RECOVER.ERROR_PROCESSING_REQUEST');
         this.submitted = false;
+        this.loading = false;
       },
     });
   }
 
   private resetPassword(): void {
     const { newPassword } = this.recoverPasswordForm.value;
-
+    this.loading = true;
     this.passwordResetService.resetPassword({ token: this.token!, newPassword }).subscribe({
       next: (res) => {
         this.message =
           res.message || this.translate.instant('PAGES.RECOVER.SUCCESS_PASSWORD_CHANGED');
+        this.loading = false;
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: () => {
         this.error = this.translate.instant('PAGES.RECOVER.ERROR_UPDATING_PASSWORD');
         this.submitted = false;
+        this.loading = false;
       },
     });
   }

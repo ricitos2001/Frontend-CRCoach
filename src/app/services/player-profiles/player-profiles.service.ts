@@ -17,7 +17,7 @@ export class PlayerProfilesService {
     private loadingService: LoadingService,
   ) {}
 
-  getProfileByTag(tag: string): Observable<PlayerProfile> {
+  getProfileByTag(tag: string): Observable<any> {
     const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
     const encodedTag = encodeURIComponent(normalizedTag);
 
@@ -26,6 +26,20 @@ export class PlayerProfilesService {
         headers: {
           Authorization: `Bearer ${this.token}`,
         },
+      })
+      .pipe(finalize(() => this.loadingService.hide()));
+  }
+
+  importProfile(tag: string): Observable<any> {
+    const normalizedTag = tag.startsWith('#') ? tag : `#${tag}`;
+    const encodedTag = encodeURIComponent(normalizedTag);
+    return this.http
+      // The import endpoint may return 202 Accepted with no JSON body, request text
+      .get(`${environment.apiUrl}/api/v1/player_profiles/player/${encodedTag}`, {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+        responseType: 'text',
       })
       .pipe(finalize(() => this.loadingService.hide()));
   }

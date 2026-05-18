@@ -1,11 +1,63 @@
-<label [for]="name">{{ label || placeholder }}</label>
-
-@if (type === 'textarea') {
-  <textarea [id]="name" [placeholder]="placeholder" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()">{{ value }}</textarea>
-} @if (type === 'checkbox') {
-  <input [id]="name" type="checkbox" [checked]="value" [disabled]="disabled" (change)="onCheckboxChange($event)" (blur)="onBlur()" />
-} @else {
-  <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()"/>
+@switch (type) {
+  @case ('textarea') {
+    <article class="text-area">
+      @if (!hideLabel) {
+        <label [for]="name">{{ label || placeholder }}</label>
+      }
+      <textarea [id]="name" [placeholder]="placeholder" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()">{{ value }}</textarea>
+    </article>
+    }
+  @case ('checkbox') {
+    <article class="checkbox">
+      <input [id]="name" type="checkbox" [checked]="value" [disabled]="disabled" (change)="onCheckboxChange($event)" (blur)="onBlur()" />
+      @if (!hideLabel) {
+        <label [for]="name">{{ label || placeholder }}</label>
+      }
+    </article>
+  }
+  @case ('radio') {
+    <article class="radio">
+      @if (!hideLabel) {
+        <label [for]="name">{{ label || placeholder }}</label>
+      }
+      @for (option of options; track option.value) {
+        <input [id]="name + '-' + option.value" type="radio" [name]="name" [value]="option.value" [checked]="value === option.value" [disabled]="disabled" (change)="onInput($event)" (blur)="onBlur()" />
+        <label [for]="name + '-' + option.value">{{ option.label | translate }}</label>
+      }
+    </article>
+  }
+  @case ('select') {
+    <article class="select">
+      @if (!hideLabel) {
+        <label [for]="name">{{ label || placeholder }}</label>
+      }
+      <select [id]="name" [disabled]="disabled" (change)="onInput($event)" (blur)="onBlur()" [value]="value">
+        @for (option of options; track option.value) {
+          <option [value]="option.value">{{ option.label | translate }}</option>
+        }
+      </select>
+    </article>
+  }
+  @case ('search') {
+    <article class="search">
+      @if (!hideLabel) {
+        <label [for]="name">{{ label || placeholder }}</label>
+      }
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M56 56L44.4 44.4M50.6666 29.3334C50.6666 41.1154 41.1154 50.6666 29.3334 50.6666C17.5513 50.6666 8 41.1154 8 29.3334C8 17.5513 17.5513 8 29.3334 8C41.1154 8 50.6666 17.5513 50.6666 29.3334Z" stroke="#EBFEFE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()" />
+    </article>
+  }
+  @default {
+    <article class="input">
+      @if (!hideLabel) {
+        <label [for]="name">{{ label || placeholder }}</label>
+      }
+      <input [id]="name" [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled" (input)="onInput($event)" (blur)="onBlur()" />
+    </article>
+    }
 }
 
+<ng-content select=".error"></ng-content>
 

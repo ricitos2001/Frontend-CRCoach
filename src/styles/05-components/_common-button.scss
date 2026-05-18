@@ -1,0 +1,11 @@
+main .common-button {
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--elements-color);
+  background: var(--components-color);
+}
+
+main .common-button svg path, {
+  stroke: var(--elements-color);
+}

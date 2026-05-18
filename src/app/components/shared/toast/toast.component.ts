@@ -1,13 +1,14 @@
 import { Component, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ToastMessage, ToastService } from '../../../services/toast/toast.service';
 
 @Component({
   selector: 'app-toast',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './toast.component.html',
   styleUrl: '../../../../styles/styles.css',
+  standalone: true,
 })
 export class ToastComponent {
   toasts = signal<ToastMessage[]>([]);
@@ -28,5 +29,9 @@ export class ToastComponent {
 
   dismiss(id: string) {
     this.toastService.dismiss(id);
+  }
+
+  trackById(_index: number, item: ToastMessage) {
+    return item.id;
   }
 }

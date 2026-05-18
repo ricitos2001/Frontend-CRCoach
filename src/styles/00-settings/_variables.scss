@@ -49,7 +49,78 @@ $dark-color-5: #3D3D3D;
 $font-primary: 'ClashRoyaleRegularFont';
 $font-secondary: 'ClashRoyaleBoldFont';
 
+$card-opacity-light: rgba(255, 255, 255, 0.5);
+$card-opacity-dark: rgba(41, 41, 41, 0.5);
+
+$type-ratio: 1.25;
+$font-size-xs: 0.75rem; // 0.75rem
+$font-size-sm: 0.875rem; // 0.875rem
+$font-size-base: 1rem; // 1rem
+$font-size-lg: 1.25rem; // 1.25rem
+$font-size-xl: 1.5625rem; // 1.5625rem
+$font-size-2xl: 1.953125rem; // ~1.9375rem
+$font-size-3xl: 2.44140625rem;
+$font-size-4xl: 3.0517578125rem;
+$font-size-5xl: 3.8146972656rem;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.1;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-5: 1.25rem;
+$spacing-6: 1.5rem;
+$spacing-7: 1.75rem;
+$spacing-8: 2rem;
+$spacing-9: 2.25rem;
+$spacing-10: 2.5rem;
+$spacing-11: 2.75rem;
+$spacing-12: 3rem;
+$spacing-13: 3.25rem;
+$spacing-14: 3.5rem;
+$spacing-15: 3.75rem;
+$spacing-16: 4rem;
+$spacing-17: 4.25rem;
+$spacing-18: 4.5rem;
+$spacing-19: 4.75rem;
+$spacing-20: 5rem;
+$spacing-21: 5.25rem;
+$spacing-22: 5.5rem;
+$spacing-23: 5.75rem;
+$spacing-24: 6rem;
+
 $break-sm: 40rem;
 $break-md: 48rem;
 $break-lg: 64rem;
 $break-xl: 80rem;
+
+$shadow-sm: 0 0.0625rem 0.125rem rgba(15, 23, 36, 0.06);
+$shadow-md: 0 0.25rem 0.5rem rgba(15, 23, 36, 0.08);
+$shadow-lg: 0 0.625rem 1.25rem rgba(15, 23, 36, 0.12);
+$shadow-xl: 0 1.25rem 2.5rem rgba(15, 23, 36, 0.16);
+
+$border-thin: 0.0625rem;
+$border-medium: 0.125rem;
+$border-thick: 0.25rem;
+
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 1rem;
+$radius-xl: 1.5rem;
+$radius-full: 50%;
+
+$transition-fast: 150ms ease-in-out;
+$transition-base: 300ms ease-in-out;
+$transition-slow: 500ms ease-in-out;
+
+$tray-offset-x: 4rem;
+$tray-gap: 0.5rem;
