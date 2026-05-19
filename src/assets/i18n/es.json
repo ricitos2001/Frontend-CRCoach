@@ -419,7 +419,7 @@
       "LOGIN": {
         "TITLE": "Inicio de sesión",
         "MESSAGE": "El usuario {{email}} ha iniciado sesión.",
-        "ERROR": "Error al iniciar sesión"
+        "ERROR": "Correo o contraseña inválidos. Por favor, vuelve a intentarlo."
       },
       "REGISTER": {
         "TITLE": "Registro de usuario",

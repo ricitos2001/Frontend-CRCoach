@@ -26,6 +26,7 @@ export class LoginPage {
   @Output() authSuccess = new EventEmitter<void>();
   submitted = false;
   loading = false;
+  loginError: string | null = null;
   loginForm: FormGroup;
 
   constructor(
@@ -48,7 +49,8 @@ export class LoginPage {
       return;
     }
     this.submitted = true;
-    this.loading = true; // show loading indicator while authenticating
+    this.loading = true;
+    this.loginError = null;
 
     this.authService.login(this.loginForm).subscribe({
       next: (res) => {
@@ -72,7 +74,7 @@ export class LoginPage {
       },
       error: (err) => {
         console.error('Error en login', err);
-        this.translate.instant('NOTIFICATIONS.AUTH.LOGIN.ERROR');
+        this.loginError = this.translate.instant('NOTIFICATIONS.AUTH.LOGIN.ERROR');
         this.loading = false;
       },
       complete: () => {

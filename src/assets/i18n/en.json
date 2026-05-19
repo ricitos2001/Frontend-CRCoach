@@ -419,7 +419,7 @@
       "LOGIN": {
         "TITLE": "Login",
         "MESSAGE": "User {{email}} has signed in.",
-        "ERROR": "Error logging in"
+        "ERROR": "Invalid email or password. Please try again."
       },
       "REGISTER": {
         "TITLE": "Register",

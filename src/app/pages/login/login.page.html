@@ -21,6 +21,10 @@
       }
     </app-form-input>
 
+    @if (loginError) {
+      <article class="error">{{ loginError }}</article>
+    }
+
     <app-common-button type="submit" [disabled]="loginForm.invalid || loginForm.pending || loading">
       @if (!loading) {
         <ng-container>{{ 'PAGES.AUTH.LOGIN.SUBMIT' | translate }}</ng-container>
