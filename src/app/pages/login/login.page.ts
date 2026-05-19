@@ -8,6 +8,7 @@ import { passwordStrength } from '../../validators/password-strength.validator';
 import { NotificationsService } from '../../services/notifications/notifications.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Notification } from '../../interfaces/Notification';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,9 @@ export class LoginPage {
     this.loading = true;
     this.loginError = null;
 
-    this.authService.login(this.loginForm).subscribe({
+    this.authService.login(this.loginForm).pipe(
+      finalize(() => this.loading = false),
+    ).subscribe({
       next: (res) => {
         this.authService.saveToken(res.token);
         this.authService.getUserIdFromToken();
@@ -75,11 +78,7 @@ export class LoginPage {
       error: (err) => {
         console.error('Error en login', err);
         this.loginError = this.translate.instant('NOTIFICATIONS.AUTH.LOGIN.ERROR');
-        this.loading = false;
       },
-      complete: () => {
-        this.loading = false;
-      }
     });
   }
 }
