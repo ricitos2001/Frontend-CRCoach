@@ -6,6 +6,15 @@ header {
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
+header.landing-header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 header.scrolled {
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.25);
 }

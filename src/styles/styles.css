@@ -292,6 +292,15 @@ header {
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
+header.landing-header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 header.scrolled {
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.25);
 }
@@ -2099,7 +2108,7 @@ app-form-input .error[title] {
 .landing {
   text-align: center;
   color: var(--elements-color);
-  padding: 6rem 0 4rem;
+  padding: 9.5rem 0 4rem;
 }
 
 .landing > section {
@@ -2392,7 +2401,7 @@ main main .landing app-common-button.small button {
 
 @media (max-width: 64rem) {
   .landing {
-    padding: 4.5rem 0 3rem;
+    padding: 8rem 0 3rem;
   }
   .landing > section {
     margin-bottom: 3rem;
@@ -2429,7 +2438,7 @@ main main .landing app-common-button.small button {
 }
 @media (max-width: 48rem) {
   .landing {
-    padding: 3rem 0 2rem;
+    padding: 6.5rem 0 2rem;
   }
   .landing > section {
     margin-bottom: 2.5rem;
@@ -2482,7 +2491,7 @@ main main .landing app-common-button.small button {
 }
 @media (max-width: 30rem) {
   .landing {
-    padding: 2rem 0 1.5rem;
+    padding: 5rem 0 1.5rem;
   }
   .landing > section {
     margin-bottom: 2rem;
