@@ -73,7 +73,10 @@
             <img src="{{problematicCard.iconUrl}}" alt="{{problematicCard.name}}" />
             <section class="problematic-info">
               <p class="name">{{problematicCard.name}}</p>
-              <p class="loss-rate">{{problematicCard.playerLossRate.toFixed(2)}}%</p>
+              <section class="loss-rate-bar">
+                <article class="loss-rate-fill" [style.width.%]="problematicCard.playerLossRate * 10"></article>
+                <span class="loss-rate-text">{{(problematicCard.playerLossRate * 10).toFixed(1)}}%</span>
+              </section>
               <p class="appearances">{{problematicCard.appearances}} {{ 'PAGES.WEAKNESSES.APPEARANCES' | translate }}</p>
             </section>
           </article>

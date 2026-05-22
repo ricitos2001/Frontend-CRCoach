@@ -3,12 +3,14 @@
   flex-direction: row;
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh; /* allow the container to grow when content is taller than viewport */
+  overflow: visible; /* avoid cutting children on very large viewports */
   gap: 1.25rem;
 }
 
 .image-box {
+  /* use flex-basis so panel sizing behaves better on very wide screens */
+  flex: 0 0 58%;
   width: 58%;
   position: relative;
   background: url('/assets/img/wallpaper.jpg') no-repeat center/cover;
@@ -19,6 +21,9 @@
   text-align: center;
   padding: 2.5rem;
   color: var(--elements-color);
+  align-self: stretch; /* make sure the left panel stretches to parent's height */
+  min-height: inherit;
+  max-height: none;
 }
 
 .image-box::before {
@@ -74,8 +79,11 @@
 }
 
 .login-and-register fieldset {
+  /* use flex sizing instead of only percentage width to avoid subtle overflow on large displays */
+  flex: 0 0 40%;
   width: 40%;
-  min-height: 100vh;
+  min-height: auto;
+  height: auto;
   padding: 3.5rem 4rem;
   border: none;
   color: var(--elements-color);
@@ -85,6 +93,7 @@
   position: relative;
   margin: 0 0 0 0.5rem;
   overflow-y: auto;
+  align-self: stretch; /* ensure the form column stretches to match the left artwork panel */
 }
 
 .login-and-register fieldset {

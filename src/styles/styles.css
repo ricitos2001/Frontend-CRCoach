@@ -1775,12 +1775,14 @@ body.modal-open {
   flex-direction: row;
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh; /* allow the container to grow when content is taller than viewport */
+  overflow: visible; /* avoid cutting children on very large viewports */
   gap: 1.25rem;
 }
 
 .image-box {
+  /* use flex-basis so panel sizing behaves better on very wide screens */
+  flex: 0 0 58%;
   width: 58%;
   position: relative;
   background: url("/assets/img/wallpaper.jpg") no-repeat center/cover;
@@ -1791,6 +1793,9 @@ body.modal-open {
   text-align: center;
   padding: 2.5rem;
   color: var(--elements-color);
+  align-self: stretch; /* make sure the left panel stretches to parent's height */
+  min-height: inherit;
+  max-height: none;
 }
 
 .image-box::before {
@@ -1846,8 +1851,11 @@ body.modal-open {
 }
 
 .login-and-register fieldset {
+  /* use flex sizing instead of only percentage width to avoid subtle overflow on large displays */
+  flex: 0 0 40%;
   width: 40%;
-  min-height: 100vh;
+  min-height: auto;
+  height: auto;
   padding: 3.5rem 4rem;
   border: none;
   color: var(--elements-color);
@@ -1857,6 +1865,7 @@ body.modal-open {
   position: relative;
   margin: 0 0 0 0.5rem;
   overflow-y: auto;
+  align-self: stretch; /* ensure the form column stretches to match the left artwork panel */
 }
 
 .login-and-register fieldset {
@@ -4151,15 +4160,29 @@ section .problematic-cards-wrapper .problematic-cards .problematic-card .problem
   color: var(--elements-color);
   font-size: 0.95rem;
 }
-section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .loss-rate {
+section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .loss-rate-bar {
+  position: relative;
+  width: 100%;
+  height: 1.4rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 62.4375rem;
+  overflow: hidden;
+  box-shadow: inset 0 -0.1875rem 0.375rem rgba(0, 0, 0, 0.08);
+}
+section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .loss-rate-bar .loss-rate-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(248, 201, 201, 0.95), rgba(235, 249, 200, 0.95));
+  border-radius: 62.4375rem;
+  transition: width 0.4s ease;
+}
+section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .loss-rate-bar .loss-rate-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
   color: var(--elements-color);
-  background: linear-gradient(90deg, rgba(248, 201, 201, 0.95), rgba(235, 249, 200, 0.95));
-  padding: 0.3rem 0.5rem;
-  width: 28%;
-  border-radius: 62.4375rem;
-  text-align: center;
-  box-shadow: inset 0 -0.1875rem 0.375rem rgba(0, 0, 0, 0.08);
   font-size: 0.9rem;
 }
 section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .appearances {
@@ -4234,14 +4257,10 @@ section p.error {
     font-size: 0.95rem;
   }
   /* Make the percentage pill centered inside the problematic card on mobile */
-  section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .loss-rate {
-    display: block;
+  section .problematic-cards-wrapper .problematic-cards .problematic-card .problematic-info .loss-rate-bar {
     width: 56%;
     max-width: 11.25rem;
     margin: 0.6rem auto 0.2rem auto;
-    padding: 0.28rem 0.6rem;
-    text-align: center;
-    box-sizing: border-box;
   }
   /* Barra de progreso simulada dentro del card (si usas un elemento) */
   section .problematic-card .progress {
