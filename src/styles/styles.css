@@ -164,7 +164,7 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   overflow-x: hidden;
 }
 
@@ -294,7 +294,6 @@ header {
 
 header.landing-header {
   position: fixed;
-  width: 100%;
   left: 0;
   top: 0;
   padding-left: 2rem;
@@ -2117,7 +2116,7 @@ app-form-input .error[title] {
 .landing {
   text-align: center;
   color: var(--elements-color);
-  padding: 9.5rem 0 4rem;
+  padding: 5rem 0 4rem;
 }
 
 .landing > section {
@@ -2410,7 +2409,7 @@ main main .landing app-common-button.small button {
 
 @media (max-width: 64rem) {
   .landing {
-    padding: 8rem 0 3rem;
+    padding: 4rem 0 3rem;
   }
   .landing > section {
     margin-bottom: 3rem;
@@ -2447,7 +2446,7 @@ main main .landing app-common-button.small button {
 }
 @media (max-width: 48rem) {
   .landing {
-    padding: 6.5rem 0 2rem;
+    padding: 3rem 0 2rem;
   }
   .landing > section {
     margin-bottom: 2.5rem;
@@ -2500,7 +2499,7 @@ main main .landing app-common-button.small button {
 }
 @media (max-width: 30rem) {
   .landing {
-    padding: 5rem 0 1.5rem;
+    padding: 2rem 0 1.5rem;
   }
   .landing > section {
     margin-bottom: 2rem;
@@ -4164,7 +4163,7 @@ section .problematic-cards-wrapper .problematic-cards .problematic-card .problem
   position: relative;
   width: 100%;
   height: 1.4rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--components-color);
   border-radius: 62.4375rem;
   overflow: hidden;
   box-shadow: inset 0 -0.1875rem 0.375rem rgba(0, 0, 0, 0.08);
