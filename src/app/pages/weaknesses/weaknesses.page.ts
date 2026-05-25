@@ -45,6 +45,9 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
     { value: '7xElixir_Ladder', label: '7x Elixir Ladder' },
     { value: 'Crazy_Arena', label: 'Crazy Arena' },
     { value: 'CW_Battle_1v1', label: 'Clan War 1v1' },
+    { value: 'ClanWar_BoatBattle', label: 'Clan War Boat Battle' },
+    { value: 'RampUpElixir_Ladder', label: 'Ramp Up Elixir Ladder' },
+    { value: 'Rage_Ladder', label: 'Rage Ladder' },
   ];
 
   selectedMode: string = 'all';
@@ -95,7 +98,10 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
       const extract = (raw: any) => {
         if (raw === undefined || raw === null) return 0;
         if (typeof raw === 'number') return raw;
-        if (typeof raw === 'object') return Number(raw.value ?? raw.percentage ?? raw.last25Battles ?? raw.last7Days ?? 0) || 0;
+        if (typeof raw === 'object')
+          return (
+            Number(raw.value ?? raw.percentage ?? raw.last25Battles ?? raw.last7Days ?? 0) || 0
+          );
         return Number(raw) || 0;
       };
 
@@ -155,14 +161,28 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
     }
     // Ask the store/service to reload weaknesses for the specified date range
     // loadWeaknesses signature: (tag, gameMode?, from?, to?, minBattles?)
-    const gameModeParam = this.selectedMode && this.selectedMode !== 'all' ? this.selectedMode : undefined;
+    const gameModeParam =
+      this.selectedMode && this.selectedMode !== 'all' ? this.selectedMode : undefined;
     // persist current range
     this.currentFrom = range.from;
     this.currentTo = range.to;
 
-    this.analyticsStore.loadWeaknesses(this.tag, gameModeParam, range.from, range.to, this.currentMinBattles);
+    this.analyticsStore.loadWeaknesses(
+      this.tag,
+      gameModeParam,
+      range.from,
+      range.to,
+      this.currentMinBattles,
+    );
     this.analyticsStore.loadSummary(this.tag, gameModeParam, range.from, range.to);
-    this.analyticsStore.loadProblematicCards(this.tag, gameModeParam, range.from, range.to, this.currentLimit, this.currentMinAppearances);
+    this.analyticsStore.loadProblematicCards(
+      this.tag,
+      gameModeParam,
+      range.from,
+      range.to,
+      this.currentLimit,
+      this.currentMinAppearances,
+    );
   }
 
   // Open advanced modal
@@ -175,7 +195,15 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // Handle apply from advanced search
-  onAdvancedApply(filters: { gameMode?: string | null; mode?: string | null; from?: string | null; to?: string | null; minBattles?: number | null; limit?: number | null; minAppearances?: number | null; }) {
+  onAdvancedApply(filters: {
+    gameMode?: string | null;
+    mode?: string | null;
+    from?: string | null;
+    to?: string | null;
+    minBattles?: number | null;
+    limit?: number | null;
+    minAppearances?: number | null;
+  }) {
     if (!this.tag) return;
     // Update selectedMode from advanced form (support both 'mode' and 'gameMode')
     const newMode = filters.mode ?? filters.gameMode ?? this.selectedMode;
@@ -186,7 +214,8 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
     this.currentLimit = filters.limit ?? undefined;
     this.currentMinAppearances = filters.minAppearances ?? undefined;
 
-    const gameModeParam = this.selectedMode && this.selectedMode !== 'all' ? this.selectedMode : undefined;
+    const gameModeParam =
+      this.selectedMode && this.selectedMode !== 'all' ? this.selectedMode : undefined;
 
     // Call store to reload weaknesses, summary and problematic cards with provided filters
     // persist current range
@@ -231,10 +260,24 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
   onModeChange(mode: string) {
     if (!this.tag) return;
     this.selectedMode = mode ?? 'all';
-    const gameModeParam = this.selectedMode && this.selectedMode !== 'all' ? this.selectedMode : undefined;
-    this.analyticsStore.loadWeaknesses(this.tag, gameModeParam, this.currentFrom, this.currentTo, this.currentMinBattles);
+    const gameModeParam =
+      this.selectedMode && this.selectedMode !== 'all' ? this.selectedMode : undefined;
+    this.analyticsStore.loadWeaknesses(
+      this.tag,
+      gameModeParam,
+      this.currentFrom,
+      this.currentTo,
+      this.currentMinBattles,
+    );
     this.analyticsStore.loadSummary(this.tag, gameModeParam, this.currentFrom, this.currentTo);
-    this.analyticsStore.loadProblematicCards(this.tag, gameModeParam, this.currentFrom, this.currentTo, this.currentLimit, this.currentMinAppearances);
+    this.analyticsStore.loadProblematicCards(
+      this.tag,
+      gameModeParam,
+      this.currentFrom,
+      this.currentTo,
+      this.currentLimit,
+      this.currentMinAppearances,
+    );
     // chart will update when store emits new weaknesses
   }
 
@@ -312,7 +355,7 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
 
         if (gm === undefined || gm === null) return false;
         // gm can be an object like { name: 'Ladder' } or a string
-        const gmName = typeof gm === 'string' ? gm : gm.name ?? gm.gameModeId ?? String(gm);
+        const gmName = typeof gm === 'string' ? gm : (gm.name ?? gm.gameModeId ?? String(gm));
         if (!gmName) return false;
         return String(gmName).toLowerCase() === sel;
       });

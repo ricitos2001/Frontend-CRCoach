@@ -38,6 +38,9 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
     { value: '7xElixir_Ladder', label: '7x Elixir Ladder' },
     { value: 'Crazy_Arena', label: 'Crazy Arena' },
     { value: 'CW_Battle_1v1', label: 'Clan War 1v1' },
+    { value: 'ClanWar_BoatBattle', label: 'Clan War Boat Battle' },
+    { value: 'RampUpElixir_Ladder', label: 'Ramp Up Elixir Ladder' },
+    { value: 'Rage_Ladder', label: 'Rage Ladder' },
   ];
 
   resultOptions = [
@@ -137,7 +140,7 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
   }
 
   getClanBadgeUrl(badgeId: number) {
-    console.log(badgeId)
+    console.log(badgeId);
     return `https://royaleapi.github.io/cr-api-assets/badges/medium/${badgeId}.png`;
   }
 
