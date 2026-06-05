@@ -175,7 +175,9 @@
       "DEFEAT": "Defeat",
       "DRAW": "Draw",
       "ALL": "All battles",
-      "NO_BATTLES": "No battles"
+      "NO_BATTLES": "No battles",
+      "FILTER_MODE": "Filter by game mode",
+      "FILTER_RESULT": "Filter by result"
     },
     "WEAKNESSES": {
       "TITLE": "Weaknesses diagnostic",
@@ -193,9 +195,10 @@
       "LOADING_PROBLEMATIC_CARDS": "Loading problematic cards...",
       "ERROR_PROBLEMATIC_CARDS": "Error loading problematic cards: {{err}}",
       "APPEARANCES": "appearances",
+      "LOSS_RATE": "Loss rate",
       "WINRATE_25": "Winrate (last 25)",
       "WINRATE_7D": "Winrate (7 days)",
-      "NO_DATA": "no data",
+      "NO_DATA": "No data",
       "ARCHETYPE": "Archetype",
       "BATTLES_LABEL": "Battles",
       "BUTTON": "Advanced search",

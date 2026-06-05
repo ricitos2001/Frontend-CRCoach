@@ -1,4 +1,4 @@
-import { Component, effect, OnInit, AfterViewInit, OnDestroy, ElementRef, inject, DestroyRef } from '@angular/core';
+import { Component, effect, OnInit, AfterViewInit, OnDestroy, ElementRef, inject, DestroyRef, ViewChild, HostListener } from '@angular/core';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { AnalyticsSignalStore } from '../../signal_stores/analytics.signal.store';
 import { ChartOptions, ChartDataset } from 'chart.js';
@@ -12,6 +12,7 @@ import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { AdvancedSearchComponent } from '../../components/shared/advanced-search/advanced-search.component';
 import { FormsModule } from '@angular/forms';
 import { CascadeAnimator } from '../../utils/cascade-animation';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-weaknesses',
@@ -26,6 +27,7 @@ import { CascadeAnimator } from '../../utils/cascade-animation';
     ModalComponent,
     AdvancedSearchComponent,
     FormsModule,
+    NgStyle,
   ],
   templateUrl: './weaknesses.page.html',
   styleUrl: '../../../styles/styles.css',
@@ -389,6 +391,53 @@ export class WeaknessesPage implements OnInit, AfterViewInit, OnDestroy {
         borderWidth: 1,
       } as any,
     ];
+  }
+
+  // --- Card detail logic ---
+  selectedCard: any = null;
+  cardDetailStyle: { top?: string; left?: string } = {};
+  @ViewChild('cardDetail') cardDetailRef!: ElementRef<HTMLElement>;
+
+  toggleCardDetails(card: any, event: MouseEvent): void {
+    event.stopPropagation();
+    if (this.selectedCard && this.selectedCard.cardId === card.cardId) {
+      this.selectedCard = null;
+      this.cardDetailStyle = {};
+      return;
+    }
+    this.selectedCard = card;
+    const target = event.currentTarget as HTMLElement | null;
+    if (!target) {
+      this.cardDetailStyle = { right: '20px', top: '120px' } as any;
+      return;
+    }
+    const rect = target.getBoundingClientRect();
+    let left = rect.right + 8;
+    let top = rect.top;
+    this.cardDetailStyle = { left: `${Math.round(left)}px`, top: `${Math.round(top)}px` };
+    setTimeout(() => {
+      try {
+        const el = this.cardDetailRef?.nativeElement;
+        if (!el) return;
+        const boxW = el.offsetWidth;
+        const boxH = el.offsetHeight;
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        if (left + boxW > vw - 8) {
+          left = rect.left - boxW - 8;
+        }
+        if (left < 8) left = 8;
+        if (top + boxH > vh - 8) {
+          top = Math.max(8, vh - boxH - 8);
+        }
+        this.cardDetailStyle = { left: `${Math.round(left)}px`, top: `${Math.round(top)}px` };
+      } catch (e) {}
+    }, 0);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(_: MouseEvent): void {
+    this.selectedCard = null;
   }
 
   ngOnInit(): void {

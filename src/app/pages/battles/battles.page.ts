@@ -1,6 +1,7 @@
-import { Component, effect, AfterViewInit, OnDestroy, ElementRef, inject } from '@angular/core';
+import { Component, effect, AfterViewInit, OnDestroy, ElementRef, inject, ViewChild, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Battle } from '../../interfaces/Battle';
+import { PlayerCard } from '../../interfaces/PlayerCard';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
@@ -9,6 +10,7 @@ import { SearcherComponent } from '../../components/shared/searcher/searcher.com
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
 import { PaginationComponent } from '../../components/shared/pagination/pagination.component';
 import { CascadeAnimator } from '../../utils/cascade-animation';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-battles',
@@ -20,6 +22,7 @@ import { CascadeAnimator } from '../../utils/cascade-animation';
     FormInputComponent,
     FormsModule,
     PaginationComponent,
+    NgStyle,
   ],
   templateUrl: './battles.page.html',
   styleUrl: '../../../styles/styles.css',
@@ -32,7 +35,7 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
   private lastLoadedTag: string | null = null;
   // filter options
   gameModes = [
-    { value: 'all', label: 'PAGES.BATTLES.ALL' },
+    { value: 'all', label: 'PAGES.BATTLES.FILTER_MODE' },
     { value: 'Ladder', label: 'Ladder' },
     { value: 'Overtime_Ladder', label: 'Overtime Ladder' },
     { value: 'TripleElixir_Ladder', label: 'Triple Elixir Ladder' },
@@ -46,7 +49,7 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
   ];
 
   resultOptions = [
-    { value: 'all', label: 'PAGES.BATTLES.ALL' },
+    { value: 'all', label: 'PAGES.BATTLES.FILTER_RESULT' },
     { value: 'victory', label: 'PAGES.BATTLES.VICTORY' },
     { value: 'draw', label: 'PAGES.BATTLES.DRAW' },
     { value: 'defeat', label: 'PAGES.BATTLES.DEFEAT' },
@@ -76,6 +79,53 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
     });
   }
 
+  // --- Card detail logic ---
+  selectedCard: PlayerCard | null = null;
+  cardDetailStyle: { top?: string; left?: string } = {};
+  @ViewChild('cardDetail') cardDetailRef!: ElementRef<HTMLElement>;
+
+  toggleCardDetails(card: PlayerCard, event: MouseEvent): void {
+    event.stopPropagation();
+    if (this.selectedCard && this.selectedCard.id === card.id) {
+      this.selectedCard = null;
+      this.cardDetailStyle = {};
+      return;
+    }
+    this.selectedCard = card;
+    const target = event.currentTarget as HTMLElement | null;
+    if (!target) {
+      this.cardDetailStyle = { right: '20px', top: '120px' } as any;
+      return;
+    }
+    const rect = target.getBoundingClientRect();
+    let left = rect.right + 8;
+    let top = rect.top;
+    this.cardDetailStyle = { left: `${Math.round(left)}px`, top: `${Math.round(top)}px` };
+    setTimeout(() => {
+      try {
+        const el = this.cardDetailRef?.nativeElement;
+        if (!el) return;
+        const boxW = el.offsetWidth;
+        const boxH = el.offsetHeight;
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        if (left + boxW > vw - 8) {
+          left = rect.left - boxW - 8;
+        }
+        if (left < 8) left = 8;
+        if (top + boxH > vh - 8) {
+          top = Math.max(8, vh - boxH - 8);
+        }
+        this.cardDetailStyle = { left: `${Math.round(left)}px`, top: `${Math.round(top)}px` };
+      } catch (e) {}
+    }, 0);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(_: MouseEvent): void {
+    this.selectedCard = null;
+  }
+
   onSearch(term: string) {
     this.searchTerm = term ?? '';
     this.resetPage();
@@ -97,19 +147,6 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
     if (tCrowns > oCrowns) return 'victory';
     if (tCrowns < oCrowns) return 'defeat';
     return 'draw';
-  }
-
-  // Return the translation key for a battle result
-  getBattleResultKey(battle: Battle): string {
-    const r = this.getBattleResult(battle);
-    switch (r) {
-      case 'victory':
-        return 'PAGES.BATTLES.VICTORY';
-      case 'defeat':
-        return 'PAGES.BATTLES.DEFEAT';
-      default:
-        return 'PAGES.BATTLES.DRAW';
-    }
   }
 
   // Return filtered battles according to selected filters

@@ -70,7 +70,7 @@
       <section class="problematic-cards">
         @for (problematicCard of problematicCardsReport.problematicCards; track problematicCard.cardId) {
           <article class="problematic-card">
-            <img src="{{problematicCard.iconUrl}}" alt="{{problematicCard.name}}" />
+            <img src="{{problematicCard.iconUrl}}" alt="{{problematicCard.name}}" (click)="toggleCardDetails(problematicCard, $event)" />
             <section class="problematic-info">
               <p class="name">{{problematicCard.name}}</p>
               <section class="loss-rate-bar">
@@ -87,4 +87,14 @@
   </article>
 </section>
 
+  @if (selectedCard) {
+    <section #cardDetail class="card-detail" [ngStyle]="cardDetailStyle" (click)="$event.stopPropagation()">
+      <img [src]="selectedCard.iconUrl" alt="{{selectedCard.name}}">
+      <article class="card-detail__info">
+         <h4>{{selectedCard.name}}</h4>
+         <p>{{ 'PAGES.WEAKNESSES.APPEARANCES' | translate }}: {{selectedCard.appearances}}</p>
+         <p>{{ 'PAGES.WEAKNESSES.LOSS_RATE' | translate }}: {{(selectedCard.playerLossRate * 10).toFixed(1)}}%</p>
+       </article>
+    </section>
+  }
 <app-sidebar></app-sidebar>

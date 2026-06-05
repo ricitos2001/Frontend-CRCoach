@@ -175,7 +175,9 @@
       "DEFEAT": "Derrota",
       "DRAW": "Empate",
       "ALL": "Todas las batallas",
-      "NO_BATTLES": "No hay batallas"
+      "NO_BATTLES": "No hay batallas",
+      "FILTER_MODE": "Filtrar por modo de juego",
+      "FILTER_RESULT": "Filtrar por resultado"
     },
     "WEAKNESSES": {
       "TITLE": "Diagnóstico de debilidades",
@@ -192,7 +194,8 @@
       "PROBLEMATIC_CARDS_TITLE": "Cartas problemáticas",
       "LOADING_PROBLEMATIC_CARDS": "Cargando cartas problemáticas...",
       "ERROR_PROBLEMATIC_CARDS": "Error cargando cartas problemáticas: {{err}}",
-      "APPEARANCES": "apariciones",
+      "APPEARANCES": "Apariciones",
+      "LOSS_RATE": "Porcentaje de derrota",
       "WINRATE_25": "Winrate (últimas 25)",
       "WINRATE_7D": "Winrate (7 días)",
       "NO_DATA": "no hay datos",
