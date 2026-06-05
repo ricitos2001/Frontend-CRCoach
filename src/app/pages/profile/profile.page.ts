@@ -13,13 +13,14 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { EditUserPage } from '../../components/shared/edit-user/edit-user.page';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['../../../styles/styles.css'],
-  imports: [CommonModule, SidebarComponent, CommonButtonComponent, ModalComponent, EditUserPage, TranslatePipe],
+  imports: [CommonModule, SidebarComponent, CommonButtonComponent, ModalComponent, EditUserPage, TranslatePipe, ImportingSpinnerComponent],
   standalone: true,
 })
 export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {

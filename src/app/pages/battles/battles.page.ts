@@ -5,6 +5,7 @@ import { PlayerCard } from '../../interfaces/PlayerCard';
 import { SidebarComponent } from '../../components/layout/sidebar/sidebar.component';
 import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SearcherComponent } from '../../components/shared/searcher/searcher.component';
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
@@ -17,6 +18,7 @@ import { NgStyle } from '@angular/common';
   imports: [
     SidebarComponent,
     RefreshButtonComponent,
+    ImportingSpinnerComponent,
     TranslateModule,
     SearcherComponent,
     FormInputComponent,

@@ -12,6 +12,7 @@ import { ToastService } from '../../services/toast/toast.service';
 import { SessionFormComponent } from '../../components/shared/session-form/session-form.component';
 import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { PaginationComponent } from '../../components/shared/pagination/pagination.component';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
@@ -26,6 +27,7 @@ import { CascadeAnimator } from '../../utils/cascade-animation';
     SessionFormComponent,
     ModalComponent,
     PaginationComponent,
+    ImportingSpinnerComponent,
   ],
   templateUrl: './sessions.page.html',
   styleUrl: '../../../styles/styles.css',

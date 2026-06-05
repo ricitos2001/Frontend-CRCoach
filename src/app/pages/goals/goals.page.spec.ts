@@ -3,6 +3,7 @@ import { GoalsPage } from './goals.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideRouter } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 
 describe('GoalsPage', () => {
   let component: GoalsPage;
@@ -23,7 +24,7 @@ describe('GoalsPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GoalsPage, TranslateModule.forRoot(), HttpClientTestingModule],
+      imports: [GoalsPage, TranslateModule.forRoot(), HttpClientTestingModule, ImportingSpinnerComponent],
       providers: [provideRouter([])],
     }).compileComponents();
 

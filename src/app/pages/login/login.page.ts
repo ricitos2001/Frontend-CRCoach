@@ -11,6 +11,7 @@ import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
 import { Notification } from '../../interfaces/Notification';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
 import { UsersSignalStore } from '../../signal_stores/users.signal.store';
+import { ImportStateService } from '../../services/import-state/import-state.service';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +42,7 @@ export class LoginPage {
     private battlesStore: BattlesSignalStore,
     private profileStore: PlayerProfileSignalStore,
     private usersStore: UsersSignalStore,
+    private importState: ImportStateService,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -76,8 +78,8 @@ export class LoginPage {
             console.warn('Error enviando notificación al API:', err);
           },
         });
-        // After successful login we import battles and fetch profile for the
-        // logged-in player's tag so the app has up-to-date data before showing the dashboard.
+        this.importState.start();
+        this.router.navigate(['dashboard']).then(() => {});
         (async () => {
           try {
             const email = localStorage.getItem('email');
@@ -95,7 +97,7 @@ export class LoginPage {
             console.warn('Error importing battles or loading data after login:', err);
           } finally {
             this.loading = false;
-            this.router.navigate(['dashboard']).then(() => {});
+            this.importState.stop();
           }
         })();
       },

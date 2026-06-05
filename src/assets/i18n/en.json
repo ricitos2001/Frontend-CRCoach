@@ -41,6 +41,9 @@
       "LOGOUT": "Log out",
       "FLAG_DESC_ES": "Flag of Spain: three horizontal stripes, red, yellow and red, with the yellow stripe twice the width of each red stripe. Represents the Spanish language.",
       "FLAG_DESC_EN": "Flag of the United Kingdom: a blue field with the red Cross of Saint George edged in white, the red Cross of Saint Patrick edged in white, and the white Cross of Saint Andrew. Represents the English language."
+    },
+    "IMPORTING_SPINNER": {
+      "IMPORTING_DATA": "importing data from the API"
     }
   },
   "PAGES": {
@@ -238,6 +241,7 @@
       "DONATIONS": "Donations",
       "CURRENT_LEAGUE": "Current league",
       "REFRESH": "Refresh",
+      "IMPORTING_DATA": "importing data from the API",
       "LOADING_BATTLES": "Loading battles...",
       "ERROR_BATTLES": "Battles error: {{err}}",
       "NO_GOALS": "No recent goals",

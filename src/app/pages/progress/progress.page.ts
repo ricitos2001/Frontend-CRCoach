@@ -6,13 +6,14 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { DecimalPipe } from '@angular/common';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 import { SnapshotsSignalStore } from '../../signal_stores/snapshots.signal.store';
 import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
 import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
   selector: 'app-progress',
-  imports: [SidebarComponent, TranslatePipe, GraphComponent, RefreshButtonComponent, DecimalPipe],
+  imports: [SidebarComponent, TranslatePipe, GraphComponent, RefreshButtonComponent, DecimalPipe, ImportingSpinnerComponent],
   templateUrl: './progress.page.html',
   styleUrl: '../../../styles/styles.css',
   standalone: true,

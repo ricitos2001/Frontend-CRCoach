@@ -4,6 +4,7 @@ import { PlayerProfileSignalStore } from '../../../signal_stores/player-profile.
 import { MetricsSignalStore } from '../../../signal_stores/metrics.signal.store';
 import { AnalyticsSignalStore } from '../../../signal_stores/analytics.signal.store';
 import { ToastService } from '../../../services/toast/toast.service';
+import { ImportStateService } from '../../../services/import-state/import-state.service';
 
 @Component({
   selector: 'app-refresh-button',
@@ -22,6 +23,7 @@ export class RefreshButtonComponent {
     private metricsStore: MetricsSignalStore,
     private analyticsStore: AnalyticsSignalStore,
     private toast: ToastService,
+    private importState: ImportStateService,
   ) {}
 
   async refreshAll() {
@@ -35,6 +37,7 @@ export class RefreshButtonComponent {
     this.toast.show({ type: 'info', message: 'PAGES.REFRESH.STARTED', duration: 2000 });
     this.loading = true;
     this.spinning = true;
+    this.importState.start();
 
     const promises: Promise<any>[] = [];
 
@@ -63,7 +66,7 @@ export class RefreshButtonComponent {
 
     this.spinning = false;
     this.loading = false;
+    this.importState.stop();
     this.toast.show({ type: 'success', message: 'PAGES.REFRESH.DONE', duration: 2000 });
-    window.location.reload();
   }
 }

@@ -5,6 +5,7 @@ import { ChartOptions, ChartDataset } from 'chart.js';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { GraphComponent } from '../../components/shared/graph/graph.component';
 import { RefreshButtonComponent } from '../../components/shared/refresh-button/refresh-button.component';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 import { SearcherComponent } from '../../components/shared/searcher/searcher.component';
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
 import { CommonButtonComponent } from '../../components/shared/common-button/common-button.component';
@@ -21,6 +22,7 @@ import { NgStyle } from '@angular/common';
     TranslatePipe,
     GraphComponent,
     RefreshButtonComponent,
+    ImportingSpinnerComponent,
     SearcherComponent,
     FormInputComponent,
     CommonButtonComponent,

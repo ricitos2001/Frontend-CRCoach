@@ -17,6 +17,7 @@ import { UsersService } from '../../services/users/users.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { environment } from '../../../enviroments/enviroment';
 import { CascadeAnimator } from '../../utils/cascade-animation';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +28,7 @@ import { CascadeAnimator } from '../../utils/cascade-animation';
     GraphComponent,
     DecimalPipe,
     RefreshButtonComponent,
+    ImportingSpinnerComponent,
   ],
   templateUrl: './dashboard.page.html',
   styleUrl: '../../../styles/styles.css',

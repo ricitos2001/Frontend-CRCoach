@@ -3,6 +3,7 @@ import { ProgressPage } from './progress.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideRouter } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 
 describe('ProgressPage', () => {
   let component: ProgressPage;
@@ -26,7 +27,7 @@ describe('ProgressPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProgressPage, TranslateModule.forRoot(), HttpClientTestingModule],
+      imports: [ProgressPage, TranslateModule.forRoot(), HttpClientTestingModule, ImportingSpinnerComponent],
       providers: [provideRouter([])],
     }).compileComponents();
 

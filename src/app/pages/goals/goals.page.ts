@@ -14,6 +14,7 @@ import { ModalComponent } from '../../components/shared/modal/modal.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
 import { PaginationComponent } from '../../components/shared/pagination/pagination.component';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
@@ -30,6 +31,7 @@ import { CascadeAnimator } from '../../utils/cascade-animation';
     GoalFormComponent,
     ModalComponent,
     PaginationComponent,
+    ImportingSpinnerComponent,
   ],
   templateUrl: './goals.page.html',
   styleUrl: '../../../styles/styles.css',

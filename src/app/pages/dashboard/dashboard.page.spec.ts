@@ -5,6 +5,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 
 import { DashboardPage } from './dashboard.page';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 
 describe('DashboardPage', () => {
   let component: DashboardPage;
@@ -28,7 +29,7 @@ describe('DashboardPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardPage, TranslateModule.forRoot()],
+      imports: [DashboardPage, TranslateModule.forRoot(), ImportingSpinnerComponent],
       providers: [
         provideRouter([]),
         provideHttpClient(),

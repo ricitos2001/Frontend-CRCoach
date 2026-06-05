@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BattlesPage } from './battles.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideRouter } from '@angular/router';
+import { ImportingSpinnerComponent } from '../../components/shared/importing-spinner/importing-spinner.component';
 
 describe('BattlesPage', () => {
   let component: BattlesPage;
@@ -22,7 +23,7 @@ describe('BattlesPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BattlesPage, TranslateModule.forRoot()],
+      imports: [BattlesPage, TranslateModule.forRoot(), ImportingSpinnerComponent],
       providers: [provideRouter([])],
     }).compileComponents();
 

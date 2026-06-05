@@ -12,6 +12,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { BattlesSignalStore } from '../../signal_stores/battles.signal.store';
 import { Notification } from '../../interfaces/Notification';
 import { PlayerProfileSignalStore } from '../../signal_stores/player-profile.signal.store';
+import { ImportStateService } from '../../services/import-state/import-state.service';
 
 @Component({
   selector: 'app-register',
@@ -41,6 +42,7 @@ export class RegisterPage {
     private translate: TranslateService,
     private battlesStore: BattlesSignalStore,
     private profileStore: PlayerProfileSignalStore,
+    private importState: ImportStateService,
 
   ) {
     this.registerForm = this.fb.group(
@@ -108,21 +110,21 @@ export class RegisterPage {
             console.warn('Error enviando notificación al API:', err);
           },
         });
-        // After successful registration we import battles and fetch metrics for the
-        // registered player's tag so the app has up-to-date data before showing the dashboard.
+        this.importState.start();
+        this.router.navigate(['dashboard']).then(() => {});
         (async () => {
           try {
             const tagFromForm = String(this.registerForm.value.playerTag ?? '').trim();
             const tag = tagFromForm || localStorage.getItem('tag') || '';
             if (tag) {
-              await this.profileStore.importProfile(tag)
+              await this.profileStore.importProfile(tag);
               await this.battlesStore.importBattles(tag);
             }
           } catch (err) {
             console.warn('Error importing battles or loading metrics after register:', err);
           } finally {
             this.loading = false;
-            this.router.navigate(['dashboard']).then(() => {});
+            this.importState.stop();
           }
         })();
       },
