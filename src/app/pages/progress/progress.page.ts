@@ -33,8 +33,6 @@ export class ProgressPage implements OnInit, AfterViewInit, OnDestroy {
       if (metric) {
         this.updateTrophies(metric);
         this.updateWinrate(metric);
-        this.updateDonations(metric);
-        this.updateBattles(metric);
       } else {
         this.trophiesLabels = [];
         this.trophiesDatasets = [];
@@ -42,6 +40,15 @@ export class ProgressPage implements OnInit, AfterViewInit, OnDestroy {
         this.donationsDatasets = [];
         this.battlesCompLabels = [];
         this.battlesCompDatasets = [];
+      }
+    });
+
+    effect(() => {
+      const _snaps = this.snapshotsStore.snapshots();
+      const metric = this.metricsStore.metric();
+      if (metric) {
+        this.updateDonations(metric);
+        this.updateBattles(metric);
       }
     });
 
@@ -337,45 +344,94 @@ export class ProgressPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private updateDonations(metric: any) {
-    const donations = this.asNumber(metric.donations) ?? 0;
-    this.donationsLabels = [this.translate.instant('PAGES.PROGRESS.DONATIONS_LABEL')];
-    this.donationsDatasets = [
-      {
-        label: this.translate.instant('PAGES.PROGRESS.DONATIONS_TITLE') || 'Donaciones',
-        data: [donations],
-        backgroundColor: '#EBF9C8',
-      },
-    ];
+    const snaps = this.snapshotsStore.snapshots();
+    let labels: string[];
+    let data: number[];
+
+    if (Array.isArray(snaps) && snaps.length > 0) {
+      const sorted = [...snaps].sort(
+        (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
+      );
+      labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
+      data = sorted.map((s) => s.donations);
+      if (data.length === 1) {
+        const prevDate = new Date(new Date(sorted[0].capturedAt).getTime() - 24 * 60 * 60 * 1000);
+        labels = [prevDate.toLocaleDateString(), labels[0]];
+        data = [data[0], data[0]];
+      }
+    } else {
+      const donations = this.asNumber(metric.donations) ?? 0;
+      labels = [this.translate.instant('PAGES.PROGRESS.DONATIONS_LABEL')];
+      data = [donations];
+    }
+
+    const hasUsefulData = data.length >= 1;
+    this.donationsLabels = hasUsefulData ? labels : [];
+    this.donationsDatasets = hasUsefulData
+      ? [
+          {
+            label: this.translate.instant('PAGES.PROGRESS.DONATIONS_TITLE') || 'Donaciones',
+            data,
+            borderColor: '#EBF9C8',
+            tension: 0.3,
+          },
+        ]
+      : [];
     this.donationsOptions = {
       responsive: true,
       plugins: { legend: { display: false } },
       scales: {
-        x: { title: { display: true, text: '' } },
-        y: { title: { display: true, text: '' } },
+        x: { title: { display: true, text: 'Fecha' } },
+        y: { title: { display: true, text: '' }, beginAtZero: false },
       },
     } as ChartOptions;
   }
 
   private updateBattles(metric: any) {
-    const total = this.asNumber(metric.battles?.total) ?? 0;
-    const last24 = this.asNumber(metric.battles?.last24hr) ?? 0;
+    const snaps = this.snapshotsStore.snapshots();
+    let labels: string[];
+    let data: number[];
 
-    this.battlesCompLabels = [
-      this.translate.instant('PAGES.PROGRESS.BATTLES_TOTAL_LABEL'),
-      this.translate.instant('PAGES.PROGRESS.BATTLES_LAST24_LABEL'),
-    ];
+    if (Array.isArray(snaps) && snaps.length > 0) {
+      const sorted = [...snaps].sort(
+        (a, b) => new Date(a.capturedAt).getTime() - new Date(b.capturedAt).getTime(),
+      );
+      labels = sorted.map((s) => new Date(s.capturedAt).toLocaleDateString());
+      data = sorted.map((s) => s.battleCount);
+      if (data.length === 1) {
+        const prevDate = new Date(new Date(sorted[0].capturedAt).getTime() - 24 * 60 * 60 * 1000);
+        labels = [prevDate.toLocaleDateString(), labels[0]];
+        data = [data[0], data[0]];
+      }
+    } else {
+      const total = this.asNumber(metric.battles?.total) ?? 0;
+      const last24 = this.asNumber(metric.battles?.last24hr) ?? 0;
+      labels = [
+        this.translate.instant('PAGES.PROGRESS.BATTLES_TOTAL_LABEL'),
+        this.translate.instant('PAGES.PROGRESS.BATTLES_LAST24_LABEL'),
+      ];
+      data = [total, last24];
+    }
 
-    this.battlesCompDatasets = [
-      {
-        label: this.translate.instant('PAGES.PROGRESS.BATTLES_LABEL') || 'Batallas',
-        data: [total, last24],
-        backgroundColor: ['#C9DAF8', '#F8E2C9'],
-      },
-    ];
-
+    const hasUsefulData = data.length >= 1;
+    this.battlesCompLabels = hasUsefulData ? labels : [];
+    this.battlesCompDatasets = hasUsefulData
+      ? [
+          {
+            label: this.translate.instant('PAGES.PROGRESS.BATTLES_LABEL') || 'Batallas',
+            data,
+            borderColor: '#C9DAF8',
+            tension: 0.3,
+          },
+        ]
+      : [];
     this.battlesCompOptions = {
       responsive: true,
-      plugins: { legend: { position: 'bottom' } },
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: 'Fecha' } },
+        y: { title: { display: true, text: '' }, beginAtZero: false },
+      },
     } as ChartOptions;
   }
 }

@@ -29,6 +29,7 @@
   border-bottom-right-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
+  padding-left: 0.75rem;
 }
 
 .search svg {
@@ -42,4 +43,9 @@
 
 .search svg path {
   stroke: var(--elements-color)
+}
+
+.search input::placeholder {
+  color: var(--elements-color);
+  opacity: 0.45;
 }

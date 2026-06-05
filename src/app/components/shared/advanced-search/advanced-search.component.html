@@ -11,6 +11,9 @@
       <app-form-input class="glass-input" type="select" name="gameMode" label="{{ 'PAGES.WEAKNESSES.FILTER_MODE' | translate }}" [options]="gameModes" [(ngModel)]="selectedMode"></app-form-input>
       <app-form-input class="glass-input" type="number" name="minBattles" label="{{ 'PAGES.WEAKNESSES.FILTER_MIN_BATTLES' | translate }}" [(ngModel)]="minBattles"></app-form-input>
       <app-form-input class="glass-input" type="number" name="limit" label="{{ 'PAGES.WEAKNESSES.FILTER_LIMIT' | translate }}" [(ngModel)]="limit"></app-form-input>
+    </article>
+
+    <article class="flex">
       <app-form-input class="glass-input" type="number" name="minAppearances" label="{{ 'PAGES.WEAKNESSES.FILTER_MIN_APPEARANCES' | translate }}" [(ngModel)]="minAppearances"></app-form-input>
     </article>
 

@@ -7,6 +7,7 @@ import { RefreshButtonComponent } from '../../components/shared/refresh-button/r
 import { TranslateModule } from '@ngx-translate/core';
 import { SearcherComponent } from '../../components/shared/searcher/searcher.component';
 import { FormInputComponent } from '../../components/shared/form-input/form-input.component';
+import { PaginationComponent } from '../../components/shared/pagination/pagination.component';
 import { CascadeAnimator } from '../../utils/cascade-animation';
 
 @Component({
@@ -18,6 +19,7 @@ import { CascadeAnimator } from '../../utils/cascade-animation';
     SearcherComponent,
     FormInputComponent,
     FormsModule,
+    PaginationComponent,
   ],
   templateUrl: './battles.page.html',
   styleUrl: '../../../styles/styles.css',
@@ -53,6 +55,10 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
   selectedMode: string = 'all';
   selectedResult: string = 'all';
   searchTerm: string = '';
+
+  currentPage = 0;
+  pageSize = 20;
+
   constructor(public battlesStore: BattlesSignalStore) {
     effect(() => {
       const tag = this.tag;
@@ -72,6 +78,7 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
 
   onSearch(term: string) {
     this.searchTerm = term ?? '';
+    this.resetPage();
   }
 
   // Determine battle result: 'victory' | 'defeat' | 'draw'
@@ -137,6 +144,50 @@ export class BattlesPage implements AfterViewInit, OnDestroy {
   refreshBattles() {
     if (!this.tag) return;
     this.battlesStore.importBattles(this.tag);
+  }
+
+  resetPage() {
+    this.currentPage = 0;
+  }
+
+  get pageObj() {
+    const battles = this.filteredBattles();
+    const total = battles?.length ?? 0;
+    const totalPages = Math.max(1, Math.ceil(total / this.pageSize));
+    const page = Math.min(this.currentPage, totalPages - 1);
+    return {
+      number: page,
+      totalPages,
+      first: page === 0,
+      last: page >= totalPages - 1,
+    };
+  }
+
+  paginatedBattles(): Battle[] | null {
+    const all = this.filteredBattles();
+    if (!all) return null;
+    const start = this.currentPage * this.pageSize;
+    return all.slice(start, start + this.pageSize);
+  }
+
+  onPrev() {
+    if (this.currentPage > 0) this.currentPage--;
+  }
+
+  onNext() {
+    const total = this.filteredBattles()?.length ?? 0;
+    const totalPages = Math.max(1, Math.ceil(total / this.pageSize));
+    if (this.currentPage < totalPages - 1) this.currentPage++;
+  }
+
+  onModeChange(value: string) {
+    this.selectedMode = value;
+    this.resetPage();
+  }
+
+  onResultChange(value: string) {
+    this.selectedResult = value;
+    this.resetPage();
   }
 
   getClanBadgeUrl(badgeId: number) {
