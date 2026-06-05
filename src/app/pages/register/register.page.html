@@ -73,7 +73,7 @@
         </app-form-input>
       </article>
     </section>
-    <app-form-input formControlName="acceptTerms" type="checkbox" name="acceptTerms" [label]="'PAGES.AUTH.REGISTER.ACCEPT_TERMS_LABEL' | translate" [required]="true" class="glass-input">
+    <app-form-input formControlName="acceptTerms" type="checkbox" name="acceptTerms" [labelHtml]="'PAGES.AUTH.REGISTER.ACCEPT_TERMS_LABEL' | translate" [required]="true" class="glass-input">
       @if (registerForm.get('acceptTerms')?.touched && registerForm.get('acceptTerms')?.invalid) {
         <article class="error" title="{{ 'VALIDATION.ACCEPT_TERMS' | translate }}">{{ 'VALIDATION.ACCEPT_TERMS' | translate }}</article>
       }

@@ -84,6 +84,9 @@ export class AsyncValidatorsService {
           return exists ? null : { tagNotFound: true };
         }),
         catchError((err) => {
+          if (err.status === 404 || err.status === 500) {
+            return of({ tagNotFound: true });
+          }
           console.warn('[AsyncValidators] playerTagExists: request error', err);
           return of(null);
         }),

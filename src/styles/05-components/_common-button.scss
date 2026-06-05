@@ -4,6 +4,17 @@ main .common-button {
   border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+main .common-button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(0,0,0,0.18);
+}
+
+main .common-button:active {
+  transform: translateY(0);
 }
 
 main .common-button svg path, {

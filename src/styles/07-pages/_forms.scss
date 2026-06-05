@@ -140,6 +140,12 @@ app-form-input.grid input[type="checkbox"] + label {
   font-size: 0.95rem;
 }
 
+app-form-input.glass-input input[type="checkbox"] + label a,
+app-form-input.grid input[type="checkbox"] + label a {
+  color: var(--elements-color);
+  text-decoration: underline;
+}
+
 app-form-input.glass-input input:not([type="checkbox"]),
 app-form-input.grid input:not([type="checkbox"]),
 app-form-input.glass-input textarea {
@@ -161,7 +167,7 @@ app-form-input.glass-input input::placeholder,
 app-form-input.grid input::placeholder,
 app-form-input.glass-input textarea::placeholder {
   color: var(--elements-color);
-  opacity: 1;
+  opacity: 0.45;
 }
 
 app-form-input.glass-input input:not([type="checkbox"]):focus,
@@ -193,6 +199,17 @@ app-form-input.glass-input textarea:focus {
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: none;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.fieldset app-common-button button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(0,0,0,0.22);
+}
+
+.fieldset app-common-button button:active {
+  transform: translateY(0);
 }
 
 .fieldset a {

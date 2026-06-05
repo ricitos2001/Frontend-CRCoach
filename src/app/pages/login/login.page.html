@@ -16,8 +16,18 @@
     </app-form-input>
 
     <app-form-input formControlName="password" type="password" name="password" [label]="'PAGES.AUTH.LOGIN.PASSWORD_LABEL' | translate" [placeholder]="'PAGES.AUTH.LOGIN.PASSWORD_PLACEHOLDER' | translate" [required]="true" class="glass-input" [class.has-error]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-      @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+      @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid && loginForm.get('password')?.errors?.['required']) {
         <article class="error" title="{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}">{{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}</article>
+      } @else if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid && loginForm.get('password')?.errors?.['minLength']) {
+        <article class="error" title="{{ 'VALIDATION.MIN_LENGTH' | translate }}">{{ 'VALIDATION.MIN_LENGTH' | translate }}</article>
+      } @else if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid && loginForm.get('password')?.errors?.['noUppercase']) {
+        <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_UPPER' | translate }}">{{ 'VALIDATION.PASSWORD_NO_UPPER' | translate }}</article>
+      } @else if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid && loginForm.get('password')?.errors?.['noLowercase']) {
+        <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_LOWER' | translate }}">{{ 'VALIDATION.PASSWORD_NO_LOWER' | translate }}</article>
+      } @else if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid && loginForm.get('password')?.errors?.['noNumber']) {
+        <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_NUMBER' | translate }}">{{ 'VALIDATION.PASSWORD_NO_NUMBER' | translate }}</article>
+      } @else if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid && loginForm.get('password')?.errors?.['noSpecial']) {
+        <article class="error" title="{{ 'VALIDATION.PASSWORD_NO_SPECIAL' | translate }}">{{ 'VALIDATION.PASSWORD_NO_SPECIAL' | translate }}</article>
       }
     </app-form-input>
 

@@ -11,7 +11,13 @@
     <article class="checkbox">
       <input [id]="name" type="checkbox" [checked]="value" [disabled]="disabled" (change)="onCheckboxChange($event)" (blur)="onBlur()" />
       @if (!hideLabel) {
-        <label [for]="name">{{ label || placeholder }}</label>
+        <label [for]="name">
+          @if (labelHtml) {
+            <span [innerHTML]="labelHtml"></span>
+          } @else {
+            {{ label || placeholder }}
+          }
+        </label>
       }
     </article>
   }

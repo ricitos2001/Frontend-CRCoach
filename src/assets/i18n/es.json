@@ -2,7 +2,7 @@
   "COMPONENTS": {
     "LAYOUT": {
       "SIDEBAR": {
-        "DASHBOARD": "Panel de control",
+        "DASHBOARD": "Panel principal",
         "BATTLES": "Registro de batallas",
         "WEAKNESSES": "Diagnóstico de debilidades",
         "GOALS": "Lista de objetivos",
@@ -127,7 +127,7 @@
         "SUBMIT": "Regístrate",
         "SUBMITTING": "Registrando...",
         "HAVE_ACCOUNT": "¿Ya tienes cuenta? Iniciar sesión",
-        "ACCEPT_TERMS_LABEL": "Acepto los términos de privacidad y condiciones de servicio"
+        "ACCEPT_TERMS_LABEL": "Acepto los <a href='/privacy'>términos de privacidad</a> y las <a href='/terms'>condiciones de servicio</a>"
       },
       "RECOVER": {
         "LEGEND": "Recuperar contraseña",

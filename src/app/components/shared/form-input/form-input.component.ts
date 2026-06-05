@@ -22,6 +22,7 @@ export class FormInputComponent implements ControlValueAccessor {
   @Input() name!: string;
   @Input() placeholder: string = '';
   @Input() label?: string;
+  @Input() labelHtml?: string;
   @Input() hideLabel: boolean = false;
   @Input() required: boolean = false;
   @Input() value: any = '';

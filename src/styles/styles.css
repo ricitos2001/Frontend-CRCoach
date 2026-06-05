@@ -1294,6 +1294,17 @@ app-graph canvas {
 .refresh-button {
   border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.refresh-button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(0, 0, 0, 0.18);
+}
+
+.refresh-button:active {
+  transform: translateY(0);
 }
 
 header .refresh-button {
@@ -1345,6 +1356,17 @@ main .common-button {
   border-radius: 0.5rem;
   color: var(--elements-color);
   background: var(--components-color);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+main .common-button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(0, 0, 0, 0.18);
+}
+
+main .common-button:active {
+  transform: translateY(0);
 }
 
 main .common-button svg path {
@@ -1911,6 +1933,12 @@ app-form-input.grid input[type=checkbox] + label {
   font-size: 0.95rem;
 }
 
+app-form-input.glass-input input[type=checkbox] + label a,
+app-form-input.grid input[type=checkbox] + label a {
+  color: var(--elements-color);
+  text-decoration: underline;
+}
+
 app-form-input.glass-input input:not([type=checkbox]),
 app-form-input.grid input:not([type=checkbox]),
 app-form-input.glass-input textarea {
@@ -1932,7 +1960,7 @@ app-form-input.glass-input input::placeholder,
 app-form-input.grid input::placeholder,
 app-form-input.glass-input textarea::placeholder {
   color: var(--elements-color);
-  opacity: 1;
+  opacity: 0.45;
 }
 
 app-form-input.glass-input input:not([type=checkbox]):focus,
@@ -1964,6 +1992,17 @@ app-form-input.glass-input textarea:focus {
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   box-shadow: none;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.fieldset app-common-button button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(0, 0, 0, 0.22);
+}
+
+.fieldset app-common-button button:active {
+  transform: translateY(0);
 }
 
 .fieldset a {
@@ -4736,6 +4775,13 @@ section p.error {
   color: var(--components-color);
   box-shadow: 0 0.375rem 0.875rem rgba(0, 0, 0, 0.25);
   border: 0.0625rem solid rgba(0, 0, 0, 0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.profile-header__actions app-common-button:first-child button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(0, 0, 0, 0.35);
+  filter: brightness(1.1);
 }
 
 .profile-header__actions app-common-button:last-child button {
@@ -4743,6 +4789,13 @@ section p.error {
   color: var(--components-color);
   box-shadow: 0 0.375rem 0.875rem rgba(0, 0, 0, 0.25);
   border: 0.0625rem solid rgba(0, 0, 0, 0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.profile-header__actions app-common-button:last-child button:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.75rem 1.625rem rgba(0, 0, 0, 0.35);
+  filter: brightness(1.1);
 }
 
 .profile-tag {
@@ -5086,7 +5139,7 @@ section p.error {
 
 .legal-page {
   max-width: 100%;
-  margin: 2rem;
+  margin: 6.5rem 2rem 2rem;
   padding: 2rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
   -webkit-backdrop-filter: blur(0.5rem) saturate(120%);
