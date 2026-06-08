@@ -188,21 +188,6 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     this.usersService.getImageProfile(idNumber, true).subscribe({
       next: (blob) => {
         try {
-          // Validar que el blob no sea HTML/JSON (error del backend), permitir type vacío (desconocido)
-          if (!blob || blob.size === 0) {
-            console.warn('Avatar blob vacío, usando fallback URL');
-            this.avatarObjectUrl = null;
-            this.avatarLoading = false;
-            try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
-            return;
-          }
-          if (blob.type && (blob.type.startsWith('text/') || blob.type.startsWith('application/json') || blob.type.startsWith('application/xml') || blob.type === 'text/html')) {
-            console.warn('Avatar blob no es una imagen (type=' + blob.type + '), usando fallback URL');
-            this.avatarObjectUrl = null;
-            this.avatarLoading = false;
-            try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
-            return;
-          }
           if (this.avatarObjectUrl) {
             try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
           }
