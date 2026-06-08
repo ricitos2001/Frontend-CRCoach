@@ -114,29 +114,14 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  // Resolver URLs de imágenes: si la URL es absoluta la dejamos, (pero si contiene localhost la reescribimos contra apiUrl),
-  // si es relativa la prefijamos con apiUrl
+  // Resolver URLs de imágenes: si la URL es absoluta la dejamos, si es relativa la prefijamos con apiUrl
   resolveUrl(url?: string | null, fallback: string = 'assets/img/icons/user.svg'): string {
     if (!url || url === 'null') return fallback;
-    // Si es absoluta
-    if (/^https?:\/\//i.test(url)) {
-      // Si apunta a localhost (típico de desarrollo) la reescribimos contra el apiUrl actual
-      if (/localhost/i.test(url)) {
-        const rest = url.replace(/^https?:\/\/[^/]+/, '').replace(/^\/+/, '');
-        return `${environment.apiUrl}/${rest}`;
-      }
-      return url;
-    }
+    // si ya es una URL absoluta
+    if (/^https?:\/\//i.test(url)) return url;
+    // eliminar barras iniciales y concatenar con el apiUrl
     const cleaned = url.replace(/^\/+/, '');
     return `${environment.apiUrl}/${cleaned}`;
-  }
-
-  // Cuando la imagen de perfil (fallback) también falla, mostrar el SVG por defecto
-  onImgError(event: Event): void {
-    const img = event.target as HTMLImageElement;
-    if (img) {
-      img.src = 'assets/img/icons/user.svg';
-    }
   }
 
   // Handle selected file and upload
