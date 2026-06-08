@@ -120,6 +120,12 @@
     @if (selectedCard) {
       <section #cardDetail class="card-detail" [ngStyle]="cardDetailStyle" (click)="$event.stopPropagation()">
         <img [src]="selectedCard.iconUrl.medium" alt="{{selectedCard.name}}">
+        @if (selectedCard.iconUrl.evolutionMedium) {
+          <img [src]="selectedCard.iconUrl.evolutionMedium" alt="{{selectedCard.name}} Evo">
+        }
+        @if (selectedCard.iconUrl.heroMedium) {
+          <img [src]="selectedCard.iconUrl.heroMedium" alt="{{selectedCard.name}} Hero">
+        }
         <article class="card-detail__info">
            <h4>{{selectedCard.name}}</h4>
            <p>{{ 'PAGES.PROFILE.CARD_RARITY' | translate }}: {{selectedCard.rarity}}</p>

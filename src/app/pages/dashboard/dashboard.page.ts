@@ -72,67 +72,15 @@ export class DashboardPage implements OnInit, AfterViewInit {
         localStorage.setItem('tag', tagToLoad);
 
         (async () => {
-          // Ensure we have a token before calling protected endpoints to avoid 401/400.
           const token = localStorage.getItem('token');
           if (!token) return;
-
           try {
             await this.profileStore.loadByTag(tagToLoad);
-            const prof = this.profileStore.profile();
-            if (!prof) {
-              try {
-                await this.profileStore.importProfile(tagToLoad);
-              } catch (err) {
-                // If import profile fails (e.g. unauthorized), stop further imports to avoid cascaded errors
-                console.warn('Dashboard: importProfile failed, aborting further loads', err);
-                return;
-              }
-            }
-
-            // Load existing battles first. If none, try importing and then reload.
-            try {
-              await this.battlesStore.loadByTag(tagToLoad);
-              let battles = this.battlesStore.battles();
-              if (!battles || (Array.isArray(battles) && battles.length === 0)) {
-                try {
-                  await this.battlesStore.importBattles(tagToLoad);
-                  // Ensure battles are reloaded after import completes
-                  await this.battlesStore.loadByTag(tagToLoad);
-                  // If the import is long-running on the backend, wait (poll) until battles become available
-                  // before continuing to load snapshots/metrics. This prevents metrics being calculated
-                  // from incomplete battle data (causing incorrect winrate graphs).
-                  await this.ensureBattlesAvailable(tagToLoad);
-                } catch (err) {
-                  console.warn('Dashboard: importBattles failed', err);
-                }
-              }
-            } catch (err) {
-              console.warn('Dashboard: loadByTag/importBattles sequence failed', err);
-            }
-
-            // Load snapshots (non-fatal)
-            try {
-              await this.snapshotsStore.loadSnapshots(tagToLoad);
-            } catch (err) {
-              console.warn('Dashboard: loadSnapshots failed', err);
-            }
-
-            // Load metrics only after battles/snapshots have been attempted
-            try {
-              await this.metricsStore.loadMetrics(tagToLoad);
-            } catch (err) {
-              console.warn('Dashboard: loadMetrics failed', err);
-            }
-            try {
-              await this.goalsStore.loadGoals(0, 3, localStorage.getItem('email'));
-            } catch (err) {
-              console.warn('Dashboard: loadGoals failed', err);
-            }
-            try {
-              await this.sessionsStore.loadSessions(0, 3, localStorage.getItem('email'));
-            } catch (err) {
-              console.warn('Dashboard: loadGoals failed', err);
-            }
+            await this.snapshotsStore.loadSnapshots(tagToLoad);
+            await this.metricsStore.loadMetrics(tagToLoad);
+            await this.battlesStore.loadByTag(tagToLoad);
+            await this.goalsStore.loadGoals(0, 3, localStorage.getItem('email'));
+            await this.sessionsStore.loadSessions(0, 3, localStorage.getItem('email'));
           } catch (err) {
             console.error('Dashboard initial load sequence failed', err);
           }
