@@ -124,13 +124,6 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     return `${environment.apiUrl}/${cleaned}`;
   }
 
-  // Indica si la URL es relativa y por tanto probablemente protegida (requiere Authorization)
-  needsAuth(url?: string | null): boolean {
-    if (!url) return false;
-    // consideramos relativa si no empieza por http(s)
-    return !/^https?:\/\//i.test(url);
-  }
-
   // Handle selected file and upload
   onAvatarSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -164,48 +157,40 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private loadUserAvatar(user: any): void {
+    const token = localStorage.getItem('token');
+    const idNumber = Number(user?.id);
+    if (!token || !Number.isFinite(idNumber)) {
+      this.clearAvatarObjectUrl();
+      return;
+    }
+
     const path = user?.avatarUrl ?? null;
-    // si no hay path o es absoluto, no necesitamos descargar via XHR
-    if (!path) { this.clearAvatarObjectUrl(); return; }
-    if (/^https?:\/\//i.test(path)) { this.clearAvatarObjectUrl(); return; }
-    // si es la misma ruta ya cargada, no hacemos nada
     if (this.lastAvatarPath === path) return;
     this.lastAvatarPath = path;
 
-    // intentamos descargar mediante UsersService para incluir Authorization
     this.avatarLoading = true;
-    try {
-      // asegurar token actualizado
-      this.usersService.token = localStorage.getItem('token');
-      console.log('loadUserAvatar: requesting avatar for user', user.id, 'token present?', !!this.usersService.token);
-      this.usersService.getImageProfile(user.id, true).subscribe({
-        next: (blob) => {
-          try {
-            // revoke previous objectURL without setting avatarObjectUrl to null first
-            if (this.avatarObjectUrl) {
-              try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
-            }
-            this.avatarObjectUrl = URL.createObjectURL(blob);
-          } catch (e) {
-            console.error('Error creando objectURL para avatar', e);
-            this.avatarObjectUrl = null;
+    this.usersService.token = token;
+    this.usersService.getImageProfile(idNumber, true).subscribe({
+      next: (blob) => {
+        try {
+          if (this.avatarObjectUrl) {
+            try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
           }
-          this.avatarLoading = false;
-          // Forzar detección para evitar ExpressionChangedAfterItHasBeenCheckedError
-          try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
-        },
-        error: (err) => {
-          console.error('Error cargando avatar protegido:', err);
-          this.avatarLoading = false;
-          // dejar que resolveUrl genere la URL pública (si existe) como fallback
+          this.avatarObjectUrl = URL.createObjectURL(blob);
+        } catch (e) {
+          console.error('Error creando objectURL para avatar', e);
           this.avatarObjectUrl = null;
-          try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
         }
-      });
-    } catch (e) {
-      console.error('Error solicitando avatar', e);
-      this.avatarLoading = false;
-    }
+        this.avatarLoading = false;
+        try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
+      },
+      error: (err) => {
+        console.error('Error cargando avatar:', err);
+        this.avatarLoading = false;
+        this.avatarObjectUrl = null;
+        try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
+      }
+    });
   }
 
   ngAfterViewInit(): void {

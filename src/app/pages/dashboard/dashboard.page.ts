@@ -201,12 +201,6 @@ export class DashboardPage implements OnInit, AfterViewInit {
     return `${environment.apiUrl}/${cleaned}`;
   }
 
-  // Indica si la URL es relativa (probablemente protegida y requiere Authorization)
-  public needsAuth(url?: string | null): boolean {
-    if (!url) return false;
-    return !/^https?:\/\//i.test(url);
-  }
-
   // Datos para componentes reutilizables
   public trophiesLabels: string[] = [];
   public trophiesDatasets: any[] = [];
@@ -253,74 +247,43 @@ export class DashboardPage implements OnInit, AfterViewInit {
   }
 
   private loadUserAvatar(user: any): void {
-    const path = user?.avatarUrl ?? null;
-    if (!path) {
-      this.clearAvatarObjectUrl();
-      return;
-    }
-    if (/^https?:\/\//i.test(path)) {
-      this.clearAvatarObjectUrl();
-      return;
-    }
-    if (this.lastAvatarPath === path) return;
-    this.lastAvatarPath = path;
-    // Only attempt to fetch protected avatars when we have a token and a valid positive user id.
     const token = localStorage.getItem('token');
     const idNumber = Number(user?.id);
-    if (!token) {
-      // If there's no token the request would 401; skip and keep a fallback avatar
-      console.warn('Dashboard: no token found in localStorage, skipping protected avatar load');
-      this.clearAvatarObjectUrl();
-      return;
-    }
-    // Accept any finite numeric id (backend may use negative ids); only skip if id is not a number
-    if (!Number.isFinite(idNumber)) {
-      console.warn('Dashboard: invalid user id, skipping protected avatar load', user?.id);
+    if (!token || !Number.isFinite(idNumber)) {
       this.clearAvatarObjectUrl();
       return;
     }
 
+    const path = user?.avatarUrl ?? null;
+    if (this.lastAvatarPath === path) return;
+    this.lastAvatarPath = path;
+
     this.avatarLoading = true;
-    try {
-      // Make sure the service uses the latest token
-      this.usersService.token = token;
-      this.usersService.getImageProfile(idNumber, true).subscribe({
-        next: (blob) => {
-          try {
-            if (this.avatarObjectUrl) {
-              try {
-                URL.revokeObjectURL(this.avatarObjectUrl);
-              } catch (e) {}
-            }
-          } catch (e) {}
-          try {
-            this.avatarObjectUrl = URL.createObjectURL(blob);
-          } catch (e) {
-            this.avatarObjectUrl = null;
+    this.usersService.token = token;
+    this.usersService.getImageProfile(idNumber, true).subscribe({
+      next: (blob) => {
+        try {
+          if (this.avatarObjectUrl) {
+            try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
           }
-          this.avatarLoading = false;
-          try {
-            this.cdr.detectChanges();
-          } catch (e) {}
-        },
-        error: (err) => {
-          // Provide a clearer diagnostic when a 401 is returned
-          if (err && err.status === 401) {
-            console.warn('Dashboard: protected avatar request returned 401 Unauthorized; token may be missing or expired');
-          } else {
-            console.error('Dashboard: error loading protected avatar', err);
-          }
-          this.avatarLoading = false;
+          this.avatarObjectUrl = URL.createObjectURL(blob);
+        } catch (e) {
           this.avatarObjectUrl = null;
-          try {
-            this.cdr.detectChanges();
-          } catch (e) {}
-        },
-      });
-    } catch (e) {
-      console.error('Dashboard: error requesting avatar', e);
-      this.avatarLoading = false;
-    }
+        }
+        this.avatarLoading = false;
+        try { this.cdr.detectChanges(); } catch (e) {}
+      },
+      error: (err) => {
+        if (err && err.status === 401) {
+          console.warn('Dashboard: avatar request returned 401 - token may be expired');
+        } else {
+          console.error('Dashboard: error loading avatar', err);
+        }
+        this.avatarLoading = false;
+        this.avatarObjectUrl = null;
+        try { this.cdr.detectChanges(); } catch (e) {}
+      }
+    });
   }
 
   // Trigger file input to select a new avatar (and upload)
