@@ -108,6 +108,11 @@ export class UsersService {
             observer.error(new Error('Backend returned non-image type: ' + blob.type));
             return;
           }
+          // Rechazar si el blob es demasiado pequeño para ser una foto real (placeholders de 1x1 px)
+          if (blob.size < 500) {
+            observer.error(new Error('Image too small (' + blob.size + ' bytes), likely a placeholder'));
+            return;
+          }
           const reader = new FileReader();
           reader.onload = () => observer.next(reader.result as string);
           reader.onerror = () => observer.error(new Error('FileReader error'));
