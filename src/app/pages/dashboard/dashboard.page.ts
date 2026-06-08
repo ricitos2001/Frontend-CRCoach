@@ -248,6 +248,15 @@ export class DashboardPage implements OnInit, AfterViewInit {
     this.lastAvatarPath = null;
   }
 
+  private blobToDataUrl(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(blob);
+    });
+  }
+
   private loadUserAvatar(user: any): void {
     const token = localStorage.getItem('token');
     const idNumber = Number(user?.id);
@@ -263,15 +272,12 @@ export class DashboardPage implements OnInit, AfterViewInit {
     this.avatarLoading = true;
     this.usersService.token = token;
     this.usersService.getImageProfile(idNumber, true).subscribe({
-      next: (blob) => {
+      next: async (blob) => {
         try {
           if (blob.size === 0) {
             this.avatarObjectUrl = null;
           } else {
-            if (this.avatarObjectUrl) {
-              try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
-            }
-            this.avatarObjectUrl = URL.createObjectURL(blob);
+            this.avatarObjectUrl = await this.blobToDataUrl(blob);
           }
         } catch (e) {
           this.avatarObjectUrl = null;
