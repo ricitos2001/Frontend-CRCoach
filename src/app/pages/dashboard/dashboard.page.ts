@@ -252,14 +252,18 @@ export class DashboardPage implements OnInit, AfterViewInit {
   }
 
   private clearAvatarObjectUrl(): void {
-    this.avatarObjectUrl = null;
+    if (this.avatarObjectUrl) {
+      try {
+        URL.revokeObjectURL(this.avatarObjectUrl);
+      } catch (e) {}
+      this.avatarObjectUrl = null;
+    }
     this.lastAvatarPath = null;
   }
 
   private loadUserAvatar(user: any): void {
     const token = localStorage.getItem('token');
     const idNumber = Number(user?.id);
-    console.log('[Dashboard Avatar] Cargando avatar para user', idNumber, 'avatarUrl:', user?.avatarUrl, 'token present:', !!token);
     if (!token || !Number.isFinite(idNumber)) {
       this.clearAvatarObjectUrl();
       return;
@@ -271,16 +275,40 @@ export class DashboardPage implements OnInit, AfterViewInit {
 
     this.avatarLoading = true;
     this.usersService.token = token;
-    // Usar data URL (base64) en vez de blob URL para evitar CSP y problemas de blob en producción
-    this.usersService.getImageProfileAsDataUrl(idNumber, true).subscribe({
-      next: (dataUrl) => {
-        console.log('[Dashboard Avatar] Cargado correctamente como data URL, length:', dataUrl.length);
-        this.avatarObjectUrl = dataUrl;
+    this.usersService.getImageProfile(idNumber, true).subscribe({
+      next: (blob) => {
+        try {
+          // Validar que el blob no sea HTML/JSON (error del backend), permitir type vacío (desconocido)
+          if (!blob || blob.size === 0) {
+            console.warn('Dashboard: avatar blob vacío, usando fallback URL');
+            this.avatarObjectUrl = null;
+            this.avatarLoading = false;
+            try { this.cdr.detectChanges(); } catch (e) {}
+            return;
+          }
+          if (blob.type && (blob.type.startsWith('text/') || blob.type.startsWith('application/json') || blob.type.startsWith('application/xml') || blob.type === 'text/html')) {
+            console.warn('Dashboard: avatar blob no es una imagen (type=' + blob.type + '), usando fallback URL');
+            this.avatarObjectUrl = null;
+            this.avatarLoading = false;
+            try { this.cdr.detectChanges(); } catch (e) {}
+            return;
+          }
+          if (this.avatarObjectUrl) {
+            try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
+          }
+          this.avatarObjectUrl = URL.createObjectURL(blob);
+        } catch (e) {
+          this.avatarObjectUrl = null;
+        }
         this.avatarLoading = false;
         try { this.cdr.detectChanges(); } catch (e) {}
       },
       error: (err) => {
-        console.error('[Dashboard Avatar] Error cargando como data URL, usando fallback:', err);
+        if (err && err.status === 401) {
+          console.warn('Dashboard: avatar request returned 401 - token may be expired');
+        } else {
+          console.error('Dashboard: error loading avatar', err);
+        }
         this.avatarLoading = false;
         this.avatarObjectUrl = null;
         try { this.cdr.detectChanges(); } catch (e) {}

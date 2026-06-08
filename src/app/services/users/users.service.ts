@@ -89,35 +89,6 @@ export class UsersService {
     });
   }
 
-  getImageProfileAsDataUrl(id: number, cacheBust: boolean = false): Observable<string> {
-    const url = cacheBust
-      ? `${environment.apiUrl}/api/v1/users/${id}/avatar?t=${Date.now()}`
-      : `${environment.apiUrl}/api/v1/users/${id}/avatar`;
-    return new Observable<string>((observer) => {
-      this.http.get(url, {
-        headers: { Authorization: `Bearer ${this.token}` },
-        responseType: 'blob',
-      }).subscribe({
-        next: (blob) => {
-          if (!blob || blob.size === 0) {
-            observer.error(new Error('Empty blob'));
-            return;
-          }
-          // Rechazar si el backend devolvió HTML/JSON (página de error con status 200)
-          if (blob.type && (blob.type.startsWith('text/') || blob.type.startsWith('application/json') || blob.type.startsWith('application/xml') || blob.type === 'text/html')) {
-            observer.error(new Error('Backend returned non-image type: ' + blob.type));
-            return;
-          }
-          const reader = new FileReader();
-          reader.onload = () => observer.next(reader.result as string);
-          reader.onerror = () => observer.error(new Error('FileReader error'));
-          reader.readAsDataURL(blob);
-        },
-        error: (err) => observer.error(err),
-      });
-    });
-  }
-
   postImageProfile(id: number, imageFormData: FormData): Observable<any> {
     return this.http
       .post(`${environment.apiUrl}/api/v1/users/${id}/avatar`, imageFormData, {
