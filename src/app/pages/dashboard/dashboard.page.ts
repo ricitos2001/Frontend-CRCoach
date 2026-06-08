@@ -201,8 +201,6 @@ export class DashboardPage implements OnInit, AfterViewInit {
     return `${environment.apiUrl}/${cleaned}`;
   }
 
-  public fallbackAvatarUrl = 'assets/img/icons/user.svg';
-
   // Datos para componentes reutilizables
   public trophiesLabels: string[] = [];
   public trophiesDatasets: any[] = [];
@@ -257,7 +255,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
     }
 
     const path = user?.avatarUrl ?? null;
-    if (this.lastAvatarPath === path && this.avatarObjectUrl) return;
+    if (this.lastAvatarPath === path) return;
     this.lastAvatarPath = path;
 
     this.avatarLoading = true;
@@ -265,14 +263,10 @@ export class DashboardPage implements OnInit, AfterViewInit {
     this.usersService.getImageProfile(idNumber, true).subscribe({
       next: (blob) => {
         try {
-          if (blob.size === 0) {
-            this.avatarObjectUrl = null;
-          } else {
-            if (this.avatarObjectUrl) {
-              try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
-            }
-            this.avatarObjectUrl = URL.createObjectURL(blob);
+          if (this.avatarObjectUrl) {
+            try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
           }
+          this.avatarObjectUrl = URL.createObjectURL(blob);
         } catch (e) {
           this.avatarObjectUrl = null;
         }
