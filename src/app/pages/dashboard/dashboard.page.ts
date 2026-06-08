@@ -198,13 +198,7 @@ export class DashboardPage implements OnInit, AfterViewInit {
     if (!url || url === 'null') return fallback;
     if (/^https?:\/\//i.test(url)) return url;
     const cleaned = url.replace(/^\/+/, '');
-    const resolved = `${environment.apiUrl}/${cleaned}`;
-    const token = localStorage.getItem('token');
-    if (token) {
-      const sep = resolved.includes('?') ? '&' : '?';
-      return `${resolved}${sep}token=${encodeURIComponent(token)}`;
-    }
-    return resolved;
+    return `${environment.apiUrl}/${cleaned}`;
   }
 
   // Datos para componentes reutilizables
@@ -282,29 +276,25 @@ export class DashboardPage implements OnInit, AfterViewInit {
               try { this.cdr.detectChanges(); } catch (e) {}
             };
             reader.onerror = () => {
-              this.avatarObjectUrl = null;
-              this.avatarLoading = false;
-              try { this.cdr.detectChanges(); } catch (e) {}
+              this.useAvatarApiUrl(idNumber, token);
             };
             reader.readAsDataURL(blob);
             return;
           }
         } catch (e) {}
-        this.avatarObjectUrl = null;
-        this.avatarLoading = false;
-        try { this.cdr.detectChanges(); } catch (e) {}
+        this.useAvatarApiUrl(idNumber, token);
       },
-      error: (err) => {
-        if (err && err.status === 401) {
-          console.warn('Dashboard: avatar request returned 401 - token may be expired');
-        } else {
-          console.error('Dashboard: error loading avatar', err);
-        }
-        this.avatarObjectUrl = null;
-        this.avatarLoading = false;
-        try { this.cdr.detectChanges(); } catch (e) {}
+      error: () => {
+        this.useAvatarApiUrl(idNumber, token);
       }
     });
+  }
+
+  private useAvatarApiUrl(id: number, token: string): void {
+    const base = `${environment.apiUrl}/api/v1/users/${id}/avatar`;
+    this.avatarObjectUrl = `${base}?token=${encodeURIComponent(token)}&t=${Date.now()}`;
+    this.avatarLoading = false;
+    try { this.cdr.detectChanges(); } catch (e) {}
   }
 
   // Trigger file input to select a new avatar (and upload)

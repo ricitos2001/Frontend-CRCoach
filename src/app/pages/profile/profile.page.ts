@@ -121,13 +121,7 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     if (/^https?:\/\//i.test(url)) return url;
     // eliminar barras iniciales y concatenar con el apiUrl
     const cleaned = url.replace(/^\/+/, '');
-    const resolved = `${environment.apiUrl}/${cleaned}`;
-    const token = localStorage.getItem('token');
-    if (token) {
-      const sep = resolved.includes('?') ? '&' : '?';
-      return `${resolved}${sep}token=${encodeURIComponent(token)}`;
-    }
-    return resolved;
+    return `${environment.apiUrl}/${cleaned}`;
   }
 
   // Handle selected file and upload
@@ -162,14 +156,6 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     this.lastAvatarPath = null;
   }
 
-  private avatarUrlWithToken(user: any): string | null {
-    const token = localStorage.getItem('token');
-    const id = user?.id;
-    if (!token || !id) return null;
-    const base = `${environment.apiUrl}/api/v1/users/${id}/avatar`;
-    return `${base}?token=${encodeURIComponent(token)}&t=${Date.now()}`;
-  }
-
   private loadUserAvatar(user: any): void {
     const idNumber = Number(user?.id);
     if (!Number.isFinite(idNumber)) {
@@ -200,24 +186,25 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
               try { this.cdr.detectChanges(); } catch (e) {}
             };
             reader.onerror = () => {
-              this.avatarObjectUrl = null;
-              this.avatarLoading = false;
-              try { this.cdr.detectChanges(); } catch (e) {}
+              this.useAvatarApiUrl(idNumber, token);
             };
             reader.readAsDataURL(blob);
             return;
           }
         } catch (e) {}
-        this.avatarObjectUrl = null;
-        this.avatarLoading = false;
-        try { this.cdr.detectChanges(); } catch (e) {}
+        this.useAvatarApiUrl(idNumber, token);
       },
       error: () => {
-        this.avatarObjectUrl = null;
-        this.avatarLoading = false;
-        try { this.cdr.detectChanges(); } catch (e) {}
+        this.useAvatarApiUrl(idNumber, token);
       }
     });
+  }
+
+  private useAvatarApiUrl(id: number, token: string): void {
+    const base = `${environment.apiUrl}/api/v1/users/${id}/avatar`;
+    this.avatarObjectUrl = `${base}?token=${encodeURIComponent(token)}&t=${Date.now()}`;
+    this.avatarLoading = false;
+    try { this.cdr.detectChanges(); } catch (e) {}
   }
 
   ngAfterViewInit(): void {
