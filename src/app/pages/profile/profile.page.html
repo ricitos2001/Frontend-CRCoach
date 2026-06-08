@@ -13,7 +13,7 @@
           <section class="profile-header__info">
             <article class="avatar-wrapper">
               <!-- avatarObjectUrl (blob con auth) si está disponible, sino resolveUrl como fallback -->
-              <img [src]="avatarObjectUrl ?? resolveUrl(user.avatarUrl)" alt="avatar del usuario">
+              <img [src]="avatarObjectUrl ?? fallbackAvatarUrl" alt="avatar del usuario">
               <!-- Botón que aparece al hacer hover para cambiar la imagen -->
               <app-common-button class="avatar-change" (click)="triggerAvatarInput($event)">{{ 'PAGES.PROFILE.CHANGE_IMAGE_PROFILE' | translate }}</app-common-button>
               <input type="file" #avatarInput accept="image/*" (change)="onAvatarSelected($event)" hidden>

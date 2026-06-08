@@ -124,6 +124,8 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     return `${environment.apiUrl}/${cleaned}`;
   }
 
+  fallbackAvatarUrl = 'assets/img/icons/user.svg';
+
   // Handle selected file and upload
   onAvatarSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -165,7 +167,7 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     }
 
     const path = user?.avatarUrl ?? null;
-    if (this.lastAvatarPath === path) return;
+    if (this.lastAvatarPath === path && this.avatarObjectUrl) return;
     this.lastAvatarPath = path;
 
     this.avatarLoading = true;
@@ -173,10 +175,14 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     this.usersService.getImageProfile(idNumber, true).subscribe({
       next: (blob) => {
         try {
-          if (this.avatarObjectUrl) {
-            try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
+          if (blob.size === 0) {
+            this.avatarObjectUrl = null;
+          } else {
+            if (this.avatarObjectUrl) {
+              try { URL.revokeObjectURL(this.avatarObjectUrl); } catch (e) {}
+            }
+            this.avatarObjectUrl = URL.createObjectURL(blob);
           }
-          this.avatarObjectUrl = URL.createObjectURL(blob);
         } catch (e) {
           console.error('Error creando objectURL para avatar', e);
           this.avatarObjectUrl = null;
