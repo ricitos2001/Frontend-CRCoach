@@ -193,12 +193,27 @@ export class DashboardPage implements OnInit, AfterViewInit {
   avatarObjectUrl: string | null = null;
   avatarLoading = false;
 
-  // Resolver URLs de imágenes: si la URL es absoluta la dejamos, si es relativa la prefijamos con apiUrl
+  // Resolver URLs de imágenes: si la URL es absoluta la dejamos (pero si contiene localhost la reescribimos contra apiUrl),
+  // si es relativa la prefijamos con apiUrl
   public resolveUrl(url?: string | null, fallback: string = 'assets/img/icons/user.svg'): string {
     if (!url || url === 'null') return fallback;
-    if (/^https?:\/\//i.test(url)) return url;
+    if (/^https?:\/\//i.test(url)) {
+      if (/localhost/i.test(url)) {
+        const rest = url.replace(/^https?:\/\/[^/]+/, '').replace(/^\/+/, '');
+        return `${environment.apiUrl}/${rest}`;
+      }
+      return url;
+    }
     const cleaned = url.replace(/^\/+/, '');
     return `${environment.apiUrl}/${cleaned}`;
+  }
+
+  // Cuando la imagen de perfil (fallback) también falla, mostrar el SVG por defecto
+  onImgError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    if (img) {
+      img.src = 'assets/img/icons/user.svg';
+    }
   }
 
   // Datos para componentes reutilizables
