@@ -198,10 +198,14 @@ export class DashboardPage implements OnInit, AfterViewInit {
     if (!url || url === 'null') return fallback;
     if (/^https?:\/\//i.test(url)) return url;
     const cleaned = url.replace(/^\/+/, '');
-    return `${environment.apiUrl}/${cleaned}`;
+    const resolved = `${environment.apiUrl}/${cleaned}`;
+    const token = localStorage.getItem('token');
+    if (token) {
+      const sep = resolved.includes('?') ? '&' : '?';
+      return `${resolved}${sep}token=${encodeURIComponent(token)}`;
+    }
+    return resolved;
   }
-
-  public fallbackAvatarUrl = 'assets/img/icons/user.svg';
 
   // Datos para componentes reutilizables
   public trophiesLabels: string[] = [];
@@ -248,19 +252,9 @@ export class DashboardPage implements OnInit, AfterViewInit {
     this.lastAvatarPath = null;
   }
 
-  private blobToDataUrl(blob: Blob): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = () => reject(reader.error);
-      reader.readAsDataURL(blob);
-    });
-  }
-
   private loadUserAvatar(user: any): void {
-    const token = localStorage.getItem('token');
     const idNumber = Number(user?.id);
-    if (!token || !Number.isFinite(idNumber)) {
+    if (!Number.isFinite(idNumber)) {
       this.clearAvatarObjectUrl();
       return;
     }
@@ -269,19 +263,34 @@ export class DashboardPage implements OnInit, AfterViewInit {
     if (this.lastAvatarPath === path && this.avatarObjectUrl) return;
     this.lastAvatarPath = path;
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.avatarObjectUrl = null;
+      return;
+    }
+
     this.avatarLoading = true;
     this.usersService.token = token;
     this.usersService.getImageProfile(idNumber, true).subscribe({
-      next: async (blob) => {
+      next: (blob) => {
         try {
-          if (blob.size === 0) {
-            this.avatarObjectUrl = null;
-          } else {
-            this.avatarObjectUrl = await this.blobToDataUrl(blob);
+          if (blob.size > 0 && blob.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.avatarObjectUrl = reader.result as string;
+              this.avatarLoading = false;
+              try { this.cdr.detectChanges(); } catch (e) {}
+            };
+            reader.onerror = () => {
+              this.avatarObjectUrl = null;
+              this.avatarLoading = false;
+              try { this.cdr.detectChanges(); } catch (e) {}
+            };
+            reader.readAsDataURL(blob);
+            return;
           }
-        } catch (e) {
-          this.avatarObjectUrl = null;
-        }
+        } catch (e) {}
+        this.avatarObjectUrl = null;
         this.avatarLoading = false;
         try { this.cdr.detectChanges(); } catch (e) {}
       },
@@ -291,8 +300,8 @@ export class DashboardPage implements OnInit, AfterViewInit {
         } else {
           console.error('Dashboard: error loading avatar', err);
         }
-        this.avatarLoading = false;
         this.avatarObjectUrl = null;
+        this.avatarLoading = false;
         try { this.cdr.detectChanges(); } catch (e) {}
       }
     });

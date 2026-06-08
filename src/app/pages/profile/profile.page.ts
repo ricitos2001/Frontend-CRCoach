@@ -121,10 +121,14 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     if (/^https?:\/\//i.test(url)) return url;
     // eliminar barras iniciales y concatenar con el apiUrl
     const cleaned = url.replace(/^\/+/, '');
-    return `${environment.apiUrl}/${cleaned}`;
+    const resolved = `${environment.apiUrl}/${cleaned}`;
+    const token = localStorage.getItem('token');
+    if (token) {
+      const sep = resolved.includes('?') ? '&' : '?';
+      return `${resolved}${sep}token=${encodeURIComponent(token)}`;
+    }
+    return resolved;
   }
-
-  fallbackAvatarUrl = 'assets/img/icons/user.svg';
 
   // Handle selected file and upload
   onAvatarSelected(event: Event): void {
@@ -158,19 +162,17 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     this.lastAvatarPath = null;
   }
 
-  private blobToDataUrl(blob: Blob): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = () => reject(reader.error);
-      reader.readAsDataURL(blob);
-    });
+  private avatarUrlWithToken(user: any): string | null {
+    const token = localStorage.getItem('token');
+    const id = user?.id;
+    if (!token || !id) return null;
+    const base = `${environment.apiUrl}/api/v1/users/${id}/avatar`;
+    return `${base}?token=${encodeURIComponent(token)}&t=${Date.now()}`;
   }
 
   private loadUserAvatar(user: any): void {
-    const token = localStorage.getItem('token');
     const idNumber = Number(user?.id);
-    if (!token || !Number.isFinite(idNumber)) {
+    if (!Number.isFinite(idNumber)) {
       this.clearAvatarObjectUrl();
       return;
     }
@@ -179,28 +181,41 @@ export class ProfilePage implements OnInit, OnDestroy, AfterViewInit {
     if (this.lastAvatarPath === path && this.avatarObjectUrl) return;
     this.lastAvatarPath = path;
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.avatarObjectUrl = null;
+      return;
+    }
+
     this.avatarLoading = true;
     this.usersService.token = token;
     this.usersService.getImageProfile(idNumber, true).subscribe({
-      next: async (blob) => {
+      next: (blob) => {
         try {
-          if (blob.size === 0) {
-            this.avatarObjectUrl = null;
-          } else {
-            this.avatarObjectUrl = await this.blobToDataUrl(blob);
+          if (blob.size > 0 && blob.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.avatarObjectUrl = reader.result as string;
+              this.avatarLoading = false;
+              try { this.cdr.detectChanges(); } catch (e) {}
+            };
+            reader.onerror = () => {
+              this.avatarObjectUrl = null;
+              this.avatarLoading = false;
+              try { this.cdr.detectChanges(); } catch (e) {}
+            };
+            reader.readAsDataURL(blob);
+            return;
           }
-        } catch (e) {
-          console.error('Error creando data URL para avatar', e);
-          this.avatarObjectUrl = null;
-        }
-        this.avatarLoading = false;
-        try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
-      },
-      error: (err) => {
-        console.error('Error cargando avatar:', err);
-        this.avatarLoading = false;
+        } catch (e) {}
         this.avatarObjectUrl = null;
-        try { this.cdr.detectChanges(); } catch (e) { /* ignore */ }
+        this.avatarLoading = false;
+        try { this.cdr.detectChanges(); } catch (e) {}
+      },
+      error: () => {
+        this.avatarObjectUrl = null;
+        this.avatarLoading = false;
+        try { this.cdr.detectChanges(); } catch (e) {}
       }
     });
   }
